@@ -31275,16 +31275,10 @@ body[class="ltr dark"] .card.card-bordered .card-body {
   color: rgba(var(--white), 1);
 }
 
-/*.swich-size input[type=checkbox].toggle + label::before {
-  width: 45px;
-  height: 25px;
-  font-size: 14px;
-}*/
 .swich-size input[type=checkbox].toggle + label::before {
   width: 45px;
   height: 25px;
   font-size: 14px;
-  border: 1px solid rgba(var(--dark), 0.2);
 }
 
 .swich-size input[type=checkbox].toggle + label::after {
