@@ -145,7 +145,7 @@ $rsUOs2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <!-- div de listagem/dataTable - BEGIN -->
     <div class="row">
       <div class="col-md-12">
-        <div class="card ">
+        <div class="card">
           <div class="card-header">
             <h5><span id="titulo_form" class="icon-name"> LISTA DE TIPOS DE SECRETARIAS</span></h5>
             <small>Explicação da página</small>

@@ -6514,6 +6514,10 @@
   content: "\f040";
 }
 
+.ti-file-type-xls:before {
+  content: "\fb1b";
+}
+
 .ti-file-typography:before {
   content: "\f041";
 }

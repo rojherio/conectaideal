@@ -11,7 +11,7 @@ $(function () {
   var user = 'usuario';
 
   $('#table_modelo_01').DataTable( {
-    dom: '<"ps-3 pe-3"Blfrtip>',
+    dom: '<"ms-3 me-3 mb-3"B<"row mt-1 mb-1"<"col-md-4"l><"col-md-8"f>>rtip>',
     // dom: 'Bfrtip',
     //geral
     paging        : true,
@@ -22,13 +22,13 @@ $(function () {
     info          : true,
     autoWidth     : true,
     buttons: [
-      { extend: 'copy',     text: 'COPIAR',   messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
-      { extend: 'csv',      text: 'CVS',      messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
-      { extend: 'excel',    text: 'EXCEL',    messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
-      { extend: 'pdfHtml5', text: 'PDF',      messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
+      { extend: 'copy',     text: '<i class="ph ph-copy"></i> COPIAR',   messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
+      { extend: 'csv',      text: '<i class="ph ph-read-cv-logo"></i> CVS',      messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
+      { extend: 'excel',    text: '<i class="ph ph-microsoft-excel-logo"></i> EXCEL',    messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
+      { extend: 'pdfHtml5', text: '<i class="ph ph-file-pdf"></i> PDF',      messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
       { 
         extend: 'print',
-        text: 'Imprimir',
+        text: '<i class="ph ph-printer"></i> Imprimir',
         // messageTop: ('<h3>'+titleTable+'</h3>'),
         // messageBottom: '',
         exportOptions: {columns: [ colsExport ]}, 
