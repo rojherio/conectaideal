@@ -35,6 +35,7 @@
 	<!-- CSS CUSTON BEGIN -->
 	<link rel="stylesheet" type="text/css" href="<?= CSS_FOLDER; ?>style.css">
 	<link rel="stylesheet" type="text/css" href="<?= CSS_FOLDER; ?>responsive.css"></head>
+	<link rel="stylesheet" type="text/css" href="<?= CSS_FOLDER; ?>delfos.css"></head>
 	<!-- CSS CUSTON END -->	
 </head>
 <body>

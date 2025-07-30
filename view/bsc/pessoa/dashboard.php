@@ -45,12 +45,6 @@ $stmt = $db->prepare("
 $stmt->execute();
 $rsUOs2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
-//Parámetros de títutlos - BEGIN
-$tituloPagina           = "Pessoa";
-$DescricaoPagina        = "Informações de pessoa física ou jurídica";
-$tituloFormulario       = "Cadastro de Pessoa";
-$DescricaoFormulario    = "Cadastro de dados referente a uma pessoa física ou jurídica"
-//Parámetros de títutlos - NED
 ?>
 <!-- main section -->
 <main>
@@ -58,7 +52,7 @@ $DescricaoFormulario    = "Cadastro de dados referente a uma pessoa física ou j
     <!-- div Título página e links de navegação - BEGIN -->
     <div class="row m-1">
       <div class="col-12 ">
-        <h4 class="main-title"><?= $tituloPagina;?></h4>
+        <h4 class="main-title">Tipo de instituição</h4>
         <ul class="app-line-breadcrumbs mb-3">
           <li class="">
             <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">
@@ -80,8 +74,8 @@ $DescricaoFormulario    = "Cadastro de dados referente a uma pessoa física ou j
         <div class="card">
           <div class="card-header">
             <!-- Título da div de cadastro - BEGIN -->
-            <h5><?= $tituloFormulario;?></h5>
-            <small><?= $DescricaoFormulario;?></small>
+            <h5>NOVO TIPO DE INSTITUIÇÃO</h5>
+            <small>Explicação da página</small>
             <!-- Título da div de cadastro - END -->
           </div>
           <div class="card-body">
@@ -89,21 +83,17 @@ $DescricaoFormulario    = "Cadastro de dados referente a uma pessoa física ou j
             <form class="app-form" id="form_unidade_organizacional_tipo" name="form_unidade_organizacional_tipo" method="post" action="">
               <!-- div row input - BEGIN -->
               <div class="row">
-                <!-- createInput($col, $label, $type, $name, $id, $class, $minlength, $maxlength, $placeholder, $title, $value, $required, $prop) -->
-                <?= createInput("col-12", "Nome", "text", "p_nome", "p_nome", "form-control", "3", "254", "Digite o nome da pessoa", "", $rsUOTipo['nome'], true, "") ;?>
-                <!-- <div class="col-12">
+                <div class="col-12">
                   <div class="form-floating mb-3">
                     <input type="text" class="form-control" minlength="3" id="nome_tipo" name="nome_tipo" placeholder="Digite o nome da instituição" value="<?= $rsUOTipo['nome']; ?>" required>
                     <label for="nome_tipo">Nome</label>
                   </div>
-                </div> -->
+                </div>
               </div>
               <!-- div row input - END -->
               <!-- div row select - BEGIN -->
               <div class="row">
-                <!-- createSelect($col, $label, $name, $id, $class, $ariaLabel, $required, $prop, $options) { -->
-                <?= createSelect("col-12", "Secretaria", "p_secretaria", "p_secretaria", "select_modelo form-control form-select select-basic", "Selecione uma secretaria", true, "", $rsUOs) ;?>
-                <!-- <div class="col-12">
+                <div class="col-12">
                   <div class="form-floating mb-3">
                     <select class="select_modelo form-control form-select select-basic" id="secretaria" name="secretaria" aria-label="Selecione uma secretaria">
                       <option></option>
@@ -117,21 +107,19 @@ $DescricaoFormulario    = "Cadastro de dados referente a uma pessoa física ou j
                     </select>
                     <label for="secretaria">Secretaria</label>
                   </div>
-                </div> -->
+                </div>
               </div>
               <!-- div row select - END -->
               <!-- div row checkbox - BEGIN -->
               <div class="row">
-                <!-- createCheckbox($col, $label, $type, $name, $id, $class, $checked, $value, $prop) -->
-                <?= createCheckbox("col-12", "Ativo", "checkbox", "p_status", "p_status", "toggle", "false", "1", "")?>
-                <!-- <div class="col-12">
+                <div class="col-12">
                   <div class="card-body main-switch main-switch-color">
                     <div class="switch-info swich-size">
                       <input type="checkbox" class="" id="status_tipo" name="status_tipo" checked="true" value="1">
                       <label for="status_tipo">Ativo</label>
                     </div>
                   </div>
-                </div> -->
+                </div>
               </div>
               <!-- div row checkbox - END -->
               <!-- div row buttons - BEGIN -->

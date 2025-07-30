@@ -1,0 +1,28 @@
+@charset "UTF-8";
+.ml-n1 { 
+  margin-left: -0.25rem !important; 
+}
+.ml-n2 { 
+  margin-left: -0.5rem !important; 
+}
+.ml-n3 { 
+  margin-left: -1rem !important; 
+}
+.ml-n4 { 
+  margin-left: -1.5rem !important; 
+}
+.ml-n5 { 
+  margin-left: -3rem !important; 
+}
+div.delfos-radio {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+label.delfos-radio {
+  margin-top: .1rem !important;
+  margin-bottom: 0 !important;
+  padding-top: 1 !important;
+  padding-bottom: 0 !important;
+  scale: .85 !important;
+  opacity: .65 !important;
+}

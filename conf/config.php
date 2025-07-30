@@ -8,7 +8,7 @@ date_default_timezone_set("America/Rio_Branco");
 // DEFININDO OS DADOS DE ACESSO AO BANCO DE DADOS
 define("DB", 'mysql');
 define("DB_HOST", "localhost");
-define("DB_NAME", "zatu");
+define("DB_NAME", "delfos");
 define("DB_USER", "root");
 define("DB_PASS", "root");
 // CONFIGURACOES PADRAO DO SISTEMA
@@ -25,7 +25,7 @@ define("JS_FOLDER", 'http://localhost/delfos/assets/js/');
 define("PLUGINS_FOLDER", 'http://localhost/delfos/assets/plugins/');
 define("AVATAR_FOLDER", 'http://localhost/delfos/assets/avatar/');
 define("PORTAL_URL_SERVIDOR", 'C:/xampp/htdocs/delfos/');
-define("UTILS_FOLDER", 'http://localhost/delfos/assets/utils/');
+define("UTILS_FOLDER", 'http://localhost/delfos/utils/');
 // CONFIGURACAO DE ENVIO DE E-MAIL
 define('EMAIL_NOME', 'delfos');
 define('EMAIL_ENDERECO', 'suporte@delfos.com.br');
