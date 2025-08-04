@@ -1,38 +1,74 @@
 
 //Initialize Select2 Elements
-$('.select_modelo').select2({
-	placeholder: 'Selecione uma opção'
+$('.select2').select2({
+	placeholder: 'Selecione uma opção',
+	language: {
+      inputTooShort: function(args) {
+        // args.minimum is the minimum required length
+        // args.input is the  user-typed text
+        return "Por favor, digite 3 ou mais caracteres";
+      },
+      errorLoading: function() {
+        return "Erro ao carregar resultados";
+      },
+      loadingMore: function() {
+        return "Carregando mais resultados";
+      },
+      noResults: function() {
+        return "Nenhum resultado encontrado";
+      },
+      searching: function() {
+        return "Carregando...";
+      },
+      maximumSelected: function(args) {
+        // args.maximum is the maximum number of items the user may select
+        return "Erro ao carregar resultados";
+      }
+    }
 });
-// $(function() {
-//   $('.select-1').select2();
-// });
-$(function() {
-  $('.select-example').select2();
+$(".select2_naturalidade, .select2_conjuge_naturalidade, .select2_eleitor_cidade, .select2_reg_civ_cidadae, .select2_averbacao_cidade").select2({
+	placeholder: 'Selecione uma opção',
+  minimumInputLength: 3,
+  cache: true,
+  language: {
+    inputTooShort: function(args) {
+      // args.minimum is the minimum required length
+      // args.input is the user-typed text
+      return "Por favor, digite 3 ou mais caracteres";
+    },
+    errorLoading: function() {
+      return "Erro ao carregar resultados";
+    },
+    loadingMore: function() {
+      return "Carregando mais resultados";
+    },
+    noResults: function() {
+      return "Nenhum resultado encontrado";
+    },
+    searching: function() {
+      return "Carregando...";
+    },
+    maximumSelected: function(args) {
+      // args.maximum is the maximum number of items the user may select
+        return "Erro ao carregar resultados";
+    }
+  },
+  ajax: {
+    url: PORTAL_URL + "model/bsc/municipio/get_municipios_estados",
+    dataType: 'json',
+    type: "post",
+    delay: 150,
+    data: function(params) {
+      return {
+        nome: params.term // search term
+      };
+    },
+    processResults: function(data, params) {
+      return {
+        results: data.itens
+      };
+    }
+  }
 });
-// $(function() {
-//   $('.select-example-two').select2();
-// });
-// $(function() {
-//   $('.select-basic-multiple-four').select2();
-// });
-// $(".select-example-rtl").select2({
-//   dir: "rtl"
-// });
-// $(".js-example-disabled").select2();
-// $(".select-basic-multiple-five").select2();
-// $(".select-basic-multiple-seven").on("click", function () {
-//   $(".js-example-disabled").prop("disabled", false);
-//   $(".select-basic-multiple-five").prop("disabled", false);
-// });
-// $(".select-basic-multiple-six").on("click", function () {
-//   $(".js-example-disabled").prop("disabled", true);
-//   $(".select-basic-multiple-five").prop("disabled", true);
-// });
-// $('.select2-icon').select2({
-//   width: "100%",
-// });
-// $('.select2-icons').select2({
-//   width: "100%",
-// });
 
 

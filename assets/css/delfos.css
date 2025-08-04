@@ -26,3 +26,6 @@ label.delfos-radio {
   scale: .85 !important;
   opacity: .65 !important;
 }
+span.error_validator {
+  padding-left: .75rem;
+}
