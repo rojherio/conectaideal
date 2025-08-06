@@ -151,12 +151,12 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
           <li class="">
             <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">
               <span>
-                <i class="ph-duotone  ph-cardholder f-s-16"></i>  Estrutura Organizacional
+                <i class="ph-duotone  ph-cardholder f-s-16"></i>  Módulo Base
               </span>
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de isntituição</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Pessoa Física</a>
           </li>
         </ul>
       </div>
@@ -221,15 +221,14 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
-                <?= createInput(array(
+                <?= createInputDate(array(
                   /*int 1-12*/  'col'         => 4,
                   /*string*/    'label'       => 'Data de Nascimento',
-                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'p_dt_nascimento',
                   /*string*/    'id'          => 'p_dt_nascimento',
                   /*string*/    'class'       => 'form-control mask-data',
-                  /*int*/       'minlength'   => 10,
-                  /*int*/       'maxlength'   => 10,
+                  /*int*/       'min'         => '1900-01-01',
+                  /*int*/       'maxToday'    => true,
                   /*string*/    'placeholder' => 'Digite a Data de Nascimento da pessoa',
                   /*string*/    'value'       => $rsPessoa['dt_nascimento'],
                   /*bool*/      'required'    => true,
@@ -364,15 +363,14 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   )) ;?>
                 </div>
                 <div class="row">
-                  <?= createInput(array(
+                  <?= createInputDate(array(
                     /*int 1-12*/  'col'         => 6,
                     /*string*/    'label'       => 'Data de Ingreso ao Brasil',
-                    /*string*/    'type'        => 'text',
                     /*string*/    'name'        => 'p_natural_estrangeiro_dt_ingresso',
                     /*string*/    'id'          => 'p_natural_estrangeiro_dt_ingresso',
                     /*string*/    'class'       => 'form-control mask-data',
-                    /*int*/       'minlength'   => 10,
-                    /*int*/       'maxlength'   => 10,
+                    /*int*/       'min'         => '1900-01-01',
+                    /*int*/       'maxToday'    => true,
                     /*string*/    'placeholder' => 'Digite a data de ingresso da pessoa ao Brasil',
                     /*string*/    'value'       => $rsPessoa['natural_estrangeiro_dt_ingresso'],
                     /*bool*/      'required'    => true,
@@ -590,10 +588,10 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
               <!-- div row buttons - BEGIN -->
               <div class="row">
                 <div class="box-footer text-center">
-                  <button type="reset" class="btn btn-danger waves-effect waves-light b-r-22" id="btn_cancelar">
+                  <button type="reset" class="btn btn-outline-danger b-r-22" id="btn_cancelar">
                     <i class="ti ti-eraser"></i> Cancelar
                   </button>
-                  <button type="submit" class="btn btn-success waves-effect waves-light b-r-22">
+                  <button type="submit" class="btn btn-outline-success waves-light b-r-22">
                     <i class="ti ti-writing"></i> Cadastrar
                   </button>
                 </div>
@@ -613,7 +611,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/modulo_modelo/submodulo_modelo_01/dashboard_modelo.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa/cadastrar.js"></script>
 
 
 

@@ -29,3 +29,17 @@ label.delfos-radio {
 span.error_validator {
   padding-left: .75rem;
 }
+div.loadding-delfos {
+  /*width: -moz-fit-content;
+  width: fit-content;*/
+  font-weight: bold;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 0);
+  background: linear-gradient(115deg, rgb(var(--warning)) calc(50% - 0.5ch), rgb(var(--danger)) 0 calc(50% + 1.5ch), rgb(var(--warning)) 0) right/calc(150% + 1ch) 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: l8 1.5s infinite steps(25);
+}
+div.loadding-delfos:before {
+  content: "Aguarde...";
+}

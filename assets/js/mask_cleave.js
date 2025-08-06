@@ -1,5 +1,5 @@
-var data = new Date();
-var hoje = data.getFullYear()+'-'+(("0"+(data.getMonth()+1)).slice(-2))+'-'+(("0"+(data.getDay())).slice(-2));
+// var data = new Date();
+// var hoje = data.getFullYear()+'-'+(("0"+(data.getMonth()+1)).slice(-2))+'-'+(("0"+(data.getDay())).slice(-2));
 
 $('.mask-cpf').each(function(k, elem){
   new Cleave(elem, {
@@ -8,15 +8,15 @@ $('.mask-cpf').each(function(k, elem){
     blocks: [3, 3, 3, 2]
   });
 });
-$('.mask-data').each(function(k, elem){
-  new Cleave(elem, {
-    date: true,
-    dateMin: '1900-01-01',
-    dateMax: hoje,
-    delimter: '/',
-    datePattern: ['d', 'm', 'Y']
-  });
-});
+// $('.mask-data').each(function(k, elem){
+//   new Cleave(elem, {
+//     date: true,
+//     dateMin: '1900-01-01',
+//     dateMax: hoje,
+//     delimter: '/',
+//     datePattern: ['d', 'm', 'Y']
+//   });
+// });
 
 // **------ 1 Date Input**
 // new Cleave('.cleave-input-date', {

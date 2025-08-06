@@ -13,6 +13,19 @@
 //   /*bool*/      'required'    => true,
 //   /*string*/    'prop'        => ''
 // );
+// createInputDate(array(
+//   /*int 1-12*/  'col'         => 12,
+//   /*string*/    'label'       => 'Nome',
+//   /*string*/    'name'        => 'p_nome',
+//   /*string*/    'id'          => 'p_nome',
+//   /*string*/    'class'       => 'form-control',
+//   /*int*/       'min'         => 1900-01-01,
+//   /*int*/       'maxToday'    => true,
+//   /*string*/    'placeholder' => 'Digite o nome da pessoa',
+//   /*string*/    'value'       => $rsPessoa['nome'],
+//   /*bool*/      'required'    => true,
+//   /*string*/    'prop'        => ''
+// );
 // createSelect(array(
 //   /*int 1-12*/  'col'         => 12,
 //   /*string*/    'label'       => 'Nacionalidade',
@@ -54,6 +67,15 @@ function createInput($params) {
   $html  = '  <div class="col-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
   $html .= '      <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="'.$params['minlength'].'" maxlength="'.$params['maxlength'].'" placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
+  $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html .= '    </div>';
+  $html .= '  </div>';
+  return $html;
+}
+function createInputDate($params) {
+  $html  = '  <div class="col-'.$params['col'].'">';
+  $html .= '    <div class="div-validate form-floating mb-3">';
+  $html .= '      <input type="date" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="10" maxlength="10" min="'.$params['min'].'" '.($params['maxToday'] ? 'max="'.date('Y-m-d').'"' : '' ).'  placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html .= '    </div>';
   $html .= '  </div>';

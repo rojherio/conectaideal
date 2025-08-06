@@ -11,7 +11,7 @@ $(document).ready(function() {
   var msgInputMinLength = '<span class="text-danger error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
   var msgSelect = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
   var msgRadio = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
-  $('input[type="text"][required], input[type="number"][required], input[type="email"][required], textarea[required]').keyup(function(){
+  $('input[type="text"][required], input[type="date"][required], input[type="number"][required], input[type="email"][required], textarea[required]').keyup(function(){
     var valLength = $(this).val().length;
     $(this).parents('div.div-validate').find('span.required').remove();
     if (valLength == 0) {
@@ -90,13 +90,13 @@ function cleanValidatorRMRosas(elem){
 }
 function formValidatorRMRosas(form){
   valido = true;
-  var msgInputRequired = '<span class="error_validator required">O preenchimento deste campo é obrigatório!<br/></span>';
-  var msgInputMinLength = '<span class="error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
-  var msgSelect = '<span class="error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
-  var msgRadio = '<span class="error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
+  var msgInputRequired = '<span class="text-danger error_validator required">O preenchimento deste campo é obrigatório!<br/></span>';
+  var msgInputMinLength = '<span class="text-danger error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
+  var msgSelect = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
+  var msgRadio = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
   $(form).find('span.required').remove();
   $(form).find('span.minlength').remove();
-  $(form).find('input[type="text"][required], input[type="number"][required], input[type="email"][required], textarea[allempty]').each(function(){
+  $(form).find('input[type="text"][required], input[type="date"][required], input[type="number"][required], input[type="email"][required], textarea[allempty]').each(function(){
     if ($(this).is(':visible')) {
       var valLength = $(this).val().length;
       if (valLength == 0) {
