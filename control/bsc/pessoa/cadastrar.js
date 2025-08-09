@@ -49,7 +49,7 @@ function loading(){
 }
 function loaded(){
   console.log("loaded");
-  // $('div#modalLoading').modal('hide');
+  $('div#modalLoading').modal('hide');
 }
 function onSuccessSendPessoal(data, status, obj) {
   console.log('success');
@@ -75,9 +75,9 @@ function onSuccessSendPessoal(data, status, obj) {
 function onCompleteSendPessoal(data, status) {
   loaded();
   setTimeout(function() {
-    // $('div#modalLoading').modal('hide');
+    $('div#modalLoading').modal('hide');
     console.log("teste");
-  }, 5000);
+  }, 500);
   return false;
   // if (obj.terno == 'success') {
   //   $('input.servidor_id').val(obj.id);

@@ -6,6 +6,9 @@ $(document).ready(function () {
     keyboard: false
   })
 });
+$('button[type="submit"]').on('click', function(event){
+  $(this).attr('disabled', 'disabled');
+});
 function validaCPF(cpfX) {
   var Soma;
   var Resto;
