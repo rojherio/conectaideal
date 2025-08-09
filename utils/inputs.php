@@ -84,7 +84,7 @@ function createInputDate($params) {
 function createSelect($params) {
   $html    = '  <div class="col-'.$params['col'].'" '.$params['prop'].' '.(!$params['display'] ? 'style="display: none;"' : '').'>';
   $html   .= '    <div class="div-validate form-floating mb-3">';
-  $html   .= '      <select name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" aria-label="'.$params['ariaLabel'].'" title="'.$params['title'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
+  $html   .= '      <select name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" aria-label="'.$params['ariaLabel'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html   .= '        <option></option>';
   foreach ($params['options'] as $kObj => $vObj) {
     $html .= '        <option value="'.$vObj['id'].'" '.($params['value'] == $vObj['id'] ? 'selected="selected"' : "").'">'.$vObj['nome'].'</option>';
