@@ -2,13 +2,83 @@ const PORTAL_URL = 'http://localhost/delfos/';
 
 $(document).ready(function () {
   $('#modalLoading').modal({
-    backdrop: false,
+    backdrop: 'static',
     keyboard: false
   })
 });
-$('button[type="submit"]').on('click', function(event){
-  $(this).attr('disabled', 'disabled');
+$('button[type="reset"]').on('click', function(){
+  $('button[type="submit"]').attr('disabled', false);
 });
+function divLoading(){
+  $('button[type="submit"]').attr('disabled', true);
+  $.blockUI({
+    message:  $('div#modalLoading').html(), 
+    draggable: true,
+    css: { 
+      border: 0, 
+      backgroundColor: '#fff', 
+      'border-radius': '1.8rem'
+    }, 
+  });
+}
+function divLoaded(){
+  $.unblockUI();
+}
+function ajaxSuccess(data, status, obj) {
+  return false;
+  // if (obj.terno == 'success') {
+  //   $('input.servidor_id').val(obj.id);
+  //   swal.fire('Sucesso', obj.retorno, 'success');
+  //   // postToURL(PORTAL_URL + 'view/rh/servidor/cadastrar');
+  //   return false;
+  // } else if (obj.msg == 'error') {
+  //   if (obj.tipo == 'cpf') {
+  //     swal.fire('Erro', obj.retorno, 'error');
+  //   } else {
+  //     swal.fire('Erro inesperado', "Houve um erro no sistema ao tentar realizar esta ação! Por favor, tente novamente ou informe esse erro ao suporte.", 'error');
+  //     console.log('Error: ' + obj.retorno);
+  //   }
+  //   return false;
+  // }
+}
+function ajaxError(data, status, errorThrown) {
+  return false;
+  // if (obj.terno == 'success') {
+  //   $('input.servidor_id').val(obj.id);
+  //   swal.fire('Sucesso', obj.retorno, 'success');
+  //   // postToURL(PORTAL_URL + 'view/rh/servidor/cadastrar');
+  //   return false;
+  // } else if (obj.msg == 'error') {
+  //   if (obj.tipo == 'cpf') {
+  //     swal.fire('Erro', obj.retorno, 'error');
+  //   } else {
+  //     swal.fire('Erro inesperado', "Houve um erro no sistema ao tentar realizar esta ação! Por favor, tente novamente ou informe esse erro ao suporte.", 'error');
+  //     console.log('Error: ' + obj.retorno);
+  //   }
+  //   return false;
+  // }
+}
+function ajaxComplete(data, status) {
+  setTimeout(function() {
+    divLoaded();
+  }, 1000);
+  return false;
+  // if (obj.terno == 'success') {
+  //   $('input.servidor_id').val(obj.id);
+  //   swal.fire('Sucesso', obj.retorno, 'success');
+  //   // postToURL(PORTAL_URL + 'view/rh/servidor/cadastrar');
+  //   return false;
+  // } else if (obj.msg == 'error') {
+  //   if (obj.tipo == 'cpf') {
+  //     swal.fire('Erro', obj.retorno, 'error');
+  //   } else {
+  //     swal.fire('Erro inesperado', "Houve um erro no sistema ao tentar realizar esta ação! Por favor, tente novamente ou informe esse erro ao suporte.", 'error');
+  //     console.log('Error: ' + obj.retorno);
+  //   }
+  //   return false;
+  // }
+}
+
 function validaCPF(cpfX) {
   var Soma;
   var Resto;

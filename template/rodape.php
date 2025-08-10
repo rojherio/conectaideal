@@ -11,12 +11,13 @@ include_once "utils/modal_loading.php";
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>select/select2.min.js"></script>
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>cleavejs/dist/cleave.min.js"></script>
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>cleavejs/dist/addons/cleave-phone.br.js"></script>
+<script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>jquery-ui/jquery-ui.min.js"></script>
+<script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>block-ui/jquery.blockUI.js"></script>
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>jquery-livequery/jquery.livequery.min.js"></script>
 <!-- JAVASCRIPT UTILS BEGIN -->
 <script type="text/javascript" src="<?= UTILS_FOLDER; ?>utils.js"></script>
-<script type="text/javascript" src="<?= UTILS_FOLDER; ?>projeto.utils.js"></script>
 <!-- JAVASCRIPT UTILS END -->
-<!-- Custom Js -->
+<!-- JAVASCRIPT CUSTON BEGIN -->
 <script type="text/javascript" src="<?= JS_FOLDER; ?>script.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>customizer.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>data_table.js"></script>
@@ -24,7 +25,5 @@ include_once "utils/modal_loading.php";
 <script type="text/javascript" src="<?= JS_FOLDER; ?>mask_cleave.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>divs_controller.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>validator_rmrosas.js"></script>
-<!-- JAVASCRIPT CUSTON BEGIN -->
-<!-- <script type="text/javascript" src="<?= JS_FOLDER; ?>data_table.js"></script>
-<script type="text/javascript" src="<?= JS_FOLDER; ?>dashboard.js"></script> -->
+<!-- JAVASCRIPT CUSTON END -->
 </html>

@@ -16,20 +16,4 @@ $(document).ready(function() {
     }
     return false;
   });
-  // $('select#nacionalidade_s').change(function(){
-  //   var val = $(this).val();
-  //   if (val == 1 || val == '') {
-  //     $('input#nat_est_cidade_S').val('');
-  //     $('input#nat_est_estado_s').val('');
-  //     $('input#nat_est_dt_ingresso_s').val('');
-  //     $('input#nat_est_cond_trabalho_s').val('');
-  //     $('div#div_naturalide_extrangeiro').slideUp();
-  //     $('div#div_naturalide_nacional').slideDown();
-  //   } else {
-  //     $('select#naturalidade_s').val(null).trigger('change');
-  //     $('div#div_naturalide_nacional').slideUp();
-  //     $('div#div_naturalide_extrangeiro').slideDown();
-  //   }
-  //   return false;
-  // });
 });

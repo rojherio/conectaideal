@@ -2,13 +2,13 @@
 // teste
 ob_start();
 session_start();
-// URL AMIGAVEL E CONEXAO BY CONFIG 
+// CONF/ URL AMIGAVEL | CONEXAO | SESSION 
 include_once "conf/Url.php";
 include_once "conf/config.php";
 // INSTANCIA DO BANCO DE DADOS QUE SERVE PARA TODAS AS CONEXÕES COM BANCO EM TODAS AS PÁGINAS
 $db = Conexao::getInstance();
-// FUNCOES
 include_once "conf/session.php";
+// UTILS
 include_once "utils/funcoes.php";
 include_once "utils/inputs.php";
 include_once 'utils/permissoes.php';
