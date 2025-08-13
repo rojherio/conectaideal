@@ -70,5 +70,9 @@ $(".select2_naturalidade, .select2_conjuge_naturalidade, .select2_eleitor_cidade
     }
   }
 });
-
+function select2Clear(){
+  $('.select2').each(function (k, obj){
+    $(obj).val(null).trigger('change');
+  });
+}
 

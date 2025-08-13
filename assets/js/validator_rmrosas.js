@@ -11,6 +11,8 @@ $(document).ready(function() {
   var msgInputMinLength = '<span class="text-danger error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
   var msgSelect = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
   var msgRadio = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
+  var msgCnpj = '<span class="text-danger error_validator required cnpj">O CNPJ informado não é válido!<br/></span>';
+  var msgCpf = '<span class="text-danger error_validator required cpf">O CPF informado não é válido!<br/></span>';
   $('input[type="text"][required], input[type="date"][required], input[type="number"][required], input[type="email"][required], textarea[required]').keyup(function(){
     var valLength = $(this).val().length;
     $(this).parents('div.div-validate').find('span.required').remove();
@@ -64,6 +66,22 @@ $(document).ready(function() {
     $(body).find('select[allempty]').attr('required', 'required').parents('div.div-validate').find('span.text-danger[validator]').text('*');
     $(body).find('input[type="radio"][allempty]').attr('required', 'required').parents('div.div-validate').find('span.text-danger[validator]').text('*');
   });
+  $('input.mask-cnpj').keyup(function(){
+    var valMinLength = $(this).attr('minlength');
+    var inputVal = $(this).val();
+    $(this).parents('div.div-validate').find('span.cnpj').remove();
+    if (inputVal.length == valMinLength && !validaCNPJ(inputVal)) {
+      $(this).parents('div.div-validate').append(msgCnpj);
+    }
+  });
+  $('input.mask-cpf').keyup(function(){
+    var valMinLength = $(this).attr('minlength');
+    var inputVal = $(this).val();
+    $(this).parents('div.div-validate').find('span.cpf').remove();
+    if (inputVal.length == valMinLength && !validaCPF(inputVal)) {
+      $(this).parents('div.div-validate').append(msgCpf);
+    }
+  });
 });
 function listenValidatorRMRosas(elem){
   var notEmpty = false;
@@ -75,7 +93,7 @@ function listenValidatorRMRosas(elem){
   });
   $(elem).find('select[allempty]').each(function(){
     var val = $(this).val();
-    if (val != 0 || val != '') {
+    if (val != 0 || val != '') {  
       notEmpty = true;
     }
   });
@@ -94,8 +112,12 @@ function formValidatorRMRosas(form){
   var msgInputMinLength = '<span class="text-danger error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
   var msgSelect = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
   var msgRadio = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
+  var msgCnpj = '<span class="text-danger error_validator required cnpj">O CNPJ informado não é válido!<br/></span>';
+  var msgCpf = '<span class="text-danger error_validator required cpf">O CPF informado não é válido!<br/></span>';
   $(form).find('span.required').remove();
   $(form).find('span.minlength').remove();
+  $(form).find('span.cnpj').remove();
+  $(form).find('span.cpf').remove();
   $(form).find('input[type="text"][required], input[type="date"][required], input[type="number"][required], input[type="email"][required], textarea[allempty]').each(function(){
     if ($(this).is(':visible')) {
       var valLength = $(this).val().length;
@@ -130,11 +152,29 @@ function formValidatorRMRosas(form){
       }
     }
   });
+  $(form).find('input.mask-cnpj').each(function(){
+    if ($(this).is(':visible')) {
+      var valMinLength = $(this).attr('minlength');
+      var inputVal = $(this).val().length;
+      if (inputVal.length == valMinLength && !validaCNPJ(inputVal)) {
+        $(this).parents('div.div-validate').append(msgCnpj);
+      }
+    }
+  });
+  $(form).find('input.mask-cpf').each(function(){
+    if ($(this).is(':visible')) {
+      var valMinLength = $(this).attr('minlength');
+      var inputVal = $(this).val().length;
+      if (inputVal.length == valMinLength && !validaCPF(inputVal)) {
+        $(this).parents('div.div-validate').append(msgCpf);
+      }
+    }
+  });
   if ($(form).find('span.error_validator').length > 0) {
     valido = false;
-    swal.fire({title: 'Atenção', text: "Todos os campos devem ser preenchidos corretamente!", icon: 'warning', confirmButtonText: 'Ok'})
+    swal.fire({title: 'Atenção', text: "Todos os campos devem ser preenchidos corretamente, inclusive os campos obrigatórios!", icon: 'warning', confirmButtonText: 'Ok'})
     .then((result) => {
-      var offsetTop = $('span.error_validator').parents('.div-validate').find('label').offset().top - 20;
+      var offsetTop = $('span.error_validator').parents('.div-validate').find('label').offset().top - 90;
       $('html').animate({
         scrollTop: offsetTop
       }, 500);
@@ -142,4 +182,10 @@ function formValidatorRMRosas(form){
     // swal.fire('Atenção', "Todos os campos devem ser preenchidos corretamente!", 'warning');
   }
   return valido;
+}
+function formValidatorRMRosasClean(){
+  $('form').find('span.required').remove();
+  $('form').find('span.minlength').remove();
+  $('form').find('span.cnpj').remove();
+  $('form').find('span.cpf').remove();
 }

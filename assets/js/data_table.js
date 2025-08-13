@@ -1,7 +1,7 @@
 $(function () {
   "use strict";
 
-  var qtdCols = $('#table_modelo_01 > thead > tr > th').not('.no-print').length;
+  var qtdCols = $('#table_model_01 > thead > tr > th').not('.no-print').length;
   var colsExport = '0';
   for (var i = 1; i < qtdCols; i++) {
     colsExport += ', '+i;
@@ -10,7 +10,7 @@ $(function () {
   // var user = $('input#zatu_nome').val();
   var user = 'usuario';
 
-  $('#table_modelo_01').DataTable( {
+  $('#table_model_01').DataTable( {
     dom: '<"ms-3 me-3 mb-3"B<"row mt-1 mb-1"<"col-md-4"l><"col-md-8"f>>rtip>',
     // dom: 'Bfrtip',
     //geral
@@ -22,10 +22,10 @@ $(function () {
     info          : true,
     autoWidth     : true,
     buttons: [
-      { extend: 'copy',     text: '<i class="ph ph-copy"></i> COPIAR',   messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
-      { extend: 'csv',      text: '<i class="ph ph-read-cv-logo"></i> CVS',      messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
-      { extend: 'excel',    text: '<i class="ph ph-microsoft-excel-logo"></i> EXCEL',    messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
-      { extend: 'pdfHtml5', text: '<i class="ph ph-file-pdf"></i> PDF',      messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}},
+      { extend: 'copyHtml5',    text: '<i class="ph ph-copy"></i> Copiar',                messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}, className: 'btn-outline-light'},
+      { extend: 'csvHtml5',     text: '<i class="ph ph-read-cv-logo"></i> CVS',           messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}, className: 'btn-outline-light'},
+      { extend: 'excelHtml5',   text: '<i class="ph ph-microsoft-excel-logo"></i> EXCEL', messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}, className: 'btn-outline-light'},
+      { extend: 'pdfHtml5',     text: '<i class="ph ph-file-pdf"></i> PDF',               messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}, className: 'btn-outline-light'},
       { 
         extend: 'print',
         text: '<i class="ph ph-printer"></i> Imprimir',
@@ -36,7 +36,8 @@ $(function () {
           // alert(JSON.stringify(win.document.body));
           impressao(win, titleTable, user);
           // alert(JSON.stringify(win.document.body));
-        }
+        }, 
+        className: 'buttons-html5 btn-outline-light'
       }
       ],
     //exibir
@@ -51,7 +52,7 @@ $(function () {
       decimal             : ",",
       emptyTable          : "Não existem registros para exibir",
       info                : "Exibindo _START_ a _END_ de _TOTAL_ registros",
-      infoEmpty           : "Exibindo 0 a 0 de 0 registros",
+      infoEmpty           : "",
       infoFiltered        : "(filtrado de um total de _MAX_ registros)",
       infoPostFix         : "",
       thousands           : ",",

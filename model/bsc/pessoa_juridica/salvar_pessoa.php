@@ -26,10 +26,16 @@ $raca                                     = strip_tags(@$_POST['p_raca']);
 $enfermedade_portador                     = strip_tags(@$_POST['p_enfermedade_portador']);
 $enfermidade_codigo_internacional         = strip_tags(@$_POST['p_enfermidade_codigo_internacional']);
 $error = false;
-$retorno = array();
-$mensagem = "";
-
-echo json_encode('entrou');
+$result = array();
+$msg = "";
+// sleep(10);
+// $result = array(
+//   'id'      => '',
+//   'tipo'    => '',
+//   'status' => 'succes',
+//   'msg' => 'Dados pessoais do servidor atualizados com sucesso.'
+// );
+echo json_encode(array('status' => 'succes', 'msg' => 'As novas informações foram registradas com sucesso.'));
 exit();
 try {
   $db->beginTransaction();
@@ -164,10 +170,10 @@ try {
     $stmt->execute();
     $db->commit();
       //MENSAGEM DE SUCESSO
-    $retorno['id'] = $id;
-    $retorno['msg'] = 'success';
-    $retorno['retorno'] = 'Dados pessoais do servidor atualizados com sucesso.';
-    echo json_encode($retorno);
+    $result['id'] = $id;
+    $result['status'] = 'success';
+    $result['msg'] = 'Dados pessoais do servidor atualizados com sucesso.';
+    echo json_encode($result);
     exit();
   } else {
     $stmt = $db->prepare('
@@ -180,10 +186,10 @@ try {
     $rsServidorExiste = $stmt->fetchALL(PDO::FETCH_ASSOC);
     if (sizeof($rsServidorExiste) > 0) {
       $db->rollback();
-      $retorno['msg'] = 'error';
-      $retorno['tipo'] = 'cpf';
-      $retorno['retorno'] = "Falha ao tentar salvar novo servidor, poir o CPF informado já está vincualado a um servidor!";
-      echo json_encode($retorno);
+      $result['status'] = 'error';
+      $result['tipo'] = 'cpf';
+      $result['msg'] = "Falha ao tentar salvar novo servidor, poir o CPF informado já está vincualado a um servidor!";
+      echo json_encode($result);
       exit();
     } else {
       $stmt = $db->prepare('INSERT INTO seg_servidor 
@@ -324,18 +330,18 @@ try {
       $servidorIdNew = $db->lastInsertId();
       $db->commit();
       //MENSAGEM DE SUCESSO
-      $retorno['id'] = $servidorIdNew;
-      $retorno['msg'] = 'success';
-      $retorno['retorno'] = 'Dados pessoais do servidor cadastrados com sucesso.';
-      echo json_encode($retorno);
+      $result['id'] = $servidorIdNew;
+      $result['status'] = 'success';
+      $result['msg'] = 'Dados pessoais do servidor cadastrados com sucesso.';
+      echo json_encode($result);
       exit();
     }
   }
 } catch (PDOException $e) {
   $db->rollback();
-  $retorno['msg'] = 'error';
-  $retorno['retorno'] = "Erro ao tentar salvar os dados pessoais do servidor: " . $e->getMessage();
-  echo json_encode($retorno);
+  $result['status'] = 'error';
+  $result['msg'] = "Erro ao tentar salvar os dados pessoais do servidor: " . $e->getMessage();
+  echo json_encode($result);
   exit();
 }
 ?>

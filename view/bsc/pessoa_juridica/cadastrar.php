@@ -13,9 +13,7 @@ $stmt = $db->prepare("SELECT
   p.nome,
   p.nome_social,
   p.cpf,
-  p.ie,
   p.dt_nascimento,
-  p.dt_criacao,
   p.sexo,
   p.natural_bsc_pais_id,
   p.natural_bsc_municipio_id,
@@ -140,7 +138,7 @@ $displayNaturalidadeNacional      = $rsPessoa['natural_bsc_pais_id'] != 1 ? 'sty
 $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'style="display: none;"' : '';
 //Parámetros de exibir/ocultar div - NED
 ?>
-<!-- main section -->
+<!-- Main Section - BEGIN-->
 <main>
   <div class="container-fluid">
     <!-- div Título página e links de navegação - BEGIN -->
@@ -189,7 +187,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   /*int*/       'maxlength'   => 254,
                   /*string*/    'placeholder' => 'Digite o nome da pessoa',
                   /*string*/    'value'       => $rsPessoa['nome'],
-                  /*bool*/      'required'    => false,
+                  /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
@@ -219,7 +217,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   /*int*/       'maxlength'   => 14,
                   /*string*/    'placeholder' => 'Digite o CPF da pessoa',
                   /*string*/    'value'       => $rsPessoa['cpf'],
-                  /*bool*/      'required'    => false,
+                  /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
                 <?= createInputDate(array(
@@ -229,10 +227,10 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   /*string*/    'id'          => 'p_dt_nascimento',
                   /*string*/    'class'       => 'form-control mask-data',
                   /*int*/       'min'         => '1900-01-01',
-                  /*int*/       'maxToday'    => false,
+                  /*int*/       'maxToday'    => true,
                   /*string*/    'placeholder' => 'Digite a Data de Nascimento da pessoa',
                   /*string*/    'value'       => $rsPessoa['dt_nascimento'],
-                  /*bool*/      'required'    => false,
+                  /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
@@ -248,7 +246,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   /*array()*/   'value'       => $rsPessoa['sexo'],
                   /*array()*/   'values'      => array('Feminino', 'Masculino'),
                   /*array()*/   'options'     => array("Feminino", "Masculino"),
-                  /*bool*/      'required'    => false,
+                  /*bool*/      'required'    => true,
                   /*string*/    'prop'        => '',
                 )) ?>
                 <?= createSelect(array(
@@ -271,7 +269,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   /*string*/    'ariaLabel'   => 'Selecione um tipo sanguíneo',
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => '',
-                  /*string*/    'display'     => false
+                  /*string*/    'display'     => true
                 )); ?>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 4,
@@ -314,9 +312,9 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   /*string*/    'value'       => $rsPessoa['natural_bsc_pais_id'],
                   /*array()*/   'options'     => $rsPaises,
                   /*string*/    'ariaLabel'   => 'Selecione um país',
-                  /*bool*/      'required'    => false,
+                  /*bool*/      'required'    => true,
                   /*string*/    'prop'        => 'controller="naturalidade"',
-                  /*string*/    'display'     => false
+                  /*string*/    'display'     => true
                 )); ?>
                 <?= createSelect(array(
                   /*int 1-12*/  'col'         => 6,
@@ -327,9 +325,9 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   /*string*/    'value'       => $rsPessoa['natural_bsc_municipio_id'],
                   /*array()*/   'options'     => ($rsPessoa['natural_bsc_municipio_id'] > 0 ? array('id' => $rsPessoa['natural_bsc_municipio_id'], 'nome' => ($rsPessoa['natural_municipio_nome'].' - '.$rsPessoa['natural_estado_sigla'])) : NULL),
                   /*string*/    'ariaLabel'   => 'Selecione um país',
-                  /*bool*/      'required'    => false,
+                  /*bool*/      'required'    => true,
                   /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"',
-                  /*string*/    'display'     => !$displayNaturalidadeNacional ? false : false
+                  /*string*/    'display'     => !$displayNaturalidadeNacional ? false : true
                 )); ?>
               </div>
               <div id="div_naturalide_extrangeiro" controlled="naturalidade" control-value="0" <?= $displayNaturalidadeExtranjeiro ;?>>
@@ -345,7 +343,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                     /*int*/       'maxlength'   => 130,
                     /*string*/    'placeholder' => 'Digite o nome da cidade de nascimento da pessoa',
                     /*string*/    'value'       => $rsPessoa['natural_estrangeiro_cidade'],
-                    /*bool*/      'required'    => false,
+                    /*bool*/      'required'    => true,
                     /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
                   )) ;?>
                   <?= createInput(array(
@@ -359,7 +357,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                     /*int*/       'maxlength'   => 100,
                     /*string*/    'placeholder' => 'Digite o nome do estado de nascimento da pessoa',
                     /*string*/    'value'       => $rsPessoa['natural_estrangeiro_estado'],
-                    /*bool*/      'required'    => false,
+                    /*bool*/      'required'    => true,
                     /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
                   )) ;?>
                 </div>
@@ -371,10 +369,10 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                     /*string*/    'id'          => 'p_natural_estrangeiro_dt_ingresso',
                     /*string*/    'class'       => 'form-control mask-data',
                     /*int*/       'min'         => '1900-01-01',
-                    /*int*/       'maxToday'    => false,
+                    /*int*/       'maxToday'    => true,
                     /*string*/    'placeholder' => 'Digite a data de ingresso da pessoa ao Brasil',
                     /*string*/    'value'       => $rsPessoa['natural_estrangeiro_dt_ingresso'],
-                    /*bool*/      'required'    => false,
+                    /*bool*/      'required'    => true,
                     /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
                   )) ;?>
                   <?= createInput(array(
@@ -425,7 +423,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                     /*string*/    'value'       => $rsPessoa['pai_nome'],
                     /*bool*/      'required'    => false,
                     /*string*/    'prop'        => '',
-                    /*string*/    'display'     => false
+                    /*string*/    'display'     => true
                   )) ;?>
                   <?= createSelect(array(
                     /*int 1-12*/  'col'         => 12,
@@ -438,7 +436,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                     /*string*/    'ariaLabel'   => 'Selecione um país',
                     /*bool*/      'required'    => false,
                     /*string*/    'prop'        => '',
-                    /*string*/    'display'     => false
+                    /*string*/    'display'     => true
                   )); ?>
                   <?= createInput(array(
                     /*int 1-12*/  'col'         => 12,
@@ -469,7 +467,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                     /*int*/       'maxlength'   => 254,
                     /*string*/    'placeholder' => 'Digite o nome da mãe da pessoa',
                     /*string*/    'value'       => $rsPessoa['mae_nome'],
-                    /*bool*/      'required'    => false,
+                    /*bool*/      'required'    => true,
                     /*string*/    'prop'        => ''
                   )) ;?>
                   <?= createSelect(array(
@@ -481,9 +479,9 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                     /*string*/    'value'       => $rsPessoa['mae_natural_bsc_pais_id'],
                     /*array()*/   'options'     => $rsPaises,
                     /*string*/    'ariaLabel'   => 'Selecione um país',
-                    /*bool*/      'required'    => false,
+                    /*bool*/      'required'    => true,
                     /*string*/    'prop'        => '',
-                    /*string*/    'display'     => false
+                    /*string*/    'display'     => true
                   )); ?>
                   <?= createInput(array(
                     /*int 1-12*/  'col'         => 12,
@@ -592,7 +590,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   <button type="reset" class="btn btn-outline-danger b-r-22" id="btn_cancelar">
                     <i class="ti ti-eraser"></i> Cancelar
                   </button>
-                  <button type="submit" class="btn btn-outline-success waves-light b-r-22">
+                  <button type="button" id="submit" class="btn btn-outline-success waves-light b-r-22">
                     <i class="ti ti-writing"></i> Cadastrar
                   </button>
                 </div>
@@ -608,53 +606,9 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
     <!-- div de cadastro - END -->
   </div>
 </main>
+<!-- Main Section - END-->
 <?php
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa/cadastrar.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_fisica/cadastrar.js"></script>

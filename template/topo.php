@@ -31,6 +31,7 @@
 	<link rel="stylesheet" type="text/css" href="<?= PLUGINS_FOLDER; ?>simplebar/simplebar.css">
 	<link rel="stylesheet" type="text/css" href="<?= PLUGINS_FOLDER; ?>select/select2.min.css">
 	<link rel="stylesheet" type="text/css" href="<?= PLUGINS_FOLDER; ?>datatable/datatables.min.css">
+	<link rel="stylesheet" type="text/css" href="<?= PLUGINS_FOLDER; ?>bootons-bootstrap5/buttons.bootstrap.css">
 	<link rel="stylesheet" type="text/css" href="<?= PLUGINS_FOLDER; ?>jquery-ui/jquery-ui.min.css">
 	<!-- CSS PLUGINS END -->
 	<!-- CSS CUSTON BEGIN -->

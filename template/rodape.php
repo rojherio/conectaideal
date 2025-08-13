@@ -13,8 +13,10 @@ include_once "utils/modal_loading.php";
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>cleavejs/dist/addons/cleave-phone.br.js"></script>
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>block-ui/jquery.blockUI.js"></script>
+<script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>sweetalert2/sweetalert2-11.22.3.min.js"></script>
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>jquery-livequery/jquery.livequery.min.js"></script>
 <!-- JAVASCRIPT UTILS BEGIN -->
+<script type="text/javascript" src="<?= UTILS_FOLDER; ?>funcoes.js"></script>
 <script type="text/javascript" src="<?= UTILS_FOLDER; ?>utils.js"></script>
 <!-- JAVASCRIPT UTILS END -->
 <!-- JAVASCRIPT CUSTON BEGIN -->
@@ -22,6 +24,7 @@ include_once "utils/modal_loading.php";
 <script type="text/javascript" src="<?= JS_FOLDER; ?>customizer.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>data_table.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>select.js"></script>
+<script type="text/javascript" src="<?= JS_FOLDER; ?>tooltips.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>mask_cleave.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>divs_controller.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>validator_rmrosas.js"></script>

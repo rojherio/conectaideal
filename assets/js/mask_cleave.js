@@ -8,6 +8,13 @@ $('.mask-cpf').each(function(k, elem){
     blocks: [3, 3, 3, 2]
   });
 });
+$('.mask-cnpj').each(function(k, elem){
+  new Cleave(elem, {
+    numericOnly: true,
+    delimiters: ['.', '.', '/', '-'],
+    blocks: [2, 3, 3, 4, 2]
+  });
+});
 // $('.mask-data').each(function(k, elem){
 //   new Cleave(elem, {
 //     date: true,
