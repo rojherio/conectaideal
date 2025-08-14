@@ -224,7 +224,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*string*/    'class'       => 'form-control mask-data',
                   /*int*/       'min'         => '1900-01-01',
                   /*int*/       'maxToday'    => true,
-                  /*string*/    'placeholder' => 'Digite a Data de Nascimento da pessoa',
+                  /*string*/    'placeholder' => 'Digite a data de nascimento da pessoa',
                   /*string*/    'value'       => $rsPessoa['dt_nascimento'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
@@ -596,7 +596,6 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                     <i class="ti ti-writing"></i> Cadastrar
                   </button>
                 </div>
-                <input type="hidden" id="id" name="id" value="">
               </div>
               <!-- div row buttons - END -->
             </div>

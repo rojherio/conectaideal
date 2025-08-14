@@ -11,9 +11,9 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_pessoa',
-      urlToSend:      'model/bsc/pessoa_fisica/salvar_pessoa_fisica',
-      urlDashboard:   'view/bsc/pessoa_fisica/dashboard'
+      urlToSend:      'model/bsc/pessoa_juridica/salvar_pessoa',
+      urlToGo:        'view/bsc/pessoa_juridica/listar'
     };
-    ajaxSend(params);
+    ajaxSendCadastrar(params);
   });
 });

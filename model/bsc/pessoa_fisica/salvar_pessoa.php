@@ -5,7 +5,7 @@ $status                                   = strip_tags(@$_POST['p_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $tipo                                     = 1; //1 = pessoa física, 2 = pessoa jurídica
 $nome                                     = ucwords(strtolower(strip_tags(@$_POST['p_nome']?: '')));
-$nomeSocial                               = ucwords(strtolower(strip_tags(@$_POST['p_nome_social']?: '')));
+$nome_social                              = ucwords(strtolower(strip_tags(@$_POST['p_nome_social']?: '')));
 $cpf                                      = strip_tags(@$_POST['p_cpf']?: '');
 $dt_nascimento                            = strip_tags(@$_POST['p_dt_nascimento']?: '');
 $sexo                                     = strip_tags(@$_POST['p_sexo']?: '');
@@ -75,7 +75,7 @@ try {
     $stmt->bindValue(2, $dt_cadastro);
     $stmt->bindValue(3, $tipo);
     $stmt->bindValue(4, $nome);
-    $stmt->bindValue(5, $nomeSocial);
+    $stmt->bindValue(5, $nome_social);
     $stmt->bindValue(6, $cpf);
     $stmt->bindValue(7, $dt_nascimento);
     $stmt->bindValue(8, $sexo);
@@ -181,7 +181,7 @@ try {
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $tipo);
       $stmt->bindValue(4, $nome);
-      $stmt->bindValue(5, $nomeSocial);
+      $stmt->bindValue(5, $nome_social);
       $stmt->bindValue(6, $cpf);
       $stmt->bindValue(7, $dt_nascimento);
       $stmt->bindValue(8, $sexo);
