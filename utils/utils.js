@@ -30,7 +30,7 @@ function divLoaded(){
   $.unblockUI();
   $('button#submit').attr('disabled', false);
 }
-function ajaxSend(params){
+function ajaxSendCadastrar(params){
   let formToSend = $('#'+params.formId);
   let formValido = formValidatorRMRosas($(formToSend));
   if (formValido) {
@@ -60,13 +60,13 @@ function ajaxSend(params){
           }
         })
         .done(function (data, status, obj){
-          ajaxSuccess(data, status, obj, params.urlDashboard);
+          ajaxSuccess(data, status, obj, params.urlToGo);
         })
         .fail(function (data, status, errorThrown){
           ajaxError(data, status, errorThrown);
         })
         .always(function (data, status){
-          ajaxComplete(data, status, params.urlDashboard);
+          ajaxCompleteSend(data, status, params.urlToGo);
         })
       } else {
         divLoaded();
@@ -77,7 +77,48 @@ function ajaxSend(params){
     return false;
   }
 }
-function ajaxSuccess(data, status, obj, urlDashboard) {
+function ajaxSendExcluir(params){
+  Swal.fire({
+    title: 'Você confirma a exclusão deste registro?',
+    text: "Se você confirmar, o registro será excluido banco de dados do sistema",
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Sim, Exclua',
+    cancelButtonText: 'Não, Cancele!'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      divLoading();
+      $.ajax({
+        url: PORTAL_URL + params.urlToSend,
+        async: true,
+        method: "post",
+        beforeSend: divLoading,
+        cache: true,
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: {id: params.id},
+        statusCode: {
+          404: function() {
+            alert( "Página não encontrada" );
+          }
+        }
+      })
+      .done(function (data, status, obj){
+        ajaxSuccess(data, status, obj, params.urlToGo);
+      })
+      .fail(function (data, status, errorThrown){
+        ajaxError(data, status, errorThrown);
+      })
+      .always(function (data, status){
+        ajaxCompleteExcluir(data, status, params.urlToGo);
+      })
+    } else {
+      divLoaded();
+      return false;
+    }
+  });
+}
+function ajaxSuccess(data, status, obj, urlToGo) {
   // if (data.status == 'success') {
   //   setTimeout(function() {
   //     divLoaded();
@@ -100,11 +141,10 @@ function ajaxError(data, status, errorThrown) {
     return false
   }, 500);
 }
-function ajaxComplete(data, status, urlDashboard) {
+function ajaxCompleteSend(data, status, urlToGo) {
   setTimeout(function() {
     divLoaded();
     if (data.status == 'success') {
-      swal.fire('Sucesso', data.msg, 'success');
       Swal.fire({
         title: 'Sucesso',
         text: data.msg,
@@ -126,9 +166,30 @@ function ajaxComplete(data, status, urlDashboard) {
             $('button[type="reset"]').click();
             return false;
           } else {
-            postToURL(PORTAL_URL + urlDashboard);
+            postToURL(PORTAL_URL + urlToGo);
           }
         });
+      });
+    } else if (data.status == 'error') {
+      Swal.fire('Erro inesperado', "Houve um erro inesperado ao tentar registrar as novas informações! Por favor, tente novamente ou informe ao suporte o erro a seguir: " + data.msg, 'error');
+      // console.log('Error: ' + data.msg);
+    }
+  }, 1000);
+}
+function ajaxCompleteExcluir(data, status, urlToGo) {
+  setTimeout(function() {
+    divLoaded();
+    if (data.status == 'success') {
+      Swal.fire({
+        title: 'Sucesso',
+        text: data.msg,
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+        // allowOutsideClick: false,
+        // allowEscapeKey: false
+      }).then((result) => {
+        postToURL(PORTAL_URL + urlToGo);
       });
     } else if (data.status == 'error') {
       Swal.fire('Erro inesperado', "Houve um erro inesperado ao tentar registrar as novas informações! Por favor, tente novamente ou informe ao suporte o erro a seguir: " + data.msg, 'error');

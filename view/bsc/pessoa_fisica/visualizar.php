@@ -2,9 +2,12 @@
 include_once ('template/topo.php');
 include_once ('template/sidebar.php');
 include_once ('template/header.php');
-$id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
+$id = empty($parametromodulo) ? 0 : $parametromodulo;
+if (empty($id)) {
+  header('Location: '.PORTAL_URL.'view/bsc/pessoa_fisica/listar');
+}
 $db = Conexao::getInstance();
-//Consulta para Edição - BEGIN
+//Consulta para Visualizar - BEGIN
 $stmt = $db->prepare("SELECT 
   p.id,
   p.status,
@@ -42,83 +45,7 @@ $stmt = $db->prepare("SELECT
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsPessoa = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsPessoa)) {
-  $rsPessoa = array();
-  $rsPessoa['id'] = 0;
-  $rsPessoa['status'] = 1;
-  $rsPessoa['tipo'] = 1;
-  $rsPessoa['nome'] = '';
-  $rsPessoa['nome_social'] = '';
-  $rsPessoa['cpf'] = '';
-  $rsPessoa['ie'] = '';
-  $rsPessoa['dt_nascimento'] = '';
-  $rsPessoa['dt_criacao'] = '';
-  $rsPessoa['sexo'] = 'Feminino';
-  $rsPessoa['natural_bsc_pais_id'] = '';
-  $rsPessoa['natural_bsc_municipio_id'] = '';
-  $rsPessoa['natural_municipio_nome'] = '';
-  $rsPessoa['natural_estado_id'] = '';
-  $rsPessoa['natural_estado_sigla'] = '';
-  $rsPessoa['natural_estrangeiro_dt_ingresso'] = '';
-  $rsPessoa['natural_estrangeiro_cidade'] = '';
-  $rsPessoa['natural_estrangeiro_estado'] = '';
-  $rsPessoa['natural_estrangeiro_condicao_trabalho'] = '';
-  $rsPessoa['pai_nome'] = '';
-  $rsPessoa['pai_natural_bsc_pais_id'] = '';
-  $rsPessoa['pai_profissao'] = '';
-  $rsPessoa['mae_nome'] = '';
-  $rsPessoa['mae_natural_bsc_pais_id'] = '';
-  $rsPessoa['mae_profissao'] = '';
-  $rsPessoa['foto'] = '';
-  $rsPessoa['sangue_tipo'] = '';
-  $rsPessoa['raca'] = '';
-  $rsPessoa['enfermidade_portador'] = '';
-  $rsPessoa['enfermidade_codigo_internacional'] = '';
-}
-//Consulta para Edição - END
-//Consulta para Select - BEGIN
-$stmt = $db->prepare("
-  SELECT 
-  p.id,
-  p.status,
-  p.dt_cadastro,
-  p.nome,
-  p.nacionalidade,
-  p.masculino,
-  p.feminino
-  FROM bsc_pais AS p
-  WHERE p.status = 1 
-  ORDER BY p.id ASC;");
-$stmt->execute();
-$rsPaises = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt = $db->prepare("
-  SELECT 
-  e.id,
-  e.status,
-  e.dt_cadastro,
-  e.nome,
-  e.sigla,
-  e.bsc_pais_id
-  FROM bsc_estado AS e;
-  WHERE e.status = 1 
-  ORDER BY e.id ASC;");
-$stmt->execute();
-$rsEstados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// $stmt = $db->prepare("
-//   SELECT 
-//     p.id,
-//     p.status,
-//     p.dt_cadastro,
-//     p.nome,
-//     p.nacionalidade,
-//     p.masculino,
-//     p.feminino
-//   FROM bsc_pais AS p
-//   WHERE p.status = 1 
-//   ORDER BY p.id ASC;");
-// $stmt->execute();
-// $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Consulta para Select - END
+//Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro de Pessoa Física";
 $descricaoPagina          = "Informações de pessoa física";

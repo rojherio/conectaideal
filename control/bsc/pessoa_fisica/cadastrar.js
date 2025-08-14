@@ -12,8 +12,8 @@ $(document).ready(function () {
     let params = {
       formId:         'form_pessoa',
       urlToSend:      'model/bsc/pessoa_fisica/salvar_pessoa',
-      urlDashboard:   'view/bsc/pessoa_fisica/listar'
+      urlToGo:        'view/bsc/pessoa_fisica/listar'
     };
-    ajaxSend(params);
+    ajaxSendCadastrar(params);
   });
 });

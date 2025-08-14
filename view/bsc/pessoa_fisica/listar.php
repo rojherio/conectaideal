@@ -141,7 +141,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                       <th>CPF</th>
                       <th>Nascimento</th>
                       <th>Status</th>
-                      <th class="no-print" width="160px !important"></th>
+                      <th class="no-print" width="120px !important">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
