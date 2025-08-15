@@ -12,32 +12,9 @@ $stmt = $db->prepare("SELECT
   p.nome,
   p.nome_social,
   p.cpf,
-  p.dt_nascimento,
-  p.sexo,
-  p.natural_bsc_pais_id,
-  p.natural_bsc_municipio_id,
-  m.nome AS natural_municipio_nome, 
-  e.id AS natural_estado_id, 
-  e.sigla AS natural_estado_sigla, 
-  p.natural_estrangeiro_dt_ingresso,
-  p.natural_estrangeiro_cidade,
-  p.natural_estrangeiro_estado,
-  p.natural_estrangeiro_condicao_trabalho,
-  p.pai_nome,
-  p.pai_natural_bsc_pais_id,
-  p.pai_profissao,
-  p.mae_nome,
-  p.mae_natural_bsc_pais_id,
-  p.mae_profissao,
-  p.foto,
-  p.sangue_tipo,
-  p.raca,
-  p.enfermedade_portador,
-  p.enfermedade_codigo_internacional
+  p.dt_criacao
   FROM bsc_pessoa AS p
-  LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
-  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
-  WHERE p.tipo = 1
+  WHERE p.tipo = 2
   ORDER BY p.nome");
 $stmt->execute();
 $rsPessoas = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -83,11 +60,11 @@ $rsPessoas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // $rsUOs2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Pessoas Físicas";
-$descricaoPagina          = "Informações de pessoas físicas";
-$tituloFormulario1        = "Tabela com listagem de Pessoas Físicas";
-$descricaoFormulario1     = "Dados de identificação pessoal";
-$tituloImpressao          = "Relatório de pessoas físicas cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Pessoas Jurídicas";
+$descricaoPagina          = "Informações de pessoas jurídicas";
+$tituloFormulario1        = "Tabela com listagem de Pessoas Jurídicas";
+$descricaoFormulario1     = "Dados de identificação de pessoa jurídica";
+$tituloImpressao          = "Relatório de pessoas jurídicas cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -106,7 +83,7 @@ $tituloImpressao          = "Relatório de pessoas físicas cadastradas no siste
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Pessoa Física</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Pessoa Jurídica</a>
           </li>
         </ul>
       </div>
@@ -133,8 +110,8 @@ $tituloImpressao          = "Relatório de pessoas físicas cadastradas no siste
                     <tr>
                       <th>#</th>
                       <th>Nome</th>
-                      <th>CPF</th>
-                      <th>Nascimento</th>
+                      <th>CNPJ</th>
+                      <th>Criação</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
@@ -150,7 +127,7 @@ $tituloImpressao          = "Relatório de pessoas físicas cadastradas no siste
                         <td id="td_count"><?= $kObj+1; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
                         <td id="td_cpf"><?= $vObj['cpf']; ?></td>
-                        <td id="td_dt_nascimento"><?= data_volta($vObj['dt_nascimento']); ?></td>
+                        <td id="td_dt_criacao"><?= data_volta($vObj['dt_criacao']); ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
@@ -190,4 +167,4 @@ $tituloImpressao          = "Relatório de pessoas físicas cadastradas no siste
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_fisica/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_juridica/listar.js"></script>
