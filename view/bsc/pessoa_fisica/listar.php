@@ -133,7 +133,7 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
             <div class="app-datatable-default overflow-auto">
               <h6 class="card-header">Copiar, Exportar (CVS, EXCEL, PDF) ou Imprimir a tabela.</h6>
               <!-- <table id="table_modelo_01" class="display app-data-table default-data-table"> -->
-                <table id="table_model_01" class="table table-striped display app-data-table">
+                <table id="table_listar" class="table table-striped display app-data-table">
                   <thead class="bg-inverse">
                     <tr>
                       <th>#</th>

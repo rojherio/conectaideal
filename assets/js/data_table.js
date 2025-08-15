@@ -1,7 +1,7 @@
 $(function () {
   "use strict";
 
-  var qtdCols = $('#table_model_01 > thead > tr > th').not('.no-print').length;
+  var qtdCols = $('#table_listar > thead > tr > th').not('.no-print').length;
   var colsExport = '0';
   for (var i = 1; i < qtdCols; i++) {
     colsExport += ', '+i;
@@ -10,7 +10,7 @@ $(function () {
   // var user = $('input#zatu_nome').val();
   var user = 'usuario';
 
-  $('#table_model_01').DataTable( {
+  $('#table_listar').DataTable( {
     dom: '<"ms-3 me-3 mb-3"B<"row mt-1 mb-1"<"col-md-4"l><"col-md-8"f>>rtip>',
     // dom: 'Bfrtip',
     //geral

@@ -1,6 +1,5 @@
 // var data = new Date();
-// var hoje = data.getFullYear()+'-'+(("0"+(data.getMonth()+1)).slice(-2))+'-'+(("0"+(data.getDay())).slice(-2));
-
+// var hoje = data.getFullYear()+'-'+(("0"+(data.getMonth()+1)).slice(-2))+'-'+(("0"+(data.getDate())).slice(-2));
 $('.mask-cpf').each(function(k, elem){
   new Cleave(elem, {
     numericOnly: true,

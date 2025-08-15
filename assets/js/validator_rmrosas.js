@@ -7,8 +7,11 @@
 //   }
 // };
 $(document).ready(function() {
+
   var msgInputRequired = '<span class="text-danger error_validator required">O preenchimento deste campo é obrigatório!<br/></span>';
   var msgInputMinLength = '<span class="text-danger error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
+  var msgInputMimData = '<span class="text-danger error_validator mindata">A data não pode ser menor que dd/mm/aaaa!<br/></span>';
+  var msgInputMaxData = '<span class="text-danger error_validator maxdata">A data não pode ser maior que dd/mm/aaaa!<br/></span>';
   var msgSelect = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
   var msgRadio = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
   var msgCnpj = '<span class="text-danger error_validator required cnpj">O CNPJ informado não é válido!<br/></span>';
@@ -18,6 +21,56 @@ $(document).ready(function() {
     $(this).parents('div.div-validate').find('span.required').remove();
     if (valLength == 0) {
       $(this).parents('div.div-validate').append(msgInputRequired);
+    }
+  });
+  $('input[type="date"][max]').keyup(function(){
+    let textVal = $(this).val();
+    let textLength = textVal.length;
+    $(this).parents('div.div-validate').find('span.mindata').remove();
+    $(this).parents('div.div-validate').find('span.maxdata').remove();
+    if (textLength > 0) {
+      let textParts = textVal.split("-");
+      let minVal = $(this).attr('min');
+      let minParts = minVal.split("-");
+      let maxVal = $(this).attr('max');
+      let maxParts = maxVal.split("-");
+      if (Number(textParts[0])>=Number(maxParts[0])) {
+        textParts[0] = maxParts[0];
+        if (Number(textParts[1])>=Number(maxParts[1])) {
+          textParts[1] = maxParts[1];
+          if (Number(textParts[2])>Number(maxParts[2])) {
+            textParts[2] = maxParts[2];
+          }
+        }
+        $(this).val(textParts[0]+'-'+textParts[1]+'-'+textParts[2]);
+        $(this).parents('div.div-validate').append(msgInputMaxData.replace('dd', maxParts[2]).replace('mm', maxParts[1]).replace('aaaa', maxParts[0]));
+      }
+      if (Number(textParts[0])<=Number(minParts[0])) {
+        $(this).parents('div.div-validate').append(msgInputMimData.replace('dd', minParts[2]).replace('mm', minParts[1]).replace('aaaa', minParts[0]));
+      }
+    }
+  });
+  $('input[type="date"][max]').blur(function(){
+    $(this).parents('div.div-validate').find('span.mindata').remove();
+    $(this).parents('div.div-validate').find('span.maxdata').remove();
+    let textVal = $(this).val();
+    let textLength = textVal.length;
+    if (textLength > 0) {
+      let textParts = textVal.split("-");
+      let textAnoLength = String(parseInt(textParts[0],10)).length;
+      let minVal = $(this).attr('min');
+      let minParts = minVal.split("-");
+      let minAnoLength = String(parseInt(minParts[0],10)).length;
+      if (Number(textParts[0])<=Number(minParts[0])) {
+        textParts[0] = minParts[0];
+        if (Number(textParts[1])<=Number(minParts[1])) {
+          textParts[1] = minParts[1];
+          if (Number(textParts[2])<Number(minParts[2])) {
+            textParts[2] = minParts[2];
+          }
+        }
+        $(this).val(textParts[0]+'-'+textParts[1]+'-'+textParts[2]);
+      }
     }
   });
   $('input[minlength]').keyup(function(){

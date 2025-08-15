@@ -222,7 +222,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*string*/    'name'        => 'p_dt_nascimento',
                   /*string*/    'id'          => 'p_dt_nascimento',
                   /*string*/    'class'       => 'form-control mask-data',
-                  /*int*/       'min'         => '1900-01-01',
+                  /*int*/       'min'         => '1900-10-05',
                   /*int*/       'maxToday'    => true,
                   /*string*/    'placeholder' => 'Digite a data de nascimento da pessoa',
                   /*string*/    'value'       => $rsPessoa['dt_nascimento'],
@@ -529,7 +529,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
                   /*string*/    'placeholder' => 'Digite o nome enfermidade portada pela pessoa',
-                  /*string*/    'value'       => $rsPessoa['enfermedade_portador'],
+                  /*string*/    'value'       => $rsPessoa['enfermidade_portador'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
                 )) ;?>

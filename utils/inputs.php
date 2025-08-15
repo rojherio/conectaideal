@@ -76,7 +76,7 @@ function createInputDate($params) {
   $html  = '  <div class="col-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
   $html .= '      <input type="date" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="10" maxlength="10" min="'.$params['min'].'" '.($params['maxToday'] ? 'max="'.date('Y-m-d').'"' : '' ).'  placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
-  $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html .= '      <label for="'.$params['name'].'">'.date('Y-m-d').''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html .= '    </div>';
   $html .= '  </div>';
   return $html;
@@ -86,8 +86,10 @@ function createSelect($params) {
   $html   .= '    <div class="div-validate form-floating mb-3">';
   $html   .= '      <select name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" aria-label="'.$params['ariaLabel'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html   .= '        <option></option>';
-  foreach ($params['options'] as $kObj => $vObj) {
-    $html .= '        <option value="'.$vObj['id'].'" '.($params['value'] == $vObj['id'] ? 'selected="selected"' : "").'">'.$vObj['nome'].'</option>';
+  if (is_array($params['options'])) {
+    foreach ($params['options'] as $kObj => $vObj) {
+      $html .= '        <option value="'.$vObj['id'].'" '.($params['value'] == $vObj['id'] ? 'selected="selected"' : "").'">'.$vObj['nome'].'</option>';
+    }
   }
   $html   .= '      </select>';
   $html   .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
@@ -111,14 +113,16 @@ function createRadio($params) {
   $html   .= '    <div class="check-container form-control delfos-radio">';
   $html   .= '      <label class="delfos-radio">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html   .= '      <div class="row">';
-  foreach ($params['values'] as $kObj => $vObj) {
-  $html   .= '        <div class="col-'.$params['colOption'].'">';
-    $html .= '          <label class="check-box">';
-    $html .= '            <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'][$kObj].'" class="" '.($params['value'] == $vObj ? 'checked="checked"' : "").'" value="'.$params['values'][$kObj].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
-    $html .= '            <span class="'.$params['class'].'"></span>';
-    $html .= '            <span class="text">'.$params['options'][$kObj].'</span>';
-    $html .= '          </label>';
-    $html .= '        </div>';
+  if (is_array($params['options'])) {
+    foreach ($params['values'] as $kObj => $vObj) {
+      $html   .= '        <div class="col-'.$params['colOption'].'">';
+      $html .= '          <label class="check-box">';
+      $html .= '            <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'][$kObj].'" class="" '.($params['value'] == $vObj ? 'checked="checked"' : "").'" value="'.$params['values'][$kObj].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
+      $html .= '            <span class="'.$params['class'].'"></span>';
+      $html .= '            <span class="text">'.$params['options'][$kObj].'</span>';
+      $html .= '          </label>';
+      $html .= '        </div>';
+    }
   }
   $html   .= '      </div>';
   $html   .= '    </div>';
