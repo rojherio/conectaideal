@@ -14,6 +14,12 @@ $('.mask-cnpj').each(function(k, elem){
     blocks: [2, 3, 3, 4, 2]
   });
 });
+// $('input[type="number"].mask-numeros').each(function(k, elem){
+//   new Cleave(elem, {
+//     numericOnly: true,
+//     numeric: true
+//   });
+// });
 // $('.mask-data').each(function(k, elem){
 //   new Cleave(elem, {
 //     date: true,

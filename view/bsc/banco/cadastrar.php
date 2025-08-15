@@ -6,37 +6,34 @@ $id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
-  p.id,
-  p.status,
-  p.dt_cadastro,
-  p.tipo,
-  p.nome,
-  p.nome_social,
-  p.cpf,
-  p.ie,
-  p.dt_criacao
-  FROM bsc_pessoa AS p
-  WHERE p.id = ? ;");
+  b.id,
+  b.status,
+  b.dt_cadastro,
+  b.codigo,
+  b.nome,
+  b.nome_curto,
+  b.ispb
+  FROM bsc_banco AS b
+  WHERE b.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsPessoa = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsPessoa)) {
-  $rsPessoa = array();
-  $rsPessoa['id'] = 0;
-  $rsPessoa['status'] = 1;
-  $rsPessoa['tipo'] = 2;
-  $rsPessoa['nome'] = '';
-  $rsPessoa['nome_social'] = '';
-  $rsPessoa['cpf'] = '';
-  $rsPessoa['ie'] = '';
-  $rsPessoa['dt_criacao'] = '';
+$rsBanco = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsBanco)) {
+  $rsBanco = array();
+  $rsBanco['id'] = 0;
+  $rsBanco['status'] = 1;
+  $rsBanco['dt_cadastro'] = '';
+  $rsBanco['codigo'] = '';
+  $rsBanco['nome'] = '';
+  $rsBanco['nome_curto'] = '';
+  $rsBanco['ispb'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Pessoa Jurídica";
-$descricaoPagina          = "Informações de pessoa jurídica";
-$tituloFormulario1        = "Dados de Pessoa Jurídica";
-$descricaoFormulario1     = "Dados de identificação da pessoa jurídica";
+$tituloPagina             = "Cadastro de Banco (Unidade Financeira)";
+$descricaoPagina          = "Informações do banco (Unidade Financeira)";
+$tituloFormulario1        = "Dados do Banco";
+$descricaoFormulario1     = "Dados de identificação do banco";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -44,7 +41,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -63,15 +60,15 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Pessoa Jurídica</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Banco</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_pessoa" name="form_pessoa" method="post" action="">
-      <input type="hidden" name="p_id" id="p_id" value="<?= $rsPessoa['id'] ;?>">
+    <form class="app-form" id="form_banco" name="form_banco" method="post" action="">
+      <input type="hidden" name="p_id" id="p_id" value="<?= $rsBanco['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -86,16 +83,30 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
               <!-- div row input - BEGIN -->
               <div class="row">
                 <?= createInput(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome/Razão Social',
+                  /*int 1-12*/  'col'         => 6,
+                  /*string*/    'label'       => 'Nome do Banco',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_nome',
-                  /*string*/    'id'          => 'p_nome',
+                  /*string*/    'name'        => 'b_nome',
+                  /*string*/    'id'          => 'b_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Digite o nome/razão social da pessoa jurídica',
-                  /*string*/    'value'       => $rsPessoa['nome'],
+                  /*string*/    'placeholder' => 'Digite o nome do banco',
+                  /*string*/    'value'       => $rsBanco['nome'],
+                  /*bool*/      'required'    => true,
+                  /*string*/    'prop'        => ''
+                )) ;?>
+                <?= createInput(array(
+                  /*int 1-12*/  'col'         => 6,
+                  /*string*/    'label'       => 'Nome Curto',
+                  /*string*/    'type'        => 'text',
+                  /*string*/    'name'        => 'b_nome_curto',
+                  /*string*/    'id'          => 'b_nome_curto',
+                  /*string*/    'class'       => 'form-control',
+                  /*int*/       'minlength'   => 3,
+                  /*int*/       'maxlength'   => 80,
+                  /*string*/    'placeholder' => 'Digite o nome curto do banco',
+                  /*string*/    'value'       => $rsBanco['nome_curto'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -103,59 +114,30 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nome Fantasia',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_nome_social',
-                  /*string*/    'id'          => 'p_nome_social',
+                  /*string*/    'label'       => 'Código',
+                  /*string*/    'type'        => 'number',
+                  /*string*/    'name'        => 'b_codigo',
+                  /*string*/    'id'          => 'b_codigo',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Digite o nome fantasia da pessoa jurídica',
-                  /*string*/    'value'       => $rsPessoa['nome_social'],
-                  /*bool*/      'required'    => false,
+                  /*int*/       'maxlength'   => 3,
+                  /*string*/    'placeholder' => 'Digite o código do banco',
+                  /*string*/    'value'       => $rsBanco['codigo'],
+                  /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'CNPJ',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_cpf',
-                  /*string*/    'id'          => 'p_cpf',
-                  /*string*/    'class'       => 'form-control mask-cnpj',
-                  /*int*/       'minlength'   => 18,
-                  /*int*/       'maxlength'   => 18,
-                  /*string*/    'placeholder' => 'Digite o CNPJ da pessoa jurídica',
-                  /*string*/    'value'       => $rsPessoa['cpf'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <div class="row">
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'IE (Inscrição Estadual)',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_ie',
-                  /*string*/    'id'          => 'p_ie',
+                  /*string*/    'label'       => 'ISPB',
+                  /*string*/    'type'        => 'number',
+                  /*string*/    'name'        => 'b_ispb',
+                  /*string*/    'id'          => 'b_ispb',
                   /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 45,
-                  /*string*/    'placeholder' => 'Digite o numero de inscrição estadual da pessoa jurídica',
-                  /*string*/    'value'       => $rsPessoa['ie'],
+                  /*int*/       'minlength'   => 1,
+                  /*int*/       'maxlength'   => 8,
+                  /*string*/    'placeholder' => 'Digite o código ISPB do banco',
+                  /*string*/    'value'       => $rsBanco['ispb'],
                   /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-                <?= createInputDate(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Data de Criação',
-                  /*string*/    'name'        => 'p_dt_criacao',
-                  /*string*/    'id'          => 'p_dt_criacao',
-                  /*string*/    'class'       => 'form-control mask-data',
-                  /*int*/       'min'         => '1900-01-01',
-                  /*int*/       'maxToday'    => true,
-                  /*string*/    'placeholder' => 'Digite a data de criação da pessoa jurídica',
-                  /*string*/    'value'       => $rsPessoa['dt_criacao'],
-                  /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
@@ -184,7 +166,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
                   /*string*/    'id'          => 'p_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsPessoa['status'],
+                  /*string*/    'checked'     => $rsBanco['status'],
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
@@ -223,4 +205,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_juridica/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/banco/cadastrar.js"></script>
