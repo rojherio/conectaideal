@@ -132,7 +132,7 @@ $tituloFormulario4        = "Saúde";
 $descricaoFormulario4     = "Dados de saúde da pessoa";
 $tituloFormulario5        = "Situação";
 $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou inativo";
-//Parámetros de títutlos - NED
+//Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
 <main>

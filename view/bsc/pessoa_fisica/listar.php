@@ -2,7 +2,6 @@
 include_once ('template/topo.php');
 include_once ('template/sidebar.php');
 include_once ('template/header.php');
-$id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
@@ -38,6 +37,7 @@ $stmt = $db->prepare("SELECT
   FROM bsc_pessoa AS p
   LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
+  WHERE p.tipo = 1
   ORDER BY p.nome");
 $stmt->execute();
 $rsPessoas = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -88,13 +88,8 @@ $descricaoPagina          = "Informações de pessoas físicas";
 $tituloFormulario1        = "Tabela com listagem de Pessoas Físicas";
 $descricaoFormulario1     = "Dados de identificação pessoal";
 $tituloImpressao          = "Relatório de pessoas físicas cadastradas no sistema DELFOS";
-//Parámetros de títutlos - NED
-//Parámetros de exibir/ocultar div - BEGIN
-$displayNaturalidadeNacional      = $rsPessoa['natural_bsc_pais_id'] != 1 ? 'style="display: none;"' : '';
-$displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'style="display: none;"' : '';
-//Parámetros de exibir/ocultar div - NED
+//Parámetros de títutlos - END
 ?>
-<!-- main section -->
 <!-- Main Section - BEGIN-->
 <main>
   <div class="container-fluid">
@@ -147,7 +142,8 @@ $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'sty
                   <tbody>
                     <?php
                     foreach ($rsPessoas as $kObj => $vObj) {
-                      $btnExcluirOnClick = $vObj['qtd_uo_id'] > 0 ? 'negado="true" data-toggle="tooltip" title="Este registro não pode ser exlcuido pois está vinculado a outras informações!" onclick="return false;"' : 'onclick="btnExcluir(this)"';
+                      // $btnExcluirOnClick  = $vObj['qtd_uo_id'] > 0 ? 'negado="true" data-toggle="tooltip" title="Este registro não pode ser exlcuido pois está vinculado a outras informações!" onclick="return false;"' : 'onclick="btnExcluir(this)"';
+                      $btnExcluirOnClick  = 'onclick="btnExcluir(this)';
                       ?>
                       <tr>
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">

@@ -76,7 +76,7 @@ function createInputDate($params) {
   $html  = '  <div class="col-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
   $html .= '      <input type="date" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="10" maxlength="10" min="'.$params['min'].'" '.($params['maxToday'] ? 'max="'.date('Y-m-d').'"' : '' ).'  placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
-  $html .= '      <label for="'.$params['name'].'">'.date('Y-m-d').''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html .= '    </div>';
   $html .= '  </div>';
   return $html;
