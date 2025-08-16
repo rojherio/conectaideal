@@ -33,8 +33,8 @@ $stmt = $db->prepare("SELECT
   p.foto,
   p.sangue_tipo,
   p.raca,
-  p.enfermedade_portador,
-  p.enfermedade_codigo_internacional
+  p.enfermidade_portador,
+  p.enfermidade_codigo_internacional
   FROM bsc_pessoa AS p
   LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
@@ -277,7 +277,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 50,
                   /*string*/    'placeholder' => 'Digite raça da pessoa',
-                  /*string*/    'value'       => $rsPessoa['dt_nascimento'],
+                  /*string*/    'value'       => $rsPessoa['raca'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -332,7 +332,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*string*/    'display'     => !$displayNaturalidadeNacional ? true : false
                 )); ?>
               </div>
-              <div id="div_naturalide_extrangeiro" controlled="naturalidade" control-value="0" <?= $displayNaturalidadeExtranjeiro ;?>>
+              <div id="div_naturalidade_extrangeiro" controlled="naturalidade" control-value="0" <?= $displayNaturalidadeExtranjeiro ;?>>
                 <div class="row">
                   <?= createInput(array(
                     /*int 1-12*/  'col'         => 6,
@@ -412,93 +412,96 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
               <div class="row">
                 <div class="col-md-6">
                   <!-- div row input - BEGIN -->
-                  <?= createInput(array(
-                    /*int 1-12*/  'col'         => 12,
-                    /*string*/    'label'       => 'Nome do Pai',
-                    /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_pai_nome',
-                    /*string*/    'id'          => 'p_pai_nome',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite o nome do pai da pessoa',
-                    /*string*/    'value'       => $rsPessoa['pai_nome'],
-                    /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => '',
-                    /*string*/    'display'     => true
-                  )) ;?>
-                  <?= createSelect(array(
-                    /*int 1-12*/  'col'         => 12,
-                    /*string*/    'label'       => 'Nacionalidade do Pai',
-                    /*string*/    'name'        => 'p_pai_natural_bsc_pais_id',
-                    /*string*/    'id'          => 'p_pai_natural_bsc_pais_id',
-                    /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                    /*string*/    'value'       => $rsPessoa['pai_natural_bsc_pais_id'],
-                    /*array()*/   'options'     => $rsPaises,
-                    /*string*/    'ariaLabel'   => 'Selecione um país',
-                    /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => '',
-                    /*string*/    'display'     => true
-                  )); ?>
-                  <?= createInput(array(
-                    /*int 1-12*/  'col'         => 12,
-                    /*string*/    'label'       => 'Profissão do Pai',
-                    /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_pai_profissao',
-                    /*string*/    'id'          => 'p_pai_profissao',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite a profissão do pai da pessoa',
-                    /*string*/    'value'       => $rsPessoa['pai_profissao'],
-                    /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => ''
-                  )) ;?>
+                  <div class="row">
+                    <?= createInput(array(
+                      /*int 1-12*/  'col'         => 12,
+                      /*string*/    'label'       => 'Nome do Pai',
+                      /*string*/    'type'        => 'text',
+                      /*string*/    'name'        => 'p_pai_nome',
+                      /*string*/    'id'          => 'p_pai_nome',
+                      /*string*/    'class'       => 'form-control',
+                      /*int*/       'minlength'   => 3,
+                      /*int*/       'maxlength'   => 254,
+                      /*string*/    'placeholder' => 'Digite o nome do pai da pessoa',
+                      /*string*/    'value'       => $rsPessoa['pai_nome'],
+                      /*bool*/      'required'    => false,
+                      /*string*/    'prop'        => ''
+                    )) ;?>
+                    <?= createSelect(array(
+                      /*int 1-12*/  'col'         => 12,
+                      /*string*/    'label'       => 'Nacionalidade do Pai',
+                      /*string*/    'name'        => 'p_pai_natural_bsc_pais_id',
+                      /*string*/    'id'          => 'p_pai_natural_bsc_pais_id',
+                      /*string*/    'class'       => 'select2 form-control form-select select-basic',
+                      /*string*/    'value'       => $rsPessoa['pai_natural_bsc_pais_id'],
+                      /*array()*/   'options'     => $rsPaises,
+                      /*string*/    'ariaLabel'   => 'Selecione um país',
+                      /*bool*/      'required'    => false,
+                      /*string*/    'prop'        => '',
+                      /*string*/    'display'     => true
+                    )); ?>
+                    <?= createInput(array(
+                      /*int 1-12*/  'col'         => 12,
+                      /*string*/    'label'       => 'Profissão do Pai',
+                      /*string*/    'type'        => 'text',
+                      /*string*/    'name'        => 'p_pai_profissao',
+                      /*string*/    'id'          => 'p_pai_profissao',
+                      /*string*/    'class'       => 'form-control',
+                      /*int*/       'minlength'   => 3,
+                      /*int*/       'maxlength'   => 254,
+                      /*string*/    'placeholder' => 'Digite a profissão do pai da pessoa',
+                      /*string*/    'value'       => $rsPessoa['pai_profissao'],
+                      /*bool*/      'required'    => false,
+                      /*string*/    'prop'        => ''
+                    )) ;?>
+                  </div>
                   <!-- div row input - END -->
                 </div>
                 <div class="col-md-6">
-                  <!-- div row input - BEGIN -->
-                  <?= createInput(array(
-                    /*int 1-12*/  'col'         => 12,
-                    /*string*/    'label'       => 'Nome da Mãe',
-                    /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_mae_nome',
-                    /*string*/    'id'          => 'p_mae_nome',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite o nome da mãe da pessoa',
-                    /*string*/    'value'       => $rsPessoa['mae_nome'],
-                    /*bool*/      'required'    => true,
-                    /*string*/    'prop'        => ''
-                  )) ;?>
-                  <?= createSelect(array(
-                    /*int 1-12*/  'col'         => 12,
-                    /*string*/    'label'       => 'Nacionalidade da Mãe',
-                    /*string*/    'name'        => 'p_mae_natural_bsc_pais_id',
-                    /*string*/    'id'          => 'p_mae_natural_bsc_pais_id',
-                    /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                    /*string*/    'value'       => $rsPessoa['mae_natural_bsc_pais_id'],
-                    /*array()*/   'options'     => $rsPaises,
-                    /*string*/    'ariaLabel'   => 'Selecione um país',
-                    /*bool*/      'required'    => true,
-                    /*string*/    'prop'        => '',
-                    /*string*/    'display'     => true
-                  )); ?>
-                  <?= createInput(array(
-                    /*int 1-12*/  'col'         => 12,
-                    /*string*/    'label'       => 'Profissão da Mãe',
-                    /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_mae_profissao',
-                    /*string*/    'id'          => 'p_mae_profissao',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite a profissão da mãe da pessoa',
-                    /*string*/    'value'       => $rsPessoa['mae_profissao'],
-                    /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => ''
-                  )) ;?>
+                  <div class="row">
+                    <!-- div row input - BEGIN -->
+                    <?= createInput(array(
+                      /*int 1-12*/  'col'         => 12,
+                      /*string*/    'label'       => 'Nome da Mãe',
+                      /*string*/    'type'        => 'text',
+                      /*string*/    'name'        => 'p_mae_nome',
+                      /*string*/    'id'          => 'p_mae_nome',
+                      /*string*/    'class'       => 'form-control',
+                      /*int*/       'minlength'   => 3,
+                      /*int*/       'maxlength'   => 254,
+                      /*string*/    'placeholder' => 'Digite o nome da mãe da pessoa',
+                      /*string*/    'value'       => $rsPessoa['mae_nome'],
+                      /*bool*/      'required'    => true,
+                      /*string*/    'prop'        => ''
+                    )) ;?>
+                    <?= createSelect(array(
+                      /*int 1-12*/  'col'         => 12,
+                      /*string*/    'label'       => 'Nacionalidade da Mãe',
+                      /*string*/    'name'        => 'p_mae_natural_bsc_pais_id',
+                      /*string*/    'id'          => 'p_mae_natural_bsc_pais_id',
+                      /*string*/    'class'       => 'select2 form-control form-select select-basic',
+                      /*string*/    'value'       => $rsPessoa['mae_natural_bsc_pais_id'],
+                      /*array()*/   'options'     => $rsPaises,
+                      /*string*/    'ariaLabel'   => 'Selecione um país',
+                      /*bool*/      'required'    => true,
+                      /*string*/    'prop'        => '',
+                      /*string*/    'display'     => true
+                    )); ?>
+                    <?= createInput(array(
+                      /*int 1-12*/  'col'         => 12,
+                      /*string*/    'label'       => 'Profissão da Mãe',
+                      /*string*/    'type'        => 'text',
+                      /*string*/    'name'        => 'p_mae_profissao',
+                      /*string*/    'id'          => 'p_mae_profissao',
+                      /*string*/    'class'       => 'form-control',
+                      /*int*/       'minlength'   => 3,
+                      /*int*/       'maxlength'   => 254,
+                      /*string*/    'placeholder' => 'Digite a profissão da mãe da pessoa',
+                      /*string*/    'value'       => $rsPessoa['mae_profissao'],
+                      /*bool*/      'required'    => false,
+                      /*string*/    'prop'        => ''
+                    )) ;?>
+                  </div>
                   <!-- div row input - END -->
                 </div>
               </div>
@@ -523,8 +526,8 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*int 1-12*/  'col'         => 6,
                   /*string*/    'label'       => 'Enfermidade Portada',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_enfermedade_portador',
-                  /*string*/    'id'          => 'p_enfermedade_portador',
+                  /*string*/    'name'        => 'p_enfermidade_portador',
+                  /*string*/    'id'          => 'p_enfermidade_portador',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,

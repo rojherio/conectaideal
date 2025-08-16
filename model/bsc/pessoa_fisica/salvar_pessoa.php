@@ -24,7 +24,7 @@ $mae_profissao                            = ucwords(strtolower(trim(strip_tags(@
 $foto                                     = "";
 $sangue_tipo                              = strip_tags(@$_POST['p_sangue_tipo']?: '');
 $raca                                     = ucwords(strtolower(trim(strip_tags(@$_POST['p_raca']?: ''))));
-$enfermedade_portador                     = ucwords(strtolower(trim(strip_tags(@$_POST['p_enfermedade_portador']?: ''))));
+$enfermidade_portador                     = ucwords(strtolower(trim(strip_tags(@$_POST['p_enfermidade_portador']?: ''))));
 $enfermidade_codigo_internacional         = trim(strip_tags(@$_POST['p_enfermidade_codigo_internacional']?: ''));
 $error = false;
 $result = array();
@@ -67,8 +67,8 @@ try {
         foto = ?,
         sangue_tipo = ?,
         raca = ?,
-        enfermedade_portador = ?,
-        enfermedade_codigo_internacional = ?
+        enfermidade_portador = ?,
+        enfermidade_codigo_internacional = ?
         WHERE id = ?
         ');
     $stmt->bindValue(1, $status);
@@ -94,7 +94,7 @@ try {
     $stmt->bindValue(21, $foto);
     $stmt->bindValue(22, $sangue_tipo);
     $stmt->bindValue(23, $raca);
-    $stmt->bindValue(24, $enfermedade_portador);
+    $stmt->bindValue(24, $enfermidade_portador);
     $stmt->bindValue(25, $enfermidade_codigo_internacional);
     $stmt->bindValue(26, $id);
     $stmt->execute();
@@ -146,8 +146,8 @@ try {
           foto,
           sangue_tipo,
           raca,
-          enfermedade_portador,
-          enfermedade_codigo_internacional
+          enfermidade_portador,
+          enfermidade_codigo_internacional
           ) 
         VALUES
         (
@@ -200,7 +200,7 @@ try {
       $stmt->bindValue(21, $foto);
       $stmt->bindValue(22, $sangue_tipo);
       $stmt->bindValue(23, $raca);
-      $stmt->bindValue(24, $enfermedade_portador);
+      $stmt->bindValue(24, $enfermidade_portador);
       $stmt->bindValue(25, $enfermidade_codigo_internacional);
       $stmt->execute();
       $bscPessoaIdNew = $db->lastInsertId();

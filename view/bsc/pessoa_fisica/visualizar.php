@@ -19,6 +19,7 @@ $stmt = $db->prepare("SELECT
   p.dt_nascimento,
   p.sexo,
   p.natural_bsc_pais_id,
+  pa.nome AS natural_pais_nome,
   p.natural_bsc_municipio_id,
   m.nome AS natural_municipio_nome, 
   e.id AS natural_estado_id, 
@@ -29,18 +30,23 @@ $stmt = $db->prepare("SELECT
   p.natural_estrangeiro_condicao_trabalho,
   p.pai_nome,
   p.pai_natural_bsc_pais_id,
+  pa1.nome AS pai_natural_pais_nome,
   p.pai_profissao,
   p.mae_nome,
+  pa2.nome AS mae_natural_pais_nome,
   p.mae_natural_bsc_pais_id,
   p.mae_profissao,
   p.foto,
   p.sangue_tipo,
   p.raca,
-  p.enfermedade_portador,
-  p.enfermedade_codigo_internacional
+  p.enfermidade_portador,
+  p.enfermidade_codigo_internacional
   FROM bsc_pessoa AS p
   LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
+  LEFT JOIN bsc_pais AS pa ON pa.id = p.natural_bsc_pais_id 
+  LEFT JOIN bsc_pais AS pa1 ON pa1.id = p.pai_natural_bsc_pais_id 
+  LEFT JOIN bsc_pais AS pa2 ON pa2.id = p.mae_natural_bsc_pais_id
   WHERE p.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -84,453 +90,431 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_pessoa" name="form_pessoa" method="post" action="">
-      <input type="hidden" name="p_id" id="p_id" value="<?= $rsPessoa['id'] ;?>">
-      <!-- div de cadastro - BEGIN -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $tituloFormulario1;?></h5>
-              <small><?= $descricaoFormulario1;?></small>
-              <!-- Título da div de cadastro - END -->
+    <input type="hidden" name="p_id" id="p_id" value="<?= $rsPessoa['id'] ;?>">
+    <!-- div de cadastro - BEGIN -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <!-- Título da div de cadastro - BEGIN -->
+            <h5><?= $tituloFormulario1;?></h5>
+            <small><?= $descricaoFormulario1;?></small>
+            <!-- Título da div de cadastro - END -->
+          </div>
+          <div class="card-body">
+            <!-- div row input - BEGIN -->
+            <div class="row">
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 5,
+                /*string*/    'label'       => 'Nome',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_nome',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['nome'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 4,
+                /*string*/    'label'       => 'Nome Social',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_nome_social',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['nome_social'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 3,
+                /*string*/    'label'       => 'CPF',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_cpf',
+                /*string*/    'class'       => 'form-control-plaintext mask-cpf',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['cpf'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
             </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
+            <div class="row">
+              <?= createInputDate(array(
+                /*int 1-12*/  'col'         => 3,
+                /*string*/    'label'       => 'Data de Nascimento',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_dt_nascimento',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'min'         => '',
+                /*int*/       'maxToday'    => false,
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['dt_nascimento'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 3,
+                /*string*/    'label'       => 'Sexo',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_sexo',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['sexo'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 3,
+                /*string*/    'label'       => 'Tipo Sanaguíneo',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_sangue_tipo',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['sangue_tipo'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 3,
+                /*string*/    'label'       => 'Raça',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_raca',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['raca'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+            </div>
+            <!-- div row input - END -->
+          </div>
+          <div class="card-header">
+            <!-- Título da div de cadastro - BEGIN -->
+            <h5><?= $tituloFormulario3;?></h5>
+            <small><?= $descricaoFormulario3;?></small>
+            <!-- Título da div de cadastro - END -->
+          </div>
+          <div class="card-body">
+            <!-- div row input - BEGIN -->
+            <div class="row">
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 6,
+                /*string*/    'label'       => 'Nacionalidade',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_natural_bsc_pais_id',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['natural_pais_nome'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+              <?php
+                //Parámetros de exibir/ocultar div - BEGIN
+              $displayNaturalidadeNacional      = $rsPessoa['natural_bsc_pais_id'] != 1 ? 'style="display: none;"' : '';
+              $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'style="display: none;"' : '';
+                //Parámetros de exibir/ocultar div - NED
+              ?>
+              <div class="col-6" id="div_naturalidade_nacional" <?= $displayNaturalidadeNacional ;?>>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome',
+                  /*string*/    'label'       => 'Naturalidade',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_nome',
-                  /*string*/    'id'          => 'p_nome',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Digite o nome da pessoa',
-                  /*string*/    'value'       => $rsPessoa['nome'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
+                  /*string*/    'name'        => '',
+                  /*string*/    'id'          => 'p_natural_bsc_municipio_id',
+                  /*string*/    'class'       => 'form-control-plaintext',
+                  /*int*/       'minlength'   => '',
+                  /*int*/       'maxlength'   => '',
+                  /*string*/    'placeholder' => '',
+                  /*string*/    'value'       => $rsPessoa['natural_municipio_nome'].' - '.$rsPessoa['natural_estado_sigla'],
+                  /*bool*/      'required'    => false,
+                  /*string*/    'prop'        => 'readonly'
                 )) ;?>
               </div>
+            </div>
+            <div id="div_naturalidade_extrangeiro" <?= $displayNaturalidadeExtranjeiro ;?>>
               <div class="row">
                 <?= createInput(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*string*/    'label'       => 'Nome Social',
+                  /*int 1-12*/  'col'         => 3,
+                  /*string*/    'label'       => 'Nome da Cidade',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_nome_social',
-                  /*string*/    'id'          => 'p_nome_social',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Digite o nome social da pessoa',
-                  /*string*/    'value'       => $rsPessoa['nome_social'],
+                  /*string*/    'name'        => '',
+                  /*string*/    'id'          => 'p_natural_estrangeiro_cidade',
+                  /*string*/    'class'       => 'form-control-plaintext',
+                  /*int*/       'minlength'   => '',
+                  /*int*/       'maxlength'   => '',
+                  /*string*/    'placeholder' => '',
+                  /*string*/    'value'       => $rsPessoa['natural_estrangeiro_cidade'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => ''
+                  /*string*/    'prop'        => 'readonly'
                 )) ;?>
                 <?= createInput(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*string*/    'label'       => 'CPF',
+                  /*int 1-12*/  'col'         => 3,
+                  /*string*/    'label'       => 'Nome do Estado',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_cpf',
-                  /*string*/    'id'          => 'p_cpf',
-                  /*string*/    'class'       => 'form-control mask-cpf',
-                  /*int*/       'minlength'   => 14,
-                  /*int*/       'maxlength'   => 14,
-                  /*string*/    'placeholder' => 'Digite o CPF da pessoa',
-                  /*string*/    'value'       => $rsPessoa['cpf'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
+                  /*string*/    'name'        => '',
+                  /*string*/    'id'          => 'p_natural_estrangeiro_estado',
+                  /*string*/    'class'       => 'form-control-plaintext',
+                  /*int*/       'minlength'   => '',
+                  /*int*/       'maxlength'   => '',
+                  /*string*/    'placeholder' => '',
+                  /*string*/    'value'       => $rsPessoa['natural_estrangeiro_estado'],
+                  /*bool*/      'required'    => false,
+                  /*string*/    'prop'        => 'readonly'
                 )) ;?>
                 <?= createInputDate(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*string*/    'label'       => 'Data de Nascimento',
-                  /*string*/    'name'        => 'p_dt_nascimento',
-                  /*string*/    'id'          => 'p_dt_nascimento',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'min'         => '1900-01-01',
-                  /*int*/       'maxToday'    => true,
-                  /*string*/    'placeholder' => 'Digite a Data de Nascimento da pessoa',
-                  /*string*/    'value'       => $rsPessoa['dt_nascimento'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <div class="row">
-                <?= createRadio(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*int 1-12*/  'colOption'   => 6,
-                  /*string*/    'label'       => 'Sexo',
-                  /*string*/    'type'        => 'radio',
-                  /*string*/    'name'        => 'p_sexo',
-                  /*array()*/   'id'          => array('p_sexo_F', 'p_sexo_M'),
-                  /*string*/    'class'       => 'radiomark outline-info ms-2',
-                  /*array()*/   'value'       => $rsPessoa['sexo'],
-                  /*array()*/   'values'      => array('Feminino', 'Masculino'),
-                  /*array()*/   'options'     => array("Feminino", "Masculino"),
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => '',
-                )) ?>
-                <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*string*/    'label'       => 'Tipo Sanaguíneo',
-                  /*string*/    'name'        => 'p_sangue_tipo',
-                  /*string*/    'id'          => 'p_sangue_tipo',
-                  /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsPessoa['sangue_tipo'],
-                  /*array()*/   'options'     => array(
-                    ['id' => 'O+', 'nome' => 'O+'],
-                    ['id' => 'O-', 'nome' => 'O-'],
-                    ['id' => 'A+', 'nome' => 'A+'],
-                    ['id' => 'A-', 'nome' => 'A-'],
-                    ['id' => 'B+', 'nome' => 'B+'],
-                    ['id' => 'B-', 'nome' => 'B-'],
-                    ['id' => 'AB+', 'nome' => 'AB+'],
-                    ['id' => 'AB-', 'nome' => 'AB-']
-                  ),
-                  /*string*/    'ariaLabel'   => 'Selecione um tipo sanguíneo',
+                  /*int 1-12*/  'col'         => 3,
+                  /*string*/    'label'       => 'Data de Ingreso ao Brasil',
+                  /*string*/    'name'        => '',
+                  /*string*/    'id'          => 'p_natural_estrangeiro_dt_ingresso',
+                  /*string*/    'class'       => 'form-control-plaintext mask-data',
+                  /*int*/       'min'         => '',
+                  /*int*/       'maxToday'    => false,
+                  /*string*/    'placeholder' => '',
+                  /*string*/    'value'       => $rsPessoa['natural_estrangeiro_dt_ingresso'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
+                  /*string*/    'prop'        => 'readonly'
+                )) ;?>
                 <?= createInput(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*string*/    'label'       => 'Raça',
+                  /*int 1-12*/  'col'         => 3,
+                  /*string*/    'label'       => 'Condição de Trabalho',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_raca',
-                  /*string*/    'id'          => 'p_raca',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 50,
-                  /*string*/    'placeholder' => 'Digite raça da pessoa',
-                  /*string*/    'value'       => $rsPessoa['dt_nascimento'],
+                  /*string*/    'name'        => '',
+                  /*string*/    'id'          => 'p_natural_estrangeiro_condicao_trabalho',
+                  /*string*/    'class'       => 'form-control-plaintext',
+                  /*int*/       'minlength'   => '',
+                  /*int*/       'maxlength'   => '',
+                  /*string*/    'placeholder' => '',
+                  /*string*/    'value'       => $rsPessoa['natural_estrangeiro_condicao_trabalho'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => ''
+                  /*string*/    'prop'        => 'readonly'
                 )) ;?>
               </div>
-              <!-- div row input - END -->
             </div>
+            <!-- div row input - END -->
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $tituloFormulario3;?></h5>
-              <small><?= $descricaoFormulario3;?></small>
-              <!-- Título da div de cadastro - END -->
-            </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
-                <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nacionalidade',
-                  /*string*/    'name'        => 'p_natural_bsc_pais_id',
-                  /*string*/    'id'          => 'p_natural_bsc_pais_id',
-                  /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsPessoa['natural_bsc_pais_id'],
-                  /*array()*/   'options'     => $rsPaises,
-                  /*string*/    'ariaLabel'   => 'Selecione um país',
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => 'controller="naturalidade"',
-                  /*string*/    'display'     => true
-                )); ?>
-                <?php
-                //Parámetros de exibir/ocultar div - BEGIN
-                $displayNaturalidadeNacional      = $rsPessoa['natural_bsc_pais_id'] != 1 ? 'style="display: none;"' : '';
-                $displayNaturalidadeExtranjeiro   = $rsPessoa['natural_bsc_pais_id'] <= 1 ? 'style="display: none;"' : '';
-                //Parámetros de exibir/ocultar div - NED
-                ?>
-                <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Naturalidade',
-                  /*string*/    'name'        => 'p_natural_bsc_municipio_id',
-                  /*string*/    'id'          => 'p_natural_bsc_municipio_id',
-                  /*string*/    'class'       => 'select2_naturalidade form-control form-select select-basic',
-                  /*string*/    'value'       => $rsPessoa['natural_bsc_municipio_id'],
-                  /*array()*/   'options'     => ($rsPessoa['natural_bsc_municipio_id'] > 0 ? array(array('id' => $rsPessoa['natural_bsc_municipio_id'], 'nome' => ($rsPessoa['natural_municipio_nome'].' - '.$rsPessoa['natural_estado_sigla']))) : NULL),
-                  /*string*/    'ariaLabel'   => 'Selecione um país',
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"',
-                  /*string*/    'display'     => !$displayNaturalidadeNacional ? true : false
-                )); ?>
-              </div>
-              <div id="div_naturalide_extrangeiro" controlled="naturalidade" control-value="0" <?= $displayNaturalidadeExtranjeiro ;?>>
+          <div class="card-header">
+            <!-- Título da div de cadastro - BEGIN -->
+            <h5><?= $tituloFormulario2;?></h5>
+            <small><?= $descricaoFormulario2;?></small>
+            <!-- Título da div de cadastro - END -->
+          </div>
+          <div class="card-body">
+            <!-- div row input - BEGIN -->
+            <div class="row">
+              <div class="col-md-6">
+                <!-- div row input - BEGIN -->
                 <div class="row">
                   <?= createInput(array(
-                    /*int 1-12*/  'col'         => 6,
-                    /*string*/    'label'       => 'Nome da Cidade',
-                    /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_natural_estrangeiro_cidade',
-                    /*string*/    'id'          => 'p_natural_estrangeiro_cidade',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 130,
-                    /*string*/    'placeholder' => 'Digite o nome da cidade de nascimento da pessoa',
-                    /*string*/    'value'       => $rsPessoa['natural_estrangeiro_cidade'],
-                    /*bool*/      'required'    => true,
-                    /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
-                  )) ;?>
-                  <?= createInput(array(
-                    /*int 1-12*/  'col'         => 6,
-                    /*string*/    'label'       => 'Nome do Estado',
-                    /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_natural_estrangeiro_estado',
-                    /*string*/    'id'          => 'p_natural_estrangeiro_estado',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 100,
-                    /*string*/    'placeholder' => 'Digite o nome do estado de nascimento da pessoa',
-                    /*string*/    'value'       => $rsPessoa['natural_estrangeiro_estado'],
-                    /*bool*/      'required'    => true,
-                    /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
-                  )) ;?>
-                </div>
-                <div class="row">
-                  <?= createInputDate(array(
-                    /*int 1-12*/  'col'         => 6,
-                    /*string*/    'label'       => 'Data de Ingreso ao Brasil',
-                    /*string*/    'name'        => 'p_natural_estrangeiro_dt_ingresso',
-                    /*string*/    'id'          => 'p_natural_estrangeiro_dt_ingresso',
-                    /*string*/    'class'       => 'form-control mask-data',
-                    /*int*/       'min'         => '1900-01-01',
-                    /*int*/       'maxToday'    => true,
-                    /*string*/    'placeholder' => 'Digite a data de ingresso da pessoa ao Brasil',
-                    /*string*/    'value'       => $rsPessoa['natural_estrangeiro_dt_ingresso'],
-                    /*bool*/      'required'    => true,
-                    /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
-                  )) ;?>
-                  <?= createInput(array(
-                    /*int 1-12*/  'col'         => 6,
-                    /*string*/    'label'       => 'Condição de Trabalho',
-                    /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_natural_estrangeiro_condicao_trabalho',
-                    /*string*/    'id'          => 'p_natural_estrangeiro_condicao_trabalho',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite a condição de trabalho da pessoa',
-                    /*string*/    'value'       => $rsPessoa['natural_estrangeiro_condicao_trabalho'],
-                    /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
-                  )) ;?>
-                </div>
-              </div>
-              <!-- div row input - END -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $tituloFormulario2;?></h5>
-              <small><?= $descricaoFormulario2;?></small>
-              <!-- Título da div de cadastro - END -->
-            </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
-                <div class="col-md-6">
-                  <!-- div row input - BEGIN -->
-                  <?= createInput(array(
-                    /*int 1-12*/  'col'         => 12,
+                    /*int 1-12*/  'col'         => 7,
                     /*string*/    'label'       => 'Nome do Pai',
                     /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_pai_nome',
+                    /*string*/    'name'        => '',
                     /*string*/    'id'          => 'p_pai_nome',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite o nome do pai da pessoa',
+                    /*string*/    'class'       => 'form-control-plaintext',
+                    /*int*/       'minlength'   => '',
+                    /*int*/       'maxlength'   => '',
+                    /*string*/    'placeholder' => '',
                     /*string*/    'value'       => $rsPessoa['pai_nome'],
                     /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => '',
-                    /*string*/    'display'     => true
+                    /*string*/    'prop'        => 'readonly'
                   )) ;?>
-                  <?= createSelect(array(
-                    /*int 1-12*/  'col'         => 12,
+                  <?= createInput(array(
+                    /*int 1-12*/  'col'         => 5,
                     /*string*/    'label'       => 'Nacionalidade do Pai',
-                    /*string*/    'name'        => 'p_pai_natural_bsc_pais_id',
-                    /*string*/    'id'          => 'p_pai_natural_bsc_pais_id',
-                    /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                    /*string*/    'value'       => $rsPessoa['pai_natural_bsc_pais_id'],
-                    /*array()*/   'options'     => $rsPaises,
-                    /*string*/    'ariaLabel'   => 'Selecione um país',
+                    /*string*/    'type'        => 'text',
+                    /*string*/    'name'        => '',
+                    /*string*/    'id'          => 'p_pai_nome',
+                    /*string*/    'class'       => 'form-control-plaintext',
+                    /*int*/       'minlength'   => '',
+                    /*int*/       'maxlength'   => '',
+                    /*string*/    'placeholder' => '',
+                    /*string*/    'value'       => $rsPessoa['pai_natural_pais_nome'],
                     /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => '',
-                    /*string*/    'display'     => true
-                  )); ?>
+                    /*string*/    'prop'        => 'readonly'
+                  )) ;?>
+                </div>
+                <div class="row">
                   <?= createInput(array(
                     /*int 1-12*/  'col'         => 12,
                     /*string*/    'label'       => 'Profissão do Pai',
                     /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_pai_profissao',
+                    /*string*/    'name'        => '',
                     /*string*/    'id'          => 'p_pai_profissao',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite a profissão do pai da pessoa',
+                    /*string*/    'class'       => 'form-control-plaintext',
+                    /*int*/       'minlength'   => '',
+                    /*int*/       'maxlength'   => '',
+                    /*string*/    'placeholder' => '',
                     /*string*/    'value'       => $rsPessoa['pai_profissao'],
                     /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => ''
+                    /*string*/    'prop'        => 'readonly'
                   )) ;?>
-                  <!-- div row input - END -->
                 </div>
-                <div class="col-md-6">
+                <!-- div row input - END -->
+              </div>
+              <div class="col-md-6">
+                <div class="row">
                   <!-- div row input - BEGIN -->
                   <?= createInput(array(
-                    /*int 1-12*/  'col'         => 12,
+                    /*int 1-12*/  'col'         => 7,
                     /*string*/    'label'       => 'Nome da Mãe',
                     /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_mae_nome',
+                    /*string*/    'name'        => '',
                     /*string*/    'id'          => 'p_mae_nome',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite o nome da mãe da pessoa',
+                    /*string*/    'class'       => 'form-control-plaintext',
+                    /*int*/       'minlength'   => '',
+                    /*int*/       'maxlength'   => '',
+                    /*string*/    'placeholder' => '',
                     /*string*/    'value'       => $rsPessoa['mae_nome'],
-                    /*bool*/      'required'    => true,
-                    /*string*/    'prop'        => ''
+                    /*bool*/      'required'    => false,
+                    /*string*/    'prop'        => 'readonly'
                   )) ;?>
-                  <?= createSelect(array(
-                    /*int 1-12*/  'col'         => 12,
+                  <?= createInput(array(
+                    /*int 1-12*/  'col'         => 5,
                     /*string*/    'label'       => 'Nacionalidade da Mãe',
-                    /*string*/    'name'        => 'p_mae_natural_bsc_pais_id',
+                    /*string*/    'type'        => 'text',
+                    /*string*/    'name'        => '',
                     /*string*/    'id'          => 'p_mae_natural_bsc_pais_id',
-                    /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                    /*string*/    'value'       => $rsPessoa['mae_natural_bsc_pais_id'],
-                    /*array()*/   'options'     => $rsPaises,
-                    /*string*/    'ariaLabel'   => 'Selecione um país',
-                    /*bool*/      'required'    => true,
-                    /*string*/    'prop'        => '',
-                    /*string*/    'display'     => true
-                  )); ?>
+                    /*string*/    'class'       => 'form-control-plaintext',
+                    /*int*/       'minlength'   => '',
+                    /*int*/       'maxlength'   => '',
+                    /*string*/    'placeholder' => '',
+                    /*string*/    'value'       => $rsPessoa['mae_natural_pais_nome'],
+                    /*bool*/      'required'    => false,
+                    /*string*/    'prop'        => 'readonly'
+                  )) ;?>
+                </div>
+                <div class="row">
                   <?= createInput(array(
                     /*int 1-12*/  'col'         => 12,
                     /*string*/    'label'       => 'Profissão da Mãe',
                     /*string*/    'type'        => 'text',
-                    /*string*/    'name'        => 'p_mae_profissao',
+                    /*string*/    'name'        => '',
                     /*string*/    'id'          => 'p_mae_profissao',
-                    /*string*/    'class'       => 'form-control',
-                    /*int*/       'minlength'   => 3,
-                    /*int*/       'maxlength'   => 254,
-                    /*string*/    'placeholder' => 'Digite a profissão da mãe da pessoa',
+                    /*string*/    'class'       => 'form-control-plaintext',
+                    /*int*/       'minlength'   => '',
+                    /*int*/       'maxlength'   => '',
+                    /*string*/    'placeholder' => '',
                     /*string*/    'value'       => $rsPessoa['mae_profissao'],
                     /*bool*/      'required'    => false,
-                    /*string*/    'prop'        => ''
+                    /*string*/    'prop'        => 'readonly'
                   )) ;?>
-                  <!-- div row input - END -->
                 </div>
+                <!-- div row input - END -->
               </div>
-              <!-- div row input - END -->
             </div>
+            <!-- div row input - END -->
+          </div>
+          <div class="card-header">
+            <!-- Título da div de cadastro - BEGIN -->
+            <h5><?= $tituloFormulario4;?></h5>
+            <small><?= $descricaoFormulario4;?></small>
+            <!-- Título da div de cadastro - END -->
+          </div>
+          <div class="card-body">
+            <!-- div row input - BEGIN -->
+            <div class="row">
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 6,
+                /*string*/    'label'       => 'Enfermidade Portada',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_enfermidade_portador',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['enfermidade_portador'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 6,
+                /*string*/    'label'       => 'Código Internacional da Enfermidade',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_enfermidade_codigo_internacional',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['enfermidade_codigo_internacional'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+            </div>
+            <!-- div row input - END -->
+          </div>
+          <div class="card-header">
+            <!-- Título da div de cadastro - BEGIN -->
+            <h5><?= $tituloFormulario5;?></h5>
+            <small><?= $descricaoFormulario5;?></small>
+            <!-- Título da div de cadastro - END -->
+          </div>
+          <div class="card-body">
+            <!-- div row input - BEGIN -->
+            <div class="row">
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => 12,
+                /*string*/    'label'       => '',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => '',
+                /*string*/    'id'          => 'p_status',
+                /*string*/    'class'       => 'form-control-plaintext',
+                /*int*/       'minlength'   => '',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => '',
+                /*string*/    'value'       => $rsPessoa['status'] > 0 ? 'Ativo' : 'Inativo',
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'readonly'
+              )) ;?>
+            </div>
+            <!-- div row input - END -->
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $tituloFormulario4;?></h5>
-              <small><?= $descricaoFormulario4;?></small>
-              <!-- Título da div de cadastro - END -->
-            </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Enfermidade Portada',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_enfermedade_portador',
-                  /*string*/    'id'          => 'p_enfermedade_portador',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome enfermidade portada pela pessoa',
-                  /*string*/    'value'       => $rsPessoa['enfermedade_portador'],
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Código Internacional da Enfermidade',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_enfermidade_codigo_internacional',
-                  /*string*/    'id'          => 'p_enfermidade_codigo_internacional',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 10,
-                  /*string*/    'placeholder' => 'Digite o código internacional da enfermidade portada pela pessoa',
-                  /*string*/    'value'       => $rsPessoa['enfermidade_codigo_internacional'],
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => ''
-                )) ;?>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <!-- div row buttons - BEGIN -->
+            <div class="row">
+              <div class="box-footer text-center">
+                <button type="reset" class="btn btn-outline-danger b-r-22" id="btn_cancelar">
+                  <i class="ti ti-eraser"></i> Cancelar
+                </button>
+                <button type="button" id="submit" class="btn btn-outline-success waves-light b-r-22">
+                  <i class="ti ti-writing"></i> Cadastrar
+                </button>
               </div>
-              <!-- div row input - END -->
+              <input type="hidden" id="id" name="id" value="">
             </div>
+            <!-- div row buttons - END -->
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $tituloFormulario5;?></h5>
-              <small><?= $descricaoFormulario5;?></small>
-              <!-- Título da div de cadastro - END -->
-            </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
-                <?= createCheckbox(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Ativo',
-                  /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'p_status',
-                  /*string*/    'id'          => 'p_status',
-                  /*string*/    'class'       => 'toggle',
-                  /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsPessoa['status'],
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <!-- div row input - END -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <!-- div row buttons - BEGIN -->
-              <div class="row">
-                <div class="box-footer text-center">
-                  <button type="reset" class="btn btn-outline-danger b-r-22" id="btn_cancelar">
-                    <i class="ti ti-eraser"></i> Cancelar
-                  </button>
-                  <button type="button" id="submit" class="btn btn-outline-success waves-light b-r-22">
-                    <i class="ti ti-writing"></i> Cadastrar
-                  </button>
-                </div>
-                <input type="hidden" id="id" name="id" value="">
-              </div>
-              <!-- div row buttons - END -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </form>
+    </div>
     <!-- formulário de cadastro - END -->
     <!-- div de cadastro - END -->
   </div>

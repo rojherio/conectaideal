@@ -434,7 +434,7 @@ CREATE TABLE `bsc_pessoa` (
   CONSTRAINT `fk_bsc_pessoa_bsc_pais1` FOREIGN KEY (`natural_bsc_pais_id`) REFERENCES `bsc_pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bsc_pessoa_bsc_pais2` FOREIGN KEY (`pai_natural_bsc_pais_id`) REFERENCES `bsc_pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bsc_pessoa_bsc_pais3` FOREIGN KEY (`mae_natural_bsc_pais_id`) REFERENCES `bsc_pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -443,6 +443,7 @@ CREATE TABLE `bsc_pessoa` (
 
 LOCK TABLES `bsc_pessoa` WRITE;
 /*!40000 ALTER TABLE `bsc_pessoa` DISABLE KEYS */;
+INSERT INTO `bsc_pessoa` VALUES (1,1,'2025-08-13 16:10:51','1','Rogério Moura Rosas','','885.566.892-72',NULL,'1988-06-19',NULL,'Masculino',1,94,NULL,'','','','Antenor Lopes Rosas Filho',1,'','Francisca Da Silva Moura',1,'','','O+','','',''),(2,1,'2025-08-12 23:43:13','1','Thaís Miranda Santos','','006.245.452-88',NULL,'1996-09-22',NULL,'Feminino',1,94,NULL,'','','','',NULL,'','Maria de Nazaré Santos da Silva',1,'','','O+','','',''),(3,1,'2025-08-12 23:44:15','1','Francisca da Silva Moura','','112.759.522-91',NULL,'1954-04-12',NULL,'Feminino',1,94,NULL,'','','','',NULL,'','Maria de Loudes',1,'','','O+','','',''),(4,1,'2025-08-13 15:12:41','1','Antenor Lopes Rosas Filho','','005.305.612-47',NULL,'1945-05-18',NULL,'Masculino',1,493,NULL,'','','','Antenor Lopes Rosas',1,'','Mae',1,'','','O-','','','');
 /*!40000 ALTER TABLE `bsc_pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3056,4 +3057,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-08-06 15:13:35
+-- Dump completed on 2025-08-16 11:27:37

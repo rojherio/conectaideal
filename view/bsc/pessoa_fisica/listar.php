@@ -32,8 +32,8 @@ $stmt = $db->prepare("SELECT
   p.foto,
   p.sangue_tipo,
   p.raca,
-  p.enfermedade_portador,
-  p.enfermedade_codigo_internacional
+  p.enfermidade_portador,
+  p.enfermidade_codigo_internacional
   FROM bsc_pessoa AS p
   LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 

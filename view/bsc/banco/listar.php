@@ -32,8 +32,8 @@ $stmt = $db->prepare("SELECT
   -- p.foto,
   -- p.sangue_tipo,
   -- p.raca,
-  -- p.enfermedade_portador,
-  -- p.enfermedade_codigo_internacional
+  -- p.enfermidade_portador,
+  -- p.enfermidade_codigo_internacional
   FROM bsc_banco AS b
   ORDER BY b.nome");
 $stmt->execute();

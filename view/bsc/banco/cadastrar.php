@@ -30,8 +30,8 @@ if (!is_array($rsBanco)) {
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Banco (Unidade Financeira)";
-$descricaoPagina          = "Informações do banco (Unidade Financeira)";
+$tituloPagina             = "Cadastro de Banco (Instituição Financeira)";
+$descricaoPagina          = "Informações do banco (Instituição Financeira)";
 $tituloFormulario1        = "Dados do Banco";
 $descricaoFormulario1     = "Dados de identificação do banco";
 $tituloFormulario2        = "";
@@ -115,10 +115,10 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 6,
                   /*string*/    'label'       => 'Código',
-                  /*string*/    'type'        => 'number',
+                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'b_codigo',
                   /*string*/    'id'          => 'b_codigo',
-                  /*string*/    'class'       => 'form-control',
+                  /*string*/    'class'       => 'form-control mask-numeros',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 3,
                   /*string*/    'placeholder' => 'Digite o código do banco',
@@ -129,10 +129,10 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 6,
                   /*string*/    'label'       => 'ISPB',
-                  /*string*/    'type'        => 'number',
+                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'b_ispb',
                   /*string*/    'id'          => 'b_ispb',
-                  /*string*/    'class'       => 'form-control',
+                  /*string*/    'class'       => 'form-control mask-numeros',
                   /*int*/       'minlength'   => 1,
                   /*int*/       'maxlength'   => 8,
                   /*string*/    'placeholder' => 'Digite o código ISPB do banco',

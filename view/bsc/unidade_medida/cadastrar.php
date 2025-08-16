@@ -33,8 +33,8 @@ $stmt = $db->prepare("SELECT
   p.foto,
   p.sangue_tipo,
   p.raca,
-  p.enfermedade_portador,
-  p.enfermedade_codigo_internacional
+  p.enfermidade_portador,
+  p.enfermidade_codigo_internacional
   FROM bsc_pessoa AS p
   LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
@@ -523,8 +523,8 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*int 1-12*/  'col'         => 6,
                   /*string*/    'label'       => 'Enfermidade Portada',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_enfermedade_portador',
-                  /*string*/    'id'          => 'p_enfermedade_portador',
+                  /*string*/    'name'        => 'p_enfermidade_portador',
+                  /*string*/    'id'          => 'p_enfermidade_portador',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
