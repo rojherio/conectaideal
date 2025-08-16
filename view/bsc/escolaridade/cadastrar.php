@@ -6,34 +6,28 @@ $id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
-  b.id,
-  b.status,
-  b.dt_cadastro,
-  b.codigo,
-  b.nome,
-  b.nome_curto,
-  b.ispb
-  FROM bsc_banco AS b
-  WHERE b.id = ? ;");
+  e.id,
+  e.status,
+  e.dt_cadastro,
+  e.nome
+  FROM bsc_escolaridade AS e
+  WHERE e.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsBanco = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsBanco)) {
-  $rsBanco = array();
-  $rsBanco['id'] = 0;
-  $rsBanco['status'] = 1;
-  $rsBanco['dt_cadastro'] = '';
-  $rsBanco['codigo'] = '';
-  $rsBanco['nome'] = '';
-  $rsBanco['nome_curto'] = '';
-  $rsBanco['ispb'] = '';
+$rsEscolaridade = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsEscolaridade)) {
+  $rsEscolaridade = array();
+  $rsEscolaridade['id'] = 0;
+  $rsEscolaridade['status'] = 1;
+  $rsEscolaridade['dt_cadastro'] = '';
+  $rsEscolaridade['nome'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Banco (Instituição Financeira)";
-$descricaoPagina          = "Informações do banco (Instituição Financeira)";
-$tituloFormulario1        = "Dados do Banco";
-$descricaoFormulario1     = "Dados de identificação do banco";
+$tituloPagina             = "Cadastro de Escolaridade";
+$descricaoPagina          = "Informações da escolaridade";
+$tituloFormulario1        = "Dados de Escolaridade";
+$descricaoFormulario1     = "Dados de identificação da escolaridade";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -41,7 +35,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de escolaridade está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -60,15 +54,15 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Banco</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Escolaridade</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_banco" name="form_banco" method="post" action="">
-      <input type="hidden" name="b_id" id="b_id" value="<?= $rsBanco['id'] ;?>">
+    <form class="app-form" id="form_escolaridade" name="form_escolaridade" method="post" action="">
+      <input type="hidden" name="e_id" id="e_id" value="<?= $rsEscolaridade['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -83,60 +77,16 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
               <!-- div row input - BEGIN -->
               <div class="row">
                 <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nome do Banco',
+                  /*int 1-12*/  'col'         => 12,
+                  /*string*/    'label'       => 'Nivel de Escolaridade',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'b_nome',
-                  /*string*/    'id'          => 'b_nome',
+                  /*string*/    'name'        => 'e_nome',
+                  /*string*/    'id'          => 'e_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Digite o nome do banco',
-                  /*string*/    'value'       => $rsBanco['nome'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nome Curto',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'b_nome_curto',
-                  /*string*/    'id'          => 'b_nome_curto',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 80,
-                  /*string*/    'placeholder' => 'Digite o nome curto do banco',
-                  /*string*/    'value'       => $rsBanco['nome_curto'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <div class="row">
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Código',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'b_codigo',
-                  /*string*/    'id'          => 'b_codigo',
-                  /*string*/    'class'       => 'form-control mask-numeros',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 3,
-                  /*string*/    'placeholder' => 'Digite o código do banco',
-                  /*string*/    'value'       => $rsBanco['codigo'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'ISPB',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'b_ispb',
-                  /*string*/    'id'          => 'b_ispb',
-                  /*string*/    'class'       => 'form-control mask-numeros',
-                  /*int*/       'minlength'   => 1,
-                  /*int*/       'maxlength'   => 8,
-                  /*string*/    'placeholder' => 'Digite o código ISPB do banco',
-                  /*string*/    'value'       => $rsBanco['ispb'],
+                  /*int*/       'maxlength'   => 100,
+                  /*string*/    'placeholder' => 'Digite o nivel de escolaridade',
+                  /*string*/    'value'       => $rsEscolaridade['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -162,11 +112,11 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Ativo',
                   /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'b_status',
-                  /*string*/    'id'          => 'b_status',
+                  /*string*/    'name'        => 'e_status',
+                  /*string*/    'id'          => 'e_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsBanco['status'],
+                  /*string*/    'checked'     => $rsEscolaridade['status'],
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
@@ -205,4 +155,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/banco/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/escolaridade/cadastrar.js"></script>

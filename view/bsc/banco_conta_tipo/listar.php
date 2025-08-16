@@ -5,24 +5,21 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  b.id,
-  b.status,
-  b.dt_cadastro,
-  b.codigo,
-  b.nome,
-  b.nome_curto,
-  b.ispb
-  FROM bsc_banco AS b
-  ORDER BY b.nome");
+  bct.id,
+  bct.status,
+  bct.dt_cadastro,
+  bct.nome
+  FROM bsc_banco_conta_tipo AS bct
+  ORDER BY bct.nome");
 $stmt->execute();
-$rsBancos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rsBancoContaTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Bancos (Instituições Financeiras)";
-$descricaoPagina          = "Informações de bancos";
-$tituloFormulario1        = "Tabela com listagem de Bancos";
-$descricaoFormulario1     = "Dados de identificação de bancos";
-$tituloImpressao          = "Relatório de bancos cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Tipos de Bancos (Instituições Financeiras)";
+$descricaoPagina          = "Informações de tipos de bancos";
+$tituloFormulario1        = "Tabela com listagem de Tipos de Bancos";
+$descricaoFormulario1     = "Dados de identificação de tipos bancos";
+$tituloImpressao          = "Relatório de tipos de bancos cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -41,7 +38,7 @@ $tituloImpressao          = "Relatório de bancos cadastradas no sistema DELFOS"
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Banco</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipos de Bancos</a>
           </li>
         </ul>
       </div>
@@ -67,25 +64,21 @@ $tituloImpressao          = "Relatório de bancos cadastradas no sistema DELFOS"
                   <thead class="bg-inverse">
                     <tr>
                       <th>#</th>
-                      <th>Código</th>
                       <th>Nome</th>
-                      <th>ISPB</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    foreach ($rsBancos as $kObj => $vObj) {
+                    foreach ($rsBancoContaTipos as $kObj => $vObj) {
                       // $btnExcluirOnClick  = $vObj['qtd_uo_id'] > 0 ? 'negado="true" data-toggle="tooltip" title="Este registro não pode ser exlcuido pois está vinculado a outras informações!" onclick="return false;"' : 'onclick="btnExcluir(this)"';
                       $btnExcluirOnClick  = 'onclick="btnExcluir(this)"';
                       ?>
                       <tr>
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
-                        <td id="td_codigo"><?= $vObj['codigo']; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
-                        <td id="td_ispb"><?= $vObj['ispb']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
@@ -125,4 +118,4 @@ $tituloImpressao          = "Relatório de bancos cadastradas no sistema DELFOS"
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/banco/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/banco_conta_tipo/listar.js"></script>
