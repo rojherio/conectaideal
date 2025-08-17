@@ -1,9 +1,10 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['e_id']?: '');
-$status                                   = strip_tags(@$_POST['e_status']?: 0);
+$id                                       = strip_tags(@$_POST['ec_id']?: '');
+$status                                   = strip_tags(@$_POST['ec_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$nome                                     = ucwords(trim(strip_tags(@$_POST['e_nome']?: '')));
+$nome                                     = ucwords(trim(strip_tags(@$_POST['ec_nome']?: '')));
+$exige_registro                           = strip_tags(@$_POST['ec_exige_registro']?: 0);
 $error = false;
 $result = array();
 $msg = "";
@@ -20,17 +21,19 @@ try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {
     $stmt = $db->prepare('
-      UPDATE bsc_escolaridade
+      UPDATE bsc_estado_civil
         SET
         status = ?,
         dt_cadastro = ?,
-        nome = ?
+        nome = ?,
+        exige_registro = ?
         WHERE id = ?
         ');
     $stmt->bindValue(1, $status);
     $stmt->bindValue(2, $dt_cadastro);
     $stmt->bindValue(3, $nome);
-    $stmt->bindValue(4, $id);
+    $stmt->bindValue(4, $exige_registro);
+    $stmt->bindValue(5, $id);
     $stmt->execute();
     $db->commit();
       //MENSAGEM DE SUCESSO
@@ -41,39 +44,42 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT e.id, e.nome
-      FROM bsc_escolaridade AS e 
-      WHERE e.nome LIKE ?');
+      SELECT ec.id, ec.nome
+      FROM bsc_estado_civil AS ec 
+      WHERE ec.nome LIKE ?');
     $stmt->bindValue(1, $nome);
     $stmt->execute();
-    $rsEscolaridade = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (is_array($rsEscolaridade)) {
+    $rsEstadoCivil = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (is_array($rsEstadoCivil)) {
       $db->rollback();
       $result['status'] = 'error';
       $existentes = '';
-      if ($rsEscolaridade['nome'] == $nome) {
+      if ($rsEstadoCivil['nome'] == $nome) {
         $existentes .= ('nome: '.$nome);
       }
-      $result['tipo'] = 'escolaridade';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe escolaridade registrado com dados de ".$existentes.".";
+      $result['tipo'] = 'estado civil';
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um estado civil registrado com dados de ".$existentes.".";
       echo json_encode($result);
       exit();
     } else {
-      $stmt = $db->prepare('INSERT INTO bsc_escolaridade
+      $stmt = $db->prepare('INSERT INTO bsc_estado_civil
         (
           status,
           dt_cadastro,
-          nome
+          nome,
+          exige_registro
           ) 
         VALUES
         (
           ?, 
           ?, 
+          ?,
           ?
         )');
       $stmt->bindValue(1, $status);
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $nome);
+      $stmt->bindValue(4, $exige_registro);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       $db->commit();
