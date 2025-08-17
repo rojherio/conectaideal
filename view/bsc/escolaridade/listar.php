@@ -18,7 +18,7 @@ $rsEscolaridades = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Escolaridades";
 $descricaoPagina          = "Informações de escolaridade";
 $tituloFormulario1        = "Tabela com listagem de Escolaridades";
-$descricaoFormulario1     = "Dados de identificação de escolaridade";
+$descricaoFormulario1     = "Dados de identificação de escolaridades";
 $tituloImpressao          = "Relatório de escolaridades cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>

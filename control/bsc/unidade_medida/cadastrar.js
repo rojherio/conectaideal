@@ -10,9 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_pessoa',
-      urlToSend:      'model/bsc/pessoa_fisica/salvar_pessoa',
-      urlToGo:        'view/bsc/pessoa_fisica/listar'
+      formId:         'form_unidade_medida',
+      urlToSend:      'model/bsc/unidade_medida/salvar_unidade_medida',
+      urlToGo:        'view/bsc/unidade_medida/listar'
     };
     ajaxSendCadastrar(params);
   });

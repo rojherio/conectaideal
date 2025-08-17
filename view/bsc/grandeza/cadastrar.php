@@ -25,9 +25,9 @@ if (!is_array($rsGrandeza)) {
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro de Grandeza";
-$descricaoPagina          = "Informações da grandeza";
+$descricaoPagina          = "Informações de grandeza";
 $tituloFormulario1        = "Dados de Grandeza";
-$descricaoFormulario1     = "Dados de identificação da grandeza";
+$descricaoFormulario1     = "Dados de identificação de grandeza";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -78,7 +78,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de grandeza está ativo ou 
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Grandeza',
+                  /*string*/    'label'       => 'Nome',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'g_nome',
                   /*string*/    'id'          => 'g_nome',

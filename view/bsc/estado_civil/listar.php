@@ -16,7 +16,7 @@ $stmt->execute();
 $rsEstadoCivis = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Estados Civis (Instituições Financeiras)";
+$tituloPagina             = "Listagem de Estados Civis";
 $descricaoPagina          = "Informações de estados civis";
 $tituloFormulario1        = "Tabela com listagem de Estados Civis";
 $descricaoFormulario1     = "Dados de identificação de estados civis";
@@ -66,8 +66,8 @@ $tituloImpressao          = "Relatório de estados civis cadastrados no sistema 
                     <tr>
                       <th>#</th>
                       <th>Nome</th>
-                      <th>Status</th>
                       <th>Exige Registro</th>
+                      <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
                   </thead>
@@ -81,8 +81,8 @@ $tituloImpressao          = "Relatório de estados civis cadastrados no sistema 
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
+                        <td id="td_exige_registro" value="<?= $vObj['exige_registro'];?>"><span class="badge <?= $vObj['exige_registro'] == 1 ? 'text-light-primary' : 'text-light-secondary'; ?> "><?= $vObj['exige_registro'] == 1 ? 'Exige' : 'Nâo exige'; ?></span></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
-                        <td id="td_exige_registro" value="<?= $vObj['exige_registro'];?>"><span class="badge <?= $vObj['exige_registro'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['exige_registro'] == 1 ? 'Exige' : 'Nâo exige'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
                             <i class="ti ti-report-search"></i>

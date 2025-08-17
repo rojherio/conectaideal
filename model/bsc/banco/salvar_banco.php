@@ -5,7 +5,7 @@ $status                                   = strip_tags(@$_POST['b_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $codigo                                   = trim(strip_tags(@$_POST['b_codigo']?: ''));
 $nome                                     = ucwords(trim(strip_tags(@$_POST['b_nome']?: '')));
-$nome_curto                               = ucwords(trim(strip_tags(@$_POST['b_nome_curto']?: '')));
+$sigla                                    = ucwords(trim(strip_tags(@$_POST['b_sigla']?: '')));
 $ispb                                     = trim(strip_tags(@$_POST['b_ispb']?: ''));
 $error = false;
 $result = array();
@@ -29,7 +29,7 @@ try {
         dt_cadastro = ?,
         codigo = ?,
         nome = ?,
-        nome_curto = ?,
+        sigla = ?,
         ispb = ?
         WHERE id = ?
         ');
@@ -37,7 +37,7 @@ try {
     $stmt->bindValue(2, $dt_cadastro);
     $stmt->bindValue(3, $codigo);
     $stmt->bindValue(4, $nome);
-    $stmt->bindValue(5, $nome_curto);
+    $stmt->bindValue(5, $sigla);
     $stmt->bindValue(6, $ispb);
     $stmt->bindValue(7, $id);
     $stmt->execute();
@@ -50,11 +50,11 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT b.id, b.nome, b.nome_curto, b.codigo, b.ispb
+      SELECT b.id, b.nome, b.sigla, b.codigo, b.ispb
       FROM bsc_banco AS b 
-      WHERE b.nome LIKE ? OR b.nome_curto LIKE ? OR b.codigo LIKE ? OR b.ispb LIKE ?;');
+      WHERE b.nome LIKE ? OR b.sigla LIKE ? OR b.codigo LIKE ? OR b.ispb LIKE ?;');
     $stmt->bindValue(1, $nome);
-    $stmt->bindValue(2, $nome_curto);
+    $stmt->bindValue(2, $sigla);
     $stmt->bindValue(3, $codigo);
     $stmt->bindValue(4, $ispb);
     $stmt->execute();
@@ -66,8 +66,8 @@ try {
       if ($rsBanco['nome'] == $nome) {
         $existentes .= ('nome: '.$nome);
       }
-      if ($rsBanco['nome_curto'] == $nome_curto) {
-        $existentes .= $existentes.(', nome curto: '.$nome_curto);
+      if ($rsBanco['sigla'] == $sigla) {
+        $existentes .= $existentes.(', sigla: '.$sigla);
       }
       if ($rsBanco['codigo'] == $codigo) {
         $existentes .= $existentes.(', codigo: '.$codigo);
@@ -86,7 +86,7 @@ try {
           dt_cadastro,
           codigo,
           nome,
-          nome_curto,
+          sigla,
           ispb
           ) 
         VALUES
@@ -102,7 +102,7 @@ try {
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $codigo);
       $stmt->bindValue(4, $nome);
-      $stmt->bindValue(5, $nome_curto);
+      $stmt->bindValue(5, $sigla);
       $stmt->bindValue(6, $ispb);
       $stmt->execute();
       $bscPessoaIdNew = $db->lastInsertId();

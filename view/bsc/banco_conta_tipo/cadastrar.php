@@ -24,10 +24,10 @@ if (!is_array($rsBancoContaTipo)) {
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro do Tipo de Banco (Instituição Financeira)";
-$descricaoPagina          = "Informações do tipo banco (Instituição Financeira)";
-$tituloFormulario1        = "Dados do tipo";
-$descricaoFormulario1     = "Dados de identificação de tipo de banco";
+$tituloPagina             = "Cadastro do Tipo de Conta Bancária";
+$descricaoPagina          = "Informações do tipo de conta bancária";
+$tituloFormulario1        = "Dados do tipo de conta bancária";
+$descricaoFormulario1     = "Dados de identificação de tipo de conta bancária";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -35,7 +35,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de tipo de conta bancária está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -54,7 +54,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Banco</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Conta Bancária</a>
           </li>
         </ul>
       </div>
@@ -78,14 +78,14 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome do Tipo de Banco',
+                  /*string*/    'label'       => 'Nome do Tipo de Conta Bancária',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'bct_nome',
                   /*string*/    'id'          => 'bct_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 50,
-                  /*string*/    'placeholder' => 'Digite o tipo de banco',
+                  /*string*/    'placeholder' => 'Digite o tipo de conta bancária',
                   /*string*/    'value'       => $rsBancoContaTipo['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''

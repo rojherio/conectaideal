@@ -5,66 +5,26 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  p.id,
-  p.status,
-  p.dt_cadastro,
-  p.tipo,
-  p.nome,
-  p.nome_social,
-  p.cpf,
-  p.dt_criacao
-  FROM bsc_pessoa AS p
-  WHERE p.tipo = 2
-  ORDER BY p.nome");
+  um.id,
+  um.status,
+  um.dt_cadastro,
+  um.nome,
+  um.simbolo,
+  um.equivalencia,
+  um.bsc_grandeza_id,
+  g.nome AS grandeza_nome
+  FROM bsc_unidade_medida AS um 
+  LEFT JOIN bsc_grandeza AS g ON g.id = um.bsc_grandeza_id
+  ORDER BY um.nome");
 $stmt->execute();
-$rsPessoas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Consulta para DataTable - END
-// $stmt = $db->prepare("SELECT 
-//   uot.id AS id, 
-//   uot.nome AS nome, 
-//   uot.status AS status 
-//   FROM bsc_unidade_organizacional_tipo AS uot 
-//   WHERE uot.id = ? ;");
-// $stmt->bindValue(1, $id);
-// $stmt->execute();
-// $rsUOTipo = $stmt->fetch(PDO::FETCH_ASSOC);
-// //Consulta para Edição - END
-// //Consulta para Select - BEGIN
-// $stmt = $db->prepare("
-//   SELECT 
-//   uo.id AS id, 
-//   uo.nome AS nome, 
-//   uo.status AS status 
-//   FROM bsc_unidade_organizacional AS uo 
-//   WHERE uo.status = 1 
-//   ORDER BY uo.nome ASC;");
-// $stmt->execute();
-// $rsUOs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// //Consulta para Select - END
-// //Consulta para DataTable - BEGIN
-// $stmt = $db->prepare("
-//   SELECT 
-//   uo.id AS id, 
-//   uo.numero AS numero, 
-//   uo.nome AS nome, 
-//   uo.status AS status, 
-//   uo.bsc_unidade_organizacional_tipo_id, 
-//   uot.nome AS nome_tipo, 
-//   sc.bsc_unidade_organizacional_id AS sc_id_uo 
-//   FROM bsc_unidade_organizacional AS uo 
-//   LEFT JOIN bsc_unidade_organizacional_tipo AS uot ON uot.id = uo.bsc_unidade_organizacional_tipo_id
-//   LEFT JOIN rh_servidor_contrato AS sc ON uo.id = sc.bsc_unidade_organizacional_id 
-//   GROUP BY uo.id 
-//   ORDER BY uo.nome ASC;");
-// $stmt->execute();
-// $rsUOs2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rsUnidadeMedidas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Pessoas Jurídicas";
-$descricaoPagina          = "Informações de pessoas jurídicas";
-$tituloFormulario1        = "Tabela com listagem de Pessoas Jurídicas";
-$descricaoFormulario1     = "Dados de identificação de pessoa jurídica";
-$tituloImpressao          = "Relatório de pessoas jurídicas cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Unidades de Medida";
+$descricaoPagina          = "Informações de unidades de medida";
+$tituloFormulario1        = "Tabela com listagem de Unidades de Medida";
+$descricaoFormulario1     = "Dados de identificação de unidades de medida";
+$tituloImpressao          = "Relatório de unidades de medida cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -83,7 +43,7 @@ $tituloImpressao          = "Relatório de pessoas jurídicas cadastradas no sis
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Pessoa Jurídica</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Unidade de Medida</a>
           </li>
         </ul>
       </div>
@@ -110,15 +70,16 @@ $tituloImpressao          = "Relatório de pessoas jurídicas cadastradas no sis
                     <tr>
                       <th>#</th>
                       <th>Nome</th>
-                      <th>CNPJ</th>
-                      <th>Criação</th>
+                      <th>Símbolo</th>
+                      <th>Equivalência</th>
+                      <th>Grandeza</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php
-                    foreach ($rsPessoas as $kObj => $vObj) {
+                    foreach ($rsUnidadeMedidas as $kObj => $vObj) {
                       // $btnExcluirOnClick  = $vObj['qtd_uo_id'] > 0 ? 'negado="true" data-toggle="tooltip" title="Este registro não pode ser exlcuido pois está vinculado a outras informações!" onclick="return false;"' : 'onclick="btnExcluir(this)"';
                       $btnExcluirOnClick  = 'onclick="btnExcluir(this)"';
                       ?>
@@ -126,8 +87,9 @@ $tituloImpressao          = "Relatório de pessoas jurídicas cadastradas no sis
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
-                        <td id="td_cpf"><?= $vObj['cpf']; ?></td>
-                        <td id="td_dt_criacao"><?= data_volta($vObj['dt_criacao']); ?></td>
+                        <td id="td_simbolo"><?= $vObj['simbolo']; ?></td>
+                        <td id="td_equivalencia"><?= $vObj['equivalencia']; ?></td>
+                        <td id="td_grandeza"><?= $vObj['grandeza_nome']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
@@ -167,4 +129,4 @@ $tituloImpressao          = "Relatório de pessoas jurídicas cadastradas no sis
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_juridica/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/unidade_medida/listar.js"></script>

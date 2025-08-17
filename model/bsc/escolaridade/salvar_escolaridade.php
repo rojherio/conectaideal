@@ -3,7 +3,7 @@ $db                                       = Conexao::getInstance();
 $id                                       = strip_tags(@$_POST['e_id']?: '');
 $status                                   = strip_tags(@$_POST['e_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$nome                                     = ucwords(trim(strip_tags(@$_POST['e_nome']?: '')));
+$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['e_nome']?: ''))));
 $error = false;
 $result = array();
 $msg = "";
@@ -55,7 +55,7 @@ try {
         $existentes .= ('nome: '.$nome);
       }
       $result['tipo'] = 'escolaridade';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe escolaridade registrado com dados de ".$existentes.".";
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe uma escolaridade registrado com dados de ".$existentes.".";
       echo json_encode($result);
       exit();
     } else {

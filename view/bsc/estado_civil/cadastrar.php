@@ -28,8 +28,8 @@ if (!is_array($rsEstadoCivil)) {
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro de Estado Civil";
 $descricaoPagina          = "Informações de estado civil";
-$tituloFormulario1        = "Dados do estado civil";
-$descricaoFormulario1     = "Dados de identificação estado civil";
+$tituloFormulario1        = "Dados de estado civil";
+$descricaoFormulario1     = "Dados de identificação de estado civil";
 $tituloFormulario2        = "Exigencia de Registro";
 $descricaoFormulario2     = "Defina se esse cadastro de estado civil exige registro";
 $tituloFormulario3        = "";
@@ -79,7 +79,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de estado civil está ativo
               <!-- div row input - BEGIN -->
               <div class="row">
                 <?= createInput(array(
-                  /*int 1-12*/  'col'         => 12,
+                  /*int 1-12*/  'col'         => 8,
                   /*string*/    'label'       => 'Nome do Estado Civil',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'ec_nome',
@@ -92,27 +92,9 @@ $descricaoFormulario5     = "Defina se esse cadastro de estado civil está ativo
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
-              </div>
-              <!-- div row input - END -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $tituloFormulario2;?></h5>
-              <small><?= $descricaoFormulario2;?></small>
-              <!-- Título da div de cadastro - END -->
-            </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
                 <?= createCheckbox(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Exige',
+                  /*int 1-12*/  'col'         => 4,
+                  /*string*/    'label'       => 'Exige Registro',
                   /*string*/    'type'        => 'checkbox',
                   /*string*/    'name'        => 'ec_exige_registro',
                   /*string*/    'id'          => 'ec_exige_registro',

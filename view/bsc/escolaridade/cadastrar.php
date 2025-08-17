@@ -25,9 +25,9 @@ if (!is_array($rsEscolaridade)) {
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro de Escolaridade";
-$descricaoPagina          = "Informações da escolaridade";
+$descricaoPagina          = "Informações de escolaridade";
 $tituloFormulario1        = "Dados de Escolaridade";
-$descricaoFormulario1     = "Dados de identificação da escolaridade";
+$descricaoFormulario1     = "Dados de identificação de escolaridade";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -78,14 +78,14 @@ $descricaoFormulario5     = "Defina se esse cadastro de escolaridade está ativo
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nivel de Escolaridade',
+                  /*string*/    'label'       => 'Nome do Grau de Escolaridade',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'e_nome',
                   /*string*/    'id'          => 'e_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nivel de escolaridade',
+                  /*string*/    'placeholder' => 'Digite o nome do grau de escolaridade',
                   /*string*/    'value'       => $rsEscolaridade['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''

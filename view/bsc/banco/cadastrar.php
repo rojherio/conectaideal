@@ -11,7 +11,7 @@ $stmt = $db->prepare("SELECT
   b.dt_cadastro,
   b.codigo,
   b.nome,
-  b.nome_curto,
+  b.sigla,
   b.ispb
   FROM bsc_banco AS b
   WHERE b.id = ? ;");
@@ -25,7 +25,7 @@ if (!is_array($rsBanco)) {
   $rsBanco['dt_cadastro'] = '';
   $rsBanco['codigo'] = '';
   $rsBanco['nome'] = '';
-  $rsBanco['nome_curto'] = '';
+  $rsBanco['sigla'] = '';
   $rsBanco['ispb'] = '';
 }
 //Consulta para Edição - END
@@ -98,15 +98,15 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
                 )) ;?>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nome Curto',
+                  /*string*/    'label'       => 'Sigla',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'b_nome_curto',
-                  /*string*/    'id'          => 'b_nome_curto',
+                  /*string*/    'name'        => 'b_sigla',
+                  /*string*/    'id'          => 'b_sigla',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 80,
                   /*string*/    'placeholder' => 'Digite o nome curto do banco',
-                  /*string*/    'value'       => $rsBanco['nome_curto'],
+                  /*string*/    'value'       => $rsBanco['sigla'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>

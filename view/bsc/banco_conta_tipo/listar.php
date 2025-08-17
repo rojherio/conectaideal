@@ -15,11 +15,11 @@ $stmt->execute();
 $rsBancoContaTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Tipos de Bancos (Instituições Financeiras)";
-$descricaoPagina          = "Informações de tipos de bancos";
-$tituloFormulario1        = "Tabela com listagem de Tipos de Bancos";
-$descricaoFormulario1     = "Dados de identificação de tipos bancos";
-$tituloImpressao          = "Relatório de tipos de bancos cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Tipos de Contas Bancárias";
+$descricaoPagina          = "Informações de tipos de contas bancárias";
+$tituloFormulario1        = "Tabela com listagem de Tipos de Contas Bancárias";
+$descricaoFormulario1     = "Dados de identificação de tipos contas bancárias";
+$tituloImpressao          = "Relatório de tipos de contas bancárias cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -38,7 +38,7 @@ $tituloImpressao          = "Relatório de tipos de bancos cadastradas no sistem
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipos de Bancos</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipos de Contas Bancárias</a>
           </li>
         </ul>
       </div>

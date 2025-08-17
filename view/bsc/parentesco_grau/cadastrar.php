@@ -27,7 +27,7 @@ if (!is_array($rsParentescoGrau)) {
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro de Grau de Parentesco";
-$descricaoPagina          = "Informações da grau de parentesco";
+$descricaoPagina          = "Informações de grau de parentesco";
 $tituloFormulario1        = "Dados de Grau de Parentesco";
 $descricaoFormulario1     = "Dados de identificação de grau de parentesco";
 $tituloFormulario2        = "";
@@ -37,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de grandeza está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de grau de parentesco está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -80,7 +80,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de grandeza está ativo ou 
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nome de Parentesco',
+                  /*string*/    'label'       => 'Nome',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'pg_nome',
                   /*string*/    'id'          => 'pg_nome',
@@ -92,20 +92,24 @@ $descricaoFormulario5     = "Defina se esse cadastro de grandeza está ativo ou 
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
-                <?= createInput(array(
+                <?= createSelect(array(
                   /*int 1-12*/  'col'         => 6,
                   /*string*/    'label'       => 'Grau de Parentesco',
-                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'pg_grau',
                   /*string*/    'id'          => 'pg_grau',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 25,
-                  /*string*/    'placeholder' => 'Digite o grau de parentesco',
+                  /*string*/    'class'       => 'select2 form-control form-select select-basic',
                   /*string*/    'value'       => $rsParentescoGrau['grau'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
+                  /*array()*/   'options'     => array(
+                    ['id' => '1º grau', 'nome' => '1º grau'],
+                    ['id' => '2º grau', 'nome' => '2º grau'],
+                    ['id' => '3º grau', 'nome' => '3º grau'],
+                    ['id' => '4º grau', 'nome' => '4º grau']
+                  ),
+                  /*string*/    'ariaLabel'   => 'Seleciona um grau de parentesco',
+                  /*bool*/      'required'    => false,
+                  /*string*/    'prop'        => '',
+                  /*string*/    'display'     => true
+                )); ?>
               </div>
               <!-- div row input - END -->
             </div>

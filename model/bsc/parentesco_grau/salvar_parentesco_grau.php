@@ -4,7 +4,7 @@ $id                                       = strip_tags(@$_POST['pg_id']?: '');
 $status                                   = strip_tags(@$_POST['pg_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $nome                                     = ucwords(trim(strip_tags(@$_POST['pg_nome']?: '')));
-$grau                                     = ucwords(trim(strip_tags(@$_POST['pg_grau']?: '')));
+$grau                                     = trim(strip_tags(@$_POST['pg_grau']?: ''));
 $error = false;
 $result = array();
 $msg = "";
@@ -58,7 +58,7 @@ try {
         $existentes .= ('nome: '.$nome);
       }
       $result['tipo'] = 'grau de parentesco';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um grau de parentesco registrada com dados de ".$existentes.".";
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um grau de parentesco registrado com dados de ".$existentes.".";
       echo json_encode($result);
       exit();
     } else {

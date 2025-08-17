@@ -10,7 +10,7 @@ $stmt = $db->prepare("SELECT
   b.dt_cadastro,
   b.codigo,
   b.nome,
-  b.nome_curto,
+  b.sigla,
   b.ispb
   FROM bsc_banco AS b
   ORDER BY b.nome");
@@ -69,6 +69,7 @@ $tituloImpressao          = "Relatório de bancos cadastradas no sistema DELFOS"
                       <th>#</th>
                       <th>Código</th>
                       <th>Nome</th>
+                      <th>Sigla</th>
                       <th>ISPB</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
@@ -85,6 +86,7 @@ $tituloImpressao          = "Relatório de bancos cadastradas no sistema DELFOS"
                         <td id="td_count"><?= $kObj+1; ?></td>
                         <td id="td_codigo"><?= $vObj['codigo']; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
+                        <td id="td_sigla"><?= $vObj['sigla']; ?></td>
                         <td id="td_ispb"><?= $vObj['ispb']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
