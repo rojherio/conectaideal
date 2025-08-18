@@ -12,7 +12,7 @@ $stmt = $db->prepare("SELECT
   FROM bsc_banco_conta_tipo AS bct
   ORDER BY bct.nome");
 $stmt->execute();
-$rsBancoContaTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Listagem de Tipos de Contas Bancárias";
@@ -49,12 +49,25 @@ $tituloImpressao          = "Relatório de tipos de contas bancárias cadastrada
       <div class="col-md-12">
         <div class="card ">
           <div class="card-header">
-            <!-- Título da div de cadastro - BEGIN -->
-            <h5><?= $tituloFormulario1;?></h5>
-            <small><?= $descricaoFormulario1;?></small>
-            <!-- Título da div de cadastro - END -->
-            <input type="hidden" id="titulo_impressao" value="<?= $tituloImpressao;?>">
-            <!-- Título da div de cadastro - END -->
+            <div class="row">
+              <div class="col-md-8">
+                <!-- Título da div de cadastro - BEGIN -->
+                <h5><?= $tituloFormulario1;?></h5>
+                <small><?= $descricaoFormulario1;?></small>
+                <!-- Título da div de cadastro - END -->
+                <input type="hidden" id="titulo_impressao" value="<?= $tituloImpressao;?>">
+                <!-- Título da div de cadastro - END -->
+              </div>
+              <div class="col-md-4">
+                <!-- div row buttons - BEGIN -->
+                <div class="text-end">
+                  <button type="button" id="btn_novo" class="btn btn-outline-info waves-light b-r-22" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Cadastrar novo registro" onclick="btnNovo();">
+                    <i class="ti ti-writing"></i> Cadastar Novo
+                  </button>
+                </div>
+                <!-- div row buttons - END -->
+              </div>
+            </div>
           </div>
           <div class="card-body p-0">
             <div class="app-datatable-default overflow-auto">
@@ -71,7 +84,7 @@ $tituloImpressao          = "Relatório de tipos de contas bancárias cadastrada
                   </thead>
                   <tbody>
                     <?php
-                    foreach ($rsBancoContaTipos as $kObj => $vObj) {
+                    foreach ($rsRegistros as $kObj => $vObj) {
                       // $btnExcluirOnClick  = $vObj['qtd_uo_id'] > 0 ? 'negado="true" data-toggle="tooltip" title="Este registro não pode ser exlcuido pois está vinculado a outras informações!" onclick="return false;"' : 'onclick="btnExcluir(this)"';
                       $btnExcluirOnClick  = 'onclick="btnExcluir(this)"';
                       ?>

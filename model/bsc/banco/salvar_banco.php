@@ -7,9 +7,10 @@ $codigo                                   = trim(strip_tags(@$_POST['b_codigo']?
 $nome                                     = ucwords(trim(strip_tags(@$_POST['b_nome']?: '')));
 $sigla                                    = ucwords(trim(strip_tags(@$_POST['b_sigla']?: '')));
 $ispb                                     = trim(strip_tags(@$_POST['b_ispb']?: ''));
-$error = false;
-$result = array();
-$msg = "";
+$tableName      = 'bsc_banco';
+$error          = false;
+$result         = array();
+$msg            = "";
 // sleep(10);
 // $result = array(
 //   'id'      => '',
@@ -23,7 +24,7 @@ try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {
     $stmt = $db->prepare('
-      UPDATE bsc_banco 
+      UPDATE '.$tableName.' 
         SET
         status = ?,
         dt_cadastro = ?,
@@ -50,37 +51,30 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT b.id, b.nome, b.sigla, b.codigo, b.ispb
-      FROM bsc_banco AS b 
-      WHERE b.nome LIKE ? OR b.sigla LIKE ? OR b.codigo LIKE ? OR b.ispb LIKE ?;');
+      SELECT tb.nome, tb.sigla, tb.codigo, tb.ispb
+      FROM '.$tableName.' AS tb 
+      WHERE tb.nome LIKE ? OR tb.sigla LIKE ? OR tb.codigo LIKE ? OR tb.ispb LIKE ?;');
     $stmt->bindValue(1, $nome);
     $stmt->bindValue(2, $sigla);
     $stmt->bindValue(3, $codigo);
     $stmt->bindValue(4, $ispb);
     $stmt->execute();
-    $rsBanco = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (is_array($rsBanco)) {
+    $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (is_array($rsExistente)) {
       $db->rollback();
-      $result['status'] = 'error';
       $existentes = '';
-      if ($rsBanco['nome'] == $nome) {
-        $existentes .= ('nome: '.$nome);
+      $virgula = '';
+      foreach ($rsExistente as $kObj => $vObj) {
+        $existentes .= $virgula.'<br/>'.(ucwords($kObj)).': '.$vObj;
+        $virgula = ', ';
       }
-      if ($rsBanco['sigla'] == $sigla) {
-        $existentes .= $existentes.(', sigla: '.$sigla);
-      }
-      if ($rsBanco['codigo'] == $codigo) {
-        $existentes .= $existentes.(', codigo: '.$codigo);
-      }
-      if ($rsBanco['ispb'] == $ispb) {
-        $existentes .= $existentes.(', ispb: '.$ispb);
-      }
-      $result['tipo'] = 'banco';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com dados de ".$existentes.".";
+      $result['status'] = 'error';
+      $result['tipo'] = 'existente';
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
       echo json_encode($result);
       exit();
     } else {
-      $stmt = $db->prepare('INSERT INTO bsc_banco 
+      $stmt = $db->prepare('INSERT INTO '.$tableName.' 
         (
           status,
           dt_cadastro,
@@ -105,10 +99,10 @@ try {
       $stmt->bindValue(5, $sigla);
       $stmt->bindValue(6, $ispb);
       $stmt->execute();
-      $bscPessoaIdNew = $db->lastInsertId();
+      $idNew = $db->lastInsertId();
       $db->commit();
       //MENSAGEM DE SUCESSO
-      $result['id'] = $bscPessoaIdNew;
+      $result['id'] = $idNew;
       $result['status'] = 'success';
       $result['msg'] = 'As novas informações foram registradas com sucesso.';
       echo json_encode($result);

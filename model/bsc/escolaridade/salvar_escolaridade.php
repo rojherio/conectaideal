@@ -4,9 +4,10 @@ $id                                       = strip_tags(@$_POST['e_id']?: '');
 $status                                   = strip_tags(@$_POST['e_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['e_nome']?: ''))));
-$error = false;
-$result = array();
-$msg = "";
+$tableName      = 'bsc_escolaridade';
+$error          = false;
+$result         = array();
+$msg            = "";
 // sleep(10);
 // $result = array(
 //   'id'      => '',
@@ -20,7 +21,7 @@ try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {
     $stmt = $db->prepare('
-      UPDATE bsc_escolaridade
+      UPDATE '.$tableName.'
         SET
         status = ?,
         dt_cadastro = ?,
@@ -41,25 +42,27 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT e.id, e.nome
-      FROM bsc_escolaridade AS e 
-      WHERE e.nome LIKE ?');
+      SELECT tb.nome
+      FROM '.$tableName.' AS tb 
+      WHERE tb.nome LIKE ?');
     $stmt->bindValue(1, $nome);
     $stmt->execute();
-    $rsEscolaridade = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (is_array($rsEscolaridade)) {
+    $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (is_array($rsExistente)) {
       $db->rollback();
-      $result['status'] = 'error';
       $existentes = '';
-      if ($rsEscolaridade['nome'] == $nome) {
-        $existentes .= ('nome: '.$nome);
+      $virgula = '';
+      foreach ($rsExistente as $kObj => $vObj) {
+        $existentes .= $virgula.'<br/>'.(ucwords($kObj)).': '.$vObj;
+        $virgula = ', ';
       }
-      $result['tipo'] = 'escolaridade';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe uma escolaridade registrado com dados de ".$existentes.".";
+      $result['status'] = 'error';
+      $result['tipo'] = 'existente';
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
       echo json_encode($result);
       exit();
     } else {
-      $stmt = $db->prepare('INSERT INTO bsc_escolaridade
+      $stmt = $db->prepare('INSERT INTO '.$tableName.'
         (
           status,
           dt_cadastro,

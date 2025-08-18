@@ -64,7 +64,7 @@
 //   /*string*/    'prop'        => ''
 // );
 function createInput($params) {
-  $html  = '  <div class="col-'.$params['col'].'">';
+  $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
   $html .= '      <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="'.$params['minlength'].'"  min="'.$params['minlength'].'" maxlength="'.$params['maxlength'].'" max="'.$params['maxlength'].'" placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
@@ -73,7 +73,7 @@ function createInput($params) {
   return $html;
 }
 function createInputDate($params) {
-  $html  = '  <div class="col-'.$params['col'].'">';
+  $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
   $html .= '      <input type="date" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="10" maxlength="10" min="'.$params['min'].'" '.($params['maxToday'] ? 'max="'.date('Y-m-d').'"' : '' ).'  placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
@@ -82,7 +82,7 @@ function createInputDate($params) {
   return $html;
 }
 function createSelect($params) {
-  $html    = '  <div class="col-'.$params['col'].'" '.$params['prop'].' '.(!$params['display'] ? 'style="display: none;"' : '').'>';
+  $html    = '  <div class="col-md-'.$params['col'].'" '.$params['prop'].' '.(!$params['display'] ? 'style="display: none;"' : '').'>';
   $html   .= '    <div class="div-validate form-floating mb-3">';
   $html   .= '      <select name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" aria-label="'.$params['ariaLabel'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html   .= '        <option></option>';
@@ -98,7 +98,7 @@ function createSelect($params) {
   return $html;
 }
 function createCheckbox($params) {
-  $html  = '  <div class="col-'.$params['col'].'">';
+  $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate main-switch main-switch-color">';
   $html .= '      <div class="switch-info swich-size">';
   $html .= '        <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" '.($params['value'] == $params['checked'] ? 'checked="checked"' : "").' value="'.$params['value'].'" '.$params['prop'].'>';
@@ -109,13 +109,13 @@ function createCheckbox($params) {
   return $html;
 }
 function createRadio($params) {
-  $html    = '  <div class="div-validate col-'.$params['col'].'">';
+  $html    = '  <div class="div-validate col-md-'.$params['col'].'">';
   $html   .= '    <div class="check-container form-control delfos-radio">';
   $html   .= '      <label class="delfos-radio">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html   .= '      <div class="row">';
   if (is_array($params['options'])) {
     foreach ($params['values'] as $kObj => $vObj) {
-      $html   .= '        <div class="col-'.$params['colOption'].'">';
+      $html   .= '        <div class="col-md-'.$params['colOption'].'">';
       $html .= '          <label class="check-box">';
       $html .= '            <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'][$kObj].'" class="" '.($params['value'] == $vObj ? 'checked="checked"' : "").'" value="'.$params['values'][$kObj].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
       $html .= '            <span class="'.$params['class'].'"></span>';

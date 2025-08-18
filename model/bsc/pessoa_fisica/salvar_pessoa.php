@@ -26,9 +26,10 @@ $sangue_tipo                              = strip_tags(@$_POST['p_sangue_tipo']?
 $raca                                     = ucwords(strtolower(trim(strip_tags(@$_POST['p_raca']?: ''))));
 $enfermidade_portador                     = ucwords(strtolower(trim(strip_tags(@$_POST['p_enfermidade_portador']?: ''))));
 $enfermidade_codigo_internacional         = trim(strip_tags(@$_POST['p_enfermidade_codigo_internacional']?: ''));
-$error = false;
-$result = array();
-$msg = "";
+$tableName      = 'bsc_pessoa';
+$error          = false;
+$result         = array();
+$msg            = "";
 // sleep(10);
 // $result = array(
 //   'id'      => '',
@@ -42,7 +43,7 @@ try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {
     $stmt = $db->prepare('
-      UPDATE bsc_pessoa 
+      UPDATE '.$tableName.' 
         SET
         status = ?,
         dt_cadastro = ?,
@@ -107,21 +108,27 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT p.id, p.cpf
-      FROM bsc_pessoa AS p 
-      WHERE p.cpf LIKE ?;');
+      SELECT tb.cpf
+      FROM '.$tableName.' AS tb 
+      WHERE tb.cpf LIKE ?;');
     $stmt->bindValue(1, $cpf);
     $stmt->execute();
-    $rsPessoa = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (is_array($rsPessoa)) {
+    $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (is_array($rsExistente)) {
       $db->rollback();
+      $existentes = '';
+      $virgula = '';
+      foreach ($rsExistente as $kObj => $vObj) {
+        $existentes .= $virgula.'<br/>'.(ucwords($kObj)).': '.$vObj;
+        $virgula = ', ';
+      }
       $result['status'] = 'error';
-      $result['tipo'] = 'cpf';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe uma pessoa física registrada com o cpf: ".$cpf.".";
+      $result['tipo'] = 'existente';
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
       echo json_encode($result);
       exit();
     } else {
-      $stmt = $db->prepare('INSERT INTO bsc_pessoa 
+      $stmt = $db->prepare('INSERT INTO '.$tableName.' 
         (
           status,
           dt_cadastro,
@@ -203,14 +210,14 @@ try {
       $stmt->bindValue(24, $enfermidade_portador);
       $stmt->bindValue(25, $enfermidade_codigo_internacional);
       $stmt->execute();
-      $bscPessoaIdNew = $db->lastInsertId();
+      $idNew = $db->lastInsertId();
       // $senhaNome = strtolower(removeAcentos($nome));
       // $subSenhaNome = explode(' ',$senhaNome);
       // $subSenhaNome = array_values(array_diff($subSenhaNome, array('')));
       // $senhaNome = array_shift($subSenhaNome).'.'.array_pop($subSenhaNome);
       $db->commit();
       //MENSAGEM DE SUCESSO
-      $result['id'] = $bscPessoaIdNew;
+      $result['id'] = $idNew;
       $result['status'] = 'success';
       $result['msg'] = 'As novas informações foram registradas com sucesso.';
       echo json_encode($result);

@@ -7,9 +7,10 @@ $nome                                     = ucwords(strtolower(trim(strip_tags(@
 $simbolo                                  = trim(strip_tags(@$_POST['um_simbolo']?: ''));
 $equivalencia                             = trim(strip_tags(@$_POST['um_equivalencia']?: ''));
 $bsc_grandeza_id                          = strip_tags(@$_POST['um_bsc_grandeza_id']?: '');
-$error = false;
-$result = array();
-$msg = "";
+$tableName      = 'bsc_unidade_medida';
+$error          = false;
+$result         = array();
+$msg            = "";
 // sleep(10);
 // $result = array(
 //   'id'      => '',
@@ -23,7 +24,7 @@ try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {
     $stmt = $db->prepare('
-      UPDATE bsc_unidade_medida 
+      UPDATE '.$tableName.' 
         SET
         status = ?,
         dt_cadastro = ?,
@@ -50,33 +51,29 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT um.id, um.nome, um.simbolo, um.equivalencia
-      FROM bsc_unidade_medida AS um 
-      WHERE um.nome LIKE ? OR um.simbolo LIKE ? OR um.equivalencia LIKE ?;');
+      SELECT tb.nome, tb.simbolo, tb.equivalencia
+      FROM '.$tableName.' AS tb 
+      WHERE tb.nome LIKE ? OR tb.simbolo LIKE ? OR tb.equivalencia LIKE ?;');
     $stmt->bindValue(1, $nome);
     $stmt->bindValue(2, $simbolo);
     $stmt->bindValue(3, $equivalencia);
     $stmt->execute();
-    $rsUnidadeMedida = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (is_array($rsUnidadeMedida)) {
+    $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (is_array($rsExistente)) {
       $db->rollback();
-      $result['status'] = 'error';
       $existentes = '';
-      if ($rsUnidadeMedida['nome'] == $nome) {
-        $existentes .= ('nome: '.$nome);
+      $virgula = '';
+      foreach ($rsExistente as $kObj => $vObj) {
+        $existentes .= $virgula.'<br/>'.(ucwords($kObj)).': '.$vObj;
+        $virgula = ', ';
       }
-      if ($rsUnidadeMedida['simbolo'] == $simbolo) {
-        $existentes .= $existentes.(', símbolo: '.$simbolo);
-      }
-      if ($rsUnidadeMedida['equivalencia'] == $equivalencia) {
-        $existentes .= $existentes.(', equivalencia: '.$equivalencia);
-      }
-      $result['tipo'] = 'banco';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe uma unidade de medida registrada com dados de ".$existentes.".";
+      $result['status'] = 'error';
+      $result['tipo'] = 'existente';
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
       echo json_encode($result);
       exit();
     } else {
-      $stmt = $db->prepare('INSERT INTO bsc_unidade_medida 
+      $stmt = $db->prepare('INSERT INTO '.$tableName.' 
         (
           status,
           dt_cadastro,

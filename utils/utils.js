@@ -171,7 +171,11 @@ function ajaxCompleteSend(data, status, urlToGo) {
         });
       });
     } else if (data.status == 'error') {
-      Swal.fire('Erro inesperado', "Houve um erro inesperado ao tentar registrar as novas informações! Por favor, tente novamente ou informe ao suporte o erro a seguir: " + data.msg, 'error');
+      if (data.tipo == 'existente') {
+        Swal.fire('Erro', data.msg, 'error');
+      } else {
+        Swal.fire('Erro inesperado', "Houve um erro inesperado ao tentar registrar as novas informações! Por favor, tente novamente ou informe ao suporte o erro a seguir: " + data.msg, 'error');
+      }
       // console.log('Error: ' + data.msg);
     }
   }, 1000);

@@ -39,15 +39,80 @@ $(function () {
         }, 
         className: 'buttons-html5 btn-outline-light'
       }
-      ],
+    ],
     //exibir
     lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"] ],
     //pesquisa
     "columnDefs": [
       { searchable: false, targets: 0 },
       { orderable:  false, targets: qtdCols-1 },
-      {className: 'dt-body-left'}
-      ],
+      { className: 'dt-body-left'}
+    ],
+    language: {
+      decimal             : ",",
+      emptyTable          : "Não existem registros para exibir",
+      info                : "Exibindo _START_ a _END_ de _TOTAL_ registros",
+      infoEmpty           : "",
+      infoFiltered        : "(filtrado de um total de _MAX_ registros)",
+      infoPostFix         : "",
+      thousands           : ",",
+      lengthMenu          : "Exibir _MENU_ registros",
+      loadingRecords      : "Carregando...",
+      processing          : "Processando...",
+      search              : "Pesquisar: ",
+      searchPlaceholder   : "Digite sua pesquisa",
+      zeroRecords         : "Nenhum registro encontrado",
+      paginate: {
+        first             : "Primeiro",
+        last              : "Último",
+        next              : "Proximo",
+        previous          : "Anterior"
+      },
+      aria: {
+        sortAscending     : ": classificar em ordem ascendente",
+        sortDescending    : ": classificar em ordem descendente"
+      }
+    }
+  });
+  $('#table_visualizar').DataTable( {
+    dom: '<"ms-3 me-3 mb-3"B<"row mt-1 mb-1"<"col-md-4"l><"col-md-8"f>>rtip>',
+    // dom: 'Bfrtip',
+    //geral
+    paging        : false,
+    pagingType    : "simple_numbers",
+    lengthChange  : false,
+    searching     : false,
+    ordering      : false,
+    info          : false,
+    autoWidth     : true,
+    buttons: [
+      { extend: 'copyHtml5',    text: '<i class="ph ph-copy"></i> Copiar',                messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}, className: 'btn-outline-light'},
+      { extend: 'csvHtml5',     text: '<i class="ph ph-read-cv-logo"></i> CVS',           messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}, className: 'btn-outline-light'},
+      { extend: 'excelHtml5',   text: '<i class="ph ph-microsoft-excel-logo"></i> EXCEL', messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}, className: 'btn-outline-light'},
+      { extend: 'pdfHtml5',     text: '<i class="ph ph-file-pdf"></i> PDF',               messageTop: titleTable, messageBottom: '', exportOptions: {columns: [ colsExport ]}, className: 'btn-outline-light'},
+      { 
+        extend: 'print',
+        text: '<i class="ph ph-printer"></i> Imprimir',
+        // messageTop: ('<h3>'+titleTable+'</h3>'),
+        // messageBottom: '',
+        exportOptions: {columns: [ colsExport ]}, 
+        customize: function (win) {
+          // alert(JSON.stringify(win.document.body));
+          impressao(win, titleTable, user);
+          // alert(JSON.stringify(win.document.body));
+        }, 
+        className: 'buttons-html5 btn-outline-light'
+      }
+    ],
+    //exibir
+    lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"] ],
+    //pesquisa
+    "columnDefs": [
+      { searchable: false, targets: 0 },
+      { orderable:  false, targets: qtdCols-1 },
+      { className:  'dt-body-left'},
+      { width:      '30%', targets: 0 }
+    ],
     language: {
       decimal             : ",",
       emptyTable          : "Não existem registros para exibir",
@@ -312,7 +377,7 @@ function addZero(i) {
 //     $('#example4').on('click', 'tbody td.dt-control', function () {
 //         var tr = $(this).closest('tr');
 //         var row = table.row( tr );
- 
+
 //         if ( row.child.isShown() ) {
 //             // This row is already open - close it
 //             row.child.hide();
@@ -322,11 +387,11 @@ function addZero(i) {
 //             row.child( format(row.data()) ).show();
 //         }
 //     } );
- 
+
 //     $('#example4').on('requestChild.dt', function(e, row) {
 //         row.child(format(row.data())).show();
 //     })
- 
+
 //     var table = $('#example4').DataTable( {
 //         "ajax": "../assets/vendor/datatable/ajax/objects.txt",
 //         "rowId": 'id',
@@ -346,7 +411,7 @@ function addZero(i) {
 //         dom: 'Blfrtip',
 //         buttons:['createState', 'savedStates']
 //     } );
- 
+
 //     table.on('stateLoaded', (e, settings, data) => {
 //         for(var i = 0; i < data.childRows.length; i++) {
 //             var row = table.row(data.childRows[i]);
@@ -365,7 +430,7 @@ function addZero(i) {
 //             row.remove();
 //         }
 //     };
-  
+
 //     // Add event listener to all delete buttons
 //     const deleteButtons = document.querySelectorAll('.delete-btn');
 //     deleteButtons.forEach(button => {

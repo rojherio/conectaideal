@@ -5,9 +5,10 @@ $status                                   = strip_tags(@$_POST['pg_status']?: 0)
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $nome                                     = ucwords(trim(strip_tags(@$_POST['pg_nome']?: '')));
 $grau                                     = trim(strip_tags(@$_POST['pg_grau']?: ''));
-$error = false;
-$result = array();
-$msg = "";
+$tableName      = 'bsc_parentesco_grau';
+$error          = false;
+$result         = array();
+$msg            = "";
 // sleep(10);
 // $result = array(
 //   'id'      => '',
@@ -21,7 +22,7 @@ try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {
     $stmt = $db->prepare('
-      UPDATE bsc_parentesco_grau
+      UPDATE '.$tableName.'
         SET
         status = ?,
         dt_cadastro = ?,
@@ -44,25 +45,27 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT pg.id, pg.nome
-      FROM bsc_parentesco_grau AS pg 
-      WHERE pg.nome LIKE ?');
+      SELECT tb.nome
+      FROM '.$tableName.' AS tb 
+      WHERE tb.nome LIKE ?');
     $stmt->bindValue(1, $nome);
     $stmt->execute();
-    $rsParentescoGrau = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (is_array($rsParentescoGrau)) {
+    $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (is_array($rsExistente)) {
       $db->rollback();
-      $result['status'] = 'error';
       $existentes = '';
-      if ($rsParentescoGrau['nome'] == $nome) {
-        $existentes .= ('nome: '.$nome);
+      $virgula = '';
+      foreach ($rsExistente as $kObj => $vObj) {
+        $existentes .= $virgula.'<br/>'.(ucwords($kObj)).': '.$vObj;
+        $virgula = ', ';
       }
-      $result['tipo'] = 'grau de parentesco';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um grau de parentesco registrado com dados de ".$existentes.".";
+      $result['status'] = 'error';
+      $result['tipo'] = 'existente';
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
       echo json_encode($result);
       exit();
     } else {
-      $stmt = $db->prepare('INSERT INTO bsc_parentesco_grau
+      $stmt = $db->prepare('INSERT INTO '.$tableName.'
         (
           status,
           dt_cadastro,

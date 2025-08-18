@@ -1,17 +1,16 @@
 $(document).ready(function () {
 });
-
+function btnNovo(){
+  postToURL(PORTAL_URL + 'view/bsc/unidade_medida/cadastrar/');
+};
 function btnVisualizar(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
   postToURL(PORTAL_URL + 'view/bsc/unidade_medida/visualizar/' + id);
 };
-
 function btnEditar(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
   postToURL(PORTAL_URL + 'view/bsc/unidade_medida/cadastrar', {id: id});
 };
-
-//SALVANDO DADOS DO FORMULÁRIO DE PROJETO
 function btnExcluir(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
   let params = {

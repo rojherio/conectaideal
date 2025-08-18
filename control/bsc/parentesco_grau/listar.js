@@ -1,17 +1,16 @@
 $(document).ready(function () {
 });
-
+function btnNovo(){
+  postToURL(PORTAL_URL + 'view/bsc/parentesco_grau/cadastrar/');
+};
 function btnVisualizar(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
   postToURL(PORTAL_URL + 'view/bsc/parentesco_grau/visualizar/' + id);
 };
-
 function btnEditar(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
   postToURL(PORTAL_URL + 'view/bsc/parentesco_grau/cadastrar', {id: id});
 };
-
-//SALVANDO DADOS DO FORMULÁRIO DE PROJETO
 function btnExcluir(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
   let params = {

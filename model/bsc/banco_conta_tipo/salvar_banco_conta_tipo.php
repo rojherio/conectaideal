@@ -4,9 +4,10 @@ $id                                       = strip_tags(@$_POST['bct_id']?: '');
 $status                                   = strip_tags(@$_POST['bct_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['bct_nome']?: ''))));
-$error = false;
-$result = array();
-$msg = "";
+$tableName      = 'bsc_banco_conta_tipo';
+$error          = false;
+$result         = array();
+$msg            = "";
 // sleep(10);
 // $result = array(
 //   'id'      => '',
@@ -20,7 +21,7 @@ try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {
     $stmt = $db->prepare('
-      UPDATE bsc_banco_conta_tipo
+      UPDATE '.$tableName.'
         SET
         status = ?,
         dt_cadastro = ?,
@@ -41,25 +42,27 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT bct.id, bct.nome
-      FROM bsc_banco_conta_tipo AS bct 
-      WHERE bct.nome LIKE ?');
+      SELECT tb.nome
+      FROM '.$tableName.' AS tb 
+      WHERE tb.nome LIKE ?');
     $stmt->bindValue(1, $nome);
     $stmt->execute();
-    $rsBancoContaTipo = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (is_array($rsBancoContaTipo)) {
+    $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (is_array($rsExistente)) {
       $db->rollback();
-      $result['status'] = 'error';
       $existentes = '';
-      if ($rsBancoContaTipo['nome'] == $nome) {
-        $existentes .= ('nome: '.$nome);
+      $virgula = '';
+      foreach ($rsExistente as $kObj => $vObj) {
+        $existentes .= $virgula.'<br/>'.(ucwords($kObj)).': '.$vObj;
+        $virgula = ', ';
       }
-      $result['tipo'] = 'banco';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um tipo de conta bancária registrado com dados de ".$existentes.".";
+      $result['status'] = 'error';
+      $result['tipo'] = 'existente';
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
       echo json_encode($result);
       exit();
     } else {
-      $stmt = $db->prepare('INSERT INTO bsc_banco_conta_tipo
+      $stmt = $db->prepare('INSERT INTO '.$tableName.'
         (
           status,
           dt_cadastro,
