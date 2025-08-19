@@ -14,13 +14,13 @@ $stmt = $db->prepare("SELECT
   WHERE bct.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsBancoContaTipo = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsBancoContaTipo)) {
-  $rsBancoContaTipo = array();
-  $rsBancoContaTipo['id'] = 0;
-  $rsBancoContaTipo['status'] = 1;
-  $rsBancoContaTipo['dt_cadastro'] = '';
-  $rsBancoContaTipo['nome'] = '';
+$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsRegistro)) {
+  $rsRegistro = array();
+  $rsRegistro['id'] = 0;
+  $rsRegistro['status'] = 1;
+  $rsRegistro['dt_cadastro'] = '';
+  $rsRegistro['nome'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
@@ -62,7 +62,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de conta bancária 
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
     <form class="app-form" id="form_banco_conta_tipo" name="form_banco_conta_tipo" method="post" action="">
-      <input type="hidden" name="bct_id" id="bct_id" value="<?= $rsBancoContaTipo['id'] ;?>">
+      <input type="hidden" name="bct_id" id="bct_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -86,7 +86,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de conta bancária 
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 50,
                   /*string*/    'placeholder' => 'Digite o tipo de conta bancária',
-                  /*string*/    'value'       => $rsBancoContaTipo['nome'],
+                  /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -116,7 +116,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de conta bancária 
                   /*string*/    'id'          => 'bct_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsBancoContaTipo['status'],
+                  /*string*/    'checked'     => $rsRegistro['status'],
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>

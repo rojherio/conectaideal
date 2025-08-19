@@ -17,15 +17,15 @@ $stmt = $db->prepare("SELECT
   WHERE um.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsUnidadeMedida = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsUnidadeMedida)) {
-  $rsUnidadeMedida = array();
-  $rsUnidadeMedida['id'] = 0;
-  $rsUnidadeMedida['status'] = 1;
-  $rsUnidadeMedida['nome'] = '';
-  $rsUnidadeMedida['simbolo'] = '';
-  $rsUnidadeMedida['equivalencia'] = '';
-  $rsUnidadeMedida['bsc_grandeza_id'] = '';
+$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsRegistro)) {
+  $rsRegistro = array();
+  $rsRegistro['id'] = 0;
+  $rsRegistro['status'] = 1;
+  $rsRegistro['nome'] = '';
+  $rsRegistro['simbolo'] = '';
+  $rsRegistro['equivalencia'] = '';
+  $rsRegistro['bsc_grandeza_id'] = '';
 }
 //Consulta para Edição - END
 //Consulta para Select - BEGIN
@@ -70,7 +70,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
     <form class="app-form" id="form_unidade_medida" name="form_unidade_medida" method="post" action="">
-      <input type="hidden" name="um_id" id="um_id" value="<?= $rsUnidadeMedida['id'] ;?>">
+      <input type="hidden" name="um_id" id="um_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -94,7 +94,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 45,
                   /*string*/    'placeholder' => 'Digite o nome da unidade de medida',
-                  /*string*/    'value'       => $rsUnidadeMedida['nome'],
+                  /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -108,7 +108,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
                   /*int*/       'minlength'   => 1,
                   /*int*/       'maxlength'   => 10,
                   /*string*/    'placeholder' => 'Digite o símbolo',
-                  /*string*/    'value'       => $rsUnidadeMedida['simbolo'],
+                  /*string*/    'value'       => $rsRegistro['simbolo'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -124,7 +124,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
                   /*int*/       'minlength'   => 2,
                   /*int*/       'maxlength'   => 20,
                   /*string*/    'placeholder' => 'Digite a Equivalência',
-                  /*string*/    'value'       => $rsUnidadeMedida['equivalencia'],
+                  /*string*/    'value'       => $rsRegistro['equivalencia'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -134,7 +134,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
                   /*string*/    'name'        => 'um_bsc_grandeza_id',
                   /*string*/    'id'          => 'um_bsc_grandeza_id',
                   /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsUnidadeMedida['bsc_grandeza_id'],
+                  /*string*/    'value'       => $rsRegistro['bsc_grandeza_id'],
                   /*array()*/   'options'     => $rsGrandezas,
                   /*string*/    'ariaLabel'   => 'Selecione uma grandeza',
                   /*bool*/      'required'    => true,
@@ -167,7 +167,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
                   /*string*/    'id'          => 'um_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsUnidadeMedida['status'],
+                  /*string*/    'checked'     => $rsRegistro['status'],
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>

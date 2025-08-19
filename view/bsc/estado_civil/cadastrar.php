@@ -15,14 +15,14 @@ $stmt = $db->prepare("SELECT
   WHERE ec.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsEstadoCivil = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsEstadoCivil)) {
-  $rsEstadoCivil = array();
-  $rsEstadoCivil['id'] = 0;
-  $rsEstadoCivil['status'] = 1;
-  $rsEstadoCivil['dt_cadastro'] = '';
-  $rsEstadoCivil['nome'] = '';
-  $rsEstadoCivil['exige_registro'] = '';
+$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsRegistro)) {
+  $rsRegistro = array();
+  $rsRegistro['id'] = 0;
+  $rsRegistro['status'] = 1;
+  $rsRegistro['dt_cadastro'] = '';
+  $rsRegistro['nome'] = '';
+  $rsRegistro['exige_registro'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
@@ -64,7 +64,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de estado civil está ativo
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
     <form class="app-form" id="form_estado_civil" name="form_estado_civil" method="post" action="">
-      <input type="hidden" name="ec_id" id="ec_id" value="<?= $rsEstadoCivil['id'] ;?>">
+      <input type="hidden" name="ec_id" id="ec_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -88,7 +88,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de estado civil está ativo
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 50,
                   /*string*/    'placeholder' => 'Digite o estado civil',
-                  /*string*/    'value'       => $rsEstadoCivil['nome'],
+                  /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -100,7 +100,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de estado civil está ativo
                   /*string*/    'id'          => 'ec_exige_registro',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsEstadoCivil['exige_registro'],
+                  /*string*/    'checked'     => $rsRegistro['exige_registro'],
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
@@ -129,7 +129,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de estado civil está ativo
                   /*string*/    'id'          => 'ec_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsEstadoCivil['status'],
+                  /*string*/    'checked'     => $rsRegistro['status'],
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>

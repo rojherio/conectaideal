@@ -14,13 +14,13 @@ $stmt = $db->prepare("SELECT
   WHERE e.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsEscolaridade = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsEscolaridade)) {
-  $rsEscolaridade = array();
-  $rsEscolaridade['id'] = 0;
-  $rsEscolaridade['status'] = 1;
-  $rsEscolaridade['dt_cadastro'] = '';
-  $rsEscolaridade['nome'] = '';
+$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsRegistro)) {
+  $rsRegistro = array();
+  $rsRegistro['id'] = 0;
+  $rsRegistro['status'] = 1;
+  $rsRegistro['dt_cadastro'] = '';
+  $rsRegistro['nome'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
@@ -62,7 +62,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de escolaridade está ativo
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
     <form class="app-form" id="form_escolaridade" name="form_escolaridade" method="post" action="">
-      <input type="hidden" name="e_id" id="e_id" value="<?= $rsEscolaridade['id'] ;?>">
+      <input type="hidden" name="e_id" id="e_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -86,7 +86,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de escolaridade está ativo
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
                   /*string*/    'placeholder' => 'Digite o nome do grau de escolaridade',
-                  /*string*/    'value'       => $rsEscolaridade['nome'],
+                  /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -116,7 +116,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de escolaridade está ativo
                   /*string*/    'id'          => 'e_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsEscolaridade['status'],
+                  /*string*/    'checked'     => $rsRegistro['status'],
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>

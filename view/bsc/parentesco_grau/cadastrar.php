@@ -15,14 +15,14 @@ $stmt = $db->prepare("SELECT
   WHERE pg.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsParentescoGrau = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsParentescoGrau)) {
-  $rsParentescoGrau = array();
-  $rsParentescoGrau['id'] = 0;
-  $rsParentescoGrau['status'] = 1;
-  $rsParentescoGrau['dt_cadastro'] = '';
-  $rsParentescoGrau['nome'] = '';
-  $rsParentescoGrau['grau'] = '';
+$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsRegistro)) {
+  $rsRegistro = array();
+  $rsRegistro['id'] = 0;
+  $rsRegistro['status'] = 1;
+  $rsRegistro['dt_cadastro'] = '';
+  $rsRegistro['nome'] = '';
+  $rsRegistro['grau'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
@@ -64,7 +64,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de grau de parentesco está
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
     <form class="app-form" id="form_parentesco_grau" name="form_parentesco_grau" method="post" action="">
-      <input type="hidden" name="pg_id" id="pg_id" value="<?= $rsParentescoGrau['id'] ;?>">
+      <input type="hidden" name="pg_id" id="pg_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -88,7 +88,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de grau de parentesco está
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
                   /*string*/    'placeholder' => 'Digite o nome de parentesco',
-                  /*string*/    'value'       => $rsParentescoGrau['nome'],
+                  /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
@@ -98,7 +98,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de grau de parentesco está
                   /*string*/    'name'        => 'pg_grau',
                   /*string*/    'id'          => 'pg_grau',
                   /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsParentescoGrau['grau'],
+                  /*string*/    'value'       => $rsRegistro['grau'],
                   /*array()*/   'options'     => array(
                     ['id' => '1º grau', 'nome' => '1º grau'],
                     ['id' => '2º grau', 'nome' => '2º grau'],
@@ -136,7 +136,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de grau de parentesco está
                   /*string*/    'id'          => 'pg_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsParentescoGrau['status'],
+                  /*string*/    'checked'     => $rsRegistro['status'],
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
