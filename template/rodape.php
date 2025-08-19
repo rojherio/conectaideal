@@ -1,6 +1,9 @@
 <?php
 include_once "utils/modal_loading.php";
 ?>
+<!-- JAVASCRIPT CONFIG BEGIN -->
+<script type="text/javascript" src="<?= UTILS_FOLDER; ?>config.js"></script>
+<!-- JAVASCRIPT CONFIG END -->
 <!-- Javascript -->
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>jquery-3.7.1/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>bootstrap/bootstrap.bundle.min.js"></script>

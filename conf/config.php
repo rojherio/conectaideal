@@ -18,7 +18,7 @@ define("FAVICON_SISTEMA", 'http://localhost/delfos/assets/images/delfos_favicon.
 define("LOGO_DASHBOARD", 'http://localhost/delfos/assets/images/delfos_logo.png');
 define("ASSETS_FOLDER", 'http://localhost/delfos/assets/');
 define("CSS_FOLDER", 'http://localhost/delfos/assets/css/');
-define("FONTS_FOLDER", 'http://localhost/delfos/assets/fontes/');
+define("FONTS_FOLDER", 'http://localhost/delfos/assets/fonts/');
 define("IMG_FOLDER", 'http://localhost/delfos/assets/images/');
 define("ICONS_FOLDER", 'http://localhost/delfos/assets/icons/');
 define("JS_FOLDER", 'http://localhost/delfos/assets/js/');

@@ -1,5 +1,3 @@
-const PORTAL_URL = 'http://localhost/delfos/';
-
 $(document).ready(function () {
   // $('#modalLoading').modal({
   //   backdrop: 'static',

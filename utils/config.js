@@ -1,0 +1,1 @@
+const PORTAL_URL = 'http://localhost/delfos/';
