@@ -115,11 +115,17 @@ function copyvalue() {
 
 
 // >>-- 04 Sidebar toggle js --<<
+// $(document).on('click', '.header-toggle', function () {
+//   $("nav").toggleClass("semi-nav");
+// });
+// $(".toggle-semi-nav").on("click", function () {
+//   $("nav").removeClass("semi-nav");
+// });
 $(document).on('click', '.header-toggle', function () {
-  $("nav").toggleClass("semi-nav");
+  $("nav:not(div.dt-paging>nav.vertical-sidebar)").toggleClass("semi-nav");
 });
 $(".toggle-semi-nav").on("click", function () {
-  $("nav").removeClass("semi-nav");
+  $("nav:not(div.dt-paging>nav.vertical-sidebar)").removeClass("semi-nav");
 });
 
 

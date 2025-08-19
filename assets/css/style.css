@@ -17661,7 +17661,6 @@ body[style="overflow: hidden; padding-right: 17px;"] .app-wrapper nav.horizontal
   background-color: rgba(var(--primary), 0.2) !important;
   transition: var(--app-transition);
 }
-
 /*nav {
   width: 17rem;
   height: 100vh;
@@ -17670,14 +17669,6 @@ body[style="overflow: hidden; padding-right: 17px;"] .app-wrapper nav.horizontal
   background-color: rgba(var(--white), 1);
   z-index: 1003;
 }*/
-nav:not(.dt-paging > nav.vertical-sidebar) {
-  width: 17rem;
-  height: 100vh;
-  display: inline-block;
-  position: fixed;
-  background-color: rgba(var(--white), 1);
-  z-index: 1003;
-}
 nav .app-logo {
   padding: 1.5rem 1.5rem 0 1.5rem;
 }
@@ -17841,18 +17832,21 @@ nav .app-nav .menu-item .btn .ti:before {
   font-size: 20px;
   vertical-align: super;
 }
-
 .app-wrapper .semi-nav {
   width: 4.5rem;
   transition: var(--app-transition);
 }
+/*.app-wrapper .semi-nav {
+  width: 4.5rem;
+  transition: var(--app-transition);
+}*/
 .app-wrapper .semi-nav .badge {
   display: none;
 }
-.app-wrapper .semi-nav:hover {
+/*.app-wrapper .semi-nav:hover {
   width: 17rem;
   transition: var(--app-transition);
-}
+}*/
 .app-wrapper .semi-nav:hover .app-logo {
   padding: 1.5rem 1.5rem 0 1.5rem;
 }

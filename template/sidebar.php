@@ -1,7 +1,7 @@
 <nav>
   <div class="app-logo">
     <a class="logo d-inline-block" href="index-2.html">
-      <img alt="#" src="<?= IMG_FOLDER; ?>logo/1.png">
+      <img alt="#" src="<?= IMG_FOLDER; ?>logo/delfos4.png">
     </a>
     <span class="bg-light-primary toggle-semi-nav">
       <i class="ti ti-chevrons-right f-s-20"></i>
@@ -10,12 +10,12 @@
   <div class="app-nav" id="app-simple-bar">
     <ul class="main-nav p-0 mt-2">
       <li class="menu-title">
-        <span>Dashboard</span>
+        <span>Módulo Base</span>
       </li>
       <li>
-        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#dashboard">
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="<?=PORTAL_URL;?>view/bsc/dashboard">
           <i class="iconoir-home-alt"></i>
-          dashboard
+          DASHBOARD
           <span class="badge text-primary-dark bg-primary-300  badge-notification ms-2">4</span>
         </a>
         <ul class="collapse" id="dashboard">

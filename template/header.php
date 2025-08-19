@@ -100,8 +100,8 @@
                 <ul class="dropdown-menu language-dropdown header-card border-0">
                   <li class="lang lang-en selected dropdown-item p-2" data-bs-placement="top" data-bs-toggle="tooltip" title="US">
                     <span class="d-flex align-items-center">
-                      <i class="flag-icon flag-icon-usa flag-icon-squared b-r-10 f-s-22"></i>
-                      <span class="ps-2">English</span>
+                      <i class="flag-icon flag-icon-bra flag-icon-squared b-r-10 f-s-22"></i>
+                      <span class="ps-2">Português(Brasil)</span>
                     </span>
                   </li>
                   <li class="lang lang-pt dropdown-item p-2" title="FR">

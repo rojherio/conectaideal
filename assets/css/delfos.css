@@ -61,3 +61,27 @@ div.loadding-delfos:before {
     padding: 0;
     z-index: 1;
 }
+/*nav {
+  width: 17rem;
+  height: 100vh;
+  display: inline-block;
+  position: fixed;
+  background-color: rgba(var(--white), 1);
+  z-index: 1003;
+}*/
+nav:not(div.dt-paging>nav.vertical-sidebar) {
+  width: 17rem;
+  height: 100vh;
+  display: inline-block;
+  position: fixed;
+  background-color: rgba(var(--white), 1);
+  z-index: 1003;
+}
+.app-wrapper .semi-nav {
+  width: 4.5rem !important;
+  transition: var(--app-transition);
+}
+.app-wrapper .semi-nav:hover {
+  width: 17rem !important;
+  transition: var(--app-transition);
+}
