@@ -4,7 +4,7 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/bsc/pessoa_fisica/listar');
+  header('Location: '.PORTAL_URL.'view/bsc/pessoa_juridica/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
@@ -16,48 +16,20 @@ $stmt = $db->prepare("SELECT
   p.nome,
   p.nome_social,
   p.cpf,
-  p.dt_nascimento,
-  p.sexo,
-  p.natural_bsc_pais_id,
-  pa.nome AS natural_pais_nome,
-  p.natural_bsc_municipio_id,
-  m.nome AS natural_municipio_nome, 
-  e.id AS natural_estado_id, 
-  e.sigla AS natural_estado_sigla, 
-  p.natural_estrangeiro_dt_ingresso,
-  p.natural_estrangeiro_cidade,
-  p.natural_estrangeiro_estado,
-  p.natural_estrangeiro_condicao_trabalho,
-  p.pai_nome,
-  p.pai_natural_bsc_pais_id,
-  pa1.nome AS pai_natural_pais_nome,
-  p.pai_profissao,
-  p.mae_nome,
-  p.mae_natural_bsc_pais_id,
-  pa2.nome AS mae_natural_pais_nome,
-  p.mae_profissao,
-  p.foto,
-  p.sangue_tipo,
-  p.raca,
-  p.enfermidade_portador,
-  p.enfermidade_codigo_internacional
+  p.ie,
+  p.dt_criacao
   FROM bsc_pessoa AS p
-  LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
-  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
-  LEFT JOIN bsc_pais AS pa ON pa.id = p.natural_bsc_pais_id 
-  LEFT JOIN bsc_pais AS pa1 ON pa1.id = p.pai_natural_bsc_pais_id 
-  LEFT JOIN bsc_pais AS pa2 ON pa2.id = p.mae_natural_bsc_pais_id
   WHERE p.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Pessoa Física";
-$descricaoPagina          = "Informações da pessoas física";
-$tituloFormulario1        = "Tabela informações da Pessoa Física";
-$descricaoFormulario1     = "Dados de informações da pessoa física cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da pessoa física cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem de Pessoa Jurídica";
+$descricaoPagina          = "Informações da pessoas jurídica";
+$tituloFormulario1        = "Tabela informações da Pessoaa Jurídica";
+$descricaoFormulario1     = "Dados de informações da pessoa jurídica cadastrada no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações da pessoa jurídica cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -76,7 +48,7 @@ $tituloImpressao          = "Relatório de informações da pessoa física cadas
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Pessoa Física</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Pessoa Jurídico</a>
           </li>
         </ul>
       </div>
@@ -132,76 +104,12 @@ $tituloImpressao          = "Relatório de informações da pessoa física cadas
                     <td><?= $rsRegistro['cpf']; ?></td>
                   </tr>
                   <tr>
-                    <td>Data de Nascimento</td>
-                    <td><?= data_volta($rsRegistro['dt_nascimento']); ?></td>
+                    <td>IE (Inscrição Estadual)</td>
+                    <td><?= $rsRegistro['ie']; ?></td>
                   </tr>
                   <tr>
-                    <td>Sexo</td>
-                    <td><?= $rsRegistro['sexo']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Nacionalidade</td>
-                    <td><?= $rsRegistro['natural_pais_nome']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Naturalidade</td>
-                    <td><?= $rsRegistro['natural_municipio_nome'].' - '. $rsRegistro['natural_estado_sigla']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Naturalidade|Estado</td>
-                    <td><?= $rsRegistro['natural_estrangeiro_estado']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Naturalidade|Cidade</td>
-                    <td><?= $rsRegistro['natural_estrangeiro_cidade']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Extrangeiro|Ingresso</td>
-                    <td><?= $rsRegistro['natural_estrangeiro_dt_ingresso']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Extrangeiro|Condição de Trabalho</td>
-                    <td><?= $rsRegistro['natural_estrangeiro_condicao_trabalho']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Nome do Pai</td>
-                    <td><?= $rsRegistro['pai_nome']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Nacionalidade do Pai</td>
-                    <td><?= $rsRegistro['pai_natural_pais_nome']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Profissão do Pai</td>
-                    <td><?= $rsRegistro['pai_profissao']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Nome da Mãe</td>
-                    <td><?= $rsRegistro['mae_nome']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Nacionalidade da Mãe</td>
-                    <td><?= $rsRegistro['mae_natural_pais_nome']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Profissão da Mãe</td>
-                    <td><?= $rsRegistro['mae_profissao']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Tipo Sanguíneo</td>
-                    <td><?= $rsRegistro['sangue_tipo']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Raçã</td>
-                    <td><?= $rsRegistro['raca']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Enfermidade Portada</td>
-                    <td><?= $rsRegistro['enfermidade_portador']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Código Internacional da Emfemidade Portada</td>
-                    <td><?= $rsRegistro['enfermidade_codigo_internacional']; ?></td>
+                    <td>Data de Criação</td>
+                    <td><?= data_volta($rsRegistro['dt_criacao']); ?></td>
                   </tr>
                 </tbody>
                   <!-- <td><span class="badge text-light-primary">System Architect</span></td>
@@ -226,4 +134,4 @@ $tituloImpressao          = "Relatório de informações da pessoa física cadas
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_fisica/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_juridica/visualizar.js"></script>
