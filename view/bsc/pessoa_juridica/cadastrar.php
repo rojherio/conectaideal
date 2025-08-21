@@ -16,7 +16,7 @@ $stmt = $db->prepare("SELECT
   p.ie,
   p.dt_criacao
   FROM bsc_pessoa AS p
-  WHERE p.id = ? ;");
+  WHERE p.tipo = 2 AND p.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);

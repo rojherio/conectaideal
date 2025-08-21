@@ -38,7 +38,7 @@ $stmt = $db->prepare("SELECT
   FROM bsc_pessoa AS p
   LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
-  WHERE p.id = ? ;");
+  WHERE p.tipo = 1 AND p.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
