@@ -4,27 +4,28 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/bsc/turno/listar');
+  header('Location: '.PORTAL_URL.'view/bsc/porte/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
 $stmt = $db->prepare("SELECT 
-  t.id,
-  t.status,
-  t.dt_cadastro,
-  t.nome
-  FROM ue_turno AS t
-  WHERE t.id = ? ;");
+  p.id,
+  p.status,
+  p.dt_cadastro,
+  p.nome,
+  p.descricao
+  FROM ue_porte AS p
+  WHERE p.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem do Horário de Turno";
-$descricaoPagina          = "Informações do turno";
-$tituloFormulario1        = "Tabela informações do Horário de Turno";
-$descricaoFormulario1     = "Dados de informações do turno cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do turno cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem do Porte de Alunos";
+$descricaoPagina          = "Informações do porte de alunos";
+$tituloFormulario1        = "Tabela informações do Porte de Alunos";
+$descricaoFormulario1     = "Dados de informações do porte de alunos cadastrada no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações do porte de alunos cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -43,7 +44,7 @@ $tituloImpressao          = "Relatório de informações do turno cadastrada no 
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Turno</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Porte de Alunos</a>
           </li>
         </ul>
       </div>
@@ -90,6 +91,10 @@ $tituloImpressao          = "Relatório de informações do turno cadastrada no 
                     <td>Nome</td>
                     <td><?= $rsRegistro['nome']; ?></td>
                   </tr>
+                  <tr>
+                    <td>Descrição</td>
+                    <td><?= $rsRegistro['descricao']; ?></td>
+                  </tr>
                 </tbody>
                   <!-- <td><span class="badge text-light-primary">System Architect</span></td>
                   <td><span class="badge text-light-success">Accountant</span></td>
@@ -113,4 +118,4 @@ $tituloImpressao          = "Relatório de informações do turno cadastrada no 
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/turno/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/porte/visualizar.js"></script>
