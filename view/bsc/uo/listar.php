@@ -18,11 +18,11 @@ $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem deUnidades Organizacionais";
+$tituloPagina             = "Listagem de Unidades Organizacionais";
 $descricaoPagina          = "Informações de unidades organizacionais";
-$tituloFormulario1        = "Tabela com listagem Unidades Organizacionais";
-$descricaoFormulario1     = "Dados de identificação de tipos de unidades organizacionais";
-$tituloImpressao          = "Relatório de tipos de unidades organizacionais cadastradas no sistema DELFOS";
+$tituloFormulario1        = "Tabela com listagem de Unidades Organizacionais";
+$descricaoFormulario1     = "Dados de identificação de unidades organizacionais";
+$tituloImpressao          = "Relatório de unidades organizacionais cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
