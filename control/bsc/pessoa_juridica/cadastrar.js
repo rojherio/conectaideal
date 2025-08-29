@@ -8,12 +8,14 @@
 // };
 $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
-  $('#submit').on('click', function () {
+  $('.btn_submit').on('click', function () {
     let params = {
-      formId:         'form_pessoa',
-      urlToSend:      'model/bsc/pessoa_juridica/salvar_pessoa',
-      urlToGo:        'view/bsc/pessoa_juridica/listar'
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/pessoa_juridica/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urlToSend'),
+      urlToGo:        'view/bsc/pessoa_juridica/listar',
+      tabPane:        $(this).parents('div.tab-pane').attr('tabindex'),
     };
-    ajaxSendCadastrar(params);
+    ajaxSendCadastrarTabPane(params);
   });
 });

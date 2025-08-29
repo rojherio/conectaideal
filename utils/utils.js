@@ -5,7 +5,7 @@ $(document).ready(function () {
   // })
 });
 $('button[type="reset"]').on('click', function(){
-  $('button#submit').attr('disabled', false);
+  $('button.btn_submit').attr('disabled', false);
   select2Clear();
   formValidatorRMRosasClean();
   $('html').animate({
@@ -13,7 +13,7 @@ $('button[type="reset"]').on('click', function(){
   }, 500);
 });
 function divLoading(){
-  $('button#submit').attr('disabled', true);
+  $('button.btn_submit').attr('disabled', true);
   $.blockUI({
     message:  $('div#modalLoading').html(), 
     draggable: true,
@@ -26,7 +26,7 @@ function divLoading(){
 }
 function divLoaded(){
   $.unblockUI();
-  $('button#submit').attr('disabled', false);
+  $('button.btn_submit').attr('disabled', false);
 }
 function ajaxSendCadastrar(params){
   let formToSend = $('#'+params.formId);
@@ -65,6 +65,53 @@ function ajaxSendCadastrar(params){
         })
         .always(function (data, status){
           ajaxCompleteSend(data, status, params.urlToGo);
+        })
+      } else {
+        divLoaded();
+        return false;
+      }
+    });
+  } else {
+    return false;
+  }
+}
+function ajaxSendCadastrarTabPane(params){
+  let formToSend = $('#'+params.formId);
+  let formValido = formValidatorRMRosas($(formToSend));
+  if (formValido) {
+    Swal.fire({
+      title: 'Você confirma o registro destas novas informações?',
+      text: "Se você confirmar, os dados informados serão registrados no banco de dados do sistema",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sim, Cadastre',
+      cancelButtonText: 'Não, Cancele!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        divLoading();
+        $.ajax({
+          url: PORTAL_URL + params.urlToSend,
+          async: true,
+          method: "post",
+          beforeSend: divLoading,
+          cache: true,
+          dataType: "json",
+          contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+          data: $(formToSend).serialize(),
+          statusCode: {
+            404: function() {
+              alert( "Página não encontrada" );
+            }
+          }
+        })
+        .done(function (data, status, obj){
+          ajaxSuccess(data, status, obj, params.urlToGo);
+        })
+        .fail(function (data, status, errorThrown){
+          ajaxError(data, status, errorThrown);
+        })
+        .always(function (data, status){
+          ajaxCompleteSendTabPane(data, status, params.urlCurrent, params.urlToGo, params.tabPane);
         })
       } else {
         divLoaded();
@@ -167,6 +214,50 @@ function ajaxCompleteSend(data, status, urlToGo) {
             postToURL(PORTAL_URL + urlToGo);
           }
         });
+      });
+    } else if (data.status == 'error') {
+      if (data.tipo == 'existente') {
+        Swal.fire('Erro', data.msg, 'error');
+      } else {
+        Swal.fire('Erro inesperado', "Houve um erro inesperado ao tentar registrar as novas informações! Por favor, tente novamente ou informe ao suporte o erro a seguir: " + data.msg, 'error');
+      }
+      // console.log('Error: ' + data.msg);
+    }
+  }, 1000);
+}
+function ajaxCompleteSendTabPane(data, status, urlCurrent, urlToGo, tabPane) {
+  setTimeout(function() {
+    divLoaded();
+    if (data.status == 'success') {
+      Swal.fire({
+        title: 'Sucesso',
+        text: data.msg,
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonText: 'OK',
+        // allowOutsideClick: false,
+        // allowEscapeKey: false
+      }).then((result) => {
+        if (tabPane == '1') {
+          postToURL(PORTAL_URL + urlCurrent + '/' + data.id, {tabPane: Number(tabPane)+1});
+        } else if (tabPane == 'end') {
+          Swal.fire({
+            title: 'Você deseja realizar um novo cadastro?',
+            text: "Se você confirmar, você permanecerá nesta página para efetuar um novo cadastro",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Sim, realizar novo cadastro',
+            cancelButtonText: 'Não, quero sair da página de cadastro!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              postToURL(PORTAL_URL + urlCurrent);
+            } else {
+              postToURL(PORTAL_URL + urlToGo);
+            }
+          });
+        } else {
+          postToURL(window.location.href, {tabPane: Number(tabPane)+1});
+        }
       });
     } else if (data.status == 'error') {
       if (data.tipo == 'existente') {
