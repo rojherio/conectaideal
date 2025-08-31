@@ -5,22 +5,22 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  ld.id,
-  ld.status,
-  ld.dt_cadastro,
-  ld.nome,
-  ld.descricao
-  FROM ue_localizacao_diferenciada AS ld
-  ORDER BY ld.nome");
+  cep.id,
+  cep.status,
+  cep.dt_cadastro,
+  cep.nome,
+  cep.descricao
+  FROM ue_categoria_escola_privada AS cep
+  ORDER BY cep.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Localizações Diferenciada";
-$descricaoPagina          = "Informações de localizações diferenciada";
-$tituloFormulario1        = "Tabela com listagem de Localizações Diferenciada";
-$descricaoFormulario1     = "Dados de identificação de localizações diferenciada";
-$tituloImpressao          = "Relatório de localizações diferenciada cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Categorias de Escola Privada";
+$descricaoPagina          = "Informações de categorias de escola privada";
+$tituloFormulario1        = "Tabela com listagem de Categorias de Escola Privada";
+$descricaoFormulario1     = "Dados de identificação de categorias de escola privada";
+$tituloImpressao          = "Relatório de categorias de escola privada cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -39,7 +39,7 @@ $tituloImpressao          = "Relatório de localizações diferenciada cadastrad
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Localizações Diferenciada</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Categorias de Escola Privada</a>
           </li>
         </ul>
       </div>
@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de localizações diferenciada cadastrad
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/localizacao_diferenciada/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/categoria_escola_privada/listar.js"></script>

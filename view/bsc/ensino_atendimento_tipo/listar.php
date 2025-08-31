@@ -5,22 +5,22 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  ld.id,
-  ld.status,
-  ld.dt_cadastro,
-  ld.nome,
-  ld.descricao
-  FROM ue_localizacao_diferenciada AS ld
-  ORDER BY ld.nome");
+  eat.id,
+  eat.status,
+  eat.dt_cadastro,
+  eat.nome,
+  eat.descricao
+  FROM ue_ensino_atendimento_tipo AS eat
+  ORDER BY eat.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Localizações Diferenciada";
-$descricaoPagina          = "Informações de localizações diferenciada";
-$tituloFormulario1        = "Tabela com listagem de Localizações Diferenciada";
-$descricaoFormulario1     = "Dados de identificação de localizações diferenciada";
-$tituloImpressao          = "Relatório de localizações diferenciada cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Tipos de Atendimento";
+$descricaoPagina          = "Informações de tipos de atendimento";
+$tituloFormulario1        = "Tabela com listagem de Tipos de Atendimento";
+$descricaoFormulario1     = "Dados de identificação de tipos de atendimento";
+$tituloImpressao          = "Relatório de tipos de atendimento cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -39,7 +39,7 @@ $tituloImpressao          = "Relatório de localizações diferenciada cadastrad
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Localizações Diferenciada</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipos de Atendimento</a>
           </li>
         </ul>
       </div>
@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de localizações diferenciada cadastrad
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/localizacao_diferenciada/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_atendimento_tipo/listar.js"></script>

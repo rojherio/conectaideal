@@ -1,11 +1,11 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['fs_id']?: '');
-$status                                   = strip_tags(@$_POST['fs_status']?: 0);
+$id                                       = strip_tags(@$_POST['eat_id']?: '');
+$status                                   = strip_tags(@$_POST['eat_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['fs_nome']?: ''))));
-$descricao                                = trim(strip_tags(@$_POST['fs_descricao']?: ''));
-$tableName      = 'ue_funcionamento_situacao';
+$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['eat_nome']?: ''))));
+$descricao                                = trim(strip_tags(@$_POST['eat_descricao']?: ''));
+$tableName      = 'ue_ensino_atendimento_tipo';
 $error          = false;
 $result         = array();
 $msg            = "";

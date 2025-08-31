@@ -8,7 +8,8 @@ $stmt = $db->prepare("SELECT
   z.id,
   z.status,
   z.dt_cadastro,
-  z.nome
+  z.nome,
+  z.descricao
   FROM bsc_zona AS z
   ORDER BY z.nome");
 $stmt->execute();
@@ -78,6 +79,7 @@ $tituloImpressao          = "Relatório de zonas cadastradas no sistema DELFOS";
                     <tr>
                       <th>#</th>
                       <th>Nome</th>
+                      <th>Descrição</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
@@ -92,6 +94,7 @@ $tituloImpressao          = "Relatório de zonas cadastradas no sistema DELFOS";
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
+                        <td id="td_descricao"><?= $vObj['descricao']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
