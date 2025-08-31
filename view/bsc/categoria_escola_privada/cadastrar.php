@@ -6,13 +6,13 @@ $id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
-  fs.id,
-  fs.status,
-  fs.dt_cadastro,
-  fs.nome,
-  fs.descricao
-  FROM ue_funcionamento_situacao AS fs
-  WHERE fs.id = ? ;");
+  cep.id,
+  cep.status,
+  cep.dt_cadastro,
+  cep.nome,
+  cep.descricao
+  FROM ue_categoria_escola_privada AS cep
+  WHERE cep.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,10 +26,10 @@ if (!is_array($rsRegistro)) {
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Situação de Funcionamento";
-$descricaoPagina          = "Informações do situação de funcionamento";
-$tituloFormulario1        = "Dados do Situação de Funcionamento";
-$descricaoFormulario1     = "Dados da identificação do situação de funcionamento";
+$tituloPagina             = "Cadastro da Categoria de Escola Privada";
+$descricaoPagina          = "Informações da categoria de escola privada";
+$tituloFormulario1        = "Dados da Categoria de Escola Privada";
+$descricaoFormulario1     = "Dados da identificação Dados categoria de escola privada";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -37,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro da situação de funcionamento está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro da categoria de escola privada está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -56,15 +56,15 @@ $descricaoFormulario5     = "Defina se esse cadastro da situação de funcioname
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Situação de Funcionamento</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Categoria de Escola Privada</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_funcionamento_situacao" name="form_funcionamento_situacao" method="post" action="">
-      <input type="hidden" name="fs_id" id="fs_id" value="<?= $rsRegistro['id'] ;?>">
+    <form class="app-form" id="form_categoria_escola_privada" name="form_categoria_escola_privada" method="post" action="">
+      <input type="hidden" name="cep_id" id="cep_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -80,14 +80,14 @@ $descricaoFormulario5     = "Defina se esse cadastro da situação de funcioname
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome da Situação de Funcionamento',
+                  /*string*/    'label'       => 'Nome da Categoria de Escola Privada',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'fs_nome',
-                  /*string*/    'id'          => 'fs_nome',
+                  /*string*/    'name'        => 'cep_nome',
+                  /*string*/    'id'          => 'cep_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome da Situação de Funcionamento',
+                  /*string*/    'placeholder' => 'Digite o nome da categoria de escola privada',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
@@ -98,12 +98,12 @@ $descricaoFormulario5     = "Defina se esse cadastro da situação de funcioname
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'fs_descricao',
-                  /*string*/    'id'          => 'fs_descricao',
+                  /*string*/    'name'        => 'cep_descricao',
+                  /*string*/    'id'          => 'cep_descricao',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Descreva a Situação de Funcionamento',
+                  /*string*/    'placeholder' => 'Descreva a categoria de escola privada',
                   /*string*/    'value'       => $rsRegistro['descricao'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
@@ -130,8 +130,8 @@ $descricaoFormulario5     = "Defina se esse cadastro da situação de funcioname
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Ativo',
                   /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'fs_status',
-                  /*string*/    'id'          => 'fs_status',
+                  /*string*/    'name'        => 'cep_status',
+                  /*string*/    'id'          => 'cep_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
                   /*string*/    'checked'     => $rsRegistro['status'],
@@ -173,4 +173,4 @@ $descricaoFormulario5     = "Defina se esse cadastro da situação de funcioname
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/funcionamento_situacao/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/categoria_escola_privada/cadastrar.js"></script>

@@ -12,7 +12,8 @@ $stmt = $db->prepare("SELECT
   z.id,
   z.status,
   z.dt_cadastro,
-  z.nome
+  z.nome,
+  z.descricao
   FROM bsc_zona AS z
   WHERE z.id = ? ;");
 $stmt->bindValue(1, $id);
@@ -89,6 +90,10 @@ $tituloImpressao          = "Relatório de informações de zona cadastrada no s
                   <tr>
                     <td>Nome</td>
                     <td><?= $rsRegistro['nome']; ?></td>
+                  </tr>
+                  <tr>
+                    <td>Descrição</td>
+                    <td><?= $rsRegistro['descricao']; ?></td>
                   </tr>
                 </tbody>
                   <!-- <td><span class="badge text-light-primary">System Architect</span></td>

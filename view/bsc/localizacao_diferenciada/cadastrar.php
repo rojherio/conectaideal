@@ -9,7 +9,8 @@ $stmt = $db->prepare("SELECT
   ld.id,
   ld.status,
   ld.dt_cadastro,
-  ld.nome
+  ld.nome,
+  ld.descricao
   FROM ue_localizacao_diferenciada AS ld
   WHERE ld.id = ? ;");
 $stmt->bindValue(1, $id);
@@ -21,6 +22,7 @@ if (!is_array($rsRegistro)) {
   $rsRegistro['status'] = 1;
   $rsRegistro['dt_cadastro'] = '';
   $rsRegistro['nome'] = '';
+  $rsRegistro['descricao'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
@@ -88,6 +90,22 @@ $descricaoFormulario5     = "Defina se esse cadastro da localização diferencia
                   /*string*/    'placeholder' => 'Digite o nome da Localização Diferenciada',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
+                  /*string*/    'prop'        => ''
+                )) ;?>
+              </div>
+              <div class="row">
+                <?= createInput(array(
+                  /*int 1-12*/  'col'         => 12,
+                  /*string*/    'label'       => 'Descrição',
+                  /*string*/    'type'        => 'text',
+                  /*string*/    'name'        => 'ld_descricao',
+                  /*string*/    'id'          => 'ld_descricao',
+                  /*string*/    'class'       => 'form-control',
+                  /*int*/       'minlength'   => 3,
+                  /*int*/       'maxlength'   => 254,
+                  /*string*/    'placeholder' => 'Descrição da Localização Diferenciada',
+                  /*string*/    'value'       => $rsRegistro['descricao'],
+                  /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>

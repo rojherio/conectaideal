@@ -12,7 +12,8 @@ $stmt = $db->prepare("SELECT
   ld.id,
   ld.status,
   ld.dt_cadastro,
-  ld.nome
+  ld.nome,
+  ld.descricao
   FROM ue_localizacao_diferenciada AS ld
   WHERE ld.id = ? ;");
 $stmt->bindValue(1, $id);
@@ -89,6 +90,10 @@ $tituloImpressao          = "Relatório de informações de localização difere
                   <tr>
                     <td>Nome</td>
                     <td><?= $rsRegistro['nome']; ?></td>
+                  </tr>
+                  <tr>
+                    <td>Descrição</td>
+                    <td><?= $rsRegistro['descricao']; ?></td>
                   </tr>
                 </tbody>
                   <!-- <td><span class="badge text-light-primary">System Architect</span></td>

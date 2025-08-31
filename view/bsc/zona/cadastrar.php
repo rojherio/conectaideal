@@ -9,7 +9,8 @@ $stmt = $db->prepare("SELECT
   z.id,
   z.status,
   z.dt_cadastro,
-  z.nome
+  z.nome,
+  z.descricao
   FROM bsc_zona AS z
   WHERE z.id = ? ;");
 $stmt->bindValue(1, $id);
@@ -21,6 +22,7 @@ if (!is_array($rsRegistro)) {
   $rsRegistro['status'] = 1;
   $rsRegistro['dt_cadastro'] = '';
   $rsRegistro['nome'] = '';
+  $rsRegistro['descricao'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
@@ -88,6 +90,22 @@ $descricaoFormulario5     = "Defina se esse cadastro da zona está ativo ou inat
                   /*string*/    'placeholder' => 'Digite o nome da zona',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
+                  /*string*/    'prop'        => ''
+                )) ;?>
+              </div>
+              <div class="row">
+                <?= createInput(array(
+                  /*int 1-12*/  'col'         => 12,
+                  /*string*/    'label'       => 'Descrição',
+                  /*string*/    'type'        => 'text',
+                  /*string*/    'name'        => 'z_descricao',
+                  /*string*/    'id'          => 'z_descricao',
+                  /*string*/    'class'       => 'form-control',
+                  /*int*/       'minlength'   => 3,
+                  /*int*/       'maxlength'   => 254,
+                  /*string*/    'placeholder' => 'Descreva a zona',
+                  /*string*/    'value'       => $rsRegistro['descricao'],
+                  /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
