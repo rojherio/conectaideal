@@ -6,12 +6,13 @@ $id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
-  me.id,
-  me.status,
-  me.dt_cadastro,
-  me.nome
-  FROM ue_modalidade_ensino AS me
-  WHERE me.id = ? ;");
+  eme.id,
+  eme.status,
+  eme.dt_cadastro,
+  eme.nome,
+  eme.descricao
+  FROM ue_ens_modalidade_etapa AS eme
+  WHERE eme.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -21,13 +22,14 @@ if (!is_array($rsRegistro)) {
   $rsRegistro['status'] = 1;
   $rsRegistro['dt_cadastro'] = '';
   $rsRegistro['nome'] = '';
+  $rsRegistro['descricao'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Modalidade de Ensino";
-$descricaoPagina          = "Informações da modalidade de ensino";
-$tituloFormulario1        = "Dados da Modalidade de Ensino";
-$descricaoFormulario1     = "Dados da identificação da modalidade de ensino";
+$tituloPagina             = "Cadastro da Etapa de Ensino";
+$descricaoPagina          = "Informações da etapa de ensino";
+$tituloFormulario1        = "Dados da etapa de Ensino";
+$descricaoFormulario1     = "Dados da identificação da etapa de ensino";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -35,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de modalidade de ensino está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -54,15 +56,15 @@ $descricaoFormulario5     = "Defina se esse cadastro de modalidade de ensino est
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Modalidade de Ensino</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Nivel de Ensino</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_modalidade_ensino" name="form_modalidade_ensino" method="post" action="">
-      <input type="hidden" name="me_id" id="me_id" value="<?= $rsRegistro['id'] ;?>">
+    <form class="app-form" id="form_ensino_modalidade_etapa" name="form_ensino_modalidade_etapa" method="post" action="">
+      <input type="hidden" name="ne_id" id="ne_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -78,16 +80,31 @@ $descricaoFormulario5     = "Defina se esse cadastro de modalidade de ensino est
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome da Modalidade de Ensino',
+                  /*string*/    'label'       => 'Nome da Etapa de Ensino',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'me_nome',
-                  /*string*/    'id'          => 'me_nome',
+                  /*string*/    'name'        => 'eme_nome',
+                  /*string*/    'id'          => 'eme_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Digite o nome da Modalidade de Ensino',
+                  /*string*/    'placeholder' => 'Digite o nome da Etapa de Ensino',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
+                  /*string*/    'prop'        => ''
+                )) ;?>
+              </div>
+              <div class="row">
+                <?= createTextArea(array(
+                  /*int 1-12*/  'col'         => 12,
+                  /*string*/    'label'       => 'Descrição',
+                  /*string*/    'name'        => 'eme_descricao',
+                  /*string*/    'id'          => 'eme_descricao',
+                  /*string*/    'class'       => 'form-control',
+                  /*int*/       'minlength'   => 3,
+                  /*int*/       'maxlength'   => 254,
+                  /*string*/    'placeholder' => 'Descreva a Etapa de Ensino',
+                  /*string*/    'value'       => $rsRegistro['descricao'],
+                  /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
                 )) ;?>
               </div>
@@ -112,8 +129,8 @@ $descricaoFormulario5     = "Defina se esse cadastro de modalidade de ensino est
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Ativo',
                   /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'me_status',
-                  /*string*/    'id'          => 'me_status',
+                  /*string*/    'name'        => 'eme_status',
+                  /*string*/    'id'          => 'eme_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
                   /*string*/    'checked'     => $rsRegistro['status'],
@@ -155,4 +172,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de modalidade de ensino est
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/modalidade_ensino/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_modalidade_etapa/cadastrar.js"></script>

@@ -4,27 +4,28 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/bsc/nivel_ensino/listar');
+  header('Location: '.PORTAL_URL.'view/bsc/modalidade_ensino/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
 $stmt = $db->prepare("SELECT 
-  ne.id,
-  ne.status,
-  ne.dt_cadastro,
-  ne.nome
-  FROM ue_nivel_ensino AS ne
-  WHERE ne.id = ? ;");
+  emt.id,
+  emt.status,
+  emt.dt_cadastro,
+  emt.nome,
+  emt.descricao
+  FROM ue_ens_modadlidade_tipo AS emt
+  WHERE emt.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem do Nivel de Ensino";
-$descricaoPagina          = "Informações do nivel de ensino";
-$tituloFormulario1        = "Tabela informações do Nivel de Ensino";
-$descricaoFormulario1     = "Dados de informações do nivel de ensino cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do nivel de ensino cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem da Modalidade de Ensino";
+$descricaoPagina          = "Informações da modalidade de ensino";
+$tituloFormulario1        = "Tabela informações da Modalidade de Ensino";
+$descricaoFormulario1     = "Dados de informações da modalidade de ensino cadastrada no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações da modalidade de ensino cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -43,7 +44,7 @@ $tituloImpressao          = "Relatório de informações do nivel de ensino cada
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Nivel de Ensino</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Modalidade de Ensino</a>
           </li>
         </ul>
       </div>
@@ -90,6 +91,10 @@ $tituloImpressao          = "Relatório de informações do nivel de ensino cada
                     <td>Nome</td>
                     <td><?= $rsRegistro['nome']; ?></td>
                   </tr>
+                  <tr>
+                    <td>Descrição</td>
+                    <td><?= $rsRegistro['descricao']; ?></td>
+                  </tr>
                 </tbody>
                   <!-- <td><span class="badge text-light-primary">System Architect</span></td>
                   <td><span class="badge text-light-success">Accountant</span></td>
@@ -113,4 +118,4 @@ $tituloImpressao          = "Relatório de informações do nivel de ensino cada
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/nivel_ensino/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_modalidade_tipo/visualizar.js"></script>

@@ -14,7 +14,7 @@ $stmt = $db->prepare("SELECT
   fs.dt_cadastro,
   fs.nome,
   fs.descricao
-  FROM ue_funcionamento_situacao AS fs
+  FROM ue_funcionam_situacao AS fs
   WHERE fs.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();

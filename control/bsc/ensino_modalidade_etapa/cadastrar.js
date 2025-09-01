@@ -10,9 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_nivel_ensino',
-      urlToSend:      'model/bsc/nivel_ensino/salvar_nivel_ensino',
-      urlToGo:        'view/bsc/nivel_ensino/listar'
+      formId:         'form_ensino_modalidade_etapa',
+      urlToSend:      'model/bsc/ensino_modalidade_etapa/salvar_ensino_modalidade_etapa',
+      urlToGo:        'view/bsc/ensino_modalidade_etapa/listar'
     };
     ajaxSendCadastrar(params);
   });

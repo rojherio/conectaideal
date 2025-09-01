@@ -1,0 +1,16 @@
+control/bsc/cat_esc_priv/visualizar.js
+control/bsc/categoria_escola_privada/cadastrar.js
+control/bsc/categoria_escola_privada/listar.js
+control/bsc/categoria_escola_privada/visualizar.js
+control/bsc/ens_atend_tipo/visualizar.js
+control/bsc/ensino_atendimento_tipo/cadastrar.js
+control/bsc/ensino_atendimento_tipo/listar.js
+control/bsc/ensino_atendimento_tipo/visualizar.js
+model/bsc/categoria_escola_privada/salvar_categoria_escola_privada.php
+model/bsc/ensino_atendimento_tipo/salvar_ensino_atendimento_tipo.php
+view/bsc/categoria_escola_privada/cadastrar.php
+view/bsc/categoria_escola_privada/listar.php
+view/bsc/categoria_escola_privada/visualizar.php
+view/bsc/ensino_atendimento_tipo/cadastrar.php
+view/bsc/ensino_atendimento_tipo/listar.php
+view/bsc/ensino_atendimento_tipo/visualizar.php

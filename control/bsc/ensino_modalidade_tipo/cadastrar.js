@@ -10,9 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_modalidade_ensino',
-      urlToSend:      'model/bsc/modalidade_ensino/salvar_modalidade_ensino',
-      urlToGo:        'view/bsc/modalidade_ensino/listar'
+      formId:         'form_ensino_modalidade_tipo',
+      urlToSend:      'model/bsc/ensino_modalidade_tipo/salvar_ensino_modalidade_tipo',
+      urlToGo:        'view/bsc/ensino_modalidade_tipo/listar'
     };
     ajaxSendCadastrar(params);
   });

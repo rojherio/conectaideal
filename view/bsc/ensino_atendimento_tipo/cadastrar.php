@@ -11,7 +11,7 @@ $stmt = $db->prepare("SELECT
   eat.dt_cadastro,
   eat.nome,
   eat.descricao
-  FROM ue_ensino_atendimento_tipo AS eat
+  FROM ue_ens_atend_tipo AS eat
   WHERE eat.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -94,10 +94,9 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de atendimento est�
                 )) ;?>
               </div>
               <div class="row">
-                <?= createInput(array(
+                <?= createTextArea(array(
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
-                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'eat_descricao',
                   /*string*/    'id'          => 'eat_descricao',
                   /*string*/    'class'       => 'form-control',

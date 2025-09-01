@@ -1,10 +1,11 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['me_id']?: '');
-$status                                   = strip_tags(@$_POST['me_status']?: 0);
+$id                                       = strip_tags(@$_POST['eme_id']?: '');
+$status                                   = strip_tags(@$_POST['eme_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['me_nome']?: ''))));
-$tableName      = 'ue_modalidade_ensino';
+$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['eme_nome']?: ''))));
+$descricao                                = trim(strip_tags(@$_POST['eme_descricao']?: ''));
+$tableName      = 'ue_ens_modalidade_etapa';
 $error          = false;
 $result         = array();
 $msg            = "";
@@ -25,13 +26,15 @@ try {
         SET
         status = ?,
         dt_cadastro = ?,
-        nome = ?
+        nome = ?,
+        descricao = ?
         WHERE id = ?
         ');
     $stmt->bindValue(1, $status);
     $stmt->bindValue(2, $dt_cadastro);
     $stmt->bindValue(3, $nome);
-    $stmt->bindValue(4, $id);
+    $stmt->bindValue(4, $descricao);
+    $stmt->bindValue(5, $id);
     $stmt->execute();
     $db->commit();
       //MENSAGEM DE SUCESSO
@@ -66,10 +69,12 @@ try {
         (
           status,
           dt_cadastro,
-          nome
+          nome,
+          descricao
           ) 
         VALUES
         (
+          ?, 
           ?, 
           ?, 
           ?
@@ -77,6 +82,7 @@ try {
       $stmt->bindValue(1, $status);
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $nome);
+      $stmt->bindValue(4, $descricao);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       $db->commit();

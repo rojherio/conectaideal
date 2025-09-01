@@ -5,11 +5,12 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  ne.id,
-  ne.status,
-  ne.dt_cadastro,
-  ne.nome
-  FROM ue_nivel_ensino AS ne
+  eme.id,
+  eme.status,
+  eme.dt_cadastro,
+  eme.nome,
+  eme.descricao
+  FROM ue_ens_modalidade_etapa AS eme
   ORDER BY ne.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -78,6 +79,7 @@ $tituloImpressao          = "Relatório de niveis de ensino cadastradas no siste
                     <tr>
                       <th>#</th>
                       <th>Nome</th>
+                      <th>Descrição</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
@@ -92,6 +94,7 @@ $tituloImpressao          = "Relatório de niveis de ensino cadastradas no siste
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
+                        <td id="td_descricao"><?= $vObj['descricao']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
@@ -131,4 +134,4 @@ $tituloImpressao          = "Relatório de niveis de ensino cadastradas no siste
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/nivel_ensino/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_modalidade_etapa/listar.js"></script>

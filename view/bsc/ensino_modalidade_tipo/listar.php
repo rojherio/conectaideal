@@ -5,12 +5,13 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  me.id,
-  me.status,
-  me.dt_cadastro,
-  me.nome
-  FROM ue_modalidade_ensino AS me
-  ORDER BY me.nome");
+  emt.id,
+  emt.status,
+  emt.dt_cadastro,
+  emt.nome,
+  emt.descricao
+  FROM ue_ens_modadlidade_tipo AS emt
+  ORDER BY emt.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
@@ -78,6 +79,7 @@ $tituloImpressao          = "Relatório de modalidades de ensino cadastradas no 
                     <tr>
                       <th>#</th>
                       <th>Nome</th>
+                      <th>Descrição</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
@@ -92,6 +94,7 @@ $tituloImpressao          = "Relatório de modalidades de ensino cadastradas no 
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
+                        <td id="td_descricao"><?= $vObj['descricao']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
@@ -131,4 +134,4 @@ $tituloImpressao          = "Relatório de modalidades de ensino cadastradas no 
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/modalidade_ensino/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_modalidade_tipo/listar.js"></script>
