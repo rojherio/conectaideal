@@ -4,28 +4,28 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/bsc/ensino_atendimento_tipo/listar');
+  header('Location: '.PORTAL_URL.'view/bsc/cat_esc_priv/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
 $stmt = $db->prepare("SELECT 
-  eat.id,
-  eat.status,
-  eat.dt_cadastro,
-  eat.nome,
-  eat.descricao
-  FROM ue_ensino_atendimento_tipo AS eat
-  WHERE eat.id = ? ;");
+  cep.id,
+  cep.status,
+  cep.dt_cadastro,
+  cep.nome,
+  cep.descricao
+  FROM ue_cat_esc_priv AS cep
+  WHERE cep.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem do Tipo de Atendimento";
-$descricaoPagina          = "Informações do tipo de atendimento";
-$tituloFormulario1        = "Tabela informações do Tipo de Atendimento";
-$descricaoFormulario1     = "Dados de informações do tipo de atendimento cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do tipo de atendimento cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem da Categoria de Escola Privada";
+$descricaoPagina          = "Informações da categoria de escola privada";
+$tituloFormulario1        = "Tabela informações da Categoria de Escola Privada";
+$descricaoFormulario1     = "Dados de informações da categoria de escola privada cadastrada no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações da categoria de escola privada cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -44,7 +44,7 @@ $tituloImpressao          = "Relatório de informações do tipo de atendimento 
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Atendimento</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Categoria de Escola Privada</a>
           </li>
         </ul>
       </div>
@@ -118,4 +118,4 @@ $tituloImpressao          = "Relatório de informações do tipo de atendimento 
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_atendimento_tipo/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/cat_esc_priv/visualizar.js"></script>

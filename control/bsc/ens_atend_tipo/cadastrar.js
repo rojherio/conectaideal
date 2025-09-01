@@ -10,9 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_categoria_escola_privada',
-      urlToSend:      'model/bsc/categoria_escola_privada/salvar_categoria_escola_privada',
-      urlToGo:        'view/bsc/categoria_escola_privada/listar'
+      formId:         'form_ens_atend_tipo',
+      urlToSend:      'model/bsc/ens_atend_tipo/salvar_ens_atend_tipo',
+      urlToGo:        'view/bsc/ens_atend_tipo/listar'
     };
     ajaxSendCadastrar(params);
   });

@@ -5,22 +5,22 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  eat.id,
-  eat.status,
-  eat.dt_cadastro,
-  eat.nome,
-  eat.descricao
-  FROM ue_ensino_atendimento_tipo AS eat
-  ORDER BY eat.nome");
+  cep.id,
+  cep.status,
+  cep.dt_cadastro,
+  cep.nome,
+  cep.descricao
+  FROM ue_cat_esc_priv AS cep
+  ORDER BY cep.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Tipos de Atendimento";
-$descricaoPagina          = "Informações de tipos de atendimento";
-$tituloFormulario1        = "Tabela com listagem de Tipos de Atendimento";
-$descricaoFormulario1     = "Dados de identificação de tipos de atendimento";
-$tituloImpressao          = "Relatório de tipos de atendimento cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Categorias de Escola Privada";
+$descricaoPagina          = "Informações de categorias de escola privada";
+$tituloFormulario1        = "Tabela com listagem de Categorias de Escola Privada";
+$descricaoFormulario1     = "Dados de identificação de categorias de escola privada";
+$tituloImpressao          = "Relatório de categorias de escola privada cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -39,7 +39,7 @@ $tituloImpressao          = "Relatório de tipos de atendimento cadastradas no s
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipos de Atendimento</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Categorias de Escola Privada</a>
           </li>
         </ul>
       </div>
@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de tipos de atendimento cadastradas no s
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_atendimento_tipo/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/cat_esc_priv/listar.js"></script>

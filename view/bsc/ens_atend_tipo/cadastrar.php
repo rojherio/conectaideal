@@ -11,7 +11,7 @@ $stmt = $db->prepare("SELECT
   eat.dt_cadastro,
   eat.nome,
   eat.descricao
-  FROM ue_ensino_atendimento_tipo AS eat
+  FROM ue_ens_atend_tipo AS eat
   WHERE eat.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -63,7 +63,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de atendimento est�
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_ensino_atendimento_tipo" name="form_ensino_atendimento_tipo" method="post" action="">
+    <form class="app-form" id="form_ens_atend_tipo" name="form_ens_atend_tipo" method="post" action="">
       <input type="hidden" name="eat_id" id="eat_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
@@ -173,4 +173,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de atendimento est�
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_atendimento_tipo/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ens_atend_tipo/cadastrar.js"></script>

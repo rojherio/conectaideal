@@ -11,7 +11,7 @@ $stmt = $db->prepare("SELECT
   cep.dt_cadastro,
   cep.nome,
   cep.descricao
-  FROM ue_categoria_escola_privada AS cep
+  FROM ue_cat_esc_priv AS cep
   WHERE cep.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -63,7 +63,7 @@ $descricaoFormulario5     = "Defina se esse cadastro da categoria de escola priv
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_categoria_escola_privada" name="form_categoria_escola_privada" method="post" action="">
+    <form class="app-form" id="form_cat_esc_priv" name="form_cat_esc_priv" method="post" action="">
       <input type="hidden" name="cep_id" id="cep_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
@@ -173,4 +173,4 @@ $descricaoFormulario5     = "Defina se esse cadastro da categoria de escola priv
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/categoria_escola_privada/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/cat_esc_priv/cadastrar.js"></script>
