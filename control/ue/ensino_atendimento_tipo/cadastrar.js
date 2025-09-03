@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_ensino_atendimento_tipo',
-      urlToSend:      'model/bsc/ensino_atendimento_tipo/ensino_atendimento_tipo',
-      urlToGo:        'view/bsc/ensino_atendimento_tipo/listar'
+      urlToSend:      'model/ue/ensino_atendimento_tipo/ensino_atendimento_tipo',
+      urlToGo:        'view/ue/ensino_atendimento_tipo/listar'
     };
     ajaxSendCadastrar(params);
   });

@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_porte',
-      urlToSend:      'model/bsc/porte/salvar_porte',
-      urlToGo:        'view/bsc/porte/listar'
+      urlToSend:      'model/ue/porte/salvar_porte',
+      urlToGo:        'view/ue/porte/listar'
     };
     ajaxSendCadastrar(params);
   });

@@ -4,7 +4,7 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/bsc/categoria_escola_privada/listar');
+  header('Location: '.PORTAL_URL.'view/ue/categoria_escola_privada/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
@@ -118,4 +118,4 @@ $tituloImpressao          = "Relatório de informações da categoria de escola 
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/categoria_escola_privada/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/categoria_escola_privada/visualizar.js"></script>

@@ -131,4 +131,4 @@ $tituloImpressao          = "Relatório de turnos cadastradas no sistema DELFOS"
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/turno/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/turno/listar.js"></script>

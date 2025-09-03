@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_pessoa',
-      urlToSend:      'model/bsc/pessoa_juridica/salvar_pessoa',
-      urlToGo:        'view/bsc/pessoa_juridica/listar'
+      urlToSend:      'model/ue/pessoa_juridica/salvar_pessoa',
+      urlToGo:        'view/ue/pessoa_juridica/listar'
     };
     ajaxSendCadastrar(params);
   });

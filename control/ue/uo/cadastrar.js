@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_uo',
-      urlToSend:      'model/bsc/uo/salvar_uo',
-      urlToGo:        'view/bsc/uo/listar'
+      urlToSend:      'model/ue/uo/salvar_uo',
+      urlToGo:        'view/ue/uo/listar'
     };
     ajaxSendCadastrar(params);
   });

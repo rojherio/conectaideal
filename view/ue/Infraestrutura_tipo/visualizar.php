@@ -4,7 +4,7 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/bsc/infraestrutura_tipo/listar');
+  header('Location: '.PORTAL_URL.'view/ue/infraestrutura_tipo/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
@@ -113,4 +113,4 @@ $tituloImpressao          = "Relatório de informações do tipo de infraestrutu
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/infraestrutura_tipo/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/infraestrutura_tipo/visualizar.js"></script>

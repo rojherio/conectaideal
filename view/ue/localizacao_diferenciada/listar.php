@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de localizações diferenciada cadastrad
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/localizacao_diferenciada/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/localizacao_diferenciada/listar.js"></script>

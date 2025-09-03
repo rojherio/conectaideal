@@ -172,4 +172,4 @@ $descricaoFormulario5     = "Defina se esse cadastro da localização diferencia
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/localizacao_diferenciada/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/localizacao_diferenciada/cadastrar.js"></script>

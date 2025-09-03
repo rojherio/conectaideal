@@ -155,4 +155,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de turno está ativo ou ina
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/turno/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/turno/cadastrar.js"></script>

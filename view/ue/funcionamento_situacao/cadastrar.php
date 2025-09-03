@@ -172,4 +172,4 @@ $descricaoFormulario5     = "Defina se esse cadastro da situação de funcioname
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/funcionamento_situacao/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/funcionamento_situacao/cadastrar.js"></script>

@@ -131,4 +131,4 @@ $tituloImpressao          = "Relatório de tipos de unidade organizacional cadas
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/uo_tipo/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/uo_tipo/listar.js"></script>

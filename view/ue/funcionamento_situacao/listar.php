@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de situações de funcionamento cadastra
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/funcionamento_situacao/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/funcionamento_situacao/listar.js"></script>

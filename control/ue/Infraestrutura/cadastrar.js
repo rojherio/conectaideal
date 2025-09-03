@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_infraestrutura',
-      urlToSend:      'model/bsc/infraestrutura/salvar_infraestrutura',
-      urlToGo:        'view/bsc/infraestrutura/listar'
+      urlToSend:      'model/ue/infraestrutura/salvar_infraestrutura',
+      urlToGo:        'view/ue/infraestrutura/listar'
     };
     ajaxSendCadastrar(params);
   });

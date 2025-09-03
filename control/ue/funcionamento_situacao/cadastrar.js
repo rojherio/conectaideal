@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_funcionamento_situacao',
-      urlToSend:      'model/bsc/funcionamento_situacao/salvar_funcionamento_situacao',
-      urlToGo:        'view/bsc/funcionamento_situacao/listar'
+      urlToSend:      'model/ue/funcionamento_situacao/salvar_funcionamento_situacao',
+      urlToGo:        'view/ue/funcionamento_situacao/listar'
     };
     ajaxSendCadastrar(params);
   });

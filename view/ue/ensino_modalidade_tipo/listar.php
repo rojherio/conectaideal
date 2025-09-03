@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de modalidades de ensino cadastradas no 
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_modalidade_tipo/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/ensino_modalidade_tipo/listar.js"></script>

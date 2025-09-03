@@ -136,4 +136,4 @@ $tituloImpressao          = "Relatório de infraestruturas cadastradas no sistem
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/infraestrutura/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/infraestrutura/listar.js"></script>

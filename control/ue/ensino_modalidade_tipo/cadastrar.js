@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_ensino_modalidade_tipo',
-      urlToSend:      'model/bsc/ensino_modalidade_tipo/salvar_ensino_modalidade_tipo',
-      urlToGo:        'view/bsc/ensino_modalidade_tipo/listar'
+      urlToSend:      'model/ue/ensino_modalidade_tipo/salvar_ensino_modalidade_tipo',
+      urlToGo:        'view/ue/ensino_modalidade_tipo/listar'
     };
     ajaxSendCadastrar(params);
   });

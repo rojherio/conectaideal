@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_ensino_modalidade_etapa',
-      urlToSend:      'model/bsc/ensino_modalidade_etapa/salvar_ensino_modalidade_etapa',
-      urlToGo:        'view/bsc/ensino_modalidade_etapa/listar'
+      urlToSend:      'model/ue/ensino_modalidade_etapa/salvar_ensino_modalidade_etapa',
+      urlToGo:        'view/ue/ensino_modalidade_etapa/listar'
     };
     ajaxSendCadastrar(params);
   });

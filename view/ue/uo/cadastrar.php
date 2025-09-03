@@ -180,4 +180,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade organizacional e
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/uo/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/uo/cadastrar.js"></script>

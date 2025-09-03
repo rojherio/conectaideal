@@ -173,4 +173,4 @@ $descricaoFormulario5     = "Defina se esse cadastro da categoria de escola priv
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/categoria_escola_privada/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/categoria_escola_privada/cadastrar.js"></script>

@@ -1,22 +1,22 @@
 $(document).ready(function () {
 });
 function btnNovo(){
-  postToURL(PORTAL_URL + 'view/bsc/infraestrutura_tipo/cadastrar/');
+  postToURL(PORTAL_URL + 'view/ue/infraestrutura_tipo/cadastrar/');
 };
 function btnVisualizar(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
-  postToURL(PORTAL_URL + 'view/bsc/infraestrutura_tipo/visualizar/' + id);
+  postToURL(PORTAL_URL + 'view/ue/infraestrutura_tipo/visualizar/' + id);
 };
 function btnEditar(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
-  postToURL(PORTAL_URL + 'view/bsc/infraestrutura_tipo/cadastrar', {id: id});
+  postToURL(PORTAL_URL + 'view/ue/infraestrutura_tipo/cadastrar', {id: id});
 };
 function btnExcluir(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
   let params = {
     id:             id,
-    urlToSend:      'model/bsc/infraestrutura_tipo/excluir',
-    urlToGo:        'view/bsc/infraestrutura_tipo/listar'
+    urlToSend:      'model/ue/infraestrutura_tipo/excluir',
+    urlToGo:        'view/ue/infraestrutura_tipo/listar'
   };
   ajaxSendExcluir(params);
 }

@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de categorias de escola privada cadastra
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/categoria_escola_privada/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/categoria_escola_privada/listar.js"></script>

@@ -4,7 +4,7 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/bsc/funcionamento_situacao/listar');
+  header('Location: '.PORTAL_URL.'view/ue/funcionamento_situacao/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
@@ -118,4 +118,4 @@ $tituloImpressao          = "Relatório de informações de situação de funcio
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/funcionamento_situacao/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/funcionamento_situacao/visualizar.js"></script>

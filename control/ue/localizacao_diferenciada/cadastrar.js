@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_localizacao_diferenciada',
-      urlToSend:      'model/bsc/localizacao_diferenciada/salvar_localizacao_diferenciada',
-      urlToGo:        'view/bsc/localizacao_diferenciada/listar'
+      urlToSend:      'model/ue/localizacao_diferenciada/salvar_localizacao_diferenciada',
+      urlToGo:        'view/ue/localizacao_diferenciada/listar'
     };
     ajaxSendCadastrar(params);
   });

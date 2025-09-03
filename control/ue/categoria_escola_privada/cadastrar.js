@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_categoria_escola_privada',
-      urlToSend:      'model/bsc/categoria_escola_privada/salvar_categoria_escola_privada',
-      urlToGo:        'view/bsc/categoria_escola_privada/listar'
+      urlToSend:      'model/ue/categoria_escola_privada/salvar_categoria_escola_privada',
+      urlToGo:        'view/ue/categoria_escola_privada/listar'
     };
     ajaxSendCadastrar(params);
   });

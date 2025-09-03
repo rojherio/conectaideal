@@ -11,8 +11,8 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         'form_turno',
-      urlToSend:      'model/bsc/turno/salvar_turno',
-      urlToGo:        'view/bsc/turno/listar'
+      urlToSend:      'model/ue/turno/salvar_turno',
+      urlToGo:        'view/ue/turno/listar'
     };
     ajaxSendCadastrar(params);
   });

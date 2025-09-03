@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de tipos de atendimento cadastradas no s
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_atendimento_tipo/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/ensino_atendimento_tipo/listar.js"></script>
