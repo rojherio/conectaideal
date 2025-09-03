@@ -5,26 +5,24 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  um.id,
-  um.status,
-  um.dt_cadastro,
-  um.nome,
-  um.simbolo,
-  um.equivalencia,
-  um.bsc_grandeza_id,
-  g.nome AS grandeza_nome
-  FROM bsc_unidade_medida AS um 
-  LEFT JOIN bsc_grandeza AS g ON g.id = um.bsc_grandeza_id
-  ORDER BY um.nome");
+  u.id,
+  u.status,
+  u.dt_cadastro,
+  u.nome,
+  u.ue_uo_tipo_id,
+  ut.nome AS uo_tipo_nome
+  FROM ue_uo AS u
+  LEFT JOIN ue_uo_tipo AS ut ON ut.id = ue_uo_tipo_id
+  ORDER BY u.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Unidades de Medida";
-$descricaoPagina          = "Informações de unidades de medida";
-$tituloFormulario1        = "Tabela com listagem de Unidades de Medida";
-$descricaoFormulario1     = "Dados de identificação de unidades de medida";
-$tituloImpressao          = "Relatório de unidades de medida cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Unidades Organizacionais";
+$descricaoPagina          = "Informações de unidades organizacionais";
+$tituloFormulario1        = "Tabela com listagem de Unidades Organizacionais";
+$descricaoFormulario1     = "Dados de identificação de unidades organizacionais";
+$tituloImpressao          = "Relatório de unidades organizacionais cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -43,7 +41,7 @@ $tituloImpressao          = "Relatório de unidades de medida cadastradas no sis
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Unidade de Medida</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Unidades Organizacionais</a>
           </li>
         </ul>
       </div>
@@ -82,10 +80,8 @@ $tituloImpressao          = "Relatório de unidades de medida cadastradas no sis
                   <thead class="bg-inverse">
                     <tr>
                       <th>#</th>
-                      <th>Grandeza</th>
+                      <th>Tipo</th>
                       <th>Nome</th>
-                      <th>Símbolo</th>
-                      <th>Equivalência</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
@@ -99,10 +95,8 @@ $tituloImpressao          = "Relatório de unidades de medida cadastradas no sis
                       <tr>
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
-                        <td id="td_grandeza"><?= $vObj['grandeza_nome']; ?></td>
+                        <td id="td_uo_tipo"><?= $vObj['uo_tipo_nome']; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
-                        <td id="td_simbolo"><?= $vObj['simbolo']; ?></td>
-                        <td id="td_equivalencia"><?= $vObj['equivalencia']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
@@ -142,4 +136,4 @@ $tituloImpressao          = "Relatório de unidades de medida cadastradas no sis
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/unidade_medida/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/uo/listar.js"></script>

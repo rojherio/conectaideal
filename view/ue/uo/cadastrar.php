@@ -6,15 +6,13 @@ $id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
-  um.id,
-  um.status,
-  um.dt_cadastro,
-  um.nome,
-  um.simbolo,
-  um.equivalencia,
-  um.bsc_grandeza_id
-  FROM bsc_unidade_medida AS um
-  WHERE um.id = ? ;");
+  u.id,
+  u.status,
+  u.dt_cadastro,
+  u.nome,
+  u.ue_uo_tipo_id
+  FROM ue_uo AS u
+  WHERE u.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -22,29 +20,34 @@ if (!is_array($rsRegistro)) {
   $rsRegistro = array();
   $rsRegistro['id'] = 0;
   $rsRegistro['status'] = 1;
+  $rsRegistro['dt_cadastro'] = '';
   $rsRegistro['nome'] = '';
-  $rsRegistro['simbolo'] = '';
-  $rsRegistro['equivalencia'] = '';
-  $rsRegistro['bsc_grandeza_id'] = '';
+  $rsRegistro['ue_uo_tipo_id'] = '';
 }
 //Consulta para Edição - END
 //Consulta para Select - BEGIN
 $stmt = $db->prepare("SELECT 
-  g.id,
-  g.nome
-  FROM bsc_grandeza AS g
-  WHERE g.status = 1
-  ORDER BY g.nome");
+  ut.id,
+  ut.nome
+  FROM ue_uo_tipo AS ut
+  WHERE ut.status = 1
+  ORDER BY ut.nome");
 $stmt->execute();
-$rsGrandezas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rsRegistro2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Unidade de Medida";
-$descricaoPagina          = "Informações de unidade de medida";
-$tituloFormulario1        = "Dados de Unidade de Medida";
-$descricaoFormulario1     = "Dados de identificação da unidade de medida";
+$tituloPagina             = "Cadastro da Unidade Organizacional";
+$descricaoPagina          = "Informações da unidade organizacional";
+$tituloFormulario1        = "Dados da Unidade Organizacional";
+$descricaoFormulario1     = "Dados da identificação da unidade organizacional";
+$tituloFormulario2        = "";
+$descricaoFormulario2     = "";
+$tituloFormulario3        = "";
+$descricaoFormulario3     = "";
+$tituloFormulario4        = "";
+$descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de unidade organizacional está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -63,15 +66,15 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Unidade de Medida</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Unidade Organizacional</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_unidade_medida" name="form_unidade_medida" method="post" action="">
-      <input type="hidden" name="um_id" id="um_id" value="<?= $rsRegistro['id'] ;?>">
+    <form class="app-form" id="form_uo" name="form_uo" method="post" action="">
+      <input type="hidden" name="u_id" id="u_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -86,58 +89,28 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
               <!-- div row input - BEGIN -->
               <div class="row">
                 <?= createInput(array(
-                  /*int 1-12*/  'col'         => 8,
-                  /*string*/    'label'       => 'Nome',
+                  /*int 1-12*/  'col'         => 6,
+                  /*string*/    'label'       => 'Nome da Unidade Organizacional',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'um_nome',
-                  /*string*/    'id'          => 'um_nome',
+                  /*string*/    'name'        => 'u_nome',
+                  /*string*/    'id'          => 'u_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 45,
-                  /*string*/    'placeholder' => 'Digite o nome da unidade de medida',
+                  /*string*/    'placeholder' => 'Digite o nome da Unidade Organizacional',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*string*/    'label'       => 'Símbolo',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'um_simbolo',
-                  /*string*/    'id'          => 'um_simbolo',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 1,
-                  /*int*/       'maxlength'   => 10,
-                  /*string*/    'placeholder' => 'Digite o símbolo',
-                  /*string*/    'value'       => $rsRegistro['simbolo'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <div class="row">
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*string*/    'label'       => 'Equivalência',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'um_equivalencia',
-                  /*string*/    'id'          => 'um_equivalencia',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 2,
-                  /*int*/       'maxlength'   => 20,
-                  /*string*/    'placeholder' => 'Digite a Equivalência',
-                  /*string*/    'value'       => $rsRegistro['equivalencia'],
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => ''
-                )) ;?>
                 <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 4,
-                  /*string*/    'label'       => 'Grandeza',
-                  /*string*/    'name'        => 'um_bsc_grandeza_id',
-                  /*string*/    'id'          => 'um_bsc_grandeza_id',
+                  /*int 1-12*/  'col'         => 6,
+                  /*string*/    'label'       => 'Tipo de Unidade Organizacional',
+                  /*string*/    'name'        => 'u_ue_uo_tipo_id',
+                  /*string*/    'id'          => 'u_ue_uo_tipo_id',
                   /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsRegistro['bsc_grandeza_id'],
-                  /*array()*/   'options'     => $rsGrandezas,
-                  /*string*/    'ariaLabel'   => 'Selecione uma grandeza',
+                  /*string*/    'value'       => $rsRegistro['ue_uo_tipo_id'],
+                  /*array()*/   'options'     => $rsRegistro2,
+                  /*string*/    'ariaLabel'   => 'Selecione um tipo',
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => '',
                   /*string*/    'display'     => true
@@ -164,8 +137,8 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Ativo',
                   /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'um_status',
-                  /*string*/    'id'          => 'um_status',
+                  /*string*/    'name'        => 'u_status',
+                  /*string*/    'id'          => 'u_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
                   /*string*/    'checked'     => $rsRegistro['status'],
@@ -207,4 +180,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/unidade_medida/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/uo/cadastrar.js"></script>

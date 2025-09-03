@@ -4,33 +4,28 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/bsc/unidade_medida/listar');
+  header('Location: '.PORTAL_URL.'view/bsc/ensino_atendimento_tipo/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
 $stmt = $db->prepare("SELECT 
-  um.id,
-  um.status,
-  um.dt_cadastro,
-  um.nome,
-  um.simbolo,
-  um.equivalencia,
-  um.bsc_grandeza_id,
-  g.nome AS grandeza_nome
-  FROM bsc_unidade_medida AS um 
-  LEFT JOIN bsc_grandeza AS g ON g.id = um.bsc_grandeza_id
-  WHERE um.id = ?
-  ORDER BY um.nome");
+  eat.id,
+  eat.status,
+  eat.dt_cadastro,
+  eat.nome,
+  eat.descricao
+  FROM ue_ens_atend_tipo AS eat
+  WHERE eat.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Unidade de Medida";
-$descricaoPagina          = "Informações da unidade de medida";
-$tituloFormulario1        = "Tabela informações da Unidade de Medida";
-$descricaoFormulario1     = "Dados de informações da unidade de medida cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da unidade de medida cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem do Tipo de Atendimento";
+$descricaoPagina          = "Informações do tipo de atendimento";
+$tituloFormulario1        = "Tabela informações do Tipo de Atendimento";
+$descricaoFormulario1     = "Dados de informações do tipo de atendimento cadastrada no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações do tipo de atendimento cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -49,7 +44,7 @@ $tituloImpressao          = "Relatório de informações da unidade de medida ca
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Unidade de Medida</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Atendimento</a>
           </li>
         </ul>
       </div>
@@ -93,20 +88,12 @@ $tituloImpressao          = "Relatório de informações da unidade de medida ca
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Grandeza</td>
-                    <td><?= $rsRegistro['grandeza_nome']; ?></td>
-                  </tr>
-                  <tr>
                     <td>Nome</td>
                     <td><?= $rsRegistro['nome']; ?></td>
                   </tr>
                   <tr>
-                    <td>Simbolo</td>
-                    <td><?= $rsRegistro['simbolo']; ?></td>
-                  </tr>
-                  <tr>
-                    <td>Equivalencia</td>
-                    <td><?= $rsRegistro['equivalencia']; ?></td>
+                    <td>Descrição</td>
+                    <td><?= $rsRegistro['descricao']; ?></td>
                   </tr>
                 </tbody>
                   <!-- <td><span class="badge text-light-primary">System Architect</span></td>
@@ -131,4 +118,4 @@ $tituloImpressao          = "Relatório de informações da unidade de medida ca
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/unidade_medida/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/ensino_atendimento_tipo/visualizar.js"></script>
