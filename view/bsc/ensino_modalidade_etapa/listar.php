@@ -9,9 +9,12 @@ $stmt = $db->prepare("SELECT
   eme.status,
   eme.dt_cadastro,
   eme.nome,
-  eme.descricao
+  eme.descricao,
+  eme.ue_ens_modalidade_tipo_id, 
+  emt.nome AS modalidade_nome
   FROM ue_ens_modalidade_etapa AS eme
-  ORDER BY ne.nome");
+  LEFT JOIN ue_ens_modalidade_tipo AS emt ON emt.id = eme.ue_ens_modalidade_tipo_id
+  ORDER BY emt.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
@@ -78,7 +81,8 @@ $tituloImpressao          = "Relatório de niveis de ensino cadastradas no siste
                   <thead class="bg-inverse">
                     <tr>
                       <th>#</th>
-                      <th>Nome</th>
+                      <th>Modalidade</th>
+                      <th>Etapa</th>
                       <th>Descrição</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
@@ -93,6 +97,7 @@ $tituloImpressao          = "Relatório de niveis de ensino cadastradas no siste
                       <tr>
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
+                        <td id="td_nome"><?= $vObj['modalidade_nome']; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
                         <td id="td_descricao"><?= $vObj['descricao']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>

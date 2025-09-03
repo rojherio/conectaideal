@@ -10,7 +10,8 @@ $stmt = $db->prepare("SELECT
   eme.status,
   eme.dt_cadastro,
   eme.nome,
-  eme.descricao
+  eme.descricao,
+  eme.ue_ens_modalidade_tipo_id
   FROM ue_ens_modalidade_etapa AS eme
   WHERE eme.id = ? ;");
 $stmt->bindValue(1, $id);
@@ -23,8 +24,18 @@ if (!is_array($rsRegistro)) {
   $rsRegistro['dt_cadastro'] = '';
   $rsRegistro['nome'] = '';
   $rsRegistro['descricao'] = '';
+  $rsRegistro['ue_ens_modalidade_tipo_id'] = '';
 }
 //Consulta para Edição - END
+//Consulta para Select - BEGIN
+$stmt = $db->prepare("SELECT 
+  emt.id,
+  emt.nome
+  FROM ue_ens_modalidade_tipo AS emt
+  ORDER BY emt.nome");
+$stmt->execute();
+$rsRegistro2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro da Etapa de Ensino";
 $descricaoPagina          = "Informações da etapa de ensino";
@@ -64,7 +75,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
     <form class="app-form" id="form_ensino_modalidade_etapa" name="form_ensino_modalidade_etapa" method="post" action="">
-      <input type="hidden" name="ne_id" id="ne_id" value="<?= $rsRegistro['id'] ;?>">
+      <input type="hidden" name="eme_id" id="eme_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -92,6 +103,21 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
+              </div>
+              <div class="row">
+                <?= createSelect(array(
+                  /*int 1-12*/  'col'         => 12,
+                  /*string*/    'label'       => 'Modalidade de Ensino',
+                  /*string*/    'name'        => 'eme_ue_ens_modalidade_tipo_id',
+                  /*string*/    'id'          => 'eme_ue_ens_modalidade_tipo_id',
+                  /*string*/    'class'       => 'select2 form-control form-select select-basic',
+                  /*string*/    'value'       => $rsRegistro['ue_ens_modalidade_tipo_id'],
+                  /*array()*/   'options'     => $rsRegistro2,
+                  /*string*/    'ariaLabel'   => 'Selecione uma modalidade de ensino',
+                  /*bool*/      'required'    => true,
+                  /*string*/    'prop'        => '',
+                  /*string*/    'display'     => true
+                )); ?>
               </div>
               <div class="row">
                 <?= createTextArea(array(

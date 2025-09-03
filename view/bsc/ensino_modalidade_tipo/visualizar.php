@@ -14,7 +14,7 @@ $stmt = $db->prepare("SELECT
   emt.dt_cadastro,
   emt.nome,
   emt.descricao
-  FROM ue_ens_modadlidade_tipo AS emt
+  FROM ue_ens_modalidade_tipo AS emt
   WHERE emt.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();

@@ -13,8 +13,11 @@ $stmt = $db->prepare("SELECT
   eme.status,
   eme.dt_cadastro,
   eme.nome,
-  eme.descricao
+  eme.descricao,
+  eme.ue_ens_modalidade_tipo_id, 
+  emt.nome AS modalidade_nome
   FROM ue_ens_modalidade_etapa AS eme
+  LEFT JOIN ue_ens_modalidade_tipo AS emt ON emt.id = eme.ue_ens_modalidade_tipo_id
   WHERE eme.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -88,7 +91,11 @@ $tituloImpressao          = "Relatório de informações do nivel de ensino cada
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Nome</td>
+                    <td>Modalidade</td>
+                    <td><?= $rsRegistro['modalidade_nome']; ?></td>
+                  </tr>
+                  <tr>
+                    <td>Etapa</td>
                     <td><?= $rsRegistro['nome']; ?></td>
                   </tr>
                   <tr>

@@ -10,7 +10,7 @@ $stmt = $db->prepare("SELECT
   emt.dt_cadastro,
   emt.nome,
   emt.descricao
-  FROM ue_ens_modadlidade_tipo AS emt
+  FROM ue_ens_modalidade_tipo AS emt
   ORDER BY emt.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);

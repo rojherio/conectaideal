@@ -5,6 +5,7 @@ $status                                   = strip_tags(@$_POST['eme_status']?: 0
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['eme_nome']?: ''))));
 $descricao                                = trim(strip_tags(@$_POST['eme_descricao']?: ''));
+$ue_ens_modalidade_tipo_id                = strip_tags(@$_POST['eme_ue_ens_modalidade_tipo_id']?: '');
 $tableName      = 'ue_ens_modalidade_etapa';
 $error          = false;
 $result         = array();
@@ -27,14 +28,16 @@ try {
         status = ?,
         dt_cadastro = ?,
         nome = ?,
-        descricao = ?
+        descricao = ?,
+        ue_ens_modalidade_tipo_id = ?
         WHERE id = ?
         ');
     $stmt->bindValue(1, $status);
     $stmt->bindValue(2, $dt_cadastro);
     $stmt->bindValue(3, $nome);
     $stmt->bindValue(4, $descricao);
-    $stmt->bindValue(5, $id);
+    $stmt->bindValue(5, $ue_ens_modalidade_tipo_id);
+    $stmt->bindValue(6, $id);
     $stmt->execute();
     $db->commit();
       //MENSAGEM DE SUCESSO
@@ -45,10 +48,12 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT tb.nome
+      SELECT tb.nome, tb2.nome
       FROM '.$tableName.' AS tb 
-      WHERE tb.nome LIKE ?');
+      LEFT JOIN ue_ens_modalidade_tipo AS tb2 ON tb2.id = tb.ue_ens_modalidade_tipo_id
+      WHERE tb.nome LIKE ? AND tb.ue_ens_modalidade_tipo_id = ?');
     $stmt->bindValue(1, $nome);
+    $stmt->bindValue(2, $ue_ens_modalidade_tipo_id);
     $stmt->execute();
     $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
     if (is_array($rsExistente)) {
@@ -70,10 +75,12 @@ try {
           status,
           dt_cadastro,
           nome,
-          descricao
+          descricao,
+          ue_ens_modalidade_tipo_id
           ) 
         VALUES
         (
+          ?, 
           ?, 
           ?, 
           ?, 
@@ -83,6 +90,7 @@ try {
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $nome);
       $stmt->bindValue(4, $descricao);
+      $stmt->bindValue(5, $ue_ens_modalidade_tipo_id);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       $db->commit();

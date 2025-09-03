@@ -11,7 +11,7 @@ $stmt = $db->prepare("SELECT
   cep.dt_cadastro,
   cep.nome,
   cep.descricao
-  FROM ue_categoria_escola_privada AS cep
+  FROM ue_cat_esc_priv AS cep
   WHERE cep.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
