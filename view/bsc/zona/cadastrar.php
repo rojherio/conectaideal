@@ -94,10 +94,9 @@ $descricaoFormulario5     = "Defina se esse cadastro da zona está ativo ou inat
                 )) ;?>
               </div>
               <div class="row">
-                <?= createInput(array(
+                <?= createTextArea(array(
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
-                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'z_descricao',
                   /*string*/    'id'          => 'z_descricao',
                   /*string*/    'class'       => 'form-control',

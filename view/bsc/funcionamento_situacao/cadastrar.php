@@ -11,7 +11,7 @@ $stmt = $db->prepare("SELECT
   fs.dt_cadastro,
   fs.nome,
   fs.descricao
-  FROM ue_funcionamento_situacao AS fs
+  FROM ue_funcionam_situacao AS fs
   WHERE fs.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -94,10 +94,9 @@ $descricaoFormulario5     = "Defina se esse cadastro da situação de funcioname
                 )) ;?>
               </div>
               <div class="row">
-                <?= createInput(array(
+                <?= createTextArea(array(
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
-                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'fs_descricao',
                   /*string*/    'id'          => 'fs_descricao',
                   /*string*/    'class'       => 'form-control',

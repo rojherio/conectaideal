@@ -94,10 +94,9 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de atendimento est�
                 )) ;?>
               </div>
               <div class="row">
-                <?= createInput(array(
+                <?= createTextArea(array(
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
-                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'eat_descricao',
                   /*string*/    'id'          => 'eat_descricao',
                   /*string*/    'class'       => 'form-control',

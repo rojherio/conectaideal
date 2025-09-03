@@ -63,6 +63,19 @@
 //   /*bool*/      'required'    => true,
 //   /*string*/    'prop'        => ''
 // );
+// createTextArea(array(
+//   /*int 1-12*/  'col'         => 12,
+//   /*string*/    'label'       => 'Nome',
+//   /*string*/    'name'        => 'p_nome',
+//   /*string*/    'id'          => 'p_nome',
+//   /*string*/    'class'       => 'form-control',
+//   /*int*/       'minlength'   => 3,
+//   /*int*/       'maxlength'   => 254,
+//   /*string*/    'placeholder' => 'Digite o nome da pessoa',
+//   /*string*/    'value'       => $rsPessoa['nome'],
+//   /*bool*/      'required'    => true,
+//   /*string*/    'prop'        => ''
+// );
 function createInput($params) {
   $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
@@ -127,6 +140,15 @@ function createRadio($params) {
   $html   .= '      </div>';
   $html   .= '    </div>';
   $html   .= '  </div>';
+  return $html;
+}
+function createTextArea($params) {
+  $html  = '  <div class="col-md-'.$params['col'].'">';
+  $html .= '    <div class="div-validate form-floating mb-3">';
+  $html .= '      <textarea name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="'.$params['minlength'].'" maxlength="'.$params['maxlength'].'" placeholder="'.$params['placeholder'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>'.$params['value'].'</textarea>';
+  $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html .= '    </div>';
+  $html .= '  </div>';
   return $html;
 }
 ?>

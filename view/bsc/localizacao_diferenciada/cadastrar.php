@@ -94,10 +94,9 @@ $descricaoFormulario5     = "Defina se esse cadastro da localização diferencia
                 )) ;?>
               </div>
               <div class="row">
-                <?= createInput(array(
+                <?= createTextArea(array(
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
-                  /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'ld_descricao',
                   /*string*/    'id'          => 'ld_descricao',
                   /*string*/    'class'       => 'form-control',
