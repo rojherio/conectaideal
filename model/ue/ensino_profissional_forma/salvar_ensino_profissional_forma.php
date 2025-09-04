@@ -1,11 +1,12 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['u_id']?: '');
-$status                                   = strip_tags(@$_POST['u_status']?: 0);
+$id                                       = strip_tags(@$_POST['epf_id']?: '');
+$status                                   = strip_tags(@$_POST['epf_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['u_nome']?: ''))));
-$ue_uo_tipo_id                            = strip_tags(@$_POST['u_ue_uo_tipo_id']?: '');
-$tableName      = 'ue_uo';
+$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['epf_nome']?: ''))));
+$descricao                                = trim(strip_tags(@$_POST['epf_descricao']?: ''));
+$ue_ens_profis_tipo_id                    = strip_tags(@$_POST['epf_ue_ens_profis_tipo_id']?: '');
+$tableName      = 'ue_ens_profis_forma';
 $error          = false;
 $result         = array();
 $msg            = "";
@@ -27,14 +28,16 @@ try {
         status = ?,
         dt_cadastro = ?,
         nome = ?,
-        ue_uo_tipo_id = ?
+        descricao = ?,
+        ue_ens_profis_tipo_id = ?
         WHERE id = ?
         ');
     $stmt->bindValue(1, $status);
     $stmt->bindValue(2, $dt_cadastro);
     $stmt->bindValue(3, $nome);
-    $stmt->bindValue(4, $ue_uo_tipo_id);
-    $stmt->bindValue(5, $id);
+    $stmt->bindValue(4, $descricao);
+    $stmt->bindValue(5, $ue_ens_profis_tipo_id);
+    $stmt->bindValue(6, $id);
     $stmt->execute();
     $db->commit();
       //MENSAGEM DE SUCESSO
@@ -47,10 +50,10 @@ try {
     $stmt = $db->prepare('
       SELECT tb.nome, tb2.nome
       FROM '.$tableName.' AS tb 
-      LEFT JOIN ue_uo_tipo AS tb2 ON tb2.id = tb.ue_uo_tipo_id
-      WHERE tb.nome LIKE ? AND tb.ue_uo_tipo_id = ?');
+      LEFT JOIN ue_ens_profis_tipo AS tb2 ON tb2.id = tb.ue_ens_profis_tipo_id
+      WHERE tb.nome LIKE ? AND tb.ue_ens_profis_tipo_id = ?');
     $stmt->bindValue(1, $nome);
-    $stmt->bindValue(2, $ue_uo_tipo_id);
+    $stmt->bindValue(2, $ue_ens_profis_tipo_id);
     $stmt->execute();
     $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
     if (is_array($rsExistente)) {
@@ -72,19 +75,22 @@ try {
           status,
           dt_cadastro,
           nome,
-          ue_uo_tipo_id
+          descricao,
+          ue_ens_profis_tipo_id
           ) 
         VALUES
         (
           ?, 
           ?, 
           ?,
+          ?,
           ?
         )');
       $stmt->bindValue(1, $status);
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $nome);
-      $stmt->bindValue(4, $ue_uo_tipo_id);
+      $stmt->bindValue(4, $descricao);
+      $stmt->bindValue(5, $ue_ens_profis_tipo_id);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       $db->commit();

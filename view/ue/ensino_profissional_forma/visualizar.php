@@ -4,28 +4,31 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/ue/ensino_profissional_tipo/listar');
+  header('Location: '.PORTAL_URL.'view/ue/ensino_profissional_forma/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
 $stmt = $db->prepare("SELECT 
-  ept.id,
-  ept.status,
-  ept.dt_cadastro,
-  ept.nome,
-  ept.descricao
-  FROM ue_ens_profis_tipo AS ept
-  WHERE ept.id = ? ;");
+  epf.id,
+  epf.status,
+  epf.dt_cadastro,
+  epf.nome,
+  epf.descricao,
+  epf.ue_ens_profis_tipo_id,
+  ept.nome AS ens_profis_tipo_nome
+  FROM ue_ens_profis_forma AS epf
+  LEFT JOIN ue_ens_profis_tipo AS ept ON ept.id = ue_ens_profis_tipo_id
+  WHERE epf.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem do Tipo de Educação Profissional";
-$descricaoPagina          = "Informações do tipo de educação profissional";
-$tituloFormulario1        = "Tabela informações do Tipo de Educação Profissional";
-$descricaoFormulario1     = "Dados de informações do tipo de educação profissional cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do tipo de educação profissional cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem de Educação Profissional por Forma de Oferta";
+$descricaoPagina          = "Informações de educação profissional por forma de oferta";
+$tituloFormulario1        = "Tabela informações de Educação Profissional por Forma de Oferta";
+$descricaoFormulario1     = "Dados de informações de educação profissional por forma de oferta no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações de educação profissional por forma de oferta cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -44,7 +47,7 @@ $tituloImpressao          = "Relatório de informações do tipo de educação p
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Educação Profissional</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Educação Profissional por Forma de Oferta</a>
           </li>
         </ul>
       </div>
@@ -88,6 +91,10 @@ $tituloImpressao          = "Relatório de informações do tipo de educação p
                 </thead>
                 <tbody>
                   <tr>
+                    <td>Tipo de Educação</td>
+                    <td><?= $rsRegistro['ens_profis_tipo_nome']; ?></td>
+                  </tr>
+                  <tr>
                     <td>Nome</td>
                     <td><?= $rsRegistro['nome']; ?></td>
                   </tr>
@@ -118,4 +125,4 @@ $tituloImpressao          = "Relatório de informações do tipo de educação p
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/ensino_profissional_tipo/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/ensino_profissional_forma/visualizar.js"></script>

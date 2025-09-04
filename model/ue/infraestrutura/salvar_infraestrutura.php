@@ -50,6 +50,7 @@ try {
       LEFT JOIN ue_infraestrutura_tipo AS tb2 ON tb2.id = tb.ue_infraestrutura_tipo_id
       WHERE tb.nome LIKE ? AND tb.ue_infraestrutura_tipo_id = ?');
     $stmt->bindValue(1, $nome);
+    $stmt->bindValue(2, $ue_infraestrutura_tipo_id);
     $stmt->execute();
     $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
     if (is_array($rsExistente)) {

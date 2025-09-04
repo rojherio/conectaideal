@@ -56,8 +56,7 @@ try {
       LEFT JOIN bsc_grandeza AS tb2 ON tb2.id = tb.bsc_grandeza_id
       WHERE tb.nome LIKE ? AND tb.bsc_grandeza_id = ?');
     $stmt->bindValue(1, $nome);
-    $stmt->bindValue(2, $simbolo);
-    $stmt->bindValue(3, $equivalencia);
+    $stmt->bindValue(2, $bsc_grandeza_id);
     $stmt->execute();
     $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
     if (is_array($rsExistente)) {

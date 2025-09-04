@@ -5,22 +5,25 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  ept.id,
-  ept.status,
-  ept.dt_cadastro,
-  ept.nome,
-  ept.descricao
-  FROM ue_ens_profis_tipo AS ept
-  ORDER BY ept.nome");
+  epf.id,
+  epf.status,
+  epf.dt_cadastro,
+  epf.nome,
+  epf.descricao,
+  epf.ue_ens_profis_tipo_id,
+  ept.nome AS ens_profis_tipo_nome
+  FROM ue_ens_profis_forma AS epf
+  LEFT JOIN ue_ens_profis_tipo AS ept ON ept.id = ue_ens_profis_tipo_id
+  ORDER BY epf.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Tipos de Ensino Profissional";
-$descricaoPagina          = "Informações de tipos de ensino profissional";
-$tituloFormulario1        = "Tabela com listagem de Tipos de Ensino Profissional";
-$descricaoFormulario1     = "Dados de identificação de tipos de ensino profissional";
-$tituloImpressao          = "Relatório de tipos de ensino profissional cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Educação Profissional por Formas de Oferta";
+$descricaoPagina          = "Informações de educação profissional por formas de oferta";
+$tituloFormulario1        = "Tabela com listagem de Educação Profissional por Formas de Oferta";
+$descricaoFormulario1     = "Dados de identificação de educação profissional por formas de oferta";
+$tituloImpressao          = "Relatório de educação profissional por formas de oferta cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -39,7 +42,7 @@ $tituloImpressao          = "Relatório de tipos de ensino profissional cadastra
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipos de Ensino Profissional</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Educação Profissional por Formas de Oferta</a>
           </li>
         </ul>
       </div>
@@ -78,6 +81,7 @@ $tituloImpressao          = "Relatório de tipos de ensino profissional cadastra
                   <thead class="bg-inverse">
                     <tr>
                       <th>#</th>
+                      <th>Tipo de Educação</th>
                       <th>Nome</th>
                       <th>Descrição</th>
                       <th>Status</th>
@@ -93,6 +97,7 @@ $tituloImpressao          = "Relatório de tipos de ensino profissional cadastra
                       <tr>
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
+                        <td id="td_ens_profis_tipo_nome"><?= $vObj['ens_profis_tipo_nome']; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
                         <td id="td_descricao"><?= $vObj['descricao']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
@@ -134,4 +139,4 @@ $tituloImpressao          = "Relatório de tipos de ensino profissional cadastra
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/ensino_profissional_tipo/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/ensino_profissional_forma/listar.js"></script>

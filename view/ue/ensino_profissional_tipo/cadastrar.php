@@ -26,10 +26,10 @@ if (!is_array($rsRegistro)) {
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro do Tipo de Profissional de Ensino";
-$descricaoPagina          = "Informações do tipo de profissional de ensino";
-$tituloFormulario1        = "Dados do Tipo de Profissional de Ensino";
-$descricaoFormulario1     = "Dados da identificação Dados tipo de profissional de ensino";
+$tituloPagina             = "Cadastro do Tipo de Educação Profissional";
+$descricaoPagina          = "Informações do tipo de educação profissional";
+$tituloFormulario1        = "Dados do Tipo de Educação Profissional";
+$descricaoFormulario1     = "Dados da identificação Dados tipo de educação profissional";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -37,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de ensino está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro da tipo de educação profissional está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -56,7 +56,7 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Profissional de Ensino</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Educação Profissional</a>
           </li>
         </ul>
       </div>
@@ -80,14 +80,14 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome do Tipo de Profissional de Ensino',
+                  /*string*/    'label'       => 'Nome do Tipo de Educação Profissional',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'ept_nome',
                   /*string*/    'id'          => 'ept_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome do tipo de profissional de ensino',
+                  /*string*/    'placeholder' => 'Digite o nome do tipo de educação profissional',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
@@ -103,7 +103,7 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Descreva o tipo de profissional de ensino',
+                  /*string*/    'placeholder' => 'Descreva o tipo de educação profissional',
                   /*string*/    'value'       => $rsRegistro['descricao'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
