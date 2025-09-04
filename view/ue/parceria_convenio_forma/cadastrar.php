@@ -6,14 +6,13 @@ $id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
-  epf.id,
-  epf.status,
-  epf.dt_cadastro,
-  epf.nome,
-  epf.descricao,
-  epf.ue_ens_profis_tipo_id
-  FROM ue_ens_profis_forma AS epf
-  WHERE epf.id = ? ;");
+  pcf.id,
+  pcf.status,
+  pcf.dt_cadastro,
+  pcf.nome,
+  pcf.descricao
+  FROM ue_parc_conv_forma AS pcf
+  WHERE pcf.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -24,23 +23,13 @@ if (!is_array($rsRegistro)) {
   $rsRegistro['dt_cadastro'] = '';
   $rsRegistro['nome'] = '';
   $rsRegistro['descricao'] = '';
-  $rsRegistro['ue_ens_profis_tipo_id'] = '';
 }
 //Consulta para Edição - END
-//Consulta para Select - BEGIN
-$stmt = $db->prepare("SELECT 
-  ept.id,
-  ept.nome
-  FROM ue_ens_profis_tipo AS ept
-  ORDER BY ept.nome");
-$stmt->execute();
-$rsRegistro2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Consulta para Select - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Educação Profissional por Forma de Oferta";
-$descricaoPagina          = "Informações de educação profissional por forma de oferta";
-$tituloFormulario1        = "Dados de Educação Profissional por Forma de Oferta";
-$descricaoFormulario1     = "Dados de identificação Dados educação profissional por forma de oferta";
+$tituloPagina             = "Cadastro da Forma de Contratação por Parceria/Convenio";
+$descricaoPagina          = "Informações da forma de contratação por parceria/convenio";
+$tituloFormulario1        = "Dados do Forma da Contratação por Parceria/Convenio";
+$descricaoFormulario1     = "Dados da identificação da forma de contratação por parceria/convenio";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -48,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de ensino está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de forma de contratação por parceria/convenio está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -67,15 +56,15 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Educação Profissional por Forma de Oferta</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Forma de Contratação por Parceria/Convenio</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_ensino_profissional_forma" name="form_ensino_profissional_forma" method="post" action="">
-      <input type="hidden" name="epf_id" id="epf_id" value="<?= $rsRegistro['id'] ;?>">
+    <form class="app-form" id="form_parceria_convenio_forma" name="form_parceria_convenio_forma" method="post" action="">
+      <input type="hidden" name="pcf_id" id="pcf_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -90,44 +79,31 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
               <!-- div row input - BEGIN -->
               <div class="row">
                 <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nome da Educação Profissional por Forma de Oferta',
+                  /*int 1-12*/  'col'         => 12,
+                  /*string*/    'label'       => 'Nome da Forma de Contratação por Parceria/Convenio',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'epf_nome',
-                  /*string*/    'id'          => 'epf_nome',
+                  /*string*/    'name'        => 'pcf_nome',
+                  /*string*/    'id'          => 'pcf_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome da Educação Profissional por Forma de Oferta',
+                  /*string*/    'placeholder' => 'Digite o nome da Forma de Contratação por Parceria/Convenio',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
-                <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Tipo de Profissional de Ensino',
-                  /*string*/    'name'        => 'epf_ue_ens_profis_tipo_id',
-                  /*string*/    'id'          => 'epf_ue_ens_profis_tipo_id',
-                  /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsRegistro['ue_ens_profis_tipo_id'],
-                  /*array()*/   'options'     => $rsRegistro2,
-                  /*string*/    'ariaLabel'   => 'Selecione um tipo',
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
               </div>
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'epf_descricao',
-                  /*string*/    'id'          => 'epf_descricao',
+                  /*string*/    'name'        => 'pcf_descricao',
+                  /*string*/    'id'          => 'pcf_descricao',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Descreva a Educação Profissional por Forma de Oferta',
+                  /*int*/       'maxlength'   => 256,
+                  /*string*/    'placeholder' => 'Digite a descrição do Forma de Contratação por Parceria/Convenio',
                   /*string*/    'value'       => $rsRegistro['descricao'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
@@ -154,8 +130,8 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Ativo',
                   /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'epf_status',
-                  /*string*/    'id'          => 'epf_status',
+                  /*string*/    'name'        => 'pcf_status',
+                  /*string*/    'id'          => 'pcf_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
                   /*string*/    'checked'     => $rsRegistro['status'],
@@ -197,4 +173,4 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/ensino_profissional_forma/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/parceria_convenio_forma/cadastrar.js"></script>
