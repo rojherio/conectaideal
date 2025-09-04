@@ -30,7 +30,6 @@ $stmt = $db->prepare("SELECT
   it.id,
   it.nome
   FROM ue_infraestrutura_tipo AS it
-  WHERE it.status = 1
   ORDER BY it.nome");
 $stmt->execute();
 $rsInfraestruturasTipo = $stmt->fetchAll(PDO::FETCH_ASSOC);

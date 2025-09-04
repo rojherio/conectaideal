@@ -30,7 +30,6 @@ $stmt = $db->prepare("SELECT
   ut.id,
   ut.nome
   FROM ue_uo_tipo AS ut
-  WHERE ut.status = 1
   ORDER BY ut.nome");
 $stmt->execute();
 $rsRegistro2 = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -32,7 +32,6 @@ $stmt = $db->prepare("SELECT
   emt.id,
   emt.nome
   FROM ue_ens_modalidade_tipo AS emt
-  WHERE emt.status = 1
   ORDER BY emt.nome");
 $stmt->execute();
 $rsRegistro2 = $stmt->fetchAll(PDO::FETCH_ASSOC);

@@ -32,8 +32,7 @@ if (!is_array($rsRegistro)) {
 $stmt = $db->prepare("SELECT 
   g.id,
   g.nome
-  FROM bsc_grandeza AS g
-  WHERE g.status = 1
+  FROM bsc_grandeza AS 
   ORDER BY g.nome");
 $stmt->execute();
 $rsGrandezas = $stmt->fetchAll(PDO::FETCH_ASSOC);

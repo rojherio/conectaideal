@@ -87,7 +87,6 @@ $stmt = $db->prepare("
   p.masculino,
   p.feminino
   FROM bsc_pais AS p
-  WHERE p.status = 1 
   ORDER BY p.id ASC;");
 $stmt->execute();
 $rsPaises = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -100,7 +99,6 @@ $stmt = $db->prepare("
   e.sigla,
   e.bsc_pais_id
   FROM bsc_estado AS e;
-  WHERE e.status = 1 
   ORDER BY e.id ASC;");
 $stmt->execute();
 $rsEstados = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -114,7 +112,6 @@ $rsEstados = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //     p.masculino,
 //     p.feminino
 //   FROM bsc_pais AS p
-//   WHERE p.status = 1 
 //   ORDER BY p.id ASC;");
 // $stmt->execute();
 // $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);

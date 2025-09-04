@@ -59,7 +59,6 @@ $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //   uo.nome AS nome, 
 //   uo.status AS status 
 //   FROM bsc_unidade_organizacional AS uo 
-//   WHERE uo.status = 1 
 //   ORDER BY uo.nome ASC;");
 // $stmt->execute();
 // $rsUOs = $stmt->fetchAll(PDO::FETCH_ASSOC);
