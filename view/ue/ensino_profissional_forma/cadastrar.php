@@ -37,10 +37,10 @@ $stmt->execute();
 $rsRegistro2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Educação Profissional por Forma de Oferta";
-$descricaoPagina          = "Informações de educação profissional por forma de oferta";
-$tituloFormulario1        = "Dados de Educação Profissional por Forma de Oferta";
-$descricaoFormulario1     = "Dados de identificação Dados educação profissional por forma de oferta";
+$tituloPagina             = "Cadastro da Forma de Ensino Profissional";
+$descricaoPagina          = "Informações da forma de ensino profissional";
+$tituloFormulario1        = "Dados da Forma de Ensino Profissional";
+$descricaoFormulario1     = "Dados da identificação Dados forma de ensino profissional";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -48,7 +48,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de ensino está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro da forma de ensino profissional está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -67,7 +67,7 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Educação Profissional por Forma de Oferta</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Forma de Ensino Profissional</a>
           </li>
         </ul>
       </div>
@@ -91,21 +91,21 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nome da Educação Profissional por Forma de Oferta',
+                  /*string*/    'label'       => 'Nome da Forma de Ensino Profissional',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'epf_nome',
                   /*string*/    'id'          => 'epf_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome da Educação Profissional por Forma de Oferta',
+                  /*string*/    'placeholder' => 'Digite o nome da Forma de Ensino Profissional',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
                 )) ;?>
                 <?= createSelect(array(
                   /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Tipo de Profissional de Ensino',
+                  /*string*/    'label'       => 'Tipo de Ensino Profissional',
                   /*string*/    'name'        => 'epf_ue_ens_profis_tipo_id',
                   /*string*/    'id'          => 'epf_ue_ens_profis_tipo_id',
                   /*string*/    'class'       => 'select2 form-control form-select select-basic',
@@ -127,7 +127,7 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de profissional de 
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Descreva a Educação Profissional por Forma de Oferta',
+                  /*string*/    'placeholder' => 'Descreva a Forma de Ensino Profissional',
                   /*string*/    'value'       => $rsRegistro['descricao'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''

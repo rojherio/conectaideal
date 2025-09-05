@@ -16,11 +16,11 @@ $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Formas de Contratação por Parceria/Convenio";
-$descricaoPagina          = "Informações de formas de contratação por parceria/convenio";
-$tituloFormulario1        = "Tabela com listagem de Formas de Contratação por Parceria/Convenio";
-$descricaoFormulario1     = "Dados de identificação de formas de contratação por parceria/convenio";
-$tituloImpressao          = "Relatório de formas de contratação por parceria/convenio cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Forma de Contratação de Parceria ou Convênio";
+$descricaoPagina          = "Informações de forma de contratação de parceria ou convênio";
+$tituloFormulario1        = "Tabela com listagem de Forma de Contratação de Parceria ou Convênio";
+$descricaoFormulario1     = "Dados de identificação de forma de contratação de parceria ou convênio";
+$tituloImpressao          = "Relatório de forma de contratação de parceria ou convênio cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -39,7 +39,7 @@ $tituloImpressao          = "Relatório de formas de contratação por parceria/
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Formas de Contratação por Parceria/Convenio</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Formas de Contratação de Parceria ou Convênio</a>
           </li>
         </ul>
       </div>

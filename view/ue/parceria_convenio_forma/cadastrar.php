@@ -26,10 +26,10 @@ if (!is_array($rsRegistro)) {
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro da Forma de Contratação por Parceria/Convenio";
-$descricaoPagina          = "Informações da forma de contratação por parceria/convenio";
-$tituloFormulario1        = "Dados do Forma da Contratação por Parceria/Convenio";
-$descricaoFormulario1     = "Dados da identificação da forma de contratação por parceria/convenio";
+$tituloPagina             = "Cadastro da Forma de Contratação de Parceria ou Convênio";
+$descricaoPagina          = "Informações da forma de contratação de parceria ou convênio";
+$tituloFormulario1        = "Dados do Forma de Contratação de Parceria ou Convênio";
+$descricaoFormulario1     = "Dados da identificação da forma de contratação de parceria ou convênio";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -37,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de forma de contratação por parceria/convenio está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de forma de contratação de parceria ou convênio está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -56,7 +56,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de forma de contratação p
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Forma de Contratação por Parceria/Convenio</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Forma de Contratação de Parceria ou Convênio</a>
           </li>
         </ul>
       </div>
@@ -80,14 +80,14 @@ $descricaoFormulario5     = "Defina se esse cadastro de forma de contratação p
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome da Forma de Contratação por Parceria/Convenio',
+                  /*string*/    'label'       => 'Nome da Forma de Contratação de Parceria ou Convênio',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'pcf_nome',
                   /*string*/    'id'          => 'pcf_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome da Forma de Contratação por Parceria/Convenio',
+                  /*string*/    'placeholder' => 'Digite o nome da Forma de Contratação de Parceria ou Convênio',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
@@ -103,7 +103,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de forma de contratação p
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 256,
-                  /*string*/    'placeholder' => 'Digite a descrição do Forma de Contratação por Parceria/Convenio',
+                  /*string*/    'placeholder' => 'Digite a descrição do Forma de Contratação de Parceria ou Convênio',
                   /*string*/    'value'       => $rsRegistro['descricao'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''

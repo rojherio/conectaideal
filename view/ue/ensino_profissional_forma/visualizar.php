@@ -24,11 +24,11 @@ $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Educação Profissional por Forma de Oferta";
-$descricaoPagina          = "Informações de educação profissional por forma de oferta";
-$tituloFormulario1        = "Tabela informações de Educação Profissional por Forma de Oferta";
-$descricaoFormulario1     = "Dados de informações de educação profissional por forma de oferta no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações de educação profissional por forma de oferta cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem de Forma de Ensino Profissional";
+$descricaoPagina          = "Informações de forma de ensino profissional";
+$tituloFormulario1        = "Tabela informações de Forma de Ensino Profissional";
+$descricaoFormulario1     = "Dados de informações de forma de ensino profissional no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações de forma de ensino profissional cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -47,7 +47,7 @@ $tituloImpressao          = "Relatório de informações de educação profissio
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Educação Profissional por Forma de Oferta</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Forma de Ensino Profissional</a>
           </li>
         </ul>
       </div>
@@ -91,7 +91,7 @@ $tituloImpressao          = "Relatório de informações de educação profissio
                 </thead>
                 <tbody>
                   <tr>
-                    <td>Tipo de Educação</td>
+                    <td>Tipo de Ensino</td>
                     <td><?= $rsRegistro['ens_profis_tipo_nome']; ?></td>
                   </tr>
                   <tr>

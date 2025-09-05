@@ -19,11 +19,11 @@ $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Educação Profissional por Formas de Oferta";
-$descricaoPagina          = "Informações de educação profissional por formas de oferta";
-$tituloFormulario1        = "Tabela com listagem de Educação Profissional por Formas de Oferta";
-$descricaoFormulario1     = "Dados de identificação de educação profissional por formas de oferta";
-$tituloImpressao          = "Relatório de educação profissional por formas de oferta cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Forma de Ensino Profissional";
+$descricaoPagina          = "Informações de forma de ensino profissional";
+$tituloFormulario1        = "Tabela com listagem de Forma de Ensino Profissional";
+$descricaoFormulario1     = "Dados de identificação de forma de ensino profissional";
+$tituloImpressao          = "Relatório de forma de ensino profissional cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -42,7 +42,7 @@ $tituloImpressao          = "Relatório de educação profissional por formas de
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Educação Profissional por Formas de Oferta</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Formas de Ensino Profissional</a>
           </li>
         </ul>
       </div>
@@ -81,7 +81,7 @@ $tituloImpressao          = "Relatório de educação profissional por formas de
                   <thead class="bg-inverse">
                     <tr>
                       <th>#</th>
-                      <th>Tipo de Educação</th>
+                      <th>Tipo de Ensino</th>
                       <th>Nome</th>
                       <th>Descrição</th>
                       <th>Status</th>

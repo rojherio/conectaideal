@@ -26,10 +26,10 @@ if (!is_array($rsRegistro)) {
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro da Mantenedora da Escola Privada";
-$descricaoPagina          = "Informações da mantenedora da escola privada";
-$tituloFormulario1        = "Dados da Mantenedora da Escola Privada";
-$descricaoFormulario1     = "Dados da mantenedora da escola privada";
+$tituloPagina             = "Cadastro do Tipo de Mantenedora de Escola Privada";
+$descricaoPagina          = "Informações do tipo de mantenedora de escola privada";
+$tituloFormulario1        = "Dados do Tipo de Mantenedora de Escola Privada";
+$descricaoFormulario1     = "Dados do tipo de mantenedora de escola privada";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -37,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de mantenedora da escola privada está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de tipo de mantenedora de escola privada está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -56,7 +56,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de mantenedora da escola pr
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Mantenedora da Escola Privada</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Mantenedora de Escola Privada</a>
           </li>
         </ul>
       </div>
@@ -80,14 +80,14 @@ $descricaoFormulario5     = "Defina se esse cadastro de mantenedora da escola pr
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome da Mantenedora da Escola Privada',
+                  /*string*/    'label'       => 'Nome do Tipo de Mantenedora de Escola Privada',
                   /*string*/    'type'        => 'text',
                   /*string*/    'name'        => 'pmt_nome',
                   /*string*/    'id'          => 'pmt_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome da Mantenedora da Escola Privada',
+                  /*string*/    'placeholder' => 'Digite o nome do Tipo de Mantenedora de Escola Privada',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
@@ -103,7 +103,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de mantenedora da escola pr
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 256,
-                  /*string*/    'placeholder' => 'Digite a descrição da Mantenedora da Escola Privada',
+                  /*string*/    'placeholder' => 'Digite a descrição do Tipo de Mantenedora de Escola Privada',
                   /*string*/    'value'       => $rsRegistro['descricao'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''

@@ -21,11 +21,11 @@ $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem do Mantenedora da Escola Privada";
-$descricaoPagina          = "Informações do mantenedora da escola privada";
-$tituloFormulario1        = "Tabela informações do Mantenedora da Escola Privada";
-$descricaoFormulario1     = "Dados de informações do mantenedora da escola privada cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do mantenedora da escola privada cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem do Tipo de Mantenedora de Escola Privada";
+$descricaoPagina          = "Informações do tipo de mantenedora de escola privada";
+$tituloFormulario1        = "Tabela informações do Tipo de Mantenedora de Escola Privada";
+$descricaoFormulario1     = "Dados de informações do tipo de mantenedora de escola privada cadastrada no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações do tipo de mantenedora de escola privada cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -44,7 +44,7 @@ $tituloImpressao          = "Relatório de informações do mantenedora da escol
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Mantenedora da Escola Privada</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Mantenedora de Escola Privada</a>
           </li>
         </ul>
       </div>
