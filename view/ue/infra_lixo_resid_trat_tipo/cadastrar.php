@@ -6,13 +6,13 @@ $id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
-  ildt.id,
-  ildt.status,
-  ildt.dt_cadastro,
-  ildt.nome,
-  ildt.descricao
-  FROM ue_infra_lixo_dest_tipo AS ildt
-  WHERE ildt.id = ? ;");
+  ilrtt.id,
+  ilrtt.status,
+  ilrtt.dt_cadastro,
+  ilrtt.nome,
+  ilrtt.descricao
+  FROM ue_infra_lixo_resid_trat_tipo AS ilrtt
+  WHERE ilrtt.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,10 +26,10 @@ if (!is_array($rsRegistro)) {
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Tipo de Destinação do Lixo";
-$descricaoPagina          = "Informações do tipo de destinação do lixo";
-$tituloFormulario1        = "Dados do Tipo de Destinação do Lixo";
-$descricaoFormulario1     = "Dados da identificação do tipo de destinação do lixo";
+$tituloPagina             = "Cadastro de Tipo de tratamento do Lixo/Resíduos";
+$descricaoPagina          = "Informações do tipo de tratamento do lixo/resíduos";
+$tituloFormulario1        = "Dados do Tipo de tratamento do Lixo/Resíduos";
+$descricaoFormulario1     = "Dados da identificação do tipo de tratamento do lixo/resíduos";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -37,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de tipo de destinação do lixo está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de tipo de tratamento do lixo/resíduos está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -56,15 +56,15 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de destinação do 
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Destinação do Lixo</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de tratamento do Lixo/Resíduos</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_infra_lixo_dest_tipo" name="form_infra_lixo_dest_tipo" method="post" action="">
-      <input type="hidden" name="ildt_id" id="ildt_id" value="<?= $rsRegistro['id'] ;?>">
+    <form class="app-form" id="form_infra_lixo_resid_trat_tipo" name="form_infra_lixo_resid_trat_tipo" method="post" action="">
+      <input type="hidden" name="ilrtt_id" id="ilrtt_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -80,14 +80,14 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de destinação do 
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome do Tipo de Destinação do Lixo',
+                  /*string*/    'label'       => 'Nome do Tipo de tratamento do Lixo/Resíduos',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'ildt_nome',
-                  /*string*/    'id'          => 'ildt_nome',
+                  /*string*/    'name'        => 'ilrtt_nome',
+                  /*string*/    'id'          => 'ilrtt_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome do Tipo de Destinação do Lixo',
+                  /*string*/    'placeholder' => 'Digite o nome do Tipo de tratamento do Lixo/Resíduos',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
@@ -98,12 +98,12 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de destinação do 
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'ildt_descricao',
-                  /*string*/    'id'          => 'ildt_descricao',
+                  /*string*/    'name'        => 'ilrtt_descricao',
+                  /*string*/    'id'          => 'ilrtt_descricao',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 256,
-                  /*string*/    'placeholder' => 'Digite a descrição do Tipo de Destinação do Lixo',
+                  /*string*/    'placeholder' => 'Digite a descrição do Tipo de tratamento do Lixo/Resíduos',
                   /*string*/    'value'       => $rsRegistro['descricao'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
@@ -130,8 +130,8 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de destinação do 
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Ativo',
                   /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'ildt_status',
-                  /*string*/    'id'          => 'ildt_status',
+                  /*string*/    'name'        => 'ilrtt_status',
+                  /*string*/    'id'          => 'ilrtt_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
                   /*string*/    'checked'     => $rsRegistro['status'],
@@ -173,4 +173,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de destinação do 
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/infra_lixo_dest_tipo/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/infra_lixo_resid_trat_tipo/cadastrar.js"></script>
