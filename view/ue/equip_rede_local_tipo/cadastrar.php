@@ -6,13 +6,13 @@ $id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
-  iaat.id,
-  iaat.status,
-  iaat.dt_cadastro,
-  iaat.nome,
-  iaat.descricao
-  FROM ue_infra_agua_abast_tipo AS iaat
-  WHERE iaat.id = ? ;");
+  erlt.id,
+  erlt.status,
+  erlt.dt_cadastro,
+  erlt.nome,
+  erlt.descricao
+  FROM ue_equip_rede_local_tipo AS erlt
+  WHERE erlt.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -26,10 +26,10 @@ if (!is_array($rsRegistro)) {
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Tipo de Abastecimento de Água";
-$descricaoPagina          = "Informações do tipo de abastecimento de agua";
-$tituloFormulario1        = "Dados do Tipo de Abastecimento de Água";
-$descricaoFormulario1     = "Dados da identificação do tipo de abastecimento de agua";
+$tituloPagina             = "Cadastro de Tipo de Rede Local de Interligação de computadores";
+$descricaoPagina          = "Informações do tipo de rede local de interligação de computadores";
+$tituloFormulario1        = "Dados do Tipo de Rede Local de Interligação de computadores";
+$descricaoFormulario1     = "Dados da identificação do tipo de rede local de interligação de computadores";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -37,7 +37,7 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de tipo de abastecimento de água está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de tipo de rede local de interligação de computadores está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -56,15 +56,15 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de abastecimento de
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Abastecimento de Água</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipo de Rede Local de Interligação de computadores</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_infra_agua_abast_tipo" name="form_infra_agua_abast_tipo" method="post" action="">
-      <input type="hidden" name="iaat_id" id="iaat_id" value="<?= $rsRegistro['id'] ;?>">
+    <form class="app-form" id="form_equip_rede_local_tipo" name="form_equip_rede_local_tipo" method="post" action="">
+      <input type="hidden" name="erlt_id" id="erlt_id" value="<?= $rsRegistro['id'] ;?>">
       <!-- div de cadastro - BEGIN -->
       <div class="row">
         <div class="col-md-12">
@@ -80,14 +80,14 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de abastecimento de
               <div class="row">
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome do Tipo de Abastecimento de Água',
+                  /*string*/    'label'       => 'Nome do Tipo de Rede Local de Interligação de computadores',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'iaat_nome',
-                  /*string*/    'id'          => 'iaat_nome',
+                  /*string*/    'name'        => 'erlt_nome',
+                  /*string*/    'id'          => 'erlt_nome',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 100,
-                  /*string*/    'placeholder' => 'Digite o nome do Tipo de Abastecimento de Água',
+                  /*string*/    'placeholder' => 'Digite o nome do Tipo de Rede Local de Interligação de computadores',
                   /*string*/    'value'       => $rsRegistro['nome'],
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => ''
@@ -98,12 +98,12 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de abastecimento de
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Descrição',
                   /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'iaat_descricao',
-                  /*string*/    'id'          => 'iaat_descricao',
+                  /*string*/    'name'        => 'erlt_descricao',
+                  /*string*/    'id'          => 'erlt_descricao',
                   /*string*/    'class'       => 'form-control',
                   /*int*/       'minlength'   => 3,
                   /*int*/       'maxlength'   => 256,
-                  /*string*/    'placeholder' => 'Digite a descrição do Tipo de Abastecimento de Água',
+                  /*string*/    'placeholder' => 'Digite a descrição do Tipo de Rede Local de Interligação de computadores',
                   /*string*/    'value'       => $rsRegistro['descricao'],
                   /*bool*/      'required'    => false,
                   /*string*/    'prop'        => ''
@@ -130,8 +130,8 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de abastecimento de
                   /*int 1-12*/  'col'         => 12,
                   /*string*/    'label'       => 'Ativo',
                   /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'iaat_status',
-                  /*string*/    'id'          => 'iaat_status',
+                  /*string*/    'name'        => 'erlt_status',
+                  /*string*/    'id'          => 'erlt_status',
                   /*string*/    'class'       => 'toggle',
                   /*string*/    'value'       => 1,
                   /*string*/    'checked'     => $rsRegistro['status'],
@@ -173,4 +173,4 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de abastecimento de
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/infra_agua_abast_tipo/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/equip_rede_local_tipo/cadastrar.js"></script>
