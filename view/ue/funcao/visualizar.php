@@ -4,30 +4,30 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/ue/uo/listar');
+  header('Location: '.PORTAL_URL.'view/ue/funcao/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
 $stmt = $db->prepare("SELECT 
-  u.id,
-  u.status,
-  u.dt_cadastro,
-  u.nome,
-  u.ue_uo_tipo_id,
-  ut.nome AS uo_tipo_nome
-  FROM ue_uo AS u
-  LEFT JOIN ue_uo_tipo AS ut ON ut.id = ue_uo_tipo_id
-  WHERE ut.id = ? ;");
+  f.id,
+  f.status,
+  f.dt_cadastro,
+  f.nome,
+  f.ue_funcao_tipo_id,
+  ft.nome AS funcao_tipo_nome
+  FROM ue_funcao AS f
+  LEFT JOIN ue_funcao_tipo AS ft ON ft.id = ue_funcao_tipo_id
+  WHERE ft.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 //Consulta para Visualizar - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem da Unidade Organizacional";
-$descricaoPagina          = "Informações da unidade organizacional";
-$tituloFormulario1        = "Tabela informações da Unidade Organizacional";
-$descricaoFormulario1     = "Dados de informações da unidade organizacional cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da unidade organizacional cadastrada no sistema DELFOS";
+$tituloPagina             = "Listagem da Função Desempenhada por Funcionarios";
+$descricaoPagina          = "Informações da função desempenhada por funcionarios";
+$tituloFormulario1        = "Tabela informações da Função Desempenhada por Funcionarios";
+$descricaoFormulario1     = "Dados de informações da função desempenhada por funcionarios cadastrada no sistema DELFOS";
+$tituloImpressao          = "Relatório de informações da função desempenhada por funcionarios cadastrada no sistema DELFOS";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
@@ -46,7 +46,7 @@ $tituloImpressao          = "Relatório de informações da unidade organizacion
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Unidade Organizacional</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Função Desempenhada por Funcionarios</a>
           </li>
         </ul>
       </div>
@@ -91,7 +91,7 @@ $tituloImpressao          = "Relatório de informações da unidade organizacion
                 <tbody>
                   <tr>
                     <td>Tipo</td>
-                    <td><?= $rsRegistro['uo_tipo_nome']; ?></td>
+                    <td><?= $rsRegistro['funcao_tipo_nome']; ?></td>
                   </tr>
                   <tr>
                     <td>Nome</td>
@@ -120,4 +120,4 @@ $tituloImpressao          = "Relatório de informações da unidade organizacion
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/uo/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/funcao/visualizar.js"></script>
