@@ -187,7 +187,7 @@ try {
       }
       $result['status'] = 'error';
       $result['tipo'] = 'existente';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um registro com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
       echo json_encode($result);
       exit();
     } else {

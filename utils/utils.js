@@ -326,7 +326,32 @@ function ajaxCompleteSendSub(data, status, params, elemSubKey) {
     countElem++;
   });
   if (countElem == 0) {
-    ajaxSendCadastrarTabPane(params);
+    //Envio Formulario Principal - BEGIN
+    $.ajax({
+      url: PORTAL_URL + params.urlToSend,
+      async: true,
+      method: "post",
+      beforeSend: divLoading,
+      cache: true,
+      dataType: "json",
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      data: params.formSerialized,
+      statusCode: {
+        404: function() {
+          alert( "Página não encontrada" );
+        }
+      }
+    })
+    .done(function (data, status, obj){
+      ajaxSuccess(data, status, obj, params.urlToGo);
+    })
+    .fail(function (data, status, errorThrown){
+      ajaxError(data, status, errorThrown);
+    })
+    .always(function (data, status){
+      ajaxCompleteSendTabPane(data, status, params.urlCurrent, params.urlToGo, params.tabPane);
+    })
+    //Envio Formulario Principal - END
   }
   return false
 }

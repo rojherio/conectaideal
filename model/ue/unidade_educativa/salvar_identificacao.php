@@ -34,8 +34,8 @@ $msg            = "";
 //   'status' => 'succes',
 //   'msg' => 'Dados pessoais do servidor atualizados com sucesso.'
 // );
-echo json_encode(array('status' => 'success', 'msg' => 'As novas informações foram registradas com sucesso.'));
-exit();
+// echo json_encode(array('status' => 'success', 'msg' => 'As novas informações foram registradas com sucesso.'));
+// exit();
 try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {
@@ -44,23 +44,51 @@ try {
         SET
         status = ?,
         dt_cadastro = ?,
-        tipo = ?,
-        nome = ?,
-        nome_social = ?,
-        cpf = ?,
-        ie = ?,
-        dt_criacao = ?
+        bsc_pessoa_id = ?,
+        inep_cod = ?,
+        ue_funcionam_situacao_id = ?,
+        bsc_zona_id = ?,
+        ue_localizacao_diferenciada_id = ?,
+        bsc_esfera_administrativa_id_dependencia = ?,
+        ue_cat_esc_priv_id = ?,
+        bsc_esfera_administrativa_id_regulam = ?,
+        ue_regulam_situacao_id = ?,
+        ue_ue_vinculada_tipo_id = ?,
+        ue_ue_id_vinculada = ?,
+        regional_cod = ?,
+        entidade_superior_acesso = ?,
+        ue_infra_local_ocupacao_forma_id = ?,
+        fornece_agua_potavel = ?,
+        sala_aula_qtd = ?,
+        sala_aula_climatizada_qtd = ?,
+        sala_aula_acessibilidade_qtd = ?,
+        internet_banda_larga_velocidade = ?,
+        alimentacao_pnae_fnde_oferece = ?
         WHERE id = ?
         ');
     $stmt->bindValue(1, $status);
     $stmt->bindValue(2, $dt_cadastro?: NULL);
-    $stmt->bindValue(3, $tipo);
-    $stmt->bindValue(4, $nome);
-    $stmt->bindValue(5, $nome_social);
-    $stmt->bindValue(6, $cpf);
-    $stmt->bindValue(7, $ie);
-    $stmt->bindValue(8, $dt_criacao?: NULL);
-    $stmt->bindValue(9, $id);
+    $stmt->bindValue(3, $bsc_pessoa_id?: NULL);
+    $stmt->bindValue(4, $inep_cod);
+    $stmt->bindValue(5, $ue_funcionam_situacao_id?: NULL);
+    $stmt->bindValue(6, $bsc_zona_id?: NULL);
+    $stmt->bindValue(7, $ue_localizacao_diferenciada_id?: NULL);
+    $stmt->bindValue(8, $bsc_esfera_administrativa_id_dependencia?: NULL);
+    $stmt->bindValue(9, $ue_cat_esc_priv_id?: NULL);
+    $stmt->bindValue(10, $bsc_esfera_administrativa_id_regulam?: NULL);
+    $stmt->bindValue(11, $ue_regulam_situacao_id?: NULL);
+    $stmt->bindValue(12, $ue_ue_vinculada_tipo_id?: NULL);
+    $stmt->bindValue(13, $ue_ue_id_vinculada?: NULL);
+    $stmt->bindValue(14, $regional_cod);
+    $stmt->bindValue(15, $entidade_superior_acesso);
+    $stmt->bindValue(16, $ue_infra_local_ocupacao_forma_id?: NULL);
+    $stmt->bindValue(17, $fornece_agua_potavel);
+    $stmt->bindValue(18, $sala_aula_qtd);
+    $stmt->bindValue(19, $sala_aula_climatizada_qtd);
+    $stmt->bindValue(20, $sala_aula_acessibilidade_qtd);
+    $stmt->bindValue(21, $internet_banda_larga_velocidade);
+    $stmt->bindValue(22, $alimentacao_pnae_fnde_oferece);
+    $stmt->bindValue(23, $id);
     $stmt->execute();
     $db->commit();
       //MENSAGEM DE SUCESSO
@@ -71,10 +99,10 @@ try {
     exit();
   } else {
     $stmt = $db->prepare('
-      SELECT tb.cpf
+      SELECT tb.bsc_pessoa_id AS PessoaJuridica
       FROM '.$tableName.' AS tb 
-      WHERE tb.cpf LIKE ?;');
-    $stmt->bindValue(1, $cpf);
+      WHERE tb.bsc_pessoa_id = ?;');
+    $stmt->bindValue(1, $bsc_pessoa_id);
     $stmt->execute();
     $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
     if (is_array($rsExistente)) {
@@ -87,7 +115,7 @@ try {
       }
       $result['status'] = 'error';
       $result['tipo'] = 'existente';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um banco registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
+      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
       echo json_encode($result);
       exit();
     } else {

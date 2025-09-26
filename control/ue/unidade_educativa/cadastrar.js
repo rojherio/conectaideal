@@ -19,7 +19,7 @@ $(document).ready(function () {
       urlsToSendSub:  []
     };
     $(this).parents('form').find('select[urltosendsub]').each(function(k, elem){
-      params.urlsToSendSub[k+10] = {
+      params.urlsToSendSub[k] = {
         urlToSendSub:           $(elem).attr('urltosendsub'),
         selectId:               $(elem).attr('id'),
         selectVal:              $(elem).val(),
@@ -88,8 +88,6 @@ $(document).ready(function () {
 });
 function setSelect(selectId, elemInput){
   let inputVal = $(elemInput).val();
-  console.log(inputVal);
-  console.log(selectId);
   var newOption = new Option(inputVal, inputVal, true, true);
   $('#'+selectId).append(newOption).trigger('change');
 }
