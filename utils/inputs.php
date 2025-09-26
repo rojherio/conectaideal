@@ -38,6 +38,18 @@
 //   /*bool*/      'required'    => true,
 //   /*string*/    'prop'        => ''
 // );
+// createSelectMultiple(array(
+//   /*int 1-12*/  'col'         => 12,
+//   /*string*/    'label'       => 'Nacionalidade',
+//   /*string*/    'name'        => 'p_natural_bsc_pais_id',
+//   /*string*/    'id'          => 'p_natural_bsc_pais_id',
+//   /*string*/    'class'       => 'select2 form-control form-select select-basic', //'select2_naturalidade form-control form-select select-basic',
+//   /*array()*/   'value'       => $rsRegistroInfraLocalFuncionamIds,
+//   /*array()*/   'options'     => $rsInfraLocalFuncionamentos,
+//   /*string*/    'ariaLabel'   => 'Selecione um país',
+//   /*bool*/      'required'    => true,
+//   /*string*/    'prop'        => ''
+// );
 // createCheckbox(array(
 //   /*int 1-12*/  'col'         => 12,
 //   /*string*/    'label'       => 'Ativo',
@@ -88,7 +100,7 @@ function createInput($params) {
 function createInputDate($params) {
   $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
-  $html .= '      <input type="date" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="10" maxlength="10" min="'.$params['min'].'" '.($params['maxToday'] ? 'max="'.date('Y-m-d').'"' : '' ).'  placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
+  $html .= '      <input type="date" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="10" maxlength="10" min="'.$params['min'].'" '.($params['maxToday'] ? 'max="'.date('Y-m-d').'"' : 'max="'.date('Y-m-d', strtotime('+10 years')).'"' ).'  placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html .= '    </div>';
   $html .= '  </div>';
@@ -97,11 +109,27 @@ function createInputDate($params) {
 function createSelect($params) {
   $html    = '  <div class="col-md-'.$params['col'].'" '.$params['prop'].' '.(!$params['display'] ? 'style="display: none;"' : '').'>';
   $html   .= '    <div class="div-validate form-floating mb-3">';
-  $html   .= '      <select name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" aria-label="'.$params['ariaLabel'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
+  $html   .= '      <select name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" data-placeholder="'.$params['ariaLabel'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html   .= '        <option></option>';
   if (is_array($params['options'])) {
     foreach ($params['options'] as $kObj => $vObj) {
       $html .= '        <option value="'.$vObj['id'].'" '.($params['value'] == $vObj['id'] ? 'selected="selected"' : "").'">'.$vObj['nome'].'</option>';
+    }
+  }
+  $html   .= '      </select>';
+  $html   .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html   .= '    </div>';
+  $html   .= '  </div>';
+  return $html;
+}
+function createSelectMultiple($params) {
+  $html    = '  <div class="select_primary col-md-'.$params['col'].'" '.$params['prop'].' '.(!$params['display'] ? 'style="display: none;"' : '').'>';
+  $html   .= '    <div class="div-validate form-floating mb-3">';
+  $html   .= '      <select multiple name="'.$params['name'].'[]" id="'.$params['id'].'" class="select_primary '.$params['class'].'" data-placeholder="'.$params['ariaLabel'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
+  $html   .= '        <option></option>';
+  if (is_array($params['options'])) {
+    foreach ($params['options'] as $kObj => $vObj) {
+      $html .= '        <option value="'.$vObj['id'].'" '.(in_array($vObj['id'], $params['value']) ? 'selected="selected"' : "").'">'.$vObj['nome'].'</option>';
     }
   }
   $html   .= '      </select>';

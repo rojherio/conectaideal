@@ -6,16 +6,34 @@
 //     return true;
 //   }
 // };
+var msgInputRequired = '<span class="text-danger error_validator required">O preenchimento deste campo é obrigatório!<br/></span>';
+var msgInputMinLength = '<span class="text-danger error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
+var msgInputMimData = '<span class="text-danger error_validator mindata">A data não pode ser menor que dd/mm/aaaa!<br/></span>';
+var msgInputMaxData = '<span class="text-danger error_validator maxdata">A data não pode ser maior que dd/mm/aaaa!<br/></span>';
+var msgSelect = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
+var msgRadio = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
+var msgCnpj = '<span class="text-danger error_validator required cnpj">O CNPJ informado não é válido!<br/></span>';
+var msgCpf = '<span class="text-danger error_validator required cpf">O CPF informado não é válido!<br/></span>';
+var msgEmail = '<span class="text-danger error_validator required email">O E-mail informado não é válido!<br/></span>';
+var msgSite = '<span class="text-danger error_validator required site">O site informado não é válido!<br/></span>';
+// FUNCAO PARA VALIDAR EMAIL
+function IsEmail(email) {
+  expr = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+  if (!expr.test(email)) {
+    return false;
+  } else {
+    return true;
+  }
+}
+function IsSite(site) {
+  expr = /^([a-zA-Z0-9_\.\-])+\.([a-zA-Z0-9\-])+$/;
+  if (!expr.test(site)) {
+    return false;
+  } else {
+    return true;
+  }
+}
 $(document).ready(function() {
-
-  var msgInputRequired = '<span class="text-danger error_validator required">O preenchimento deste campo é obrigatório!<br/></span>';
-  var msgInputMinLength = '<span class="text-danger error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
-  var msgInputMimData = '<span class="text-danger error_validator mindata">A data não pode ser menor que dd/mm/aaaa!<br/></span>';
-  var msgInputMaxData = '<span class="text-danger error_validator maxdata">A data não pode ser maior que dd/mm/aaaa!<br/></span>';
-  var msgSelect = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
-  var msgRadio = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
-  var msgCnpj = '<span class="text-danger error_validator required cnpj">O CNPJ informado não é válido!<br/></span>';
-  var msgCpf = '<span class="text-danger error_validator required cpf">O CPF informado não é válido!<br/></span>';
   $('input[type="text"][required], input[type="date"][required], input[type="number"][required], input[type="email"][required], textarea[required]').keyup(function(){
     var valLength = $(this).val().length;
     $(this).parents('div.div-validate').find('span.required').remove();
@@ -135,6 +153,22 @@ $(document).ready(function() {
       $(this).parents('div.div-validate').append(msgCpf);
     }
   });
+  $('input[type="email"]').keyup(function(){
+    var valMinLength = $(this).attr('minlength');
+    var inputVal = $(this).val();
+    $(this).parents('div.div-validate').find('span.email').remove();
+    if (inputVal.length > valMinLength && !IsEmail(inputVal)) {
+      $(this).parents('div.div-validate').append(msgEmail);
+    }
+  });
+  $('input.site').keyup(function(){
+    var valMinLength = $(this).attr('minlength');
+    var inputVal = $(this).val();
+    $(this).parents('div.div-validate').find('span.site').remove();
+    if (inputVal.length > valMinLength && !IsSite(inputVal)) {
+      $(this).parents('div.div-validate').append(msgSite);
+    }
+  });
 });
 function listenValidatorRMRosas(elem){
   var notEmpty = false;
@@ -161,16 +195,7 @@ function cleanValidatorRMRosas(elem){
 }
 function formValidatorRMRosas(form){
   valido = true;
-  var msgInputRequired = '<span class="text-danger error_validator required">O preenchimento deste campo é obrigatório!<br/></span>';
-  var msgInputMinLength = '<span class="text-danger error_validator minlength">Digite no mínimo ## caracteres!<br/></span>';
-  var msgSelect = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
-  var msgRadio = '<span class="text-danger error_validator required">A escolha de uma opção é obrigatória!<br/></span>';
-  var msgCnpj = '<span class="text-danger error_validator required cnpj">O CNPJ informado não é válido!<br/></span>';
-  var msgCpf = '<span class="text-danger error_validator required cpf">O CPF informado não é válido!<br/></span>';
-  $(form).find('span.required').remove();
-  $(form).find('span.minlength').remove();
-  $(form).find('span.cnpj').remove();
-  $(form).find('span.cpf').remove();
+  $(form).find('span.error_validator').remove();
   $(form).find('input[type="text"][required], input[type="date"][required], input[type="number"][required], input[type="email"][required], textarea[allempty]').each(function(){
     if ($(this).is(':visible')) {
       var valLength = $(this).val().length;
@@ -220,6 +245,24 @@ function formValidatorRMRosas(form){
       var inputVal = $(this).val().length;
       if (inputVal.length == valMinLength && !validaCPF(inputVal)) {
         $(this).parents('div.div-validate').append(msgCpf);
+      }
+    }
+  });
+  $(form).find('input[type="email"]').each(function(){
+    if ($(this).is(':visible')) {
+      var valMinLength = $(this).attr('minlength');
+      var inputVal = $(this).val();
+      if (inputVal.length > valMinLength && !IsEmail(inputVal)) {
+        $(this).parents('div.div-validate').append(msgEmail);
+      }
+    }
+  });
+  $(form).find('input.site').each(function(){
+    if ($(this).is(':visible')) {
+      var valMinLength = $(this).attr('minlength');
+      var inputVal = $(this).val();
+      if (inputVal.length > valMinLength && !IsSite(inputVal)) {
+        $(this).parents('div.div-validate').append(msgSite);
       }
     }
   });

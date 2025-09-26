@@ -1,15 +1,29 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['p_id']);
-$status                                   = strip_tags(@$_POST['p_status']?: 0);
+$id                                       = strip_tags(@$_POST['ue_id']?: '');
+$status                                   = strip_tags(@$_POST['ue_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$tipo                                     = 2; //1 = pessoa física, 2 = pessoa jurídica
-$nome                                     = ucwords(strip_tags(@$_POST['p_nome']?: ''));
-$nome_social                               = ucwords(strip_tags(@$_POST['p_nome_social']?: ''));
-$cpf                                      = strip_tags(@$_POST['p_cpf']?: '');
-$ie                                       = strip_tags(@$_POST['p_ie']?: '');
-$dt_criacao                               = strip_tags(@$_POST['p_dt_criacao']?: '');
-$tableName      = 'bsc_pessoa';
+$bsc_pessoa_id                            = strip_tags(@$_POST['ue_bsc_pessoa_id']?: '');
+$inep_cod                                 = trim(strip_tags(@$_POST['ue_inep_cod']?: ''));
+$ue_funcionam_situacao_id                 = strip_tags(@$_POST['ue_ue_funcionam_situacao_id']?: '');
+$bsc_zona_id                              = strip_tags(@$_POST['ue_bsc_zona_id']?: '');
+$ue_localizacao_diferenciada_id           = strip_tags(@$_POST['ue_ue_localizacao_diferenciada_id']?: '');
+$bsc_esfera_administrativa_id_dependencia = strip_tags(@$_POST['ue_bsc_esfera_administrativa_id_dependencia']?: '');
+$ue_cat_esc_priv_id                       = strip_tags(@$_POST['ue_ue_cat_esc_priv_id']?: '');
+$bsc_esfera_administrativa_id_regulam     = strip_tags(@$_POST['ue_bsc_esfera_administrativa_id_regulam']?: '');
+$ue_regulam_situacao_id                   = strip_tags(@$_POST['ue_ue_regulam_situacao_id']?: '');
+$ue_ue_vinculada_tipo_id                  = strip_tags(@$_POST['ue_ue_ue_vinculada_tipo_id']?: '');
+$ue_ue_id_vinculada                       = strip_tags(@$_POST['ue_ue_ue_id_vinculada']?: '');
+$regional_cod                             = trim(strip_tags(@$_POST['ue_regional_cod']?: ''));
+$entidade_superior_acesso                 = trim(strip_tags(@$_POST['ue_entidade_superior_acesso']?: ''));
+$ue_infra_local_ocupacao_forma_id         = strip_tags(@$_POST['ue_ue_infra_local_ocupacao_forma_id']?: '');
+$fornece_agua_potavel                     = trim(strip_tags(@$_POST['ue_fornece_agua_potavel']?: ''));
+$sala_aula_qtd                            = trim(strip_tags(@$_POST['ue_sala_aula_qtd']?: ''));
+$sala_aula_climatizada_qtd                = trim(strip_tags(@$_POST['ue_sala_aula_climatizada_qtd']?: ''));
+$sala_aula_acessibilidade_qtd             = trim(strip_tags(@$_POST['ue_sala_aula_acessibilidade_qtd']?: ''));
+$internet_banda_larga_velocidade          = trim(strip_tags(@$_POST['ue_internet_banda_larga_velocidade']?: ''));
+$alimentacao_pnae_fnde_oferece            = trim(strip_tags(@$_POST['alimentacao_pnae_fnde_oferece']?: ''));
+$tableName      = 'ue_ue';
 $error          = false;
 $result         = array();
 $msg            = "";
@@ -20,8 +34,8 @@ $msg            = "";
 //   'status' => 'succes',
 //   'msg' => 'Dados pessoais do servidor atualizados com sucesso.'
 // );
-// echo json_encode(array('status' => 'success', 'msg' => 'As novas informações foram registradas com sucesso.'));
-// exit();
+echo json_encode(array('status' => 'success', 'msg' => 'As novas informações foram registradas com sucesso.'));
+exit();
 try {
   $db->beginTransaction();
   if (is_numeric($id) && $id != "" && $id != 0 ) {

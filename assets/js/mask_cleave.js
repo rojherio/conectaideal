@@ -14,6 +14,34 @@ $('.mask-cnpj').each(function(k, elem){
     blocks: [2, 3, 3, 4, 2]
   });
 });
+$('.mask-cep').each(function(k, elem){
+  new Cleave(elem, {
+    numericOnly: true,
+    delimiters: ['.', '-'],
+    blocks: [2, 3, 3]
+  });
+});
+$('.mask-tel-resid').each(function(k, elem){
+  new Cleave(elem, {
+    numericOnly: true,
+    delimiters: ['(', ')', '-'],
+    blocks: [0, 2, 4, 4]
+  });
+});
+$('.mask-tel-cel').each(function(k, elem){
+  new Cleave(elem, {
+    numericOnly: true,
+    delimiters: ['(', ')', '.' , '-'],
+    blocks: [0, 2, 1, 4, 4]
+  });
+});
+$('.mask-tel-geral').each(function(k, elem){
+  new Cleave(elem, {
+    numericOnly: true,
+    delimiters: ['(', ')', '-'],
+    blocks: [0, 2, 4, 5]
+  });
+});
 $('.mask-numeros').each(function(k, elem){
   let maxLength = $(this).attr('maxlength');
   new Cleave(elem, {

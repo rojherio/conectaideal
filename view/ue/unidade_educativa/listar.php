@@ -139,4 +139,4 @@ $tituloImpressao          = "Relatório de pessoas jurídicas cadastradas no sis
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/pessoa_juridica/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_juridica/listar.js"></script>

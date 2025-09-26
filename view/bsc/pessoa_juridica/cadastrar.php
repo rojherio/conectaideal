@@ -5,28 +5,60 @@ include_once ('template/header.php');
 //Parámetros de títutlos - BEGIN
 $id = ($parametromodulo) ? : 0;
 $tabPane = !(isset($_POST['tabPane'])) ? 0 : $_POST['tabPane'];
-echo $tabPane;
+//Consulta para Edição - BEGIN
+//Identiicação - BEGIN
 $stmt = $db->prepare("SELECT 
-  p.id,
-  p.status,
-  p.dt_cadastro,
-  p.tipo,
-  p.nome,
-  p.nome_social,
-  p.cpf,
-  p.ie,
-  p.dt_criacao
+  p.id
   FROM bsc_pessoa AS p
   WHERE p.tipo = 2 AND p.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
-if (is_array($rsRegistro)) {
-  $id = 0;
+if (!($rsRegistro)) {
+  $rsRegistro = array();
+  $rsRegistro['id'] = 0;
 }
+//Identiicação - END
+//Consulta para Edição - END
+//Consulta para Select - BEGIN
+$stmt = $db->prepare("
+  SELECT 
+  m.id, 
+  CONCAT(m.nome, ' - ', e.sigla) AS nome
+  FROM bsc_municipio AS m 
+  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id
+  ORDER BY e.nome ASC, m.nome;");
+$stmt->execute();
+$rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("
+  SELECT 
+  p.id, 
+  CONCAT(p.nome, ' - ', p.grau) AS nome 
+  FROM bsc_parentesco_grau AS p ;");
+$stmt->execute();
+$rsGrausParentesco = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// $stmt = $db->prepare("
+//   SELECT 
+//     p.id,
+//     p.status,
+//     p.dt_cadastro,
+//     p.nome,
+//     p.nacionalidade,
+//     p.masculino,
+//     p.feminino
+//   FROM bsc_pais AS p
+//   ORDER BY p.id ASC;");
+// $stmt->execute();
+// $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Consulta para Select - END
+//Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro de Pessoa Jurídica";
 $descricaoPagina          = "Informações de pessoa jurídica";
 //Parámetros de títutlos - END
+//Parámetros de Exibição de campos - BEGIN
+$exibeSituação            = true;
+$exibeButões              = true;
+//Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->
 <main>
@@ -54,7 +86,7 @@ $descricaoPagina          = "Informações de pessoa jurídica";
     <!-- TABS - BEGIN -->
     <div class="row app-tabs-section">
       <div class="col-md-12">
-        <div class="card">
+        <div class="">
           <div class="card-body equal-card">
             <ul class="nav nav-tabs tab-primary bg-primary p-2" id="bg" role="tablist">
               <li class="nav-item" role="presentation">
@@ -63,7 +95,7 @@ $descricaoPagina          = "Informações de pessoa jurídica";
                 </button>
               </li>
               <?php
-              if (is_array($rsRegistro)) {
+              if ($rsRegistro['id']) {
                 ?>
                 <li class="nav-item" role="presentation">
                   <button aria-controls="tab-pane-p-documentos" data-bs-target="#tab-pane-p-documentos" id="tab-p-documentos" aria-selected="false" class="nav-link <?= $tabPane == 2 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
@@ -81,24 +113,30 @@ $descricaoPagina          = "Informações de pessoa jurídica";
             </ul>
             <div class="tab-content" id="v-bgContent">
               <div aria-labelledby="tab-pane-p-identificacao" id="tab-pane-p-identificacao" class="tab-pane fade <?= $tabPane <= 1 ? 'show active' : '' ;?>" role="tabpanel" tabindex="1">
-                <?php 
-                include_once ('view/bsc/pessoa_juridica/content_identificacao.php'); 
-                ?>
+                <form class="app-form" id="form_pessoa" name="form_pessoa" method="post" urltosend="bsc/pessoa_juridica/salvar_identificacao" action="">
+                  <?php 
+                  include_once ('view/bsc/pessoa_juridica/content_identificacao.php'); 
+                  ?>
+                </form>
               </div>
               <div aria-labelledby="tab-pane-p-documentos" id="tab-pane-p-documentos" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
-                <?php 
-                include_once ('view/bsc/pessoa_juridica/content_documento.php'); 
-                ?>
+                <form class="app-form" id="form_pessoa_documento" name="form_pessoa_documento" method="post" urltosend="bsc/pessoa_juridica/salvar_documento" action="">
+                  <?php 
+                  include_once ('view/bsc/pessoa_juridica/content_documento.php'); 
+                  ?>
+                </form>
               </div>
               <div aria-labelledby="tab-pane-p-contatos" id="tab-pane-p-contatos" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
-                <?php 
-                include_once ('view/bsc/pessoa_juridica/content_contato.php'); 
-                ?>
+                <form class="app-form" id="form_pessoa_contato" name="form_pessoa_contato" method="post" urltosend="bsc/pessoa_juridica/salvar_contato" action="">
+                  <?php 
+                  include_once ('view/bsc/pessoa_juridica/content_contato.php'); 
+                  ?>
+                </form>
               </div>
             </div>
           </div>
           <div id="teste">
-            
+
           </div>
         </div>
       </div>

@@ -2,49 +2,134 @@
 include_once ('template/topo.php');
 include_once ('template/sidebar.php');
 include_once ('template/header.php');
-$id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
-$db = Conexao::getInstance();
-//Consulta para Edição - BEGIN
+//Parámetros de títutlos - BEGIN
+$id = ($parametromodulo) ? : 0;
+$tabPane = !(isset($_POST['tabPane'])) ? 0 : $_POST['tabPane'];
+//Consulta Base - BEGIN
 $stmt = $db->prepare("SELECT 
-  p.id,
-  p.status,
-  p.dt_cadastro,
-  p.tipo,
-  p.nome,
-  p.nome_social,
-  p.cpf,
-  p.ie,
-  p.dt_criacao
-  FROM bsc_pessoa AS p
-  WHERE p.tipo = 2 AND p.id = ? ;");
+  ue.id
+  FROM ue_ue AS ue
+  WHERE ue.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsRegistro)) {
-  $rsRegistro = array();
-  $rsRegistro['id'] = 0;
-  $rsRegistro['status'] = 1;
-  $rsRegistro['tipo'] = 2;
-  $rsRegistro['nome'] = '';
-  $rsRegistro['nome_social'] = '';
-  $rsRegistro['cpf'] = '';
-  $rsRegistro['ie'] = '';
-  $rsRegistro['dt_criacao'] = '';
+$rsRegistroUE = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!($rsRegistroUE)) {
+  $rsRegistroUE = array();
+  $rsRegistroUE['id'] = 0;
 }
-//Consulta para Edição - END
+//Consulta Base - END
+
+//Consultas para Select - BEGIN
+//Zona - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM bsc_zona
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsZonas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Zona - END
+//Localização Diferenciada - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_localizacao_diferenciada
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsLocalizacaoDiferenciadas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Localização Diferenciada - END
+//Esfera Administrativa Dependência - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM bsc_esfera_administrativa
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsEsferaAdmninDepends = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Esfera Administrativa Dependência - END
+//Categoria de Escola Privada - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_cat_esc_priv
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsCatEscPrivs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Categoria de Escola Privada - END
+//Situação Regulamentação/Autorização - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_regulam_situacao
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsRegulamSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Situação Regulamentação/Autorização - END
+//Esfera Responsável Regulamentação - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM bsc_esfera_administrativa
+  WHERE id <> 4;");
+$stmt->execute();
+$rsEsferaAdmninRegulams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Esfera Responsável Regulamentação - END
+//Local de Funcionamento - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_infra_local_funcionam
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsInfraLocalFuncionamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Local de Funcionamento - END
+$stmt = $db->prepare("SELECT 
+  p.id,
+  p.nome
+  FROM bsc_pessoa AS p
+  WHERE p.tipo = 2;");
+$stmt->execute();
+$rsPJs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("SELECT 
+  p.id,
+  p.nome
+  FROM ue_funcionam_situacao AS p
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsFuncionamSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("
+  SELECT 
+  m.id, 
+  CONCAT(m.nome, ' - ', e.sigla) AS nome
+  FROM bsc_municipio AS m 
+  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id
+  ORDER BY e.nome ASC, m.nome;");
+$stmt->execute();
+$rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("
+  SELECT 
+  p.id, 
+  CONCAT(p.nome, ' - ', p.grau) AS nome 
+  FROM bsc_parentesco_grau AS p ;");
+$stmt->execute();
+$rsGrausParentesco = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// $stmt = $db->prepare("
+//   SELECT 
+//     p.id,
+//     p.status,
+//     p.dt_cadastro,
+//     p.nome,
+//     p.nacionalidade,
+//     p.masculino,
+//     p.feminino
+//   FROM bsc_pais AS p
+//   ORDER BY p.id ASC;");
+// $stmt->execute();
+// $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Consulta para Select - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro de Pessoa Jurídica";
-$descricaoPagina          = "Informações de pessoa jurídica";
-$tituloFormulario1        = "Dados de Pessoa Jurídica";
-$descricaoFormulario1     = "Dados de identificação da pessoa jurídica";
-$tituloFormulario2        = "";
-$descricaoFormulario2     = "";
-$tituloFormulario3        = "";
-$descricaoFormulario3     = "";
-$tituloFormulario4        = "";
-$descricaoFormulario4     = "";
-$tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está ativo ou inativo";
+$tituloPagina             = "Cadastro de Unidade Educativa";
+$descricaoPagina          = "Informações da unidade educativa";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -63,161 +148,72 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Pessoa Jurídica</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Unidade Educativa</a>
           </li>
         </ul>
       </div>
     </div>
     <!-- div Título página e links de navegação - END -->
-    <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_pessoa" name="form_pessoa" method="post" action="">
-      <input type="hidden" name="p_id" id="p_id" value="<?= $rsRegistro['id'] ;?>">
-      <!-- div de cadastro - BEGIN -->
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $tituloFormulario1;?></h5>
-              <small><?= $descricaoFormulario1;?></small>
-              <!-- Título da div de cadastro - END -->
-            </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Nome/Razão Social',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_nome',
-                  /*string*/    'id'          => 'p_nome',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Digite o nome/razão social da pessoa jurídica',
-                  /*string*/    'value'       => $rsRegistro['nome'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <div class="row">
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Nome Fantasia',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_nome_social',
-                  /*string*/    'id'          => 'p_nome_social',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 254,
-                  /*string*/    'placeholder' => 'Digite o nome fantasia da pessoa jurídica',
-                  /*string*/    'value'       => $rsRegistro['nome_social'],
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'CNPJ',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_cpf',
-                  /*string*/    'id'          => 'p_cpf',
-                  /*string*/    'class'       => 'form-control mask-cnpj',
-                  /*int*/       'minlength'   => 18,
-                  /*int*/       'maxlength'   => 18,
-                  /*string*/    'placeholder' => 'Digite o CNPJ da pessoa jurídica',
-                  /*string*/    'value'       => $rsRegistro['cpf'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <div class="row">
-                <?= createInput(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'IE (Inscrição Estadual)',
-                  /*string*/    'type'        => 'text',
-                  /*string*/    'name'        => 'p_ie',
-                  /*string*/    'id'          => 'p_ie',
-                  /*string*/    'class'       => 'form-control',
-                  /*int*/       'minlength'   => 3,
-                  /*int*/       'maxlength'   => 45,
-                  /*string*/    'placeholder' => 'Digite o numero de inscrição estadual da pessoa jurídica',
-                  /*string*/    'value'       => $rsRegistro['ie'],
-                  /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-                <?= createInputDate(array(
-                  /*int 1-12*/  'col'         => 6,
-                  /*string*/    'label'       => 'Data de Criação',
-                  /*string*/    'name'        => 'p_dt_criacao',
-                  /*string*/    'id'          => 'p_dt_criacao',
-                  /*string*/    'class'       => 'form-control mask-data',
-                  /*int*/       'min'         => '1900-01-01',
-                  /*int*/       'maxToday'    => true,
-                  /*string*/    'placeholder' => 'Digite a data de criação da pessoa jurídica',
-                  /*string*/    'value'       => $rsRegistro['dt_criacao'],
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <!-- div row input - END -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $tituloFormulario5;?></h5>
-              <small><?= $descricaoFormulario5;?></small>
-              <!-- Título da div de cadastro - END -->
-            </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
-                <?= createCheckbox(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Ativo',
-                  /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'p_status',
-                  /*string*/    'id'          => 'p_status',
-                  /*string*/    'class'       => 'toggle',
-                  /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsRegistro['status'],
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <!-- div row input - END -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <!-- div row buttons - BEGIN -->
-              <div class="row">
-                <div class="box-footer text-center">
-                  <button type="reset" class="btn btn-outline-danger b-r-22" id="btn_cancelar">
-                    <i class="ti ti-eraser"></i> Cancelar
+    <!-- div de cadastro - BEGIN -->
+    <!-- TABS - BEGIN -->
+    <div class="row app-tabs-section">
+      <div class="col-md-12">
+        <!-- <div class="card"> -->
+          <div class="">
+            <div class="card-body equal-card">
+              <ul class="nav nav-tabs tab-primary bg-primary p-2" id="bg" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button aria-controls="tab-pane-1" data-bs-target="#tab-pane-1" id="tab-1" aria-selected="true" class="nav-link <?= $tabPane <=1 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                    <i class="ti ti-disc pe-1 ps-1"></i>Identificação
                   </button>
-                  <button type="button" id="submit" class="btn btn-outline-success waves-light b-r-22">
-                    <i class="ti ti-writing"></i> Cadastrar
-                  </button>
+                </li>
+                <?php
+                if ($rsRegistroUE['id']) {
+                  ?>
+                  <li class="nav-item" role="presentation">
+                    <button aria-controls="tab-pane-3" data-bs-target="#tab-pane-3" id="tab-3" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                      <i class="ti ti-star pe-1 ps-1"></i>Contatos
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button aria-controls="tab-pane-2" data-bs-target="#tab-pane-2" id="tab-2" aria-selected="false" class="nav-link <?= $tabPane == 2 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                      <i class="ti ti-history pe-1 ps-1"></i>Documentos
+                    </button>
+                  </li>
+                  <?php
+                }
+                ?>
+              </ul>
+              <div class="tab-content" id="v-bgContent">
+                <div aria-labelledby="tab-pane-1" id="tab-pane-1" class="tab-pane fade <?= $tabPane <= 1 ? 'show active' : '' ;?>" role="tabpanel" tabindex="1">
+                  <form class="app-form" id="form_ue_pessoa" name="form_ue_pessoa" method="post" urlToSend="ue/unidade_educativa/salvar_identificacao" action="">
+                    <?php 
+                    include_once ('view/ue/unidade_educativa/content_identificacao.php'); 
+                    ?>
+                  </form>
+                </div>
+                <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
+                  <?php 
+                  include_once ('view/ue/unidade_educativa/content_contato.php'); 
+                  ?>
+                </div>
+                <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
+                  <?php 
+                  include_once ('view/ue/unidade_educativa/content_documento.php'); 
+                  ?>
                 </div>
               </div>
-              <!-- div row buttons - END -->
+            </div>
+            <div id="teste">
+
             </div>
           </div>
         </div>
       </div>
-    </form>
-    <!-- formulário de cadastro - END -->
-    <!-- div de cadastro - END -->
-  </div>
-</main>
+      <!-- TABS - END -->
+      <!-- div de cadastro - END -->
+    </div>
+  </main>
 <!-- Main Section - END-->
 <?php
 include_once ('template/footer.php');

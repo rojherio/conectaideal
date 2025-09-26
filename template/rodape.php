@@ -23,6 +23,7 @@ include_once "utils/modal_loading.php";
 <script type="text/javascript" src="<?= UTILS_FOLDER; ?>utils.js"></script>
 <!-- JAVASCRIPT UTILS END -->
 <!-- JAVASCRIPT CUSTON BEGIN -->
+<script type="text/javascript" src="<?= PLUGINS_FOLDER; ?>typeahead/typeahead.bundle.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>script.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>customizer.js"></script>
 <script type="text/javascript" src="<?= JS_FOLDER; ?>data_table.js"></script>

@@ -39687,7 +39687,7 @@ input[type=range]::-webkit-slider-thumb {
   border: 1px solid rgba(var(--secondary), 0.4);
   border-radius: var(--app-border-radius);
 }*/
-.app-form .select2-container--default .select2-selection {
+.app-form .select2-container--default .select2-selection:not(.select2-selection--multiple) {
   color: rgba(var(--secondary), 1);
   background-color: rgba(var(--white), 1);
   height: calc(3.5rem + calc(var(--bs-border-width)* 2));

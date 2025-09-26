@@ -85,3 +85,17 @@ nav:not(div.dt-paging>nav.vertical-sidebar) {
   width: 17rem !important;
   transition: var(--app-transition);
 }
+/*Select2 multiple - BEGIN*/
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+  display: inline-grid !important;
+  padding: 8px !important;
+}
+ul.select2-selection__rendered > li.select2-selection__choice:first-child{
+  margin-top: 1.5rem !important;
+}
+textarea.select2-search__field {
+  padding-left: .5rem !important;
+  font-weight: 500 !important;
+  font-family: inherit !important;
+}
+/*Select2 multiple - END*/
