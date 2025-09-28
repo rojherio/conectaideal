@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_categoria_administrativa',
-      urlToSend:      'model/bsc/categoria_administrativa/salvar_categoria_administrativa',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/categoria_administrativa/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/bsc/categoria_administrativa/listar'
     };
     ajaxSendCadastrar(params);

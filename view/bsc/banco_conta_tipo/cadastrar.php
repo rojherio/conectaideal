@@ -49,7 +49,7 @@ $exibeButões              = true;
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_banco_conta_tipo" name="form_banco_conta_tipo" method="post" urltosend="bsc/banco/salvar_identificacao" action="">
+    <form class="app-form" id="form_banco_conta_tipo" name="form_banco_conta_tipo" method="post" urltosend="bsc/banco_conta_tipo/salvar_identificacao" action="">
       <?php 
       include_once ('view/bsc/banco_conta_tipo/content_identificacao.php'); 
       ?>
