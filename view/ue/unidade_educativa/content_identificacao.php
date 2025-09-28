@@ -321,10 +321,37 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
             /*array()*/   'options'     => $rsEsferaAdmninDepends,
             /*string*/    'ariaLabel'   => 'Selecione uma dependência administrativa',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
+            /*string*/    'prop'        => 'controller="ue_privada" controller-values="0|4"',
             /*string*/    'display'     => true
           )); ?>
         </div>
+        <?php
+        //Parámetros de exibir/ocultar div - BEGIN
+        $displayUEPrivada   = $rsRegistroUEIdent['bsc_esfera_administrativa_id_dependencia'] != 4 ? 'style="display: none;"' : '';
+        //Parámetros de exibir/ocultar div - NED
+        ?>
+        <div id="div_ue_privada" controlled="ue_privada" control-value="4" <?= $displayUEPrivada ;?>>
+          <h6>Conceitos do INEP para Unidade Escolar Privada</h6>
+          <div class="row border border-primary rounded pt-1 pt-3 ms-0 me-0 mb-3">
+            <h6>Categoria de Escola Privada</h6>
+            <div class="row">
+              <?= createSelect(array(
+                /*int 1-12*/  'col'         => '12 pe-0',
+                /*string*/    'label'       => 'Categoria de Escola Privada',
+                /*string*/    'name'        => 'ue_ue_cat_esc_priv_id',
+                /*string*/    'id'          => 'ue_ue_cat_esc_priv_id',
+                /*string*/    'class'       => 'select2 form-control form-select select-basic',
+                /*string*/    'value'       => $rsRegistroUEIdent['ue_cat_esc_priv_id'],
+                /*array()*/   'options'     => $rsCatEscPrivs,
+                /*string*/    'ariaLabel'   => 'Selecione uma categoria de escola privada',
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'controlled="ue_privada" control-value="4"',
+                /*string*/    'display'     => true
+              )); ?>
+            </div>
+          </div>
+        </div>
+
         <h6>Órgão Responsável Pela Criação da Unidade Educativa</h6>
         <div class="row">
           <?= createSelectMultiple(array(
@@ -341,229 +368,209 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
             /*string*/    'display'     => true
           )); ?>
         </div>
-
-
-        <!-- <h6>Internvalo do Ano Letivo da Unidade Escolar</h6>
-        <div class="row border border-primary rounded pt-1 pt-3 ms-0 pe-3_5 me-0 mb-3"> -->
-          <?php
-          // $countAnoLetivo = 0;
-          // foreach ($rsRegistroAnoLetivos as $key => $obj) {
-            // $countAnoLetivo++;
-          ?>
-          <!-- <div class="row border border-primary rounded pt-3 ms-3 me-3 mb-3"> -->
-              <?php //createInputDate(array(
-                // /*int 1-12*/  'col'         => 6,
-                // /*string*/    'label'       => 'Data de Início',
-                // /*string*/    'name'        => 'ue_ano_letivo_dt_inicio[]',
-                // /*string*/    'id'          => 'ue_ano_letivo_dt_inicio'.$countAnoLetivo,
-                // /*string*/    'class'       => 'form-control mask-data',
-                // /*int*/       'min'         => '2000-01-01',
-                // /*int*/       'maxToday'    => false,
-                // /*string*/    'placeholder' => 'Digite a data de início do ano letivo',
-                // /*string*/    'value'       => $obj['dt_inicio'],
-                // /*bool*/      'required'    => false,
-                // /*string*/    'prop'        => ''
-              // )) ;?>
-              <?php // createInputDate(array(
-                // /*int 1-12*/  'col'         => 6,
-                // /*string*/    'label'       => 'Data de Início',
-                // /*string*/    'name'        => 'ue_ano_letivo_dt_fim[]',
-                // /*string*/    'id'          => 'ue_ano_letivo_dt_fim'.$countAnoLetivo,
-                // /*string*/    'class'       => 'form-control mask-data',
-                // /*int*/       'min'         => '2000-01-01',
-                // /*int*/       'maxToday'    => false,
-                // /*string*/    'placeholder' => 'Digite a data de início do ano letivo',
-                // /*string*/    'value'       => $obj['dt_fim'],
-                // /*bool*/      'required'    => false,
-                // /*string*/    'prop'        => ''
-              // )) ;?>
-              <?php // createInput(array(
-                // /*int 1-12*/  'col'         => 12,
-                // /*string*/    'label'       => 'Observação',
-                // /*string*/    'type'        => 'text',
-                // /*string*/    'name'        => 'ue_ano_letivo_descricao[]',
-                // /*string*/    'id'          => 'ue_ano_letivo_descricao'.$countAnoLetivo,
-                // /*string*/    'class'       => 'form-control',
-                // /*int*/       'minlength'   => 3,
-                // /*int*/       'maxlength'   => 254,
-                // /*string*/    'placeholder' => 'Digite a explicação do ano letivo',
-                // /*string*/    'value'       => $obj['descricao'],
-                // /*bool*/      'required'    => false,
-                // /*string*/    'prop'        => ''
-              // )) ;?>
-              <!-- </div> -->
-              <?php
-          // }
-              ?>
-              <!-- </div> -->
-
-
-
-              <h6>Categoria de Escola Privada</h6>
-              <div class="row">
-                <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Categoria de Escola Privada',
-                  /*string*/    'name'        => 'ue_ue_cat_esc_priv_id',
-                  /*string*/    'id'          => 'ue_ue_cat_esc_priv_id',
-                  /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsRegistroUEIdent['ue_cat_esc_priv_id'],
-                  /*array()*/   'options'     => $rsCatEscPrivs,
-                  /*string*/    'ariaLabel'   => 'Selecione uma categoria de escola privada',
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
-              </div>
-              <h6>Tipo de Atendimento de Ensino</h6>
-              <div class="row">
-                <?= createSelectMultiple(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Tipos de Atendimento',
-                  /*string*/    'name'        => 'ue_ens_atend_tipo_id[]',
-                  /*string*/    'id'          => 'ue_ens_atend_tipo_id',
-                  /*string*/    'class'       => 'select2 form-control form-select',
-                  /*array()*/   'value'       => $rsRegistrosEnsAtendTipoId,
-                  /*array()*/   'options'     => $rsEnsAtendTipos,
-                  /*string*/    'ariaLabel'   => 'Selecione os tipos de atendimentos',
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
-              </div>
-              <h6>Modalidade/Etapa de Ensino</h6>
-              <div class="row">
-                <?= createSelectMultiple(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Modalidade/Etapa de Ensino',
-                  /*string*/    'name'        => 'ue_ens_modalidade_etapa_id[]',
-                  /*string*/    'id'          => 'ue_ens_modalidade_etapa_id',
-                  /*string*/    'class'       => 'select2 form-control form-select',
-                  /*array()*/   'value'       => $rsRegistrosEnsModalidadeEtapaId,
-                  /*array()*/   'options'     => $rsEnsModalidadeEtapas,
-                  /*string*/    'ariaLabel'   => 'Selecione as modalidades/etapas',
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
-              </div>
-              <h6>Forma de Ensino Profissionalizante</h6>
-              <div class="row">
-                <?= createSelectMultiple(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Forma de Ensino Profissionalizante',
-                  /*string*/    'name'        => 'ue_ens_profis_forma_id[]',
-                  /*string*/    'id'          => 'ue_ens_profis_forma_id',
-                  /*string*/    'class'       => 'select2 form-control form-select',
-                  /*array()*/   'value'       => $rsRegistrosEnsProfisFormaId,
-                  /*array()*/   'options'     => $rsEnsProfisFormas,
-                  /*string*/    'ariaLabel'   => 'Selecione as formas de ensino profissionalizante',
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
-              </div>
-              <h6>Esfera Administrativa Responsável pela Regulamentação/Autorização de Funcionamento da Unidade Educativa</h6>
-              <div class="row">
-                <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Situação de Regulamentação/Autorização',
-                  /*string*/    'name'        => 'ue_bsc_esfera_administrativa_id_regulam',
-                  /*string*/    'id'          => 'ue_bsc_esfera_administrativa_id_regulam',
-                  /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsRegistroUEIdent['bsc_esfera_administrativa_id_regulam'],
-                  /*array()*/   'options'     => $rsEsferaAdmninRegulams,
-                  /*string*/    'ariaLabel'   => 'Selecione uma esfera administriva responsável pela regulamentação/autorização',
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
-              </div>
-              <h6>Situação de Regulamentação/Autorização de Funcionamento da Unidade Educativa</h6>
-              <div class="row">
-                <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Situação de Regulamentação/Autorização',
-                  /*string*/    'name'        => 'ue_ue_regulam_situacao_id',
-                  /*string*/    'id'          => 'ue_ue_regulam_situacao_id',
-                  /*string*/    'class'       => 'select2 form-control form-select select-basic',
-                  /*string*/    'value'       => $rsRegistroUEIdent['ue_regulam_situacao_id'],
-                  /*array()*/   'options'     => $rsRegulamSituacoes,
-                  /*string*/    'ariaLabel'   => 'Selecione uma situação de regulamentação/autorização',
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
-              </div>
-              <h6>Locais de Funcionamento da Unidade Educativa</h6>
-              <div class="row">
-                <?= createSelectMultiple(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Locais de Funcionamento',
-                  /*string*/    'name'        => 'ue_infra_local_funcionam_id[]',
-                  /*string*/    'id'          => 'ue_infra_local_funcionam_id',
-                  /*string*/    'class'       => 'select2 form-control form-select',
-                  /*array()*/   'value'       => $rsRegistrosInfraLocalFuncionamId,
-                  /*array()*/   'options'     => $rsInfraLocalFuncionamentos,
-                  /*string*/    'ariaLabel'   => 'Selecione os locais de funcionamento',
-                  /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
-                )); ?>
-              </div>
-              <!-- div row input - END -->
-            </div>
+        <h6>Tipo de Atendimento de Ensino</h6>
+        <div class="row">
+          <?= createSelectMultiple(array(
+            /*int 1-12*/  'col'         => 12,
+            /*string*/    'label'       => 'Tipos de Atendimento',
+            /*string*/    'name'        => 'ue_ens_atend_tipo_id[]',
+            /*string*/    'id'          => 'ue_ens_atend_tipo_id',
+            /*string*/    'class'       => 'select2 form-control form-select',
+            /*array()*/   'value'       => $rsRegistrosEnsAtendTipoId,
+            /*array()*/   'options'     => $rsEnsAtendTipos,
+            /*string*/    'ariaLabel'   => 'Selecione os tipos de atendimentos',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => '',
+            /*string*/    'display'     => true
+          )); ?>
+        </div>
+        <h6>Modalidade/Etapa de Ensino</h6>
+        <div class="row">
+          <?= createSelectMultiple(array(
+            /*int 1-12*/  'col'         => 12,
+            /*string*/    'label'       => 'Modalidade/Etapa de Ensino',
+            /*string*/    'name'        => 'ue_ens_modalidade_etapa_id[]',
+            /*string*/    'id'          => 'ue_ens_modalidade_etapa_id',
+            /*string*/    'class'       => 'select2 form-control form-select',
+            /*array()*/   'value'       => $rsRegistrosEnsModalidadeEtapaId,
+            /*array()*/   'options'     => $rsEnsModalidadeEtapas,
+            /*string*/    'ariaLabel'   => 'Selecione as modalidades/etapas',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => '',
+            /*string*/    'display'     => true
+          )); ?>
+        </div>
+        <h6>Forma de Ensino Profissionalizante</h6>
+        <div class="row">
+          <?= createSelectMultiple(array(
+            /*int 1-12*/  'col'         => 12,
+            /*string*/    'label'       => 'Forma de Ensino Profissionalizante',
+            /*string*/    'name'        => 'ue_ens_profis_forma_id[]',
+            /*string*/    'id'          => 'ue_ens_profis_forma_id',
+            /*string*/    'class'       => 'select2 form-control form-select',
+            /*array()*/   'value'       => $rsRegistrosEnsProfisFormaId,
+            /*array()*/   'options'     => $rsEnsProfisFormas,
+            /*string*/    'ariaLabel'   => 'Selecione as formas de ensino profissionalizante',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => '',
+            /*string*/    'display'     => true
+          )); ?>
+        </div>
+        <h6>Esfera Administrativa Responsável pela Regulamentação/Autorização de Funcionamento da Unidade Educativa</h6>
+        <div class="row">
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 12,
+            /*string*/    'label'       => 'Situação de Regulamentação/Autorização',
+            /*string*/    'name'        => 'ue_bsc_esfera_administrativa_id_regulam',
+            /*string*/    'id'          => 'ue_bsc_esfera_administrativa_id_regulam',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroUEIdent['bsc_esfera_administrativa_id_regulam'],
+            /*array()*/   'options'     => $rsEsferaAdmninRegulams,
+            /*string*/    'ariaLabel'   => 'Selecione uma esfera administriva responsável pela regulamentação/autorização',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => '',
+            /*string*/    'display'     => true
+          )); ?>
+        </div>
+        <h6>Situação de Regulamentação/Autorização de Funcionamento da Unidade Educativa</h6>
+        <div class="row">
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 12,
+            /*string*/    'label'       => 'Situação de Regulamentação/Autorização',
+            /*string*/    'name'        => 'ue_ue_regulam_situacao_id',
+            /*string*/    'id'          => 'ue_ue_regulam_situacao_id',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroUEIdent['ue_regulam_situacao_id'],
+            /*array()*/   'options'     => $rsRegulamSituacoes,
+            /*string*/    'ariaLabel'   => 'Selecione uma situação de regulamentação/autorização',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => '',
+            /*string*/    'display'     => true
+          )); ?>
+        </div>
+        <h6>Locais de Funcionamento da Unidade Educativa</h6>
+        <div class="row">
+          <?= createSelectMultiple(array(
+            /*int 1-12*/  'col'         => 12,
+            /*string*/    'label'       => 'Locais de Funcionamento',
+            /*string*/    'name'        => 'ue_infra_local_funcionam_id[]',
+            /*string*/    'id'          => 'ue_infra_local_funcionam_id',
+            /*string*/    'class'       => 'select2 form-control form-select',
+            /*array()*/   'value'       => $rsRegistrosInfraLocalFuncionamId,
+            /*array()*/   'options'     => $rsInfraLocalFuncionamentos,
+            /*string*/    'ariaLabel'   => 'Selecione os locais de funcionamento',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => '',
+            /*string*/    'display'     => true
+          )); ?>
+        </div>
+        <!-- div row input - END -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+        <!-- Título da div de cadastro - BEGIN -->
+        <h5><?= $ueTituloFormulario5;?></h5>
+        <small><?= $ueDescricaoFormulario5;?></small>
+        <!-- Título da div de cadastro - END -->
+      </div>
+      <div class="card-body">
+        <!-- div row input - BEGIN -->
+        <div class="row">
+          <?= createCheckbox(array(
+            /*int 1-12*/  'col'         => 12,
+            /*string*/    'label'       => 'Ativo',
+            /*string*/    'type'        => 'checkbox',
+            /*string*/    'name'        => 'ue_status',
+            /*string*/    'id'          => 'ue_status',
+            /*string*/    'class'       => 'toggle',
+            /*string*/    'value'       => 1,
+            /*string*/    'checked'     => $rsRegistroUEIdent['status'],
+            /*string*/    'prop'        => ''
+          )) ;?>
+        </div>
+        <!-- div row input - END -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <!-- div row buttons - BEGIN -->
+        <div class="row">
+          <div class="box-footer text-center">
+            <button type="reset" class="btn_reset btn btn-outline-danger b-r-22" id="btn_cancelar">
+              <i class="ti ti-eraser"></i> Cancelar
+            </button>
+            <button type="button" id="submit" class="btn_submit btn btn-outline-success waves-light b-r-22">
+              <i class="ti ti-writing"></i> Cadastrar
+            </button>
           </div>
         </div>
+        <!-- div row buttons - END -->
       </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              <!-- Título da div de cadastro - BEGIN -->
-              <h5><?= $ueTituloFormulario5;?></h5>
-              <small><?= $ueDescricaoFormulario5;?></small>
-              <!-- Título da div de cadastro - END -->
-            </div>
-            <div class="card-body">
-              <!-- div row input - BEGIN -->
-              <div class="row">
-                <?= createCheckbox(array(
-                  /*int 1-12*/  'col'         => 12,
-                  /*string*/    'label'       => 'Ativo',
-                  /*string*/    'type'        => 'checkbox',
-                  /*string*/    'name'        => 'ue_status',
-                  /*string*/    'id'          => 'ue_status',
-                  /*string*/    'class'       => 'toggle',
-                  /*string*/    'value'       => 1,
-                  /*string*/    'checked'     => $rsRegistroUEIdent['status'],
-                  /*string*/    'prop'        => ''
-                )) ;?>
-              </div>
-              <!-- div row input - END -->
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-body">
-              <!-- div row buttons - BEGIN -->
-              <div class="row">
-                <div class="box-footer text-center">
-                  <button type="reset" class="btn_reset btn btn-outline-danger b-r-22" id="btn_cancelar">
-                    <i class="ti ti-eraser"></i> Cancelar
-                  </button>
-                  <button type="button" id="submit" class="btn_submit btn btn-outline-success waves-light b-r-22">
-                    <i class="ti ti-writing"></i> Cadastrar
-                  </button>
-                </div>
-              </div>
-              <!-- div row buttons - END -->
-            </div>
-          </div>
-        </div>
-      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <h6>Internvalo do Ano Letivo da Unidade Escolar</h6>
+<div class="row border border-primary rounded pt-1 pt-3 ms-0 pe-3_5 me-0 mb-3"> -->
+  <?php
+  // $countAnoLetivo = 0;
+  // foreach ($rsRegistroAnoLetivos as $key => $obj) {
+    // $countAnoLetivo++;
+  ?>
+  <!-- <div class="row border border-primary rounded pt-3 ms-3 me-3 mb-3"> -->
+      <?php //createInputDate(array(
+        // /*int 1-12*/  'col'         => 6,
+        // /*string*/    'label'       => 'Data de Início',
+        // /*string*/    'name'        => 'ue_ano_letivo_dt_inicio[]',
+        // /*string*/    'id'          => 'ue_ano_letivo_dt_inicio'.$countAnoLetivo,
+        // /*string*/    'class'       => 'form-control mask-data',
+        // /*int*/       'min'         => '2000-01-01',
+        // /*int*/       'maxToday'    => false,
+        // /*string*/    'placeholder' => 'Digite a data de início do ano letivo',
+        // /*string*/    'value'       => $obj['dt_inicio'],
+        // /*bool*/      'required'    => false,
+        // /*string*/    'prop'        => ''
+      // )) ;?>
+      <?php // createInputDate(array(
+        // /*int 1-12*/  'col'         => 6,
+        // /*string*/    'label'       => 'Data de Início',
+        // /*string*/    'name'        => 'ue_ano_letivo_dt_fim[]',
+        // /*string*/    'id'          => 'ue_ano_letivo_dt_fim'.$countAnoLetivo,
+        // /*string*/    'class'       => 'form-control mask-data',
+        // /*int*/       'min'         => '2000-01-01',
+        // /*int*/       'maxToday'    => false,
+        // /*string*/    'placeholder' => 'Digite a data de início do ano letivo',
+        // /*string*/    'value'       => $obj['dt_fim'],
+        // /*bool*/      'required'    => false,
+        // /*string*/    'prop'        => ''
+      // )) ;?>
+      <?php // createInput(array(
+        // /*int 1-12*/  'col'         => 12,
+        // /*string*/    'label'       => 'Observação',
+        // /*string*/    'type'        => 'text',
+        // /*string*/    'name'        => 'ue_ano_letivo_descricao[]',
+        // /*string*/    'id'          => 'ue_ano_letivo_descricao'.$countAnoLetivo,
+        // /*string*/    'class'       => 'form-control',
+        // /*int*/       'minlength'   => 3,
+        // /*int*/       'maxlength'   => 254,
+        // /*string*/    'placeholder' => 'Digite a explicação do ano letivo',
+        // /*string*/    'value'       => $obj['descricao'],
+        // /*bool*/      'required'    => false,
+        // /*string*/    'prop'        => ''
+      // )) ;?>
+      <!-- </div> -->
+      <?php
+  // }
+      ?>
+<!-- </div> -->
 <!-- formulário de cadastro - END -->
 <!-- <script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_juridica/cadastrar.js"></script> -->

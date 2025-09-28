@@ -321,7 +321,7 @@ function ajaxSuccessSub(data, status, obj, urlToGo) {
 function ajaxCompleteSendSub(data, status, params, elemSubKey) {
   delete urlsToSendSub[elemSubKey];
   let countElem = 0;
-  Object.keys(urlsToSendSub).forEach((elemKey, k) => {
+  urlsToSendSub.forEach((elemKey, k) => {
     countElem++;
   });
   if (countElem == 0) {

@@ -306,7 +306,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*array()*/   'options'     => $rsPaises,
                   /*string*/    'ariaLabel'   => 'Selecione um país',
                   /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => 'controller="naturalidade"',
+                  /*string*/    'prop'        => 'controller="naturalidade" controller-values="0|1"',
                   /*string*/    'display'     => true
                 )); ?>
                 <?php
