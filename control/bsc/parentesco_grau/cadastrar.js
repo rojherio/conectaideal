@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_parentesco_grau',
-      urlToSend:      'model/bsc/parentesco_grau/salvar_parentesco_grau',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/parentesco_grau/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/bsc/parentesco_grau/listar'
     };
     ajaxSendCadastrar(params);
