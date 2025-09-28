@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_esfera_administrativa',
-      urlToSend:      'model/bsc/esfera_administrativa/salvar_esfera_administrativa',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/esfera_administrativa/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/bsc/esfera_administrativa/listar'
     };
     ajaxSendCadastrar(params);
