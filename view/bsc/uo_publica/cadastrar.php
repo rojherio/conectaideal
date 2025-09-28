@@ -38,7 +38,8 @@ $rsRegistro2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $db->prepare("SELECT 
   p.id,
   p.nome
-  FROM bsc_pessoa AS p
+  FROM bsc_pessoa AS p 
+  WHERE p.tipo = 2 
   ORDER BY p.nome");
 $stmt->execute();
 $rsRegistro3 = $stmt->fetchAll(PDO::FETCH_ASSOC);

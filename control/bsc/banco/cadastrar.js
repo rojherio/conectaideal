@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_banco',
-      urlToSend:      'model/bsc/banco/salvar_banco',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/banco/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/bsc/banco/listar'
     };
     ajaxSendCadastrar(params);
