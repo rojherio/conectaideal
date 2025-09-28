@@ -10,7 +10,7 @@ function btnVisualizar(elem){
 
 function btnEditar(elem){
   var id = $(elem).parents('tr').children('input#td_id').val();
-  postToURL(PORTAL_URL + 'view/seg/usuario/cadastrar', {id: id});
+  postToURL(PORTAL_URL + 'view/seg/usuario/cadastrar/' + id);
 };
 
 function btnInativar(elem) {

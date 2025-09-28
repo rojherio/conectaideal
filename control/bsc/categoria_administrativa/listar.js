@@ -9,7 +9,7 @@ function btnVisualizar(elem){
 };
 function btnEditar(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
-  postToURL(PORTAL_URL + 'view/bsc/categoria_administrativa/cadastrar', {id: id});
+  postToURL(PORTAL_URL + 'view/bsc/categoria_administrativa/cadastrar/' + id);
 };
 function btnExcluir(elem){
   let id = $(elem).parents('tr').children('input#td_id').val();
