@@ -49,7 +49,7 @@ $exibeButões              = true;
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_banco" name="form_banco" method="post" urltosend="bsc/categoria_administrativa/salvar_identificacao" action="">
+    <form class="app-form" id="form_categoria_administrativa" name="form_categoria_administrativa" method="post" urltosend="bsc/categoria_administrativa/salvar_identificacao" action="">
       <?php 
       include_once ('view/bsc/categoria_administrativa/content_identificacao.php'); 
       ?>

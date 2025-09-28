@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_escolaridade',
-      urlToSend:      'model/bsc/escolaridade/salvar_escolaridade',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/escolaridade/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/bsc/escolaridade/listar'
     };
     ajaxSendCadastrar(params);
