@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_estado_civil',
-      urlToSend:      'model/bsc/estado_civil/salvar_estado_civil',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/estado_civil/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/bsc/estado_civil/listar'
     };
     ajaxSendCadastrar(params);
