@@ -1,4 +1,7 @@
 @charset "UTF-8";
+.pe-3_5 {
+  padding-right: 2rem !important;
+}
 .ml-n1 { 
   margin-left: -0.25rem !important; 
 }

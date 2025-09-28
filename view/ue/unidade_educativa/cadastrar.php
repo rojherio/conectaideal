@@ -18,8 +18,25 @@ if (!($rsRegistroUE)) {
   $rsRegistroUE['id'] = 0;
 }
 //Consulta Base - END
-
 //Consultas para Select - BEGIN
+//Situação Funcionamento - BEGIN
+$stmt = $db->prepare("SELECT 
+  p.id,
+  p.nome
+  FROM ue_funcionam_situacao AS p
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsFuncionamSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Situação Funcionamento - END
+//Pessoas Jurídicas - BEGIN
+$stmt = $db->prepare("SELECT 
+  p.id,
+  p.nome
+  FROM bsc_pessoa AS p
+  WHERE p.tipo = 2;");
+$stmt->execute();
+$rsPJs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Pessoas Jurídicas - END
 //Zona - BEGIN
 $stmt = $db->prepare("SELECT 
   id,
@@ -47,6 +64,16 @@ $stmt = $db->prepare("SELECT
 $stmt->execute();
 $rsEsferaAdmninDepends = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Esfera Administrativa Dependência - END
+//UO Publica - BEGIN
+$stmt = $db->prepare("SELECT 
+  uop.id,
+  p.nome
+  FROM bsc_uo_publica AS uop 
+  LEFT JOIN bsc_pessoa AS p ON p.id = uop.bsc_pessoa_id
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsUOPublicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//UO Publicaa - END
 //Categoria de Escola Privada - BEGIN
 $stmt = $db->prepare("SELECT 
   id,
@@ -56,6 +83,35 @@ $stmt = $db->prepare("SELECT
 $stmt->execute();
 $rsCatEscPrivs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Categoria de Escola Privada - END
+//Ensino Atendimento Tipo - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_ens_atend_tipo
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsEnsAtendTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Atendimento Tipo - END
+//Ensino Modalidade Etapa - BEGIN
+$stmt = $db->prepare("SELECT 
+  eme.id,
+  CONCAT(emt.nome, ' - ', eme.nome) AS nome
+  FROM ue_ens_modalidade_etapa AS eme
+  LEFT JOIN ue_ens_modalidade_tipo AS emt ON emt.id = eme.ue_ens_modalidade_tipo_id
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsEnsModalidadeEtapas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Modalidade Etapa - END
+//Ensino Profissionalizante Forma - BEGIN
+$stmt = $db->prepare("SELECT 
+  epf.id,
+  CONCAT(ept.nome, ' - ', epf.nome) AS nome
+  FROM ue_ens_profis_forma AS epf
+  LEFT JOIN ue_ens_profis_tipo AS ept ON ept.id = epf.ue_ens_profis_tipo_id
+  WHERE 1 = 1");
+$stmt->execute();
+$rsEnsProfisFormas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Profissionalizante Forma - END
 //Situação Regulamentação/Autorização - BEGIN
 $stmt = $db->prepare("SELECT 
   id,
@@ -83,20 +139,7 @@ $stmt = $db->prepare("SELECT
 $stmt->execute();
 $rsInfraLocalFuncionamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Local de Funcionamento - END
-$stmt = $db->prepare("SELECT 
-  p.id,
-  p.nome
-  FROM bsc_pessoa AS p
-  WHERE p.tipo = 2;");
-$stmt->execute();
-$rsPJs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt = $db->prepare("SELECT 
-  p.id,
-  p.nome
-  FROM ue_funcionam_situacao AS p
-  WHERE 1 = 1;");
-$stmt->execute();
-$rsFuncionamSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Municipio - BEGIN
 $stmt = $db->prepare("
   SELECT 
   m.id, 
@@ -106,6 +149,8 @@ $stmt = $db->prepare("
   ORDER BY e.nome ASC, m.nome;");
 $stmt->execute();
 $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Município - END
+//Grau Parentesco - BEGIN
 $stmt = $db->prepare("
   SELECT 
   p.id, 
@@ -113,6 +158,7 @@ $stmt = $db->prepare("
   FROM bsc_parentesco_grau AS p ;");
 $stmt->execute();
 $rsGrausParentesco = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Grau Parentesco - END
 // $stmt = $db->prepare("
 //   SELECT 
 //     p.id,
@@ -171,12 +217,12 @@ $descricaoPagina          = "Informações da unidade educativa";
                 if ($rsRegistroUE['id']) {
                   ?>
                   <li class="nav-item" role="presentation">
-                    <button aria-controls="tab-pane-3" data-bs-target="#tab-pane-3" id="tab-3" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                    <button aria-controls="tab-pane-3" data-bs-target="#tab-pane-3" id="tab-3" aria-selected="false" class="nav-link <?= $tabPane == 2 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
                       <i class="ti ti-star pe-1 ps-1"></i>Contatos
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button aria-controls="tab-pane-2" data-bs-target="#tab-pane-2" id="tab-2" aria-selected="false" class="nav-link <?= $tabPane == 2 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                    <button aria-controls="tab-pane-2" data-bs-target="#tab-pane-2" id="tab-2" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
                       <i class="ti ti-history pe-1 ps-1"></i>Documentos
                     </button>
                   </li>
@@ -192,12 +238,12 @@ $descricaoPagina          = "Informações da unidade educativa";
                     ?>
                   </form>
                 </div>
-                <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
+                <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
                   <?php 
                   include_once ('view/ue/unidade_educativa/content_contato.php'); 
                   ?>
                 </div>
-                <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
+                <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
                   <?php 
                   include_once ('view/ue/unidade_educativa/content_documento.php'); 
                   ?>

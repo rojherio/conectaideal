@@ -268,7 +268,6 @@ function ajaxSendCadastrarSub(params){
         divLoading();
         urlsToSendSub = params.urlsToSendSub;
         Object.keys(params.urlsToSendSub).forEach((elemSubKey, k) => {
-          console.log(params.urlsToSendSub[elemSubKey]);
           $.ajax({
             url:          PORTAL_URL + params.urlsToSendSub[elemSubKey].urlToSendSub,
             async:        true,
@@ -327,6 +326,7 @@ function ajaxCompleteSendSub(data, status, params, elemSubKey) {
   });
   if (countElem == 0) {
     //Envio Formulario Principal - BEGIN
+    let formToSend = $('#'+params.formId);
     $.ajax({
       url: PORTAL_URL + params.urlToSend,
       async: true,
@@ -335,7 +335,7 @@ function ajaxCompleteSendSub(data, status, params, elemSubKey) {
       cache: true,
       dataType: "json",
       contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-      data: params.formSerialized,
+      data: formToSend.serialize(),
       statusCode: {
         404: function() {
           alert( "Página não encontrada" );
