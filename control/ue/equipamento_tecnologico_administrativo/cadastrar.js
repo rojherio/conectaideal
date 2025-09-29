@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_equip_tecn_administrativo',
-      urlToSend:      'model/ue/equipamento_tecnologico_administrativo/salvar_equipamento_tecnologico_administrativo',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/equipamento_tecnologico_administrativo/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/equipamento_tecnologico_administrativo/listar'
     };
     ajaxSendCadastrar(params);
