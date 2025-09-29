@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_infra_lixo_dest_tipo',
-      urlToSend:      'model/ue/infra_lixo_dest_tipo/salvar_infra_lixo_dest_tipo',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/infra_lixo_dest_tipo/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/infra_lixo_dest_tipo/listar'
     };
     ajaxSendCadastrar(params);
