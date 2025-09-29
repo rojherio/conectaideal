@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_uo_publica',
-      urlToSend:      'model/bsc/uo_publica/salvar_uo_publica',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/uo_publica/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/bsc/uo_publica/listar'
     };
     ajaxSendCadastrar(params);
