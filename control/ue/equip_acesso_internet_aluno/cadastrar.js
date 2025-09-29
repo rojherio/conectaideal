@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_equip_acesso_internet_aluno',
-      urlToSend:      'model/ue/equip_acesso_internet_aluno/salvar_equip_acesso_internet_aluno',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/equip_acesso_internet_aluno/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/equip_acesso_internet_aluno/listar'
     };
     ajaxSendCadastrar(params);
