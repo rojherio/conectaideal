@@ -17,14 +17,14 @@ $stmt = $db->prepare("SELECT
   WHERE sp.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsRegistro)) {
-  $rsRegistro = array();
-  $rsRegistro['id'] = 0;
-  $rsRegistro['status'] = 1;
-  $rsRegistro['dt_cadastro'] = '';
-  $rsRegistro['nome'] = '';
-  $rsRegistro['descricao'] = '';
+$rsRegistroSetorPublico = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsRegistroSetorPublico)) {
+  $rsRegistroSetorPublico = array();
+  $rsRegistroSetorPublico['id'] = 0;
+  $rsRegistroSetorPublico['status'] = 1;
+  $rsRegistroSetorPublico['dt_cadastro'] = '';
+  $rsRegistroSetorPublico['nome'] = '';
+  $rsRegistroSetorPublico['descricao'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
@@ -43,7 +43,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de setor publico está ativ
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
-<input type="hidden" name="sp_id" id="sp_id" value="<?= $rsRegistro['id'] ;?>">
+<input type="hidden" name="sp_id" id="sp_id" value="<?= $rsRegistroSetorPublico['id'] ;?>">
 <!-- div de cadastro - BEGIN -->
 <div class="row">
   <div class="col-md-12">
@@ -67,7 +67,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de setor publico está ativ
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 150,
             /*string*/    'placeholder' => 'Digite o nome do Setor Publico',
-            /*string*/    'value'       => $rsRegistro['nome'],
+            /*string*/    'value'       => $rsRegistroSetorPublico['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -83,7 +83,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de setor publico está ativ
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite a descrição do Setor Publico',
-            /*string*/    'value'       => $rsRegistro['descricao'],
+            /*string*/    'value'       => $rsRegistroSetorPublico['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -116,7 +116,7 @@ if (isset($exibeSituação)) {
             /*string*/    'id'          => 'sp_status',
             /*string*/    'class'       => 'toggle',
             /*string*/    'value'       => 1,
-            /*string*/    'checked'     => $rsRegistro['status'],
+            /*string*/    'checked'     => $rsRegistroSetorPublico['status'],
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
