@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_privada_mantenedora_tipo',
-      urlToSend:      'model/ue/privada_mantenedora_tipo/salvar_privada_mantenedora_tipo',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/privada_mantenedora_tipo/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/privada_mantenedora_tipo/listar'
     };
     ajaxSendCadastrar(params);
