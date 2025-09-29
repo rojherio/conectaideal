@@ -2,7 +2,7 @@
 include_once ('template/topo.php');
 include_once ('template/sidebar.php');
 include_once ('template/header.php');
-$id = !(isset($_POST['id'])) ? 0 : $_POST['id'];
+$id = ($parametromodulo) ? : 0;
 $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
