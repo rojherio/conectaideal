@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_categoria_escola_privada',
-      urlToSend:      'model/ue/categoria_escola_privada/salvar_categoria_escola_privada',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/categoria_escola_privada/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/categoria_escola_privada/listar'
     };
     ajaxSendCadastrar(params);
