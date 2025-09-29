@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_internet_publico_tipo',
-      urlToSend:      'model/ue/internet_publico_tipo/salvar_internet_publico_tipo',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/internet_publico_tipo/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/internet_publico_tipo/listar'
     };
     ajaxSendCadastrar(params);
