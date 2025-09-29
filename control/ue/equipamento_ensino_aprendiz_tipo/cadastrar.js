@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_equipamento_ensino_aprendiz_tipo',
-      urlToSend:      'model/ue/equipamento_ensino_aprendiz_tipo/salvar_equipamento_ensino_aprendiz_tipo',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/equipamento_ensino_aprendiz_tipo/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/equipamento_ensino_aprendiz_tipo/listar'
     };
     ajaxSendCadastrar(params);
