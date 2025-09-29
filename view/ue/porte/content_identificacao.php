@@ -8,30 +8,30 @@ if (isset($idAux)) {
 }
 //Identificação - BEGIN
 $stmt = $db->prepare("SELECT 
-  cep.id,
-  cep.status,
-  cep.dt_cadastro,
-  cep.nome,
-  cep.descricao
-  FROM ue_cat_esc_priv AS cep
-  WHERE cep.id = ? ;");
+  p.id,
+  p.status,
+  p.dt_cadastro,
+  p.nome,
+  p.descricao
+  FROM ue_porte AS p
+  WHERE p.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsRegistroCategoriaEscolaPrivada = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!is_array($rsRegistroCategoriaEscolaPrivada)) {
-  $rsRegistroCategoriaEscolaPrivada = array();
-  $rsRegistroCategoriaEscolaPrivada['id'] = 0;
-  $rsRegistroCategoriaEscolaPrivada['status'] = 1;
-  $rsRegistroCategoriaEscolaPrivada['dt_cadastro'] = '';
-  $rsRegistroCategoriaEscolaPrivada['nome'] = '';
-  $rsRegistroCategoriaEscolaPrivada['descricao'] = '';
+$rsRegistroPorte = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!is_array($rsRegistroPorte)) {
+  $rsRegistroPorte = array();
+  $rsRegistroPorte['id'] = 0;
+  $rsRegistroPorte['status'] = 1;
+  $rsRegistroPorte['dt_cadastro'] = '';
+  $rsRegistroPorte['nome'] = '';
+  $rsRegistroPorte['descricao'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Cadastro da Categoria de Escola Privada";
-$descricaoPagina          = "Informações da categoria de escola privada";
-$tituloFormulario1        = "Dados da Categoria de Escola Privada";
-$descricaoFormulario1     = "Dados da identificação Dados categoria de escola privada";
+$tituloPagina             = "Cadastro de Porte de Alunos";
+$descricaoPagina          = "Informações do porte de alunos";
+$tituloFormulario1        = "Dados do Porte de Alunos";
+$descricaoFormulario1     = "Dados da identificação do porte de alunos";
 $tituloFormulario2        = "";
 $descricaoFormulario2     = "";
 $tituloFormulario3        = "";
@@ -39,11 +39,11 @@ $descricaoFormulario3     = "";
 $tituloFormulario4        = "";
 $descricaoFormulario4     = "";
 $tituloFormulario5        = "Situação";
-$descricaoFormulario5     = "Defina se esse cadastro da categoria de escola privada está ativo ou inativo";
+$descricaoFormulario5     = "Defina se esse cadastro de porte de alunos está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
-<input type="hidden" name="cep_id" id="cep_id" value="<?= $rsRegistroCategoriaEscolaPrivada['id'] ;?>">
+<input type="hidden" name="p_id" id="p_id" value="<?= $rsRegistroPorte['id'] ;?>">
 <!-- div de cadastro - BEGIN -->
 <div class="row">
   <div class="col-md-12">
@@ -59,15 +59,15 @@ $descricaoFormulario5     = "Defina se esse cadastro da categoria de escola priv
         <div class="row">
           <?= createInput(array(
             /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Nome da Categoria de Escola Privada',
+            /*string*/    'label'       => 'Nome do Porte de Alunos',
             /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 'cep_nome',
-            /*string*/    'id'          => 'cep_nome',
+            /*string*/    'name'        => 'p_nome',
+            /*string*/    'id'          => 'p_nome',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome da categoria de escola privada',
-            /*string*/    'value'       => $rsRegistroCategoriaEscolaPrivada['nome'],
+            /*int*/       'maxlength'   => 150,
+            /*string*/    'placeholder' => 'Digite o nome do Porte de Alunos',
+            /*string*/    'value'       => $rsRegistroPorte['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -77,13 +77,13 @@ $descricaoFormulario5     = "Defina se esse cadastro da categoria de escola priv
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
             /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 'cep_descricao',
-            /*string*/    'id'          => 'cep_descricao',
+            /*string*/    'name'        => 'p_descricao',
+            /*string*/    'id'          => 'p_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 254,
-            /*string*/    'placeholder' => 'Descreva a categoria de escola privada',
-            /*string*/    'value'       => $rsRegistroCategoriaEscolaPrivada['descricao'],
+            /*int*/       'maxlength'   => 256,
+            /*string*/    'placeholder' => 'Digite a descrição do Porte de Alunos',
+            /*string*/    'value'       => $rsRegistroPorte['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -112,11 +112,11 @@ if (isset($exibeSituação)) {
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Ativo',
             /*string*/    'type'        => 'checkbox',
-            /*string*/    'name'        => 'cep_status',
-            /*string*/    'id'          => 'cep_status',
+            /*string*/    'name'        => 'p_status',
+            /*string*/    'id'          => 'p_status',
             /*string*/    'class'       => 'toggle',
             /*string*/    'value'       => 1,
-            /*string*/    'checked'     => $rsRegistroCategoriaEscolaPrivada['status'],
+            /*string*/    'checked'     => $rsRegistroPorte['status'],
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
