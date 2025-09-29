@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_parceria_convenio_forma',
-      urlToSend:      'model/ue/parceria_convenio_forma/salvar_parceria_convenio_forma',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/parceria_convenio_forma/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/parceria_convenio_forma/listar'
     };
     ajaxSendCadastrar(params);
