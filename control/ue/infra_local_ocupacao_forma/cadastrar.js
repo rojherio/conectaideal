@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_infra_local_ocupacao_forma',
-      urlToSend:      'model/ue/infra_local_ocupacao_forma/salvar_infra_local_ocupacao_forma',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/infra_local_ocupacao_forma/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/infra_local_ocupacao_forma/listar'
     };
     ajaxSendCadastrar(params);
