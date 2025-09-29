@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_equipamento_computador_tipo',
-      urlToSend:      'model/ue/equipamento_computador_tipo/salvar_equipamento_computador_tipo',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/equipamento_computador_tipo/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/equipamento_computador_tipo/listar'
     };
     ajaxSendCadastrar(params);
