@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_equip_rede_local_tipo',
-      urlToSend:      'model/ue/equip_rede_local_tipo/salvar_equip_rede_local_tipo',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/equip_rede_local_tipo/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/equip_rede_local_tipo/listar'
     };
     ajaxSendCadastrar(params);
