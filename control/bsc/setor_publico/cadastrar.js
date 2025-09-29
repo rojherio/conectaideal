@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_setor_publico',
-      urlToSend:      'model/bsc/setor_publico/salvar_setor_publico',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/bsc/setor_publico/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/bsc/setor_publico/listar'
     };
     ajaxSendCadastrar(params);
