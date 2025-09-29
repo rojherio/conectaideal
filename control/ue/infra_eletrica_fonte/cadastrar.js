@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_infra_eletrica_fonte',
-      urlToSend:      'model/ue/infra_eletrica_fonte/salvar_infra_eletrica_fonte',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/infra_eletrica_fonte/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/infra_eletrica_fonte/listar'
     };
     ajaxSendCadastrar(params);
