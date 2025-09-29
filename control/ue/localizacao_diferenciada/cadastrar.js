@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_localizacao_diferenciada',
-      urlToSend:      'model/ue/localizacao_diferenciada/salvar_localizacao_diferenciada',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/localizacao_diferenciada/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/localizacao_diferenciada/listar'
     };
     ajaxSendCadastrar(params);
