@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_infra_espaco_fisico',
-      urlToSend:      'model/ue/infra_espaco_fisico/salvar_infra_espaco_fisico',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/infra_espaco_fisico/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/infra_espaco_fisico/listar'
     };
     ajaxSendCadastrar(params);
