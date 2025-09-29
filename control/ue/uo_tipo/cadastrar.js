@@ -10,8 +10,9 @@ $(document).ready(function () {
   //SALVANDO DADOS DO FORMULÁRIO DE PROJETO
   $('#submit').on('click', function () {
     let params = {
-      formId:         'form_uo_tipo',
-      urlToSend:      'model/ue/uo_tipo/salvar_uo_tipo',
+      formId:         $(this).parents('form').attr('id'),
+      urlCurrent:     'view/ue/uo_tipo/cadastrar',
+      urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
       urlToGo:        'view/ue/uo_tipo/listar'
     };
     ajaxSendCadastrar(params);
