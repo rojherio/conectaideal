@@ -321,7 +321,7 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa estÃ
             /*array()*/   'options'     => $rsEsferaAdmninDepends,
             /*string*/    'ariaLabel'   => 'Selecione uma dependÃªncia administrativa',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => 'controller="ue_privada" controller-values="0|4"',
+            /*string*/    'prop'        => 'controller="ue_privada" controller-values="4"',
             /*string*/    'display'     => true
           )); ?>
         </div>
@@ -330,7 +330,7 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa estÃ
         $displayUEPrivada   = $rsRegistroUEIdent['bsc_esfera_administrativa_id_dependencia'] != 4 ? 'style="display: none;"' : '';
         //ParÃ¡metros de exibir/ocultar div - NED
         ?>
-        <div id="div_ue_privada" controlled="ue_privada" control-value="4" <?= $displayUEPrivada ;?>>
+        <div class="teste" id="div_ue_privada" controlled="ue_privada" control-value="4" <?= $displayUEPrivada ;?>>
           <h6>Conceitos do INEP para Unidade Escolar Privada</h6>
           <div class="row border border-primary rounded pt-1 pt-3 ms-0 me-0 mb-3">
             <h6>Categoria de Escola Privada</h6>

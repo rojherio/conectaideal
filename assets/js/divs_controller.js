@@ -1,43 +1,21 @@
 $(document).ready(function() {
   $('select[controller]').change(function() {
-    let controller          = $(this).attr('controller');
-    let controllerVal       = $(this).val();
-    let controllerValues    = $(this).attr('controller-values');
-    console.log(controllerValues);
-    controllerValues.split('|').forEach((controlValue, k) => {
-      console.log(controllerVal+'-'+controlValue);
-      if (controllerVal != controlValue || (controllerVal != controlValue && controlValue == 0)) {
-        $('select[controlled="'+controller+'"][control-value="'+controlValue+'"]').val(null).trigger('change').prop('disabled', true);
-        $('input[controlled="'+controller+'"][control-value="'+controlValue+'"]').val('').prop('disabled', true);
-        $('[controlled="'+controller+'"][control-value="'+controlValue+'"]').slideUp();
-      }
-      if (controllerVal == controlValue || (controllerVal != controlValue && controlValue == 0)) {
-        $('select[controlled="'+controller+'"][control-value="'+controlValue+'"]').prop('disabled', false);
-        $('input[controlled="'+controller+'"][control-value="'+controlValue+'"]').val('').prop('disabled', false);
-        $('[controlled="'+controller+'"][control-value="'+controlValue+'"]').slideDown();
-        console.log('igual');
+    let controller            = $(this).attr('controller');
+    let controllerVal         = $(this).val();
+    let controllerValues      = $(this).attr('controller-values');
+    let controllerValuesParts = $(this).attr('controller-values');
+    $('[controlled="'+controller+'"]').each(function(k, elem){
+      let elemControlValue = $(elem).attr('control-value');
+      if ((elemControlValue == controllerVal) || (elemControlValue == 0 && controllerValuesParts.indexOf(controllerVal) < 0 && controllerValuesParts.indexOf('0') >= 0)) {
+        $(elem).is('select') ? $(elem).val(null).trigger('change').prop('disabled', false) : '';
+        $(elem).is('input') ? $(elem).val('').prop('disabled', false) : '';
+        $(elem).is('div') ? $(elem).slideDown() : '';
+      } else {
+        $(elem).is('select') ? $(elem).val(null).trigger('change').prop('disabled', true) : '';
+        $(elem).is('input') ? $(elem).val('').prop('disabled', true) : '';
+        $(elem).is('div') ? $(elem).slideUp() : '';
       }
     });
-
-    // if ($(this).val() == '') {
-    //   $('select[controlled="'+controller+'"][control-value="1"]').val(null).trigger('change').prop('disabled', true);
-    //   $('select[controlled="'+controller+'"][control-value="0"]').val(null).trigger('change').prop('disabled', true);
-    //   $('input[controlled="'+controller+'"][control-value="0"]').val('').prop('disabled', true);
-    //   $('[controlled="'+controller+'"][control-value="0"]').slideUp();
-    //   $('[controlled="'+controller+'"][control-value="1"]').slideUp();
-    // } else if ($(this).val() == 1) {
-    //   $('select[controlled="'+controller+'"][control-value="1"]').prop('disabled', false);
-    //   $('select[controlled="'+controller+'"][control-value="0"]').val(null).trigger('change').prop('disabled', true);
-    //   $('input[controlled="'+controller+'"][control-value="0"]').val('').prop('disabled', true);
-    //   $('[controlled="'+controller+'"][control-value="0"]').slideUp();
-    //   $('[controlled="'+controller+'"][control-value="1"]').slideDown();
-    // } else {
-    //   $('select[controlled="'+controller+'"][control-value="1"]').val(null).trigger('change').prop('disabled', true);
-    //   $('select[controlled="'+controller+'"][control-value="0"]').prop('disabled', false);
-    //   $('input[controlled="'+controller+'"][control-value="0"]').val('').prop('disabled', false);
-    //   $('[controlled="'+controller+'"][control-value="1"]').slideUp();
-    //   $('[controlled="'+controller+'"][control-value="0"]').slideDown();
-    // }
     return false;
   });
 });
