@@ -16,11 +16,13 @@ $msg            = "";
 try {
   $db->beginTransaction();
   $stmt = $db->prepare('
-    SELECT tb.nome
+    SELECT tb.nome, tb2.nome
     FROM '.$tableName.' AS tb 
-    WHERE tb.id <> ? AND (tb.nome LIKE ?);');
+    LEFT JOIN bsc_grandeza AS tb2 ON tb2.id = tb.bsc_grandeza_id
+    WHERE tb.id <> ? AND (tb.nome LIKE ? AND tb.bsc_grandeza_id = ?);');
   $stmt->bindValue(1, $id);
   $stmt->bindValue(2, $nome);
+  $stmt->bindValue(3, $bsc_grandeza_id);
   $stmt->execute();
   $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
   if (is_array($rsExistente)) {
