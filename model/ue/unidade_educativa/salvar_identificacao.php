@@ -47,7 +47,7 @@ $msg            = "";
 try {
   $db->beginTransaction();
   $stmt = $db->prepare('
-    SELECT p.nome AS unidade_educativa 
+    SELECT p.nome AS "Nome da Unidade Educativa" 
     FROM '.$tableName.' AS tb 
     LEFT JOIN bsc_pessoa AS p ON p.id = tb.bsc_pessoa_id
     WHERE tb.id <> ? AND tb.bsc_pessoa_id = ?;');

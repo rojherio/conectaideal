@@ -21,12 +21,11 @@ $(document).ready(function () {
     $(this).parents('form').find('[urltosendsub]').each(function(k, elem){
       params.urlsToSendSub[k] = {
         urlToSendSub:         $(elem).attr('urltosendsub'),
-        elemtId:              $(elem).attr('id'),
+        elemId:               $(elem).attr('id'),
         elemVal:              $(elem).val(),
         elemText:             $('#'+$(elem).attr('gettextinputid')).val()
       }
       params.formSerialized +=  '&'+($(elem).attr('setstatusinputid'))+'=1';
-      // setSelectFK(elemtId, elemVal, elemText);
     });
     ajaxSendCadastrarSub(params);
     return false;
@@ -94,15 +93,15 @@ $(document).ready(function () {
     }
   });
 });
-function setSelect(selectId, elemInput){
+function setSelect(elemId, elemInput){
   let inputVal = $(elemInput).val();
   var newOption = new Option(inputVal, inputVal, true, true);
-  $('#'+selectId).append(newOption).trigger('change');
+  $('#'+elemId).append(newOption).trigger('change');
 }
-function setSelectFK(selectId, optionId, text){
+function setSelectFK(elemId, optionId, text){
   var newOption = new Option(text, optionId, true, true);
-  $('#'+selectId).append(newOption).trigger('change');
+  $('#'+elemId).append(newOption).trigger('change');
 }
-function setInputFK(selectId, optionId){
-  $('#'+selectId).val(optionId);
+function setInputFK(elemId, value){
+  $('#'+elemId).val(value);
 }

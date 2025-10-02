@@ -239,7 +239,7 @@ $descricaoPagina          = "Informações da unidade educativa";
                   </form>
                 </div>
                 <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
-                  <form class="app-form" id="form_ue_contato" name="form_ue_contato" method="post" urlToSend="ue/unidade_educativa/salvar_contato" action="">
+                  <form class="app-form" id="form_ue_contato" name="form_ue_contato" method="post" urlToSend="bsc/pessoa_juridica/salvar_contato" action="">
                     <?php 
                     include_once ('view/ue/unidade_educativa/content_contato.php'); 
                     ?>

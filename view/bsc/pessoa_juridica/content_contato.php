@@ -77,9 +77,9 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
-<input type="hidden" name="pc_id" id="pc_id" value="<?= $rsRegistroPessoaCont['id'] ;?>">
-<input type="hidden" name="pc_bsc_pessoa_id" id="pc_bsc_pessoa_id" value="<?= $rsRegistroPessoaCont['bsc_pessoa_id'] ;?>">
 <div class="row">
+  <input type="hidden" name="pc_id" id="pc_id" value="<?= $rsRegistroPessoaCont['id'] ;?>">
+  <input type="hidden" name="pc_bsc_pessoa_id" id="pc_bsc_pessoa_id" value="<?= $rsRegistroPessoaCont['bsc_pessoa_id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">

@@ -46,8 +46,8 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
-<input type="hidden" name="p_id" id="p_id" value="<?= $rsRegistroPessoaIdent['id'] ;?>">
 <div class="row">
+  <input type="hidden" name="p_id" id="p_id" value="<?= $rsRegistroPessoaIdent['id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">

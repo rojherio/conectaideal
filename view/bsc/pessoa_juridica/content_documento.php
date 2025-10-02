@@ -136,9 +136,9 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
-<input type="hidden" name="pd_id" id="pd_id" value="<?= $rsRegistroPessoaDoc['id'] ;?>">
-<input type="hidden" name="pd_bsc_pessoa_id" id="pd_bsc_pessoa_id" value="<?= $rsRegistroPessoaDoc['bsc_pessoa_id'] ;?>">
 <div class="row">
+  <input type="hidden" name="pd_id" id="pd_id" value="<?= $rsRegistroPessoaDoc['id'] ;?>">
+  <input type="hidden" name="pd_bsc_pessoa_id" id="pd_bsc_pessoa_id" value="<?= $rsRegistroPessoaDoc['bsc_pessoa_id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">

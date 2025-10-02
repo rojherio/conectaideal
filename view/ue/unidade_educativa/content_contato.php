@@ -16,8 +16,8 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
-<input type="hidden" name="ue_id" id="ue_id" value="<?= $rsRegistroUEIdent['id'] ;?>">
 <div class="row">
+  <input type="hidden" name="ue_id" id="ue_id" value="<?= $rsRegistroUEIdent['id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">

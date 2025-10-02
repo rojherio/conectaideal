@@ -13,6 +13,13 @@ $tableName      = 'bsc_pessoa';
 $error          = false;
 $result         = array();
 $msg            = "";
+// sleep(10);
+// $result = array(
+//   'id'      => '',
+//   'tipo'    => '',
+//   'status' => 'succes',
+//   'msg' => 'Dados pessoais do servidor atualizados com sucesso.'
+// );
 // echo json_encode(array('status' => 'success', 'msg' => 'As novas informações foram registradas com sucesso.'));
 // exit();
 try {
@@ -25,12 +32,12 @@ try {
   $stmt->bindValue(2, $cpf);
   $stmt->execute();
   $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
-  if (is_array($rsExistente)) {
+  if ($rsExistente) {
     $db->rollback();
     $existentes = '';
     $virgula = '';
     foreach ($rsExistente as $kObj => $vObj) {
-      $existentes .= $virgula.'<br/>'.(ucwords($kObj!='cpf'? : 'CNPJ')).': '.$vObj;
+      $existentes .= $virgula.'<br/>'.htmlentities(ucwords($kObj!='cpf'? : 'CNPJ')).': '.$vObj;
       $virgula = ', ';
     }
     $result['status'] = 'error';

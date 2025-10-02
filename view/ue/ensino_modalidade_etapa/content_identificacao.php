@@ -54,9 +54,9 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
-<input type="hidden" name="eme_id" id="eme_id" value="<?= $rsRegistroEnsinoModalidadeEtapa['id'] ;?>">
 <!-- div de cadastro - BEGIN -->
 <div class="row">
+  <input type="hidden" name="eme_id" id="eme_id" value="<?= $rsRegistroEnsinoModalidadeEtapa['id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">

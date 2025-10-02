@@ -46,9 +46,9 @@ $tituloFormulario5        = "Situação";
 $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
-<input type="hidden" name="b_id" id="b_id" value="<?= $rsRegistroBanco['id'] ;?>">
 <!-- div de cadastro - BEGIN -->
 <div class="row">
+  <input type="hidden" name="b_id" id="b_id" value="<?= $rsRegistroBanco['id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -127,59 +127,59 @@ $descricaoFormulario5     = "Defina se esse cadastro de banco está ativo ou ina
 <?php
 if (isset($exibeSituação)) {
   ?>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <!-- Título da div de cadastro - BEGIN -->
-        <h5><?= $tituloFormulario5;?></h5>
-        <small><?= $descricaoFormulario5;?></small>
-        <!-- Título da div de cadastro - END -->
-      </div>
-      <div class="card-body">
-        <!-- div row input - BEGIN -->
-        <div class="row">
-          <?= createCheckbox(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Ativo',
-            /*string*/    'type'        => 'checkbox',
-            /*string*/    'name'        => 'b_status',
-            /*string*/    'id'          => 'b_status',
-            /*string*/    'class'       => 'toggle',
-            /*string*/    'value'       => 1,
-            /*string*/    'checked'     => $rsRegistroBanco['status'],
-            /*string*/    'prop'        => ''
-          )) ;?>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <!-- Título da div de cadastro - BEGIN -->
+          <h5><?= $tituloFormulario5;?></h5>
+          <small><?= $descricaoFormulario5;?></small>
+          <!-- Título da div de cadastro - END -->
         </div>
-        <!-- div row input - END -->
+        <div class="card-body">
+          <!-- div row input - BEGIN -->
+          <div class="row">
+            <?= createCheckbox(array(
+              /*int 1-12*/  'col'         => 12,
+              /*string*/    'label'       => 'Ativo',
+              /*string*/    'type'        => 'checkbox',
+              /*string*/    'name'        => 'b_status',
+              /*string*/    'id'          => 'b_status',
+              /*string*/    'class'       => 'toggle',
+              /*string*/    'value'       => 1,
+              /*string*/    'checked'     => $rsRegistroBanco['status'],
+              /*string*/    'prop'        => ''
+            )) ;?>
+          </div>
+          <!-- div row input - END -->
+        </div>
       </div>
     </div>
   </div>
-</div>
   <?php
 }
 if (isset($exibeButões)) {
   ?>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-body">
-        <!-- div row buttons - BEGIN -->
-        <div class="row">
-          <div class="box-footer text-center">
-            <button type="reset" class="btn btn-outline-danger b-r-22" id="btn_cancelar">
-              <i class="ti ti-eraser"></i> Cancelar
-            </button>
-            <button type="button" id="submit" class="btn btn-outline-success waves-light b-r-22">
-              <i class="ti ti-writing"></i> Cadastrar
-            </button>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <!-- div row buttons - BEGIN -->
+          <div class="row">
+            <div class="box-footer text-center">
+              <button type="reset" class="btn btn-outline-danger b-r-22" id="btn_cancelar">
+                <i class="ti ti-eraser"></i> Cancelar
+              </button>
+              <button type="button" id="submit" class="btn btn-outline-success waves-light b-r-22">
+                <i class="ti ti-writing"></i> Cadastrar
+              </button>
+            </div>
           </div>
+          <!-- div row buttons - END -->
         </div>
-        <!-- div row buttons - END -->
       </div>
     </div>
   </div>
-</div>
   <?php
 }
 ?>

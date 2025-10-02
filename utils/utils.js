@@ -290,7 +290,7 @@ function ajaxSendCadastrarSub(params){
             ajaxError(data, status, errorThrown);
           })
           .always(function (data, status){
-            $('#'+params.urlsToSendSub[elemSubKey].elemId).is('input') ? setInputFK(params.urlsToSendSub[elemSubKey].elemId, data.id) : '';
+            $('#'+params.urlsToSendSub[elemSubKey].elemId).is('input') ? setInputFK(params.urlsToSendSub[elemSubKey].elemId, params.urlsToSendSub[elemSubKey].elemText) : '';
             $('#'+params.urlsToSendSub[elemSubKey].elemId).is('select') ? setSelectFK(params.urlsToSendSub[elemSubKey].elemId, data.id, params.urlsToSendSub[elemSubKey].elemText) : '';
             ajaxCompleteSendSub(data, status, params, elemSubKey);
           })
@@ -361,6 +361,7 @@ function ajaxCompleteSendSub(data, status, params, elemSubKey) {
     } else {
       Swal.fire('Erro inesperado', "Houve um erro inesperado ao tentar registrar as novas informações! Por favor, tente novamente ou informe ao suporte o erro a seguir: " + data.msg, 'error');
     }
+    divLoaded();
       // console.log('Error: ' + data.msg);
   }
   return false;
