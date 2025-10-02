@@ -290,7 +290,8 @@ function ajaxSendCadastrarSub(params){
             ajaxError(data, status, errorThrown);
           })
           .always(function (data, status){
-            setSelectFK(params.urlsToSendSub[elemSubKey].selectId, data.id, params.urlsToSendSub[elemSubKey].selectText);
+            $('#'+params.urlsToSendSub[elemSubKey].elemId).is('input') ? setInputFK(params.urlsToSendSub[elemSubKey].elemId, data.id) : '';
+            $('#'+params.urlsToSendSub[elemSubKey].elemId).is('select') ? setSelectFK(params.urlsToSendSub[elemSubKey].elemId, data.id, params.urlsToSendSub[elemSubKey].elemText) : '';
             ajaxCompleteSendSub(data, status, params, elemSubKey);
           })
         });
@@ -320,40 +321,49 @@ function ajaxSuccessSub(data, status, obj, urlToGo) {
 }
 function ajaxCompleteSendSub(data, status, params, elemSubKey) {
   delete urlsToSendSub[elemSubKey];
-  let countElem = 0;
-  urlsToSendSub.forEach((elemKey, k) => {
-    countElem++;
-  });
-  if (countElem == 0) {
+  if (data.status == 'success') {
+    let countElem = 0;
+    urlsToSendSub.forEach((elemKey, k) => {
+      countElem++;
+    });
+    if (countElem == 0) {
     //Envio Formulario Principal - BEGIN
-    let formToSend = $('#'+params.formId);
-    $.ajax({
-      url: PORTAL_URL + params.urlToSend,
-      async: true,
-      method: "post",
-      beforeSend: divLoading,
-      cache: true,
-      dataType: "json",
-      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-      data: formToSend.serialize(),
-      statusCode: {
-        404: function() {
-          alert( "Página não encontrada" );
+      let formToSend = $('#'+params.formId);
+      $.ajax({
+        url: PORTAL_URL + params.urlToSend,
+        async: true,
+        method: "post",
+        beforeSend: divLoading,
+        cache: true,
+        dataType: "json",
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        data: formToSend.serialize(),
+        statusCode: {
+          404: function() {
+            alert( "Página não encontrada" );
+          }
         }
-      }
-    })
-    .done(function (data, status, obj){
-      ajaxSuccess(data, status, obj, params.urlToGo);
-    })
-    .fail(function (data, status, errorThrown){
-      ajaxError(data, status, errorThrown);
-    })
-    .always(function (data, status){
-      ajaxCompleteSendTabPane(data, status, params.urlCurrent, params.urlToGo, params.tabPane);
-    })
+      })
+      .done(function (data, status, obj){
+        ajaxSuccess(data, status, obj, params.urlToGo);
+      })
+      .fail(function (data, status, errorThrown){
+        ajaxError(data, status, errorThrown);
+      })
+      .always(function (data, status){
+        ajaxCompleteSendTabPane(data, status, params.urlCurrent, params.urlToGo, params.tabPane);
+      })
     //Envio Formulario Principal - END
+    }
+  } else if (data.status == 'error') {
+    if (data.tipo == 'existente') {
+      Swal.fire('Erro', data.msg, 'error');
+    } else {
+      Swal.fire('Erro inesperado', "Houve um erro inesperado ao tentar registrar as novas informações! Por favor, tente novamente ou informe ao suporte o erro a seguir: " + data.msg, 'error');
+    }
+      // console.log('Error: ' + data.msg);
   }
-  return false
+  return false;
 }
 
 

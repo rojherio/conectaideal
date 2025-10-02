@@ -1,5 +1,7 @@
 <?php
 //Consulta para Edição - BEGIN
+$idPessoa = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
+$idPessoa = isset($bsc_pessoa_id) ? $bsc_pessoa_id : $idPessoa;
 //Documento - BEGIN
 $stmt = $db->prepare("
   SELECT 
@@ -56,59 +58,59 @@ $stmt = $db->prepare("
   LEFT JOIN bsc_municipio AS m ON m.id = pd.eleitor_bsc_municipio_id 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
   WHERE pd.bsc_pessoa_id = ?;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $idPessoa);
 $stmt->execute();
-$rsRegistro2 = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!($rsRegistro2)) {
-  $rsRegistro2 = array();
-  $rsRegistro2['id'] = 0;
-  $rsRegistro2['status'] = 1;
-  $rsRegistro2['bsc_pessoa_id'] = $id;
-  $rsRegistro2['rg_numero'] = '';
-  $rsRegistro2['rg_dt_emissao'] = '';
-  $rsRegistro2['rg_orgao_expedidor'] = '';
-  $rsRegistro2['pis_numero'] = '';
-  $rsRegistro2['pis_dt_cadastro'] = '';
-  $rsRegistro2['pis_domicilio_bancario'] = '';
-  $rsRegistro2['pis_banco_numero'] = '';
-  $rsRegistro2['pis_banco_agencia'] = '';
-  $rsRegistro2['pis_banco_end'] = '';
-  $rsRegistro2['eleitor_numero'] = '';
-  $rsRegistro2['eleitor_zona'] = '';
-  $rsRegistro2['eleitor_secao'] = '';
-  $rsRegistro2['eleitor_bsc_municipio_id'] = '';
-  $rsRegistro2['eleitor_municipio_nome'] = '';
-  $rsRegistro2['eleitor_estado_sigla'] = '';
-  $rsRegistro2['eleitor_insc_orgao_classe'] = '';
-  $rsRegistro2['ctps_numero'] = '';
-  $rsRegistro2['ctps_serie'] = '';
-  $rsRegistro2['ctps_dt_emissao'] = '';
-  $rsRegistro2['ctps_orgao_expedidor'] = '';
-  $rsRegistro2['ctps_primeiro_emprego_ano'] = '';
-  $rsRegistro2['cnh_numero'] = '';
-  $rsRegistro2['cnh_categoria'] = '';
-  $rsRegistro2['cnh_dt_emissao'] = '';
-  $rsRegistro2['cnh_orgao_expedidor'] = '';
-  $rsRegistro2['cnh_validade'] = '';
-  $rsRegistro2['cnh_dt_primeira_habilitacao'] = '';
-  $rsRegistro2['rm_numero'] = '';
-  $rsRegistro2['rm_categoria'] = '';
-  $rsRegistro2['rm_emissao_ano'] = '';
-  $rsRegistro2['rm_orgao_expedidor'] = '';
-  $rsRegistro2['rm_especie'] = '';
-  $rsRegistro2['rp_numero'] = '';
-  $rsRegistro2['rp_dt_emissao'] = '';
-  $rsRegistro2['rp_orgao_expedidor'] = '';
-  $rsRegistro2['rp_dt_validade'] = '';
-  $rsRegistro2['rne_numero'] = '';
-  $rsRegistro2['rne_dt_emissao'] = '';
-  $rsRegistro2['rne_orgao_expedidor'] = '';
-  $rsRegistro2['fgts_numero'] = '';
-  $rsRegistro2['fgts_opcao'] = '';
-  $rsRegistro2['fgts_conta_vinculaa_banco'] = '';
-  $rsRegistro2['fgts_dt_retificacao'] = '';
-  $rsRegistro2['estrangeiro_casado_brasileiro'] = '';
-  $rsRegistro2['estrangeiro_filho_brasileiro'] = '';
+$rsRegistroPessoaDoc = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!($rsRegistroPessoaDoc)) {
+  $rsRegistroPessoaDoc = array();
+  $rsRegistroPessoaDoc['id'] = 0;
+  $rsRegistroPessoaDoc['status'] = 1;
+  $rsRegistroPessoaDoc['bsc_pessoa_id'] = $idPessoa;
+  $rsRegistroPessoaDoc['rg_numero'] = '';
+  $rsRegistroPessoaDoc['rg_dt_emissao'] = '';
+  $rsRegistroPessoaDoc['rg_orgao_expedidor'] = '';
+  $rsRegistroPessoaDoc['pis_numero'] = '';
+  $rsRegistroPessoaDoc['pis_dt_cadastro'] = '';
+  $rsRegistroPessoaDoc['pis_domicilio_bancario'] = '';
+  $rsRegistroPessoaDoc['pis_banco_numero'] = '';
+  $rsRegistroPessoaDoc['pis_banco_agencia'] = '';
+  $rsRegistroPessoaDoc['pis_banco_end'] = '';
+  $rsRegistroPessoaDoc['eleitor_numero'] = '';
+  $rsRegistroPessoaDoc['eleitor_zona'] = '';
+  $rsRegistroPessoaDoc['eleitor_secao'] = '';
+  $rsRegistroPessoaDoc['eleitor_bsc_municipio_id'] = '';
+  $rsRegistroPessoaDoc['eleitor_municipio_nome'] = '';
+  $rsRegistroPessoaDoc['eleitor_estado_sigla'] = '';
+  $rsRegistroPessoaDoc['eleitor_insc_orgao_classe'] = '';
+  $rsRegistroPessoaDoc['ctps_numero'] = '';
+  $rsRegistroPessoaDoc['ctps_serie'] = '';
+  $rsRegistroPessoaDoc['ctps_dt_emissao'] = '';
+  $rsRegistroPessoaDoc['ctps_orgao_expedidor'] = '';
+  $rsRegistroPessoaDoc['ctps_primeiro_emprego_ano'] = '';
+  $rsRegistroPessoaDoc['cnh_numero'] = '';
+  $rsRegistroPessoaDoc['cnh_categoria'] = '';
+  $rsRegistroPessoaDoc['cnh_dt_emissao'] = '';
+  $rsRegistroPessoaDoc['cnh_orgao_expedidor'] = '';
+  $rsRegistroPessoaDoc['cnh_validade'] = '';
+  $rsRegistroPessoaDoc['cnh_dt_primeira_habilitacao'] = '';
+  $rsRegistroPessoaDoc['rm_numero'] = '';
+  $rsRegistroPessoaDoc['rm_categoria'] = '';
+  $rsRegistroPessoaDoc['rm_emissao_ano'] = '';
+  $rsRegistroPessoaDoc['rm_orgao_expedidor'] = '';
+  $rsRegistroPessoaDoc['rm_especie'] = '';
+  $rsRegistroPessoaDoc['rp_numero'] = '';
+  $rsRegistroPessoaDoc['rp_dt_emissao'] = '';
+  $rsRegistroPessoaDoc['rp_orgao_expedidor'] = '';
+  $rsRegistroPessoaDoc['rp_dt_validade'] = '';
+  $rsRegistroPessoaDoc['rne_numero'] = '';
+  $rsRegistroPessoaDoc['rne_dt_emissao'] = '';
+  $rsRegistroPessoaDoc['rne_orgao_expedidor'] = '';
+  $rsRegistroPessoaDoc['fgts_numero'] = '';
+  $rsRegistroPessoaDoc['fgts_opcao'] = '';
+  $rsRegistroPessoaDoc['fgts_conta_vinculaa_banco'] = '';
+  $rsRegistroPessoaDoc['fgts_dt_retificacao'] = '';
+  $rsRegistroPessoaDoc['estrangeiro_casado_brasileiro'] = '';
+  $rsRegistroPessoaDoc['estrangeiro_filho_brasileiro'] = '';
 }
 //Documento - END
 //Consulta para Edição - END
@@ -134,8 +136,8 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
-<input type="hidden" name="pd_id" id="pd_id" value="<?= $rsRegistro2['id'] ;?>">
-<input type="hidden" name="pd_bsc_pessoa_id" id="pd_bsc_pessoa_id" value="<?= $rsRegistro2['bsc_pessoa_id'] ;?>">
+<input type="hidden" name="pd_id" id="pd_id" value="<?= $rsRegistroPessoaDoc['id'] ;?>">
+<input type="hidden" name="pd_bsc_pessoa_id" id="pd_bsc_pessoa_id" value="<?= $rsRegistroPessoaDoc['bsc_pessoa_id'] ;?>">
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -158,7 +160,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 15,
             /*string*/    'placeholder' => 'Digite o número do RG',
-            /*string*/    'value'       => $rsRegistro2['rg_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rg_numero'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -171,7 +173,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de emissão do RG',
-            /*string*/    'value'       => $rsRegistro2['rg_dt_emissao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rg_dt_emissao'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -185,7 +187,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 50,
             /*string*/    'placeholder' => 'Digite o órgão expedidor do RG',
-            /*string*/    'value'       => $rsRegistro2['rg_orgao_expedidor'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rg_orgao_expedidor'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -217,7 +219,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite o número do PIS/PASEP',
-            /*string*/    'value'       => $rsRegistro2['pis_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['pis_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -230,7 +232,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de cadastro do PIS/PASEP',
-            /*string*/    'value'       => $rsRegistro2['pis_dt_cadastro'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['pis_dt_cadastro'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -244,7 +246,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 50,
             /*string*/    'placeholder' => 'Digite o domicílio bancário do PIS/PASEP',
-            /*string*/    'value'       => $rsRegistro2['pis_domicilio_bancario'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['pis_domicilio_bancario'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -258,7 +260,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 15,
             /*string*/    'placeholder' => 'Digite o número do banco do PIS/PASEP',
-            /*string*/    'value'       => $rsRegistro2['pis_domicilio_bancario'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['pis_domicilio_bancario'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -272,7 +274,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 50,
             /*string*/    'placeholder' => 'Digite o agência bancária do PIS/PASEP',
-            /*string*/    'value'       => $rsRegistro2['pis_banco_agencia'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['pis_banco_agencia'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -286,7 +288,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 50,
             /*string*/    'placeholder' => 'Digite o endereço da agência do PIS/PASEP',
-            /*string*/    'value'       => $rsRegistro2['pis_banco_end'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['pis_banco_end'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -318,7 +320,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite o número do título eleitoral',
-            /*string*/    'value'       => $rsRegistro2['eleitor_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -332,7 +334,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 1,
             /*int*/       'maxlength'   => 5,
             /*string*/    'placeholder' => 'Digite a zona do título eleitoral',
-            /*string*/    'value'       => $rsRegistro2['eleitor_zona'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_zona'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -346,7 +348,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 1,
             /*int*/       'maxlength'   => 5,
             /*string*/    'placeholder' => 'Digite a seção do título eleitoral',
-            /*string*/    'value'       => $rsRegistro2['eleitor_secao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_secao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -356,7 +358,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'name'        => 'pd_eleitor_bsc_municipio_id',
             /*string*/    'id'          => 'pd_eleitor_bsc_municipio_id',
             /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistro2['eleitor_bsc_municipio_id'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_bsc_municipio_id'],
             /*array()*/   'options'     => $rsMunicipios,
             /*string*/    'ariaLabel'   => 'Selecione uma cidade',
             /*bool*/      'required'    => false,
@@ -391,7 +393,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite o número da CTPS',
-            /*string*/    'value'       => $rsRegistro2['ctps_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['ctps_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -405,7 +407,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 1,
             /*int*/       'maxlength'   => 10,
             /*string*/    'placeholder' => 'Digite a série da CTPS',
-            /*string*/    'value'       => $rsRegistro2['ctps_serie'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['ctps_serie'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -418,7 +420,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de emissão da CTPS',
-            /*string*/    'value'       => $rsRegistro2['ctps_dt_emissao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['ctps_dt_emissao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -432,7 +434,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o órgão expedidor da CTPS',
-            /*string*/    'value'       => $rsRegistro2['ctps_orgao_expedidor'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['ctps_orgao_expedidor'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -446,7 +448,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o ano do primeiro emprego da CTPS',
-            /*string*/    'value'       => $rsRegistro2['ctps_primeiro_emprego_ano'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['ctps_primeiro_emprego_ano'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -478,7 +480,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite o número da CNH',
-            /*string*/    'value'       => $rsRegistro2['cnh_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['cnh_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -488,7 +490,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'name'        => 'pd_cnh_categoria',
             /*string*/    'id'          => 'pd_cnh_categoria',
             /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistro2['cnh_categoria'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['cnh_categoria'],
             /*array()*/   'options'     => array(
               ['id' => 'A', 'nome' => 'A'],
               ['id' => 'B', 'nome' => 'B'],
@@ -514,7 +516,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de emissão da CNH',
-            /*string*/    'value'       => $rsRegistro2['cnh_dt_emissao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['cnh_dt_emissao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -528,7 +530,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o órgão expedidor da CNH',
-            /*string*/    'value'       => $rsRegistro2['cnh_orgao_expedidor'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['cnh_orgao_expedidor'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -541,7 +543,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de validade da CNH',
-            /*string*/    'value'       => $rsRegistro2['cnh_validade'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['cnh_validade'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -554,7 +556,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data da primeira habilitação da CNH',
-            /*string*/    'value'       => $rsRegistro2['cnh_dt_primeira_habilitacao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['cnh_dt_primeira_habilitacao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -586,7 +588,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite o número do registro militar',
-            /*string*/    'value'       => $rsRegistro2['rm_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rm_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -600,7 +602,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 1,
             /*int*/       'maxlength'   => 50,
             /*string*/    'placeholder' => 'Digite a categoria do registro militar',
-            /*string*/    'value'       => $rsRegistro2['rm_categoria'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rm_categoria'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -614,7 +616,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 4,
             /*int*/       'maxlength'   => 4,
             /*string*/    'placeholder' => 'Digite o ano de emissão do registro militar',
-            /*string*/    'value'       => $rsRegistro2['rm_emissao_ano'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rm_emissao_ano'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -628,7 +630,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o órgão expedidor do registro militar',
-            /*string*/    'value'       => $rsRegistro2['rm_orgao_expedidor'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rm_orgao_expedidor'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -642,7 +644,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite a espécie do regiatro militar',
-            /*string*/    'value'       => $rsRegistro2['rm_especie'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rm_especie'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -674,7 +676,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite o número do registro profissional',
-            /*string*/    'value'       => $rsRegistro2['rp_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rp_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -687,7 +689,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de emissão do registro profissional',
-            /*string*/    'value'       => $rsRegistro2['rp_dt_emissao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rp_dt_emissao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -701,7 +703,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o órgão expedidor do registro profissional',
-            /*string*/    'value'       => $rsRegistro2['rp_orgao_expedidor'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rp_orgao_expedidor'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -714,7 +716,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de validade do registro profissional',
-            /*string*/    'value'       => $rsRegistro2['rp_dt_validade'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rp_dt_validade'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -746,7 +748,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 15,
             /*string*/    'placeholder' => 'Digite o número do RNE',
-            /*string*/    'value'       => $rsRegistro2['rne_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rne_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -759,7 +761,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de emissão do RNE',
-            /*string*/    'value'       => $rsRegistro2['rne_dt_emissao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rne_dt_emissao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -773,7 +775,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o órgão expedidor do RNE',
-            /*string*/    'value'       => $rsRegistro2['rne_orgao_expedidor'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rne_orgao_expedidor'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -785,7 +787,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'id'          => 'pd_estrangeiro_casado_brasileiro',
             /*string*/    'class'       => 'toggle mb-3',
             /*string*/    'value'       => 1,
-            /*string*/    'checked'     => $rsRegistro2['estrangeiro_casado_brasileiro'],
+            /*string*/    'checked'     => $rsRegistroPessoaDoc['estrangeiro_casado_brasileiro'],
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createCheckbox(array(
@@ -796,7 +798,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'id'          => 'pd_estrangeiro_filho_brasileiro',
             /*string*/    'class'       => 'toggle mb-3',
             /*string*/    'value'       => 1,
-            /*string*/    'checked'     => $rsRegistro2['estrangeiro_filho_brasileiro'],
+            /*string*/    'checked'     => $rsRegistroPessoaDoc['estrangeiro_filho_brasileiro'],
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
@@ -827,7 +829,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite o número do FGTS',
-            /*string*/    'value'       => $rsRegistro2['fgts_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['fgts_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -841,7 +843,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite a opção do FGTS',
-            /*string*/    'value'       => $rsRegistro2['fgts_opcao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['fgts_opcao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -855,7 +857,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite conta bancária vinculada ao FGTS',
-            /*string*/    'value'       => $rsRegistro2['rne_orgao_expedidor'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['rne_orgao_expedidor'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -868,7 +870,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de retificação do FGTS',
-            /*string*/    'value'       => $rsRegistro2['fgts_dt_retificacao'],
+            /*string*/    'value'       => $rsRegistroPessoaDoc['fgts_dt_retificacao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>

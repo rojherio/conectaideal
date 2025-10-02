@@ -1,5 +1,7 @@
 <?php
 //Consulta para Edição - BEGIN
+$idPessoa = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
+$idPessoa = isset($bsc_pessoa_id) ? $bsc_pessoa_id : $idPessoa;
 //Contato - BEGIN
 $stmt = $db->prepare("
   SELECT 
@@ -32,34 +34,34 @@ $stmt = $db->prepare("
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
   LEFT JOIN bsc_parentesco_grau AS pg ON pg.id = pc.bsc_parentesco_grau_id 
   WHERE pc.bsc_pessoa_id = ?;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $idPessoa);
 $stmt->execute();
-$rsRegistro3 = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!($rsRegistro3)) {
-  $rsRegistro3 = array();
-  $rsRegistro3['id'] = 0;
-  $rsRegistro3['status'] = 1;
-  $rsRegistro3['bsc_pessoa_id'] = $id;
-  $rsRegistro3['end_cep'] = '';
-  $rsRegistro3['end_logradouro'] = '';
-  $rsRegistro3['end_numero'] = '';
-  $rsRegistro3['end_complemento'] = '';
-  $rsRegistro3['end_bairro'] = '';
-  $rsRegistro3['bsc_municipio_id'] = '';
-  $rsRegistro3['end_municipio_nome'] = '';
-  $rsRegistro3['end_estado_sigla'] = '';
-  $rsRegistro3['tel_residencial'] = '';
-  $rsRegistro3['tel_celular'] = '';
-  $rsRegistro3['tel_recado'] = '';
-  $rsRegistro3['tel_recado_nome'] = '';
-  $rsRegistro3['bsc_parentesco_grau_id'] = '';
-  $rsRegistro3['email_institucional'] = '';
-  $rsRegistro3['email_pessoal'] = '';
-  $rsRegistro3['email_alternativo'] = '';
-  $rsRegistro3['site'] = '';
-  $rsRegistro3['emergencia_nome'] = '';
-  $rsRegistro3['emergencia_end'] = '';
-  $rsRegistro3['emergencia_tel'] = '';
+$rsRegistroPessoaCont = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!($rsRegistroPessoaCont)) {
+  $rsRegistroPessoaCont = array();
+  $rsRegistroPessoaCont['id'] = 0;
+  $rsRegistroPessoaCont['status'] = 1;
+  $rsRegistroPessoaCont['bsc_pessoa_id'] = $idPessoa;
+  $rsRegistroPessoaCont['end_cep'] = '';
+  $rsRegistroPessoaCont['end_logradouro'] = '';
+  $rsRegistroPessoaCont['end_numero'] = '';
+  $rsRegistroPessoaCont['end_complemento'] = '';
+  $rsRegistroPessoaCont['end_bairro'] = '';
+  $rsRegistroPessoaCont['bsc_municipio_id'] = '';
+  $rsRegistroPessoaCont['end_municipio_nome'] = '';
+  $rsRegistroPessoaCont['end_estado_sigla'] = '';
+  $rsRegistroPessoaCont['tel_residencial'] = '';
+  $rsRegistroPessoaCont['tel_celular'] = '';
+  $rsRegistroPessoaCont['tel_recado'] = '';
+  $rsRegistroPessoaCont['tel_recado_nome'] = '';
+  $rsRegistroPessoaCont['bsc_parentesco_grau_id'] = '';
+  $rsRegistroPessoaCont['email_institucional'] = '';
+  $rsRegistroPessoaCont['email_pessoal'] = '';
+  $rsRegistroPessoaCont['email_alternativo'] = '';
+  $rsRegistroPessoaCont['site'] = '';
+  $rsRegistroPessoaCont['emergencia_nome'] = '';
+  $rsRegistroPessoaCont['emergencia_end'] = '';
+  $rsRegistroPessoaCont['emergencia_tel'] = '';
 }
 //Contato - END
 //Consulta para Edição - END
@@ -75,8 +77,8 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
-<input type="hidden" name="pc_id" id="pc_id" value="<?= $rsRegistro3['id'] ;?>">
-<input type="hidden" name="pc_bsc_pessoa_id" id="pc_bsc_pessoa_id" value="<?= $rsRegistro3['bsc_pessoa_id'] ;?>">
+<input type="hidden" name="pc_id" id="pc_id" value="<?= $rsRegistroPessoaCont['id'] ;?>">
+<input type="hidden" name="pc_bsc_pessoa_id" id="pc_bsc_pessoa_id" value="<?= $rsRegistroPessoaCont['bsc_pessoa_id'] ;?>">
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -99,7 +101,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 10,
             /*int*/       'maxlength'   => 10,
             /*string*/    'placeholder' => 'Digite o cep do endereço',
-            /*string*/    'value'       => $rsRegistro3['end_cep'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['end_cep'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -113,7 +115,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o logradouro do endereço',
-            /*string*/    'value'       => $rsRegistro3['end_logradouro'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['end_logradouro'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -127,7 +129,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 1,
             /*int*/       'maxlength'   => 10,
             /*string*/    'placeholder' => 'Digite o número do endereço',
-            /*string*/    'value'       => $rsRegistro3['end_numero'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['end_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -141,7 +143,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 0,
             /*int*/       'maxlength'   => 150,
             /*string*/    'placeholder' => 'Digite o complemento do endereço',
-            /*string*/    'value'       => $rsRegistro3['end_complemento'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['end_complemento'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -155,7 +157,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 0,
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o bairro do endereço',
-            /*string*/    'value'       => $rsRegistro3['end_bairro'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['end_bairro'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -165,7 +167,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'name'        => 'pc_bsc_municipio_id',
             /*string*/    'id'          => 'pc_bsc_municipio_id',
             /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistro3['bsc_municipio_id'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['bsc_municipio_id'],
             /*array()*/   'options'     => $rsMunicipios,
             /*string*/    'ariaLabel'   => 'Selecione uma cidade',
             /*bool*/      'required'    => false,
@@ -200,7 +202,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 13,
             /*int*/       'maxlength'   => 13,
             /*string*/    'placeholder' => 'Digite o número telefônico residencial',
-            /*string*/    'value'       => $rsRegistro3['tel_residencial'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['tel_residencial'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -214,7 +216,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 15,
             /*int*/       'maxlength'   => 15,
             /*string*/    'placeholder' => 'Digite o número telefônico celular',
-            /*string*/    'value'       => $rsRegistro3['tel_celular'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['tel_celular'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -228,7 +230,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 13,
             /*int*/       'maxlength'   => 15,
             /*string*/    'placeholder' => 'Digite o número telefônico para recado',
-            /*string*/    'value'       => $rsRegistro3['tel_recado'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['tel_recado'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -242,7 +244,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 50,
             /*string*/    'placeholder' => 'Digite o nome do contato para recado',
-            /*string*/    'value'       => $rsRegistro3['tel_recado_nome'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['tel_recado_nome'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -252,7 +254,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'name'        => 'pc_bsc_parentesco_grau_id',
             /*string*/    'id'          => 'pc_bsc_parentesco_grau_id',
             /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistro3['bsc_parentesco_grau_id'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['bsc_parentesco_grau_id'],
             /*array()*/   'options'     => $rsGrausParentesco,
             /*string*/    'ariaLabel'   => 'Selecione um grau de parentesco',
             /*bool*/      'required'    => false,
@@ -287,7 +289,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 10,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o e-mail institucional para contato',
-            /*string*/    'value'       => $rsRegistro3['email_institucional'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['email_institucional'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -301,7 +303,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 10,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o e-mail pessoal para contato',
-            /*string*/    'value'       => $rsRegistro3['email_pessoal'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['email_pessoal'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -315,7 +317,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 10,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o e-mail alternativo para contato',
-            /*string*/    'value'       => $rsRegistro3['email_alternativo'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['email_alternativo'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -329,7 +331,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 5,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o site para contato',
-            /*string*/    'value'       => $rsRegistro3['site'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['site'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -361,7 +363,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o nome do contato de emergência',
-            /*string*/    'value'       => $rsRegistro3['emergencia_nome'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['emergencia_nome'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -375,7 +377,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o endereço do contato de emergência',
-            /*string*/    'value'       => $rsRegistro3['emergencia_end'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['emergencia_end'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -389,7 +391,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'minlength'   => 13,
             /*int*/       'maxlength'   => 15,
             /*string*/    'placeholder' => 'Digite o telefone do contato de emergência',
-            /*string*/    'value'       => $rsRegistro3['emergencia_tel'],
+            /*string*/    'value'       => $rsRegistroPessoaCont['emergencia_tel'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>

@@ -18,15 +18,15 @@ $(document).ready(function () {
       tabPane:        $(this).parents('div.tab-pane').attr('tabindex'),
       urlsToSendSub:  []
     };
-    $(this).parents('form').find('select[urltosendsub]').each(function(k, elem){
+    $(this).parents('form').find('[urltosendsub]').each(function(k, elem){
       params.urlsToSendSub[k] = {
-        urlToSendSub:           $(elem).attr('urltosendsub'),
-        selectId:               $(elem).attr('id'),
-        selectVal:              $(elem).val(),
-        selectText:             $('#'+$(elem).attr('gettextinputid')).val()
+        urlToSendSub:         $(elem).attr('urltosendsub'),
+        elemtId:              $(elem).attr('id'),
+        elemVal:              $(elem).val(),
+        elemText:             $('#'+$(elem).attr('gettextinputid')).val()
       }
       params.formSerialized +=  '&'+($(elem).attr('setstatusinputid'))+'=1';
-      // setSelectFK(selectId, selectVal, selectText);
+      // setSelectFK(elemtId, elemVal, elemText);
     });
     ajaxSendCadastrarSub(params);
     return false;
@@ -65,15 +65,23 @@ $(document).ready(function () {
     let selectLoad    = $(this).attr('load');
     let selectLoadUrl = $(this).attr('loadurl');
     let divControlled = $(this).attr('controller');
-    let inputId       = $(this).attr('gettextinputid');
+    let inputTextId   = $(this).attr('gettextinputid');
     if (selectLoad == 'true') {
       if ($.isNumeric(selectVal)) {
-        $('div[controlled="'+divControlled+'"]').load(PORTAL_URL+selectLoadUrl+selectVal, function(response, status, xhr){
-          $('#'+inputId).val(selectText).attr('onblur', "setSelect('"+selectId+"', this);");
+        $(new Object()).load(PORTAL_URL+selectLoadUrl+selectVal, function(response, status, xhr){
+          $(response).find('[id][name]').each(function(k, elem){
+            $(elem).is('select') ? $('#'+elem.id).val(elem.value).trigger('change') : '';
+            $(elem).is('input') ? $('#'+elem.id).val(elem.value) : '';
+          });
+          $('#'+inputTextId).val(selectText).attr('onblur', "setSelect('"+selectId+"', this);");
         });
       } else {
-        $('div[controlled="'+divControlled+'"]').load(PORTAL_URL+selectLoadUrl, function(response, status, xhr){
-          $('#'+inputId).val(selectText).attr('onblur', "setSelect('"+selectId+"', this);");
+        $(new Object()).load(PORTAL_URL+selectLoadUrl, function(response, status, xhr){
+          $(response).find('[id][name]').each(function(k, elem){
+            $(elem).is('select') ? $('#'+elem.id).val(null).trigger('change') : '';
+            $(elem).is('input') ? $('#'+elem.id).val('') : '';
+          });
+          $('#'+inputTextId).val(selectText).attr('onblur', "setSelect('"+selectId+"', this);");
         });
       }
       $(this).attr('load', 'false');
@@ -94,4 +102,7 @@ function setSelect(selectId, elemInput){
 function setSelectFK(selectId, optionId, text){
   var newOption = new Option(text, optionId, true, true);
   $('#'+selectId).append(newOption).trigger('change');
+}
+function setInputFK(selectId, optionId){
+  $('#'+selectId).val(optionId);
 }

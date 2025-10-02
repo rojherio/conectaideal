@@ -107,7 +107,7 @@ function createInputDate($params) {
   return $html;
 }
 function createSelect($params) {
-  $html    = '  <div class="col-md-'.$params['col'].'" '.$params['prop'].' '.(!$params['display'] ? 'style="display: none;"' : '').'>';
+  $html    = '  <div class="col-md-'.$params['col'].'" '.(!$params['display'] ? 'style="display: none;"' : '').'>';
   $html   .= '    <div class="div-validate form-floating mb-3">';
   $html   .= '      <select name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" data-placeholder="'.$params['ariaLabel'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html   .= '        <option></option>';
@@ -123,7 +123,7 @@ function createSelect($params) {
   return $html;
 }
 function createSelectMultiple($params) {
-  $html    = '  <div class="select_primary col-md-'.$params['col'].'" '.$params['prop'].' '.(!$params['display'] ? 'style="display: none;"' : '').'>';
+  $html    = '  <div class="select_primary col-md-'.$params['col'].'" '.(!$params['display'] ? 'style="display: none;"' : '').'>';
   $html   .= '    <div class="div-validate form-floating mb-3">';
   $html   .= '      <select multiple name="'.$params['name'].'[]" id="'.$params['id'].'" class="select_primary '.$params['class'].'" data-placeholder="'.$params['ariaLabel'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html   .= '        <option></option>';

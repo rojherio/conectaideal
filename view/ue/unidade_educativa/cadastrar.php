@@ -232,21 +232,25 @@ $descricaoPagina          = "Informações da unidade educativa";
               </ul>
               <div class="tab-content" id="v-bgContent">
                 <div aria-labelledby="tab-pane-1" id="tab-pane-1" class="tab-pane fade <?= $tabPane <= 1 ? 'show active' : '' ;?>" role="tabpanel" tabindex="1">
-                  <form class="app-form" id="form_ue_pessoa" name="form_ue_pessoa" method="post" urlToSend="ue/unidade_educativa/salvar_identificacao" action="">
+                  <form class="app-form" id="form_ue_identificacao" name="form_ue_identificacao" method="post" urlToSend="ue/unidade_educativa/salvar_identificacao" action="">
                     <?php 
                     include_once ('view/ue/unidade_educativa/content_identificacao.php'); 
                     ?>
                   </form>
                 </div>
                 <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
-                  <?php 
-                  include_once ('view/ue/unidade_educativa/content_contato.php'); 
-                  ?>
+                  <form class="app-form" id="form_ue_contato" name="form_ue_contato" method="post" urlToSend="ue/unidade_educativa/salvar_contato" action="">
+                    <?php 
+                    include_once ('view/ue/unidade_educativa/content_contato.php'); 
+                    ?>
+                  </form>.
                 </div>
                 <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
-                  <?php 
-                  include_once ('view/ue/unidade_educativa/content_documento.php'); 
-                  ?>
+                  <form class="app-form" id="form_ue_privada" name="form_ue_privada" method="post" urlToSend="ue/unidade_educativa/salvar_privada" action="">
+                    <?php 
+                    include_once ('view/ue/unidade_educativa/content_privada.php'); 
+                    ?>
+                  </form>
                 </div>
               </div>
             </div>

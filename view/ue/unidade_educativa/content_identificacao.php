@@ -1,9 +1,8 @@
 <?php
 //Consulta para Edição - BEGIN
-if (!isset($id)) {
-  $id = ($parametromodulo) ? : 0;
-}
-//Identiicação - BEGIN
+$idUE = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
+$idUE = isset($ue_ue_id) ? $bsc_pessoa_id : $idUE;
+//Identificação - BEGIN
 $stmt = $db->prepare("SELECT 
   ue.id,
   ue.status,
@@ -32,11 +31,11 @@ $stmt = $db->prepare("SELECT
   ue.alimentacao_pnae_fnde_oferece
   FROM ue_ue AS ue
   WHERE ue.id = ? ;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $idUE);
 $stmt->execute();
 $rsRegistroUEIdent = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!($rsRegistroUEIdent)) {
-  $id = 0;
+  $idUE = 0;
   $rsRegistroUEIdent = array();
   $rsRegistroUEIdent['id'] = 0;
   $rsRegistroUEIdent['status'] = 1;
@@ -72,7 +71,7 @@ $stmt = $db->prepare("SELECT
   bsc_uo_publica_id AS tb_ref_id
   FROM ue_ue_uo_publica_vinc
   WHERE ue_ue_id = ?;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $rsRegistroUEIdent['id']);
 $stmt->execute();
 $rsRegistrosUOPublicaId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
 //UO Publicas - END
@@ -83,7 +82,7 @@ $stmt = $db->prepare("SELECT
   ue_ens_atend_tipo_id AS tb_ref_id
   FROM ue_ue_ens_atend_tipo
   WHERE ue_ue_id = ?;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $rsRegistroUEIdent['id']);
 $stmt->execute();
 $rsRegistrosEnsAtendTipoId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
 //Ensino Atendimento Tipo - END//Ensino Modalidade Etapa - BEGIN
@@ -93,7 +92,7 @@ $stmt = $db->prepare("SELECT
   ue_ens_modalidade_etapa_id AS tb_ref_id
   FROM ue_ue_ens_modalidade_etapa
   WHERE ue_ue_id = ?;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $rsRegistroUEIdent['id']);
 $stmt->execute();
 $rsRegistrosEnsModalidadeEtapaId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
 //Ensino Modalidade Etapa - END
@@ -104,7 +103,7 @@ $stmt = $db->prepare("SELECT
   ue_ens_profis_forma_id AS tb_ref_id
   FROM ue_ue_ens_profis_forma
   WHERE ue_ue_id = ?;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $rsRegistroUEIdent['id']);
 $stmt->execute();
 $rsRegistrosEnsProfisFormaId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
 //Ensino Profissionalizante Forma - END
@@ -115,7 +114,7 @@ $stmt = $db->prepare("SELECT
   ue_infra_local_funcionam_id AS tb_ref_id
   FROM ue_ue_infra_local_funcionam
   WHERE ue_ue_id = ?;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $rsRegistroUEIdent['id']);
 $stmt->execute();
 $rsRegistrosInfraLocalFuncionamId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
 //Locais de Funcionamento - END
@@ -185,7 +184,7 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
           )) ;?>
           <label>Selecione uma pessoa jurídica. Caso não a encontre na lista, digite o nome/razão social da pessoa jurídica para efetuar o cadastro.</label>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => '12 controller="pj"',
             /*string*/    'label'       => 'Pessoa Jurídica',
             /*string*/    'name'        => 'ue_bsc_pessoa_id',
             /*string*/    'id'          => 'ue_bsc_pessoa_id',
@@ -196,7 +195,8 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => '
             urltosendsub="model/bsc/pessoa_juridica/salvar_identificacao" 
-            controller="pj" 
+            controller="pj"
+            controller-values="0" 
             load="true" 
             loadurl="view/bsc/pessoa_juridica/content_identificacao/" 
             gettextinputid="p_nome" 
@@ -206,7 +206,7 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
         </div>
         <?php
         $displayPJ = $rsRegistroUEIdent['bsc_pessoa_id'] == '' ? 'style="display: none;"' : '';
-        $idAux = $rsRegistroUEIdent['bsc_pessoa_id'];
+        $bsc_pessoa_id = $rsRegistroUEIdent['bsc_pessoa_id'];
         ?>
         <div id="div_pj" controlled="pj" control-value="0" <?= $displayPJ ;?>>
           <?php 
@@ -312,7 +312,7 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
         <h6>Dependência Administrativa da Unidade Escolar</h6>
         <div class="row">
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => '12 controller="ue_privada"',
             /*string*/    'label'       => 'Dependência Administrativa',
             /*string*/    'name'        => 'ue_bsc_esfera_administrativa_id_dependencia',
             /*string*/    'id'          => 'ue_bsc_esfera_administrativa_id_dependencia',
@@ -352,17 +352,17 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
           </div>
         </div>
 
-        <h6>Órgão Responsável Pela Criação da Unidade Educativa</h6>
+        <h6>Órgão (vinculado) Responsável Pela Criação da Unidade Educativa</h6>
         <div class="row">
           <?= createSelectMultiple(array(
             /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Órgãos Responsáveis',
+            /*string*/    'label'       => 'Órgãos Vinculados',
             /*string*/    'name'        => 'bsc_uo_publica_id[]',
             /*string*/    'id'          => 'bsc_uo_publica_id',
             /*string*/    'class'       => 'select2 form-control form-select',
             /*array()*/   'value'       => $rsRegistrosUOPublicaId,
             /*array()*/   'options'     => $rsUOPublicas,
-            /*string*/    'ariaLabel'   => 'Selecione os locais de funcionamento',
+            /*string*/    'ariaLabel'   => 'Selecione os órgão vinculados',
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => '',
             /*string*/    'display'     => true

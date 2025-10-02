@@ -1,12 +1,8 @@
 <?php
 //Consulta para Edição - BEGIN
-if (!isset($id)) {
-  $id = ($parametromodulo) ? : 0;
-}
-if (isset($idAux)) {
-  $id = $idAux ? : 0;
-}
-//Identiicação - BEGIN
+$idPessoa = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
+$idPessoa = isset($bsc_pessoa_id) ? $bsc_pessoa_id : $idPessoa;
+//Identificação - BEGIN
 $stmt = $db->prepare("SELECT 
   p.id,
   p.status,
@@ -19,20 +15,20 @@ $stmt = $db->prepare("SELECT
   p.dt_criacao
   FROM bsc_pessoa AS p
   WHERE p.tipo = 2 AND p.id = ? ;");
-$stmt->bindValue(1, $id);
+$stmt->bindValue(1, $idPessoa);
 $stmt->execute();
-$rsRegistro1 = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!($rsRegistro1)) {
-  $id = 0;
-  $rsRegistro1 = array();
-  $rsRegistro1['id'] = 0;
-  $rsRegistro1['status'] = 1;
-  $rsRegistro1['tipo'] = 2;
-  $rsRegistro1['nome'] = '';
-  $rsRegistro1['nome_social'] = '';
-  $rsRegistro1['cpf'] = '';
-  $rsRegistro1['ie'] = '';
-  $rsRegistro1['dt_criacao'] = '';
+$rsRegistroPessoaIdent = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!($rsRegistroPessoaIdent)) {
+  $idPessoa = 0;
+  $rsRegistroPessoaIdent = array();
+  $rsRegistroPessoaIdent['id'] = 0;
+  $rsRegistroPessoaIdent['status'] = 1;
+  $rsRegistroPessoaIdent['tipo'] = 2;
+  $rsRegistroPessoaIdent['nome'] = '';
+  $rsRegistroPessoaIdent['nome_social'] = '';
+  $rsRegistroPessoaIdent['cpf'] = '';
+  $rsRegistroPessoaIdent['ie'] = '';
+  $rsRegistroPessoaIdent['dt_criacao'] = '';
 }
 //Identiicação - END
 //Consulta para Edição - END
@@ -50,7 +46,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
-<input type="hidden" name="p_id" id="p_id" value="<?= $rsRegistro1['id'] ;?>">
+<input type="hidden" name="p_id" id="p_id" value="<?= $rsRegistroPessoaIdent['id'] ;?>">
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -73,7 +69,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o nome/razão social da pessoa jurídica',
-            /*string*/    'value'       => $rsRegistro1['nome'],
+            /*string*/    'value'       => $rsRegistroPessoaIdent['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -89,7 +85,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o nome fantasia da pessoa jurídica',
-            /*string*/    'value'       => $rsRegistro1['nome_social'],
+            /*string*/    'value'       => $rsRegistroPessoaIdent['nome_social'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -103,7 +99,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
             /*int*/       'minlength'   => 18,
             /*int*/       'maxlength'   => 18,
             /*string*/    'placeholder' => 'Digite o CNPJ da pessoa jurídica',
-            /*string*/    'value'       => $rsRegistro1['cpf'],
+            /*string*/    'value'       => $rsRegistroPessoaIdent['cpf'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -119,7 +115,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 45,
             /*string*/    'placeholder' => 'Digite o numero de inscrição estadual da pessoa jurídica',
-            /*string*/    'value'       => $rsRegistro1['ie'],
+            /*string*/    'value'       => $rsRegistroPessoaIdent['ie'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -132,7 +128,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa jurídica está a
             /*int*/       'min'         => '1900-01-01',
             /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de criação da pessoa jurídica',
-            /*string*/    'value'       => $rsRegistro1['dt_criacao'],
+            /*string*/    'value'       => $rsRegistroPessoaIdent['dt_criacao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -165,7 +161,7 @@ if (isset($exibeSituação)) {
               /*string*/    'id'          => 'p_status',
               /*string*/    'class'       => 'toggle',
               /*string*/    'value'       => 1,
-              /*string*/    'checked'     => $rsRegistro1['status'],
+              /*string*/    'checked'     => $rsRegistroPessoaIdent['status'],
               /*string*/    'prop'        => ''
             )) ;?>
           </div>

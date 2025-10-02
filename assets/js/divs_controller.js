@@ -3,7 +3,7 @@ $(document).ready(function() {
     let controller            = $(this).attr('controller');
     let controllerVal         = $(this).val();
     let controllerValues      = $(this).attr('controller-values');
-    let controllerValuesParts = $(this).attr('controller-values');
+    let controllerValuesParts = $(this).attr('controller-values').split('|');
     $('[controlled="'+controller+'"]').each(function(k, elem){
       let elemControlValue = $(elem).attr('control-value');
       if ((elemControlValue == controllerVal) || (elemControlValue == 0 && controllerValuesParts.indexOf(controllerVal) < 0 && controllerValuesParts.indexOf('0') >= 0)) {

@@ -297,7 +297,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
               <!-- div row input - BEGIN -->
               <div class="row">
                 <?= createSelect(array(
-                  /*int 1-12*/  'col'         => 6,
+                  /*int 1-12*/  'col'         => '6 controller="naturalidade"',
                   /*string*/    'label'       => 'Nacionalidade',
                   /*string*/    'name'        => 'p_natural_bsc_pais_id',
                   /*string*/    'id'          => 'p_natural_bsc_pais_id',
