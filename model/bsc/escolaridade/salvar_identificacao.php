@@ -32,7 +32,7 @@ try {
     $existentes = '';
     $virgula = '';
     foreach ($rsExistente as $kObj => $vObj) {
-      $existentes .= $virgula.'<br/>'.ucwords($kObj).': '.$vObj;
+      $existentes .= $virgula.'<br/>'.htmlentities(ucwords($kObj)).': '.$vObj;
       $virgula = ', ';
     }
     $result['status'] = 'error';
