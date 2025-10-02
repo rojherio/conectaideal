@@ -13,13 +13,6 @@ $tableName      = 'bsc_pessoa';
 $error          = false;
 $result         = array();
 $msg            = "";
-// sleep(10);
-// $result = array(
-//   'id'      => '',
-//   'tipo'    => '',
-//   'status' => 'succes',
-//   'msg' => 'Dados pessoais do servidor atualizados com sucesso.'
-// );
 // echo json_encode(array('status' => 'success', 'msg' => 'As novas informações foram registradas com sucesso.'));
 // exit();
 try {
