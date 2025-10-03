@@ -41,8 +41,8 @@ $tituloPagina             = "Cadastro da Unidade Organizacional/Órgão Público
 $descricaoPagina          = "Informações da unidade organizacional/órgão público(a)";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

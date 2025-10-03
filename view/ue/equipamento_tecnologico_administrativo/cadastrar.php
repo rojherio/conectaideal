@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Equipamento para Uso Técnico e Adminis
 $descricaoPagina          = "Informações do equipamento para uso técnico e administrativo";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

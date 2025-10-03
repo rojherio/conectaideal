@@ -56,8 +56,8 @@ $tituloPagina             = "Cadastro de Pessoa Jurídica";
 $descricaoPagina          = "Informações de pessoa jurídica";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

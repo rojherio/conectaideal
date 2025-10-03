@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Fonte de Energia Elétrica";
 $descricaoPagina          = "Informações do fonte de energia elétrica";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

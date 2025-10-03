@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Tipo de Destinação do Lixo";
 $descricaoPagina          = "Informações do tipo de destinação do lixo";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

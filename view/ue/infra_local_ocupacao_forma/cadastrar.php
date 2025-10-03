@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Forma de Ocupação do Prédio Escolar"
 $descricaoPagina          = "Informações do forma de ocupação do prédio escolar";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

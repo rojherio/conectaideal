@@ -118,7 +118,7 @@ $descricaoFormulario5     = "Defina se esse cadastro da forma de ensino profissi
   </div>
 </div>
 <?php
-if (isset($exibeSituação)) {
+if (isset($exibeSituacao)) {
   ?>
   <div class="row">
     <div class="col-md-12">
@@ -151,7 +151,7 @@ if (isset($exibeSituação)) {
   </div>
   <?php
 }
-if (isset($exibeButões)) {
+if (isset($exibeButoes)) {
   ?>
   <div class="row">
     <div class="col-md-12">

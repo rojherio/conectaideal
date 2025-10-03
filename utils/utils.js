@@ -230,6 +230,7 @@ function ajaxCompleteSendTabPane(data, status, urlCurrent, urlToGo, tabPane) {
             cancelButtonText: 'Não, quero sair da página de cadastro!'
           }).then((result) => {
             if (result.isConfirmed) {
+              console.log('entrou aqui');
               postToURL(PORTAL_URL + urlCurrent);
             } else {
               postToURL(PORTAL_URL + urlToGo);

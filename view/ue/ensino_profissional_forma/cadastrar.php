@@ -31,8 +31,8 @@ $tituloPagina             = "Cadastro da Forma de Ensino Profissional";
 $descricaoPagina          = "Informações da forma de ensino profissional";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

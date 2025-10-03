@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Tipo de Vínculo a Outra Unidade Escola
 $descricaoPagina          = "Informações do tipo de vínculo a outra unidade escolar";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

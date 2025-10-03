@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Tipo de Equipamento/Computador para o A
 $descricaoPagina          = "Informações do tipo de equipamento/computador para o aluno";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

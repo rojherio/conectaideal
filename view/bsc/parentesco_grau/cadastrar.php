@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Grau de Parentesco";
 $descricaoPagina          = "Informações de grau de parentesco";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

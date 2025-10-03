@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Local de Funcionamento da Escola";
 $descricaoPagina          = "Informações do local de funcionamento da escola";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

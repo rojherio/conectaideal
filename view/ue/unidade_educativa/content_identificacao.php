@@ -16,6 +16,8 @@ $stmt = $db->prepare("SELECT
   ue.ue_localizacao_diferenciada_id,
   ue.bsc_esfera_administrativa_id_dependencia,
   ue.ue_cat_esc_priv_id,
+  ue.parceria_see, 
+  ue.parceria_sme, 
   ue.bsc_esfera_administrativa_id_regulam,
   ue.ue_regulam_situacao_id,
   ue.ue_ue_vinculada_tipo_id,
@@ -49,6 +51,8 @@ if (!($rsRegistroUEIdent)) {
   $rsRegistroUEIdent['ue_localizacao_diferenciada_id'] = '';
   $rsRegistroUEIdent['bsc_esfera_administrativa_id_dependencia'] = '';
   $rsRegistroUEIdent['ue_cat_esc_priv_id'] = '';
+  $rsRegistroUEIdent['parceria_see'] = '';
+  $rsRegistroUEIdent['parceria_sme'] = '';
   $rsRegistroUEIdent['bsc_esfera_administrativa_id_regulam'] = '';
   $rsRegistroUEIdent['ue_regulam_situacao_id'] = '';
   $rsRegistroUEIdent['ue_ue_vinculada_tipo_id'] = '';
@@ -131,7 +135,7 @@ $rsRegistrosInfraLocalFuncionamId = array_column($stmt->fetchAll(PDO::FETCH_ASSO
 // $stmt->bindValue(1, $id);
 // $stmt->execute();
 // $rsRegistroAnoLetivos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// if (!($rsRegistroAnoLetivos)) {
+// if (!$rsRegistroAnoLetivos) {
 //   $rsRegistroAnoLetivos = array();
 //   $rsRegistroAnoLetivos[0]['id'] = 0;
 //   $rsRegistroAnoLetivos[0]['status'] = 1;
@@ -142,16 +146,16 @@ $rsRegistrosInfraLocalFuncionamId = array_column($stmt->fetchAll(PDO::FETCH_ASSO
 // }
 //UO Publicas - END
 //Parámetros de títutlos - BEGIN
-$ueTituloFormulario1        = "Identificação da Unidade Educativa";
-$ueDescricaoFormulario1     = "Seleção da pessoa jurídica referente a esta unidade educativa";
-$ueTituloFormulario2        = "Conceitos da Unidade Escolar";
-$ueDescricaoFormulario2     = "Conceitos do INEP que identificam a Unidade Escolar";
-$ueTituloFormulario3        = "";
-$ueDescricaoFormulario3     = "";
-$ueTituloFormulario4        = "";
-$ueDescricaoFormulario4     = "";
-$ueTituloFormulario5        = "Situação";
-$ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa está ativo ou inativo";
+$ueiTituloFormulario1       = "Identificação da Unidade Educativa";
+$ueiDescricaoFormulario1    = "Seleção da pessoa jurídica referente a esta unidade educativa";
+$ueiTituloFormulario2       = "Conceitos da Unidade Escolar";
+$ueiDescricaoFormulario2    = "Conceitos do INEP que identificam a Unidade Escolar";
+$ueiTituloFormulario3        = "";
+$ueiDescricaoFormulario3     = "";
+$ueiTituloFormulario4        = "";
+$ueiDescricaoFormulario4     = "";
+$ueiTituloFormulario5        = "Situação";
+$ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa está ativo ou inativo";
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
@@ -161,8 +165,8 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
     <div class="card">
       <div class="card-header">
         <!-- Título da div de cadastro - BEGIN -->
-        <h5><?= $ueTituloFormulario1;?></h5>
-        <small><?= $ueDescricaoFormulario1;?></small>
+        <h5><?= $ueiTituloFormulario1;?></h5>
+        <small><?= $ueiDescricaoFormulario1;?></small>
         <!-- Título da div de cadastro - END -->
       </div>
       <div class="card-body">
@@ -223,14 +227,14 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
     <div class="card">
       <div class="card-header">
         <!-- Título da div de cadastro - BEGIN -->
-        <h5><?= $ueTituloFormulario2;?></h5>
-        <small><?= $ueDescricaoFormulario2;?></small>
+        <h5><?= $ueiTituloFormulario2;?></h5>
+        <small><?= $ueiDescricaoFormulario2;?></small>
         <!-- Título da div de cadastro - END -->
       </div>
       <div class="card-body">
         <!-- div row input - BEGIN -->
         <h6>Situação de funcionamento</h6>
-        <!-- <div class="row border border-primary rounded pt-1 pt-3 ms-0 pe-3_5 me-0 mb-3">
+        <!-- <div class="row border border-primary rounded pt-3 ms-0 pe-3_5 me-0 mb-3">
           <div class="row border border-primary rounded pt-3 ms-3 me-3 mb-3"> -->
           <!-- </div>
         </div> -->
@@ -263,7 +267,8 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
             /*string*/    'value'       => $rsRegistroUEIdent['ano_letivo_dt_inicio'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
-          )) ;?><?= createInputDate(array(
+          )) ;?>
+          <?= createInputDate(array(
             /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Data Final',
             /*string*/    'name'        => 'ue_ano_letivo_dt_fim',
@@ -330,9 +335,9 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
         $displayUEPrivada   = $rsRegistroUEIdent['bsc_esfera_administrativa_id_dependencia'] != 4 ? 'style="display: none;"' : '';
         //Parámetros de exibir/ocultar div - NED
         ?>
-        <div class="teste" id="div_ue_privada" controlled="ue_privada" control-value="4" <?= $displayUEPrivada ;?>>
+        <div id="div_ue_privada" controlled="ue_privada" control-value="4" <?= $displayUEPrivada ;?>>
           <h6>Conceitos do INEP para Unidade Escolar Privada</h6>
-          <div class="row border border-primary rounded pt-1 pt-3 ms-0 me-0 mb-3">
+          <div class="row border border-primary rounded pt-3 ms-0 me-0 mb-3">
             <h6>Categoria de Escola Privada</h6>
             <div class="row">
               <?= createSelect(array(
@@ -362,7 +367,7 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
             /*string*/    'class'       => 'select2 form-control form-select',
             /*array()*/   'value'       => $rsRegistrosUOPublicaId,
             /*array()*/   'options'     => $rsUOPublicas,
-            /*string*/    'ariaLabel'   => 'Selecione os órgão vinculados',
+            /*string*/    'ariaLabel'   => 'Selecione os órgãos vinculados',
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => '',
             /*string*/    'display'     => true
@@ -474,8 +479,8 @@ $ueDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est�
     <div class="card">
       <div class="card-header">
         <!-- Título da div de cadastro - BEGIN -->
-        <h5><?= $ueTituloFormulario5;?></h5>
-        <small><?= $ueDescricaoFormulario5;?></small>
+        <h5><?= $ueiTituloFormulario5;?></h5>
+        <small><?= $ueiDescricaoFormulario5;?></small>
         <!-- Título da div de cadastro - END -->
       </div>
       <div class="card-body">

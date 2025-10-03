@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Tipo de Rede Local de Interligação de
 $descricaoPagina          = "Informações do tipo de rede local de interligação de computadores";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro da Categoria de Escola Privada";
 $descricaoPagina          = "Informações da categoria de escola privada";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

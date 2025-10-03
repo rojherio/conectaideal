@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Tipo de tratamento do Lixo/Resíduos";
 $descricaoPagina          = "Informações do tipo de tratamento do lixo/resíduos";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

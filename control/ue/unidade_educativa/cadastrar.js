@@ -27,7 +27,11 @@ $(document).ready(function () {
       }
       params.formSerialized +=  '&'+($(elem).attr('setstatusinputid'))+'=1';
     });
-    ajaxSendCadastrarSub(params);
+    if (params.urlsToSendSub.length > 0) {
+      ajaxSendCadastrarSub(params);
+    }else{
+      ajaxSendCadastrarTabPane(params);
+    }
     return false;
   });
 

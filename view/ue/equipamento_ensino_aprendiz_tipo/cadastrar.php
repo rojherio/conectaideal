@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Equipamento para Ensino e Aprendizagem"
 $descricaoPagina          = "Informações do equipamento para ensino e aprendizagem";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

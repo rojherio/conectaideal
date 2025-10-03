@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro do Tipo de Atendimento";
 $descricaoPagina          = "Informações do tipo de atendimento";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

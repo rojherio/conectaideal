@@ -223,7 +223,7 @@ $descricaoPagina          = "Informações da unidade educativa";
                   </li>
                   <li class="nav-item" role="presentation">
                     <button aria-controls="tab-pane-2" data-bs-target="#tab-pane-2" id="tab-2" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
-                      <i class="ti ti-history pe-1 ps-1"></i>Documentos
+                      <i class="ti ti-history pe-1 ps-1"></i>Vinculos
                     </button>
                   </li>
                   <?php
@@ -246,9 +246,9 @@ $descricaoPagina          = "Informações da unidade educativa";
                   </form>.
                 </div>
                 <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
-                  <form class="app-form" id="form_ue_privada" name="form_ue_privada" method="post" urlToSend="ue/unidade_educativa/salvar_privada" action="">
+                  <form class="app-form" id="form_ue_privada" name="form_ue_privada" method="post" urlToSend="ue/unidade_educativa/salvar_vinculo" action="">
                     <?php 
-                    include_once ('view/ue/unidade_educativa/content_privada.php'); 
+                    include_once ('view/ue/unidade_educativa/content_vinculo.php'); 
                     ?>
                   </form>
                 </div>

@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro da Forma de Contratação de Parceria ou C
 $descricaoPagina          = "Informações da forma de contratação de parceria ou convênio";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

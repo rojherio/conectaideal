@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Tipo de Função Desempenhada por Funci
 $descricaoPagina          = "Informações do tipo de função desempenhada por funcionarios";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

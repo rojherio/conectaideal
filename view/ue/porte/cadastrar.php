@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Porte de Alunos";
 $descricaoPagina          = "Informações do porte de alunos";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

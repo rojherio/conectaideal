@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro do Setor Publico";
 $descricaoPagina          = "Informações do setor publico";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

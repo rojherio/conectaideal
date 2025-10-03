@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Dependência/Espaço Físico";
 $descricaoPagina          = "Informações de dependência/espaço físico";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Estado Civil";
 $descricaoPagina          = "Informações de estado civil";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

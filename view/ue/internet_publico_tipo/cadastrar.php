@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Público a Usufruir Da Internet da Unid
 $descricaoPagina          = "Informações do público a usufruir da internet da unidade escolar";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->

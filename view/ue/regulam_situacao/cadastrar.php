@@ -22,8 +22,8 @@ $tituloPagina             = "Cadastro de Situação de Regulamentação/Autoriza
 $descricaoPagina          = "Informações do situação de regulamentação/autorização da escola";
 //Parámetros de títutlos - END
 //Parámetros de Exibição de campos - BEGIN
-$exibeSituação            = true;
-$exibeButões              = true;
+$exibeSituacao            = true;
+$exibeButoes              = true;
 //Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->
