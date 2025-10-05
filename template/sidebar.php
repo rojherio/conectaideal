@@ -9,6 +9,119 @@
   </div>
   <div class="app-nav" id="app-simple-bar">
     <ul class="main-nav p-0 mt-2">
+      <li class="menu-title"><span>Dados Base Gerais</span></li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_banco">
+          <i class="iconoir-handbag"></i> Banco
+        </a>
+        <ul class="collapse" id="bsc_banco">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/banco_conta_tipo/cadastrar">Cadastrar Tipo de Banco</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/banco_conta_tipo/listar">Listar Tipos de Banco</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/banco/cadastrar">Cadastrar Banco</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/banco/listar">Listar Bancos</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_catadm">
+          <i class="iconoir-handbag"></i> Categoria Administrativa
+        </a>
+        <ul class="collapse" id="bsc_catadm">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/categoria_administrativa/cadastrar">Cadastrar Categoria Adiminstrativa</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/categoria_administrativa/listar">Listar Categorias Adiminstrativa</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_escolaridade">
+          <i class="iconoir-handbag"></i> Escolaridade
+        </a>
+        <ul class="collapse" id="bsc_escolaridade">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/escolaridade/cadastrar">Cadastrar Escolaridade</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/escolaridade/listar">Listar Escolaridades</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_esfadm">
+          <i class="iconoir-handbag"></i> Esfera Administrativa
+        </a>
+        <ul class="collapse" id="bsc_esfadm">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/esfera_administrativa/cadastrar">Cadastrar Esfera Administrativa</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/esfera_administrativa/listar">Listar Esferas Administrativa</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_estciv">
+          <i class="iconoir-handbag"></i> Estado Civil
+        </a>
+        <ul class="collapse" id="bsc_estciv">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/banco_conta_tipo/cadastrar">Cadastrar Estado Civil</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/banco_conta_tipo/listar">Listar Estados Civil</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_uni_med">
+          <i class="iconoir-handbag"></i> Unidade de Medida
+        </a>
+        <ul class="collapse" id="bsc_uni_med">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/grandeza/cadastrar">Cadastrar Grandeza</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/grandeza/listar">Listar Grandezas</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/unidade_medida/cadastrar">Cadastrar Unidade de Medida</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/unidade_medida/listar">Listar Unidades de Mediada</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_pargrau">
+          <i class="iconoir-handbag"></i> Grau de Parentesco
+        </a>
+        <ul class="collapse" id="bsc_pargrau">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/parentesco_grau/cadastrar">Cadastrar Grau de Parentesco</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/parentesco_grau/listar">Listar Graus de Parentescos</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_pesfis">
+          <i class="iconoir-handbag"></i> Pessoa Física
+        </a>
+        <ul class="collapse" id="bsc_pesfis">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/pessoa_fisica/cadastrar">Cadastrar Pessoa Física</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/pessoa_fisica/listar">Listar Pessoas Física</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_pesjur">
+          <i class="iconoir-handbag"></i> Pessoa Jurídica
+        </a>
+        <ul class="collapse" id="bsc_pesjur">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/pessoa_juridica/cadastrar">Cadastrar Pessoa Jurídica</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/pessoa_juridica/listar">Listar Pessoas Jurídica</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_setpub">
+          <i class="iconoir-handbag"></i> Setor Público
+        </a>
+        <ul class="collapse" id="bsc_setpub">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/setor_publico/cadastrar">Cadastrar Setor Público</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/setor_publico/listar">Listar Setores Público</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_uniorg">
+          <i class="iconoir-handbag"></i> Órgão Publico
+        </a>
+        <ul class="collapse" id="bsc_uniorg">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/uo_publico/cadastrar">Cadastrar Órgão Publico</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/uo_publico/listar">Listar Órgãos Publico</a></li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#bsc_zona">
+          <i class="iconoir-handbag"></i> Zona
+        </a>
+        <ul class="collapse" id="bsc_zona">
+          <li><a href="<?=PORTAL_URL;?>view/bsc/zona/cadastrar">Cadastrar Zona</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/zona/listar">Listar Zona</a></li>
+        </ul>
+      </li>
       <li class="menu-title"> <span>UNIDADE EDUCATIVA</span> </li>
       <li class="no-sub">
         <a class="" href="widget.html">
@@ -16,7 +129,264 @@
         </a>
       </li>
       <li>
-        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="<#UEDiretoria">
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#UEDadosBase">
+          <i class="iconoir-home-alt"></i> Dados Base <span class="badge text-primary-dark bg-primary-300  badge-notification ms-2">4</span>
+        </a>
+        <ul class="collapse" id="UEDadosBase"><li class="another-level">
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_catescpriv">
+              Categoria Escola Privada
+            </a>
+            <ul class="collapse" id="ue_catescpriv">
+              <li><a href="<?=PORTAL_URL;?>view/ue/categoria_escola_privada/cadastrar">Cadastrar Categoria de Escola Privada</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/categoria_escola_privada/listar">Listar Categorias de Escola Privada</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_ensatetip">
+              Tipo de Atendimento
+            </a>
+            <ul class="collapse" id="ue_ensatetip">
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_atendimento_tipo/cadastrar">Cadastrar Tipo de Atendimento</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_atendimento_tipo/listar">Listar Tipos de Atendimento</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_ensmodeta">
+              Etapa de Ensino
+            </a>
+            <ul class="collapse" id="ue_ensmodeta">
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_atendimento_tipo/cadastrar">Cadastrar Modalidade de Ensino</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_atendimento_tipo/listar">Listar Modalidades de Ensino</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_atendimento_etapa/cadastrar">Cadastrar Etapa de Ensino</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_atendimento_etapa/listar">Listar Etapas de Ensino</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_ensprofor">
+              Forma de Ensino Profissional
+            </a>
+            <ul class="collapse" id="ue_ensprofor">
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_profissional_tipo/cadastrar">Cadastrar Tipo de Ensino Profissional</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_profissional_tipo/listar">Listar Tipo de Ensino Profissional</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_profissional_forma/cadastrar">Cadastrar Forma de Ensino Profissional</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/ensino_profissional_forma/listar">Listar Formas de Ensino Profissional</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_equipamentos">
+              Equipamentos
+            </a>
+            <ul class="collapse" id="ue_equipamentos">
+              <li><a href="<?=PORTAL_URL;?>view/ue/equip_acesso_internet_aluno/cadastrar">Cadastrar Equipamento para Acessar a Internet</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equip_acesso_internet_aluno/listar">Listar Equipamentos para Acessar a Internet</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equip_rede_local_tipo/cadastrar">Cadastrar Tipo de Rede</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equip_rede_local_tipo/listar">Listar Tipos de Rede</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equipamento_computador_tipo/cadastrar">Cadastrar Tipo de Computador</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equipamento_computador_tipo/listar">Listar Tipos de Computador</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equipamento_ensino_aprendiz_tipo/cadastrar">Cadastrar Equipamento para Ensino</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equipamento_ensino_aprendiz_tipo/listar">Listar Equipamentos para Ensino</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equipamento_tecnologico_administrativo/cadastrar">Cadastrar Equipamento para Uso Técnico e Administrativo</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/equipamento_tecnologico_administrativo/listar">Listar Equipamentos para Uso Técnico e Administrativo</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_funcao">
+              Função Desempenhada por Funcionarios
+            </a>
+            <ul class="collapse" id="ue_funcao">
+              <li><a href="<?=PORTAL_URL;?>view/ue/funcao_tipo/cadastrar">Cadastrar Tipo de Função Desempenhada por Funcionarios</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/funcao_tipo/listar">Listar Tipo de Funções Desempenhada por Funcionarios</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/funcao/cadastrar">Cadastrar Função Desempenhada por Funcionarios</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/funcao/listar">Listar Funções Desempenhada por Funcionarios</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_funsit">
+              Situação de Funcionamento
+            </a>
+            <ul class="collapse" id="ue_funsit">
+              <li><a href="<?=PORTAL_URL;?>view/ue/funcionamento_situacao/cadastrar">Cadastrar Situações de Funcionamento</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/funcionamento_situacao/listar">Listar Situações de Funcionamento</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_infacerec">
+              Recurso de Acessibilidade
+            </a>
+            <ul class="collapse" id="ue_infacerec">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_acessib_recurso/cadastrar">Cadastrar Recurso de Acessibilidade</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_acessib_recurso/listar">Listar Recursos de Acessibilidade</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_infaguabatipo">
+              Tipo de Abastecimento de Água
+            </a>
+            <ul class="collapse" id="ue_infaguabatipo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_acessib_recurso/cadastrar">Cadastrar Tipo de Abastecimento de Água</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_acessib_recurso/listar">Listar Tipos de Abastecimento de Água</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_infelefon">
+              Fonte de Energia Elétrica
+            </a>
+            <ul class="collapse" id="ue_infelefon">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_eletrica_fonte/cadastrar">Cadastrar Fonte de Energia Elétrica</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_eletrica_fonte/listar">Listar Fonte de Energia Elétrica</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_infesgtipo">
+              Tipo de Esgotamento Sanitário
+            </a>
+            <ul class="collapse" id="ue_infesgtipo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_esgot_tipo/cadastrar">Cadastrar Tipo de Esgotamento Sanitário</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_esgot_tipo/listar">Listar Tipo de Esgotamento Sanitário</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_infespfis">
+              Dependência/Espaço Físico
+            </a>
+            <ul class="collapse" id="ue_infespfis">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_espaco_fisico/cadastrar">Cadastrar Dependência/Espaço Físico</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_espaco_fisico/listar">Listar Dependências/Espaços Físico</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_inflixdestipo">
+              Tipo de Destinação do Lixo
+            </a>
+            <ul class="collapse" id="ue_inflixdestipo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_lixo_dest_tipo/cadastrar">Cadastrar Tipo de Destinação do Lixo</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_lixo_dest_tipo/listar">Listar Tipos de Destinação do Lixo</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_inflixdestipo">
+              Tipo de tratamento do Lixo/Resíduos
+            </a>
+            <ul class="collapse" id="ue_inflixdestipo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_lixo_dest_tipo/cadastrar">Cadastrar Tipo de Destinação do Lixo</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_lixo_dest_tipo/listar">Listar Tipos de Destinação do Lixo</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_inflixorestratipo">
+              Tipo de tratamento do Lixo/Resíduos
+            </a>
+            <ul class="collapse" id="ue_inflixorestratipo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_lixo_resid_trat_tipo/cadastrar">Cadastrar Tipo de tratamento do Lixo/Resíduos</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_lixo_resid_trat_tipo/listar">Listar Tipos de tratamento do Lixo/Resíduos</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_inflocfun">
+              Local de Funcionamento da Escola
+            </a>
+            <ul class="collapse" id="ue_inflocfun">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_lixo_resid_trat_tipo/cadastrar">Cadastrar Local de Funcionamento da Escola</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_lixo_resid_trat_tipo/listar">Listar Locais de Funcionamento da Escola</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_inflococufor">
+              Forma de Ocupação do Prédio Escolar
+            </a>
+            <ul class="collapse" id="ue_inflococufor">
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_local_ocupacao/cadastrar">Cadastrar Forma de Ocupação do Prédio Escolar</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/infra_local_ocupacao/listar">Listar Formas de Ocupação do Prédio Escolar</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_intpubtipo">
+              Público a Usufruir Da Internet da Unidade Escolar
+            </a>
+            <ul class="collapse" id="ue_intpubtipo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/internet_publico_tipo/cadastrar">Cadastrar Público a Usufruir Da Internet da Unidade Escolar</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/internet_publico_tipo/listar">Listar Públicos a Usufruir Da Internet da Unidade Escolar</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_locdif">
+              Localização Diferenciada
+            </a>
+            <ul class="collapse" id="ue_locdif">
+              <li><a href="<?=PORTAL_URL;?>view/ue/localizacao_diferenciada/cadastrar">Cadastrar Localização Diferenciada</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/localizacao_diferenciada/listar">Listar Localizações Diferenciada</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_parconfor">
+              Forma de Contratação de Parceria ou Convênio
+            </a>
+            <ul class="collapse" id="ue_parconfor">
+              <li><a href="<?=PORTAL_URL;?>view/ue/parceria_convenio_forma/cadastrar">Cadastrar Forma de Contratação de Parceria ou Convênio</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/parceria_convenio_forma/listar">Listar Formas de Contratação de Parceria ou Convênio</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_porte">
+              Porte de Alunos
+            </a>
+            <ul class="collapse" id="ue_porte">
+              <li><a href="<?=PORTAL_URL;?>view/ue/parceria_convenio_forma/cadastrar">Cadastrar Porte de Alunos</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/parceria_convenio_forma/listar">Listar Portes de Alunos</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_primantipo">
+              Tipo de Mantenedora de Escola Privada
+            </a>
+            <ul class="collapse" id="ue_primantipo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/privada_mantenedora_tipo/cadastrar">Cadastrar Tipo de Mantenedora de Escola Privada</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/privada_mantenedora_tipo/listar">Listar Tipos de Mantenedora de Escola Privada</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_regsit">
+              Situação de Regulamentação/Autorização da Escola
+            </a>
+            <ul class="collapse" id="ue_regsit">
+              <li><a href="<?=PORTAL_URL;?>view/ue/regulam_situacao/cadastrar">Cadastrar Situação de Regulamentação/Autorização da Escola</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/regulam_situacao/listar">Listar Situações de Regulamentação/Autorização da Escola</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_turno">
+              Horário de Turno
+            </a>
+            <ul class="collapse" id="ue_turno">
+              <li><a href="<?=PORTAL_URL;?>view/ue/turno/cadastrar">Cadastrar Horário de Turno</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/turno/listar">Listar Horários de Turno</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_vintipo">
+              Tipo de Vínculo a Outra Unidade Escolar
+            </a>
+            <ul class="collapse" id="ue_vintipo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/ue_vinculada_tipo/cadastrar">Cadastrar Tipo de Vínculo a Outra Unidade Escolar</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/ue_vinculada_tipo/listar">Listar Tipos de Vínculo a Outra Unidade Escolar</a></li>
+            </ul>
+          </li>
+          <li class="another-level">
+            <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#ue_uo">
+              Unidade Organizacional
+            </a>
+            <ul class="collapse" id="ue_uo">
+              <li><a href="<?=PORTAL_URL;?>view/ue/uo_tipo/cadastrar">Cadastrar Tipo de Unidade Organizacional</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/uo_tipo/listar">Listar Tipos de Unidade Organizacional</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/uo/cadastrar">Cadastrar Unidade Organizacional</a></li>
+              <li><a href="<?=PORTAL_URL;?>view/ue/uo/listar">Listar Unidade Organizacional</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#UEDiretoria">
           <i class="iconoir-home-alt"></i> Diretoria <span class="badge text-primary-dark bg-primary-300  badge-notification ms-2">4</span>
         </a>
         <ul class="collapse" id="UEDiretoria">
@@ -26,7 +396,7 @@
         </ul>
       </li>
       <li>
-        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="<#UESecretaria">
+        <a aria-expanded="false" class="" data-bs-toggle="collapse" href="#UESecretaria">
           <i class="iconoir-home-alt"></i> Secretaria <span class="badge text-primary-dark bg-primary-300  badge-notification ms-2">4</span>
         </a>
         <ul class="collapse" id="UESecretaria">
