@@ -1,0 +1,22 @@
+$(document).ready(function () {
+});
+function btnNovo(){
+  postToURL(PORTAL_URL + 'view/eo/uo_tipo/cadastrar/');
+};
+function btnVisualizar(elem){
+  let id = $(elem).parents('tr').children('input#td_id').val();
+  postToURL(PORTAL_URL + 'view/eo/uo_tipo/visualizar/' + id);
+};
+function btnEditar(elem){
+  let id = $(elem).parents('tr').children('input#td_id').val();
+  postToURL(PORTAL_URL + 'view/eo/uo_tipo/cadastrar/' + id);
+};
+function btnExcluir(elem){
+  let id = $(elem).parents('tr').children('input#td_id').val();
+  let params = {
+    id:             id,
+    urlToSend:      'model/eo/uo_tipo/excluir',
+    urlToGo:        'view/eo/uo_tipo/listar'
+  };
+  ajaxSendExcluir(params);
+}

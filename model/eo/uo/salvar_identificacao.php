@@ -1,11 +1,11 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['f_id']?: '');
-$status                                   = strip_tags(@$_POST['f_status']?: 0);
+$id                                       = strip_tags(@$_POST['u_id']?: '');
+$status                                   = strip_tags(@$_POST['u_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['f_nome']?: ''))));
-$ue_funcao_tipo_id                        = strip_tags(@$_POST['f_ue_funcao_tipo_id']?: '');
-$tableName      = 'ue_funcao';
+$nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['u_nome']?: ''))));
+$eo_uo_tipo_id                            = strip_tags(@$_POST['u_eo_uo_tipo_id']?: '');
+$tableName      = 'eo_uo';
 $error          = false;
 $result         = array();
 $msg            = "";
@@ -15,12 +15,12 @@ try {
   $db->beginTransaction();
   $stmt = $db->prepare('
     SELECT tb.nome, tb2.nome
-    FROM '.$tableName.' AS tb
-    LEFT JOIN ue_funcao_tipo AS tb2 ON tb2.id = tb.ue_funcao_tipo_id
-    WHERE tb.id <> ? AND (tb.nome LIKE ? AND tb.ue_funcao_tipo_id = ?);');
+    FROM '.$tableName.' AS tb 
+    LEFT JOIN eo_uo_tipo AS tb2 ON tb2.id = tb.eo_uo_tipo_id
+    WHERE tb.id <> ? AND (tb.nome LIKE ? AND tb.eo_uo_tipo_id = ?);');
   $stmt->bindValue(1, $id);
   $stmt->bindValue(2, $nome);
-  $stmt->bindValue(3, $ue_funcao_tipo_id);
+  $stmt->bindValue(3, $eo_uo_tipo_id);
   $stmt->execute();
   $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
   if (is_array($rsExistente)) {
@@ -44,13 +44,13 @@ try {
           status = ?,
           dt_cadastro = ?,
           nome = ?,
-          ue_funcao_tipo_id = ?
+          eo_uo_tipo_id = ?
           WHERE id = ?
           ');
       $stmt->bindValue(1, $status);
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $nome);
-      $stmt->bindValue(4, $ue_funcao_tipo_id);
+      $stmt->bindValue(4, $eo_uo_tipo_id? : NULL);
       $stmt->bindValue(5, $id);
       $stmt->execute();
       $db->commit();
@@ -66,7 +66,7 @@ try {
           status,
           dt_cadastro,
           nome,
-          ue_funcao_tipo_id
+          eo_uo_tipo_id
           ) 
         VALUES
         (
@@ -78,7 +78,7 @@ try {
       $stmt->bindValue(1, $status);
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $nome);
-      $stmt->bindValue(4, $ue_funcao_tipo_id);
+      $stmt->bindValue(4, $eo_uo_tipo_id? : NULL);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       $db->commit();

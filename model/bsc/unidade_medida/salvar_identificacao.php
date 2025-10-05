@@ -56,7 +56,7 @@ try {
       $stmt->bindValue(3, $nome);
       $stmt->bindValue(4, $simbolo);
       $stmt->bindValue(5, $equivalencia);
-      $stmt->bindValue(6, $bsc_grandeza_id);
+      $stmt->bindValue(6, $bsc_grandeza_id? : NULL);
       $stmt->bindValue(7, $id);
       $stmt->execute();
       $db->commit();
@@ -90,7 +90,7 @@ try {
       $stmt->bindValue(3, $nome);
       $stmt->bindValue(4, $simbolo);
       $stmt->bindValue(5, $equivalencia);
-      $stmt->bindValue(6, $bsc_grandeza_id);
+      $stmt->bindValue(6, $bsc_grandeza_id? : NULL);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       // $senhaNome = strtolower(removeAcentos($nome));
