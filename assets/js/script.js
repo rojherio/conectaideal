@@ -136,7 +136,7 @@ $(".contact-listbox").on("click", function () {
 
 function resize() {
   var $window = $(window),
-    $nav = $('nav');
+  $nav = $('nav');
 
   $nav.removeClass('semi-nav');
   if ($window.width() < 768) {
@@ -161,11 +161,13 @@ new SimpleBar(myElement, { autoHide: true });
 
 // Sidebar active class js
 $(function () {
-  let current = location.pathname;
-  current = current.substring((current.lastIndexOf('/')) + 1);
+  // let current = location.pathname;
+  let current = location.href;
+  // current = current.substring((current.lastIndexOf('/')) + 1);
   $('.main-nav li a').each(function () {
     var $this = $(this);
-    if (current === $this.attr("href").split('/').pop()) {
+    // if (current === $this.attr("href").split('/').pop()) {
+    if (current === $this.attr("href")) {
       if ($this.parent().parent().parent().hasClass("another-level")) {
         $this.parent().parent().parent().parent().closest('li').children().addClass('show').attr("aria-expanded", "true");
       }
@@ -188,8 +190,8 @@ let calcScrollValue = () => {
   let progressValue = document.getElementsByClassName("progress-value");
   let pos = document.documentElement.scrollTop;
   let calcHeight =
-    document.documentElement.scrollHeight -
-    document.documentElement.clientHeight;
+  document.documentElement.scrollHeight -
+  document.documentElement.clientHeight;
   let scrollValue = Math.round((pos * 100) / calcHeight);
   if (pos > 100) {
     scrollProgress[0].style.display = 'grid';
@@ -295,7 +297,7 @@ $(document).on('keyup', '.search-filter', function (e) {
       if (content.includes(search)) {
         $(this).closest(".search-list-item").show();
         var highlightedText = content.replace(new RegExp(search, 'gi'), function (match) {
-            return '<span class="highlight-searchtext">' + match + '</span>';
+          return '<span class="highlight-searchtext">' + match + '</span>';
         });
         $(this).html(highlightedText);
       } else {
@@ -311,8 +313,10 @@ var closeCollaps = document.querySelectorAll('.main-nav li a[data-bs-toggle="col
 closeCollaps.forEach(function (element) {
   element.addEventListener('click', function () {
     var parent = element.closest('.collapse');
+    console.log(parent);
     var all = document.querySelectorAll('.collapse');
     all.forEach(function (e) {
+      console.log(e.previousElementSibling);
       if (e !== parent) {
         e.classList.remove('show');
         var ariaexpand = e.previousElementSibling;
@@ -328,5 +332,5 @@ closeCollaps.forEach(function (element) {
 // >>-- 15  Modal js --<<
 
 $(function () {
-  $('#welcomeCard').modal('show');
+  // $('#welcomeCard').modal('show');
 });

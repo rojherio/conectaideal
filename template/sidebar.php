@@ -53,8 +53,8 @@
           <i class="iconoir-handbag"></i> Estado Civil
         </a>
         <ul class="collapse" id="bsc_estciv">
-          <li><a href="<?=PORTAL_URL;?>view/bsc/banco_conta_tipo/cadastrar">Cadastrar Estado Civil</a></li>
-          <li><a href="<?=PORTAL_URL;?>view/bsc/banco_conta_tipo/listar">Listar Estados Civil</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/estado_civil/cadastrar">Cadastrar Estado Civil</a></li>
+          <li><a href="<?=PORTAL_URL;?>view/bsc/estado_civil/listar">Listar Estados Civil</a></li>
         </ul>
       </li>
       <li>
