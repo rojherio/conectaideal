@@ -1,1 +1,0 @@
-SELECT * FROM delfos.ue_funcao_tipo;
