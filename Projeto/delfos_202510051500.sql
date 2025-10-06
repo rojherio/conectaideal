@@ -771,54 +771,6 @@ LOCK TABLES `eo_uo_tipo_copy2` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `eo_uo_tipo_copy4`
---
-
-DROP TABLE IF EXISTS `eo_uo_tipo_copy4`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `eo_uo_tipo_copy4` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `eo_uo_tipo_copy4`
---
-
-LOCK TABLES `eo_uo_tipo_copy4` WRITE;
-/*!40000 ALTER TABLE `eo_uo_tipo_copy4` DISABLE KEYS */;
-/*!40000 ALTER TABLE `eo_uo_tipo_copy4` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `eo_uo_tipo_copy9`
---
-
-DROP TABLE IF EXISTS `eo_uo_tipo_copy9`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `eo_uo_tipo_copy9` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `eo_uo_tipo_copy9`
---
-
-LOCK TABLES `eo_uo_tipo_copy9` WRITE;
-/*!40000 ALTER TABLE `eo_uo_tipo_copy9` DISABLE KEYS */;
-/*!40000 ALTER TABLE `eo_uo_tipo_copy9` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `gov_governador`
 --
 
@@ -1734,6 +1686,58 @@ CREATE TABLE `seme_uo_tipo` (
 LOCK TABLES `seme_uo_tipo` WRITE;
 /*!40000 ALTER TABLE `seme_uo_tipo` DISABLE KEYS */;
 /*!40000 ALTER TABLE `seme_uo_tipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sme_rh_serv_situacao`
+--
+
+DROP TABLE IF EXISTS `sme_rh_serv_situacao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sme_rh_serv_situacao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(100) NOT NULL,
+  `descricao` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sme_rh_serv_situacao`
+--
+
+LOCK TABLES `sme_rh_serv_situacao` WRITE;
+/*!40000 ALTER TABLE `sme_rh_serv_situacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sme_rh_serv_situacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sme_rh_serv_tipo`
+--
+
+DROP TABLE IF EXISTS `sme_rh_serv_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `sme_rh_serv_tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(100) NOT NULL,
+  `descricao` varchar(254) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `sme_rh_serv_tipo`
+--
+
+LOCK TABLES `sme_rh_serv_tipo` WRITE;
+/*!40000 ALTER TABLE `sme_rh_serv_tipo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `sme_rh_serv_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -5713,4 +5717,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-05 15:32:29
+-- Dump completed on 2025-10-05 21:09:55
