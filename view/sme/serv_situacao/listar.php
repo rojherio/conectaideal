@@ -5,22 +5,22 @@ include_once ('template/header.php');
 $db = Conexao::getInstance();
 //Consulta para DataTable - BEGIN
 $stmt = $db->prepare("SELECT 
-  st.id,
-  st.status,
-  st.dt_cadastro,
-  st.nome,
-  st.descricao
-  FROM sme_rh_serv_tipo AS st
-  ORDER BY st.nome");
+  ss.id,
+  ss.status,
+  ss.dt_cadastro,
+  ss.nome,
+  ss.descricao
+  FROM sme_serv_situacao AS ss
+  ORDER BY ss.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
-$tituloPagina             = "Listagem de Tipos de Servidor";
-$descricaoPagina          = "Informações de tipos de servidor";
-$tituloFormulario1        = "Tabela com listagem de Tipos de Servidor";
-$descricaoFormulario1     = "Dados de identificação de tipos de servidor";
-$tituloImpressao          = "Relatório de tipos de servidor cadastradas no sistema DELFOS";
+$tituloPagina             = "Listagem de Situação do Servidor";
+$descricaoPagina          = "Informações de situação do servidor";
+$tituloFormulario1        = "Tabela com listagem de Situação do Servidor";
+$descricaoFormulario1     = "Dados de identificação de situação do servidor";
+$tituloImpressao          = "Relatório de situação do servidor cadastradas no sistema DELFOS";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -39,7 +39,7 @@ $tituloImpressao          = "Relatório de tipos de servidor cadastradas no sist
             </a>
           </li>
           <li class="active">
-            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Tipos de Servidor</a>
+            <a href="<?= PORTAL_URL; ?>" class="f-s-14 f-w-500">Situação do Servidor</a>
           </li>
         </ul>
       </div>
@@ -134,4 +134,4 @@ $tituloImpressao          = "Relatório de tipos de servidor cadastradas no sist
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/sme/rh_serv_tipo/listar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/sme/serv_situacao/listar.js"></script>

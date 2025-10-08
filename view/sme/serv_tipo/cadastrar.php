@@ -7,7 +7,7 @@ $db = Conexao::getInstance();
 //Consulta para Edição - BEGIN
 $stmt = $db->prepare("SELECT 
   st.id
-  FROM sme_rh_serv_tipo AS st
+  FROM sme_serv_tipo AS st
   WHERE st.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -49,9 +49,9 @@ $exibeButoes              = true;
     </div>
     <!-- div Título página e links de navegação - END -->
     <!-- formulário de cadastro - BEGIN -->
-    <form class="app-form" id="form_sme_rh_serv_serv_tipo" name="form_sme_rh_serv_tipo" method="post" urltosend="sme/rh_serv_tipo/salvar_identificacao" action="">
+    <form class="app-form" id="form_sme_serv_tipo" name="form_sme_serv_tipo" method="post" urltosend="sme/serv_tipo/salvar_identificacao" action="">
       <?php 
-      include_once ('view/sme/rh_serv_tipo/content_identificacao.php'); 
+      include_once ('view/sme/serv_tipo/content_identificacao.php'); 
       ?>
     </form>
     <!-- formulário de cadastro - END -->
@@ -63,4 +63,4 @@ $exibeButoes              = true;
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/sme/rh_serv_tipo/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/sme/serv_tipo/cadastrar.js"></script>

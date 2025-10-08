@@ -13,7 +13,7 @@ $stmt = $db->prepare("SELECT
   ss.dt_cadastro,
   ss.nome,
   ss.descricao
-  FROM sme_rh_serv_situacao AS ss
+  FROM sme_serv_situacao AS ss
   WHERE ss.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();

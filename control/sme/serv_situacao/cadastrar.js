@@ -11,9 +11,9 @@ $(document).ready(function () {
   $('#submit').on('click', function () {
     let params = {
       formId:         $(this).parents('form').attr('id'),
-      urlCurrent:     'view/sme/rh_serv_situacao/cadastrar',
+      urlCurrent:     'view/sme/serv_situacao/cadastrar',
       urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
-      urlToGo:        'view/sme/rh_serv_situacao/listar'
+      urlToGo:        'view/sme/serv_situacao/listar'
     };
     ajaxSendCadastrar(params);
   });

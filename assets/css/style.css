@@ -17732,7 +17732,7 @@ nav .app-nav .main-nav > li:not(.menu-title) ul {
   padding: 0.6rem 0.5rem;
   list-style-position: inside;
 }
-nav .app-nav .main-nav > li:not(.menu-title) ul li {
+/*nav .app-nav .main-nav > li:not(.menu-title) ul li {
   padding: 0.3rem 1.5rem 0.3rem 1.5rem;
   font-weight: 500;
   line-height: 2;
@@ -17740,6 +17740,17 @@ nav .app-nav .main-nav > li:not(.menu-title) ul li {
   width: 100%;
   display: block;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}*/
+nav .app-nav .main-nav > li:not(.menu-title) ul li {
+  padding: 0.3rem 1.5rem 0.3rem 1.5rem;
+  font-weight: 500;
+  line-height: 2;
+  position: relative;
+  width: 100%;
+  display: block;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
 }

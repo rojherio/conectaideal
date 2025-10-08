@@ -4,7 +4,7 @@ include_once ('template/sidebar.php');
 include_once ('template/header.php');
 $id = empty($parametromodulo) ? 0 : $parametromodulo;
 if (empty($id)) {
-  header('Location: '.PORTAL_URL.'view/sme/rh_serv_tipo/listar');
+  header('Location: '.PORTAL_URL.'view/sme/serv_tipo/listar');
 }
 $db = Conexao::getInstance();
 //Consulta para Visualizar - BEGIN
@@ -14,7 +14,7 @@ $stmt = $db->prepare("SELECT
   st.dt_cadastro,
   st.nome,
   st.descricao
-  FROM sme_rh_serv_tipo AS st
+  FROM sme_serv_tipo AS st
   WHERE st.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -118,4 +118,4 @@ $tituloImpressao          = "Relatório de informações do tipo de servidor cad
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/sme/rh_serv_tipo/visualizar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/sme/serv_tipo/visualizar.js"></script>

@@ -88,6 +88,14 @@ nav:not(div.dt-paging>nav.vertical-sidebar) {
   width: 17rem !important;
   transition: var(--app-transition);
 }
+/*.Select2 - selection__clear - BEGIN*/
+.select2-selection__clear {
+  margin-right: .5em !important;
+  padding-right: .5em !important;
+  font-size: 3.3em !important;
+  color: #e44b8d !important;
+}
+/*.Select2 - selection__clear - END*/
 /*Select2 multiple - BEGIN*/
 .select2-container .select2-selection--multiple .select2-selection__rendered {
   display: inline-grid !important;
@@ -102,3 +110,44 @@ textarea.select2-search__field {
   font-family: inherit !important;
 }
 /*Select2 multiple - END*/
+/*Border BEGIN*/
+.border-outline-info {
+  border: 1px solid rgba(var(--info), 1) !important;
+}
+.border-outline-primary {
+  border: 1px solid rgba(var(--primary), 1) !important;
+}
+/*Border END*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
