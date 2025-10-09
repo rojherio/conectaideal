@@ -117,8 +117,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade de medida está 
             /*array()*/   'options'     => $rsGrandezas,
             /*string*/    'ariaLabel'   => 'Selecione uma grandeza',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

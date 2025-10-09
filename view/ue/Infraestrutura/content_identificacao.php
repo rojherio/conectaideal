@@ -92,8 +92,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de infraestrutura está ati
             /*array()*/   'options'     => $rsInfraestruturasTipo,
             /*string*/    'ariaLabel'   => 'Selecione um tipo',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

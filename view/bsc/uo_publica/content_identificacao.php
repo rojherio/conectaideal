@@ -86,8 +86,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade organizacional/o
             /*array()*/   'options'     => $rsRegistroUoPublica2,
             /*string*/    'ariaLabel'   => 'Selecione uma Setor Publico',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <div class="row">
@@ -101,8 +100,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade organizacional/o
             /*array()*/   'options'     => $rsRegistroUoPublica3,
             /*string*/    'ariaLabel'   => 'Selecione uma Pessoa',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

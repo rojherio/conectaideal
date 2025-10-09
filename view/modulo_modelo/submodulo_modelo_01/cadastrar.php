@@ -261,8 +261,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   ),
                   /*string*/    'ariaLabel'   => 'Selecione um tipo sanguíneo',
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => '',
-                  /*string*/    'display'     => true
+                  /*string*/    'prop'        => ''
                 )); ?>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => 4,
@@ -306,8 +305,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*array()*/   'options'     => $rsPaises,
                   /*string*/    'ariaLabel'   => 'Selecione um país',
                   /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => 'controller="naturalidade"',
-                  /*string*/    'display'     => true
+                  /*string*/    'prop'        => 'controller="naturalidade"'
                 )); ?>
                 <?php
                 //Parámetros de exibir/ocultar div - BEGIN
@@ -434,8 +432,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                       /*array()*/   'options'     => $rsPaises,
                       /*string*/    'ariaLabel'   => 'Selecione um país',
                       /*bool*/      'required'    => false,
-                      /*string*/    'prop'        => '',
-                      /*string*/    'display'     => true
+                      /*string*/    'prop'        => ''
                     )); ?>
                     <?= createInput(array(
                       /*int 1-12*/  'col'         => 12,
@@ -481,8 +478,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                       /*array()*/   'options'     => $rsPaises,
                       /*string*/    'ariaLabel'   => 'Selecione um país',
                       /*bool*/      'required'    => true,
-                      /*string*/    'prop'        => '',
-                      /*string*/    'display'     => true
+                      /*string*/    'prop'        => ''
                     )); ?>
                     <?= createInput(array(
                       /*int 1-12*/  'col'         => 12,

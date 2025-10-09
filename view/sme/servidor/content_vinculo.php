@@ -368,8 +368,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                   /*array()*/   'options'     => $rsParcConvFormas,
                   /*string*/    'ariaLabel'   => 'Selecione uma forma de contratação',
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'controlled="forma_parc_0" control-value="0" controller="qtds_matricula_0" controller-values="0" ',
-                  /*string*/    'display'     => true
+                  /*string*/    'prop'        => 'controlled="forma_parc_0" control-value="0" controller="qtds_matricula_0" controller-values="0" '
                 )); ?>
               </div>
               <div class="div_qtds_matricula" controlled="qtds_matricula_0" control-value="0" style="display: none;">
@@ -458,8 +457,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                   /*array()*/   'options'     => $rsUOPublicas,
                   /*string*/    'ariaLabel'   => 'Selecione os órgãos vinculados',
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'controller="forma_parc_'.$keyUPPV.'" controller-values="0"',
-                  /*string*/    'display'     => true
+                  /*string*/    'prop'        => 'controller="forma_parc_'.$keyUPPV.'" controller-values="0"'
                 )); ?>
               </div>
               <?php
@@ -484,8 +482,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                         /*array()*/   'options'     => $rsParcConvFormas,
                         /*string*/    'ariaLabel'   => 'Selecione uma forma de contratação',
                         /*bool*/      'required'    => false,
-                        /*string*/    'prop'        => 'controlled="forma_parc_'.$keyUPPV.'" control-value="0" controller="qtds_matricula_'.$keyPCF.'" controller-values="0" ',
-                        /*string*/    'display'     => true
+                        /*string*/    'prop'        => 'controlled="forma_parc_'.$keyUPPV.'" control-value="0" controller="qtds_matricula_'.$keyPCF.'" controller-values="0" '
                       )); ?>
                     </div>
                     <?php

@@ -86,8 +86,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de grau de parentesco está
             ),
             /*string*/    'ariaLabel'   => 'Seleciona um grau de parentesco',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

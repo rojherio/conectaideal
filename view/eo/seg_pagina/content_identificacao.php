@@ -141,8 +141,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pagina está ativo ou in
             /*array()*/   'options'     => $rsSegPasta,
             /*string*/    'ariaLabel'   => 'Selecione uma Pasta',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         </div>

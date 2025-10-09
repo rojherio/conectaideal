@@ -141,8 +141,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pasta está ativo ou ina
             /*array()*/   'options'     => $rsSegSubModulo,
             /*string*/    'ariaLabel'   => 'Selecione um SubModulo',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         </div>

@@ -132,8 +132,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             load="true" 
             loadurl="view/bsc/pessoa_fisica/content_identificacao/" 
             gettextinputid="p_nome" 
-            setstatusinputid="p_status" ',
-            /*string*/    'display'     => true
+            setstatusinputid="p_status" '
           )); ?>
         </div>
         <?php
@@ -188,8 +187,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*array()*/   'options'     => $rsServidorTipos,
             /*string*/    'ariaLabel'   => 'Selecione um tipo de servidor(a)',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

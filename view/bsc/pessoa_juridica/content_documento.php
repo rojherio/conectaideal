@@ -373,8 +373,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*array()*/   'options'     => $rsMunicipios,
             /*string*/    'ariaLabel'   => 'Selecione uma cidade',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->
@@ -515,8 +514,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             ),
             /*string*/    'ariaLabel'   => 'Selecione a categoria da CNH',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
           <?= createInputDate(array(
             /*int 1-12*/  'col'         => 12,

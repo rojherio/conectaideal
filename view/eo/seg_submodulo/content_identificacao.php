@@ -141,8 +141,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de submodulo está ativo ou
             /*array()*/   'options'     => $rsSegModulo,
             /*string*/    'ariaLabel'   => 'Selecione um Modulo',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         </div>

@@ -90,8 +90,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de função desempenhada po
             /*array()*/   'options'     => $rsRegistroFuncao2,
             /*string*/    'ariaLabel'   => 'Selecione um tipo',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

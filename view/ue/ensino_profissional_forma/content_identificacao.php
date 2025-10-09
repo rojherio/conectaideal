@@ -92,8 +92,7 @@ $descricaoFormulario5     = "Defina se esse cadastro da forma de ensino profissi
             /*array()*/   'options'     => $rsRegistroEnsinoProfissionalForma2,
             /*string*/    'ariaLabel'   => 'Selecione um tipo',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <div class="row">

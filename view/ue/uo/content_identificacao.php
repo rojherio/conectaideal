@@ -91,8 +91,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de unidade organizacional e
             /*array()*/   'options'     => $rsRegistroUo2,
             /*string*/    'ariaLabel'   => 'Selecione um tipo',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

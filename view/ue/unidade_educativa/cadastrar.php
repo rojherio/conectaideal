@@ -13,7 +13,7 @@ $stmt = $db->prepare("SELECT
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistroUE = $stmt->fetch(PDO::FETCH_ASSOC);
-if ($rsRegistroUE) {
+if (!$rsRegistroUE) {
   $rsRegistroUE = array();
   $rsRegistroUE['id'] = 0;
 }

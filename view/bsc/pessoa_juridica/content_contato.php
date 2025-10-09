@@ -189,8 +189,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*array()*/   'options'     => $rsMunicipios,
             /*string*/    'ariaLabel'   => 'Selecione uma cidade',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->
@@ -276,8 +275,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*array()*/   'options'     => $rsGrausParentesco,
             /*string*/    'ariaLabel'   => 'Selecione um grau de parentesco',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

@@ -304,8 +304,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             load="true" 
             loadurl="view/bsc/pessoa_juridica/content_identificacao/" 
             gettextinputid="p_nome" 
-            setstatusinputid="p_status" ',
-            /*string*/    'display'     => true
+            setstatusinputid="p_status" '
           )); ?>
         </div>
         <?php
@@ -349,8 +348,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsFuncionamSituacoes,
             /*string*/    'ariaLabel'   => 'Selecione uma situação de funcionamento',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Internvalo do Ano Letivo da Unidade Escolar</h6>
@@ -394,8 +392,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsZonas,
             /*string*/    'ariaLabel'   => 'Selecione uma zona',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Localização Diferenciada da Unidade Escolar</h6>
@@ -410,8 +407,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsLocalizacaoDiferenciadas,
             /*string*/    'ariaLabel'   => 'Selecione uma localização diferenciada',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Dependência Administrativa da Unidade Escolar</h6>
@@ -426,8 +422,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsEsferaAdmninDepends,
             /*string*/    'ariaLabel'   => 'Selecione uma dependência administrativa',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => 'controller="ue_privada" controller-values="4"',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => 'controller="ue_privada" controller-values="4"'
           )); ?>
         </div>
         <?php
@@ -450,8 +445,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                 /*array()*/   'options'     => $rsCatEscPrivs,
                 /*string*/    'ariaLabel'   => 'Selecione uma categoria de escola privada',
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => 'controlled="ue_privada" control-value="4"',
-                /*string*/    'display'     => true
+                /*string*/    'prop'        => 'controlled="ue_privada" control-value="4"'
               )); ?>
             </div>
           </div>
@@ -469,8 +463,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsUOPublicas,
             /*string*/    'ariaLabel'   => 'Selecione os órgãos vinculados',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Tipo de Atendimento de Ensino</h6>
@@ -485,8 +478,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsEnsAtendTipos,
             /*string*/    'ariaLabel'   => 'Selecione os tipos de atendimentos',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Modalidade/Etapa de Ensino</h6>
@@ -501,8 +493,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsEnsModalidadeEtapas,
             /*string*/    'ariaLabel'   => 'Selecione as modalidades/etapas',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Forma de Ensino Profissionalizante</h6>
@@ -517,8 +508,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsEnsProfisFormas,
             /*string*/    'ariaLabel'   => 'Selecione as formas de ensino profissionalizante',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Esfera Administrativa Responsável pela Regulamentação/Autorização de Funcionamento da Unidade Educativa</h6>
@@ -533,8 +523,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsEsferaAdmninRegulams,
             /*string*/    'ariaLabel'   => 'Selecione uma esfera administriva responsável pela regulamentação/autorização',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Situação de Regulamentação/Autorização de Funcionamento da Unidade Educativa</h6>
@@ -549,8 +538,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsRegulamSituacoes,
             /*string*/    'ariaLabel'   => 'Selecione uma situação de regulamentação/autorização',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <h6>Locais de Funcionamento da Unidade Educativa</h6>
@@ -565,8 +553,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
             /*array()*/   'options'     => $rsInfraLocalFuncionamentos,
             /*string*/    'ariaLabel'   => 'Selecione os locais de funcionamento',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <!-- div row input - END -->

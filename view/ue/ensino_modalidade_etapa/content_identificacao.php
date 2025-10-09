@@ -94,8 +94,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
             /*array()*/   'options'     => $rsRegistroEnsinoModalidadeEtapa2,
             /*string*/    'ariaLabel'   => 'Selecione uma modalidade de ensino',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
         </div>
         <div class="row">

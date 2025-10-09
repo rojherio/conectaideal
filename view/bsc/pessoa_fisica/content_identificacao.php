@@ -220,8 +220,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             ),
             /*string*/    'ariaLabel'   => 'Selecione um tipo sanguíneo',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => '',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => ''
           )); ?>
           <?= createInput(array(
             /*int 1-12*/  'col'         => 4,
@@ -265,8 +264,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*array()*/   'options'     => $rsPaises,
             /*string*/    'ariaLabel'   => 'Selecione um país',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => 'controller="naturalidade" controller-values="0|1"',
-            /*string*/    'display'     => true
+            /*string*/    'prop'        => 'controller="naturalidade" controller-values="0|1"'
           )); ?>
           <?php
                 //Parámetros de exibir/ocultar div - BEGIN
@@ -275,7 +273,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                 //Parámetros de exibir/ocultar div - NED
           ?>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 6,
+            /*int 1-12*/  'col'         => '6 " '.$displayNaturalidadeNacional.' controlled="naturalidade" control-value="1' ,
             /*string*/    'label'       => 'Naturalidade',
             /*string*/    'name'        => 'p_natural_bsc_municipio_id',
             /*string*/    'id'          => 'p_natural_bsc_municipio_id',
@@ -284,8 +282,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*array()*/   'options'     => ($rsRegistroPessoaIdent['natural_bsc_municipio_id'] > 0 ? array(array('id' => $rsRegistroPessoaIdent['natural_bsc_municipio_id'], 'nome' => ($rsRegistroPessoaIdent['natural_municipio_nome'].' - '.$rsRegistroPessoaIdent['natural_estado_sigla']))) : NULL),
             /*string*/    'ariaLabel'   => 'Selecione um país',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"',
-            /*string*/    'display'     => !$displayNaturalidadeNacional ? true : false
+            /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"'
           )); ?>
         </div>
         <div id="div_naturalidade_extrangeiro" controlled="naturalidade" control-value="0" <?= $displayNaturalidadeExtranjeiro ;?>>
@@ -393,8 +390,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                 /*array()*/   'options'     => $rsPaises,
                 /*string*/    'ariaLabel'   => 'Selecione um país',
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => '',
-                /*string*/    'display'     => true
+                /*string*/    'prop'        => ''
               )); ?>
               <?= createInput(array(
                 /*int 1-12*/  'col'         => 12,
@@ -440,8 +436,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                 /*array()*/   'options'     => $rsPaises,
                 /*string*/    'ariaLabel'   => 'Selecione um país',
                 /*bool*/      'required'    => true,
-                /*string*/    'prop'        => '',
-                /*string*/    'display'     => true
+                /*string*/    'prop'        => ''
               )); ?>
               <?= createInput(array(
                 /*int 1-12*/  'col'         => 12,
