@@ -113,7 +113,7 @@ function createSelect($params) {
   $html   .= '        <option></option>';
   if (is_array($params['options'])) {
     foreach ($params['options'] as $kObj => $vObj) {
-      $html .= '        <option value="'.$vObj['id'].'" '.($params['value'] == $vObj['id'] ? 'selected="selected"' : "").'">'.$vObj['nome'].'</option>';
+      $html .= '        <option value="'.$vObj['id'].'" '.($params['value'] == $vObj['id'] ? 'selected="selected"' : "").'>'.$vObj['nome'].'</option>';
     }
   }
   $html   .= '      </select>';
@@ -129,7 +129,7 @@ function createSelectMultiple($params) {
   $html   .= '        <option></option>';
   if (is_array($params['options'])) {
     foreach ($params['options'] as $kObj => $vObj) {
-      $html .= '        <option value="'.$vObj['id'].'" '.(in_array($vObj['id'], $params['value']) ? 'selected="selected"' : "").'">'.$vObj['nome'].'</option>';
+      $html .= '        <option value="'.$vObj['id'].'" '.(in_array($vObj['id'], $params['value']) ? 'selected="selected"' : "").'>'.$vObj['nome'].'</option>';
     }
   }
   $html   .= '      </select>';
