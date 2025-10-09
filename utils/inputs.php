@@ -91,7 +91,7 @@
 function createInput($params) {
   $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
-  $html .= '      <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="'.$params['minlength'].'"  min="'.$params['minlength'].'" maxlength="'.$params['maxlength'].'" max="'.$params['maxlength'].'" placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
+  $html .= '      <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" '.($params['type'] == 'number' ? 'min="0"' : '' ).' minlength="'.$params['minlength'].'" maxlength="'.$params['maxlength'].'" placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
   $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html .= '    </div>';
   $html .= '  </div>';

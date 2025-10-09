@@ -1,4 +1,40 @@
-
+$(document).ready(function () {
+  $('.select2-tags[load]').on('change', function(){
+    let selectId      = $(this).attr('id');
+    let selectVal     = $(this).val();
+    let selectText    = $(this).find(':selected').text();
+    let selectLoad    = $(this).attr('load');
+    let selectLoadUrl = $(this).attr('loadurl');
+    let divControlled = $(this).attr('controller');
+    let inputTextId   = $(this).attr('gettextinputid');
+    if (selectLoad == 'true') {
+      if ($.isNumeric(selectVal)) {
+        $(new Object()).load(PORTAL_URL+selectLoadUrl+selectVal, function(response, status, xhr){
+          $(response).find('[id][name]').each(function(k, elem){
+            $(elem).is('select') ? $('#'+elem.id).val(elem.value).trigger('change') : '';
+            $(elem).is('input') ? $('#'+elem.id).val(elem.value) : '';
+          });
+          $('#'+inputTextId).val(selectText).attr('onblur', "setOptionSelect('"+selectId+"', this);");
+        });
+      } else {
+        $(new Object()).load(PORTAL_URL+selectLoadUrl, function(response, status, xhr){
+          $(response).find('[id][name]').each(function(k, elem){
+            $(elem).is('select') ? $('#'+elem.id).val(null).trigger('change') : '';
+            $(elem).is('input') ? $('#'+elem.id).val('') : '';
+          });
+          $('#'+inputTextId).val(selectText).attr('onblur', "setOptionSelect('"+selectId+"', this);");
+        });
+      }
+      $(this).attr('load', 'false');
+    }
+  });
+  $('.select2-tags[load]').on('select2:open', function(){
+    let selectLoad    = $(this).attr('load');
+    if (selectLoad == 'false') {
+      $(this).attr('load', 'true');
+    }
+  });
+});
 //Initialize Select2 Elements
 $('.select2').select2({
 	placeholder: 'Selecione uma opção',

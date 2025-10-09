@@ -6,7 +6,6 @@ include_once ('template/header.php');
 $id = ($parametromodulo) ? : 0;
 $tabPane = !(isset($_POST['tabPane'])) ? 0 : $_POST['tabPane'];
 //Consulta para Edição - BEGIN
-//Identiicação - BEGIN
 $stmt = $db->prepare("SELECT 
   p.id
   FROM bsc_pessoa AS p
@@ -14,43 +13,11 @@ $stmt = $db->prepare("SELECT
 $stmt->bindValue(1, $id);
 $stmt->execute();
 $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
-if (!($rsRegistro)) {
+if (!$rsRegistro) {
   $rsRegistro = array();
   $rsRegistro['id'] = 0;
 }
-//Identiicação - END
 //Consulta para Edição - END
-//Consulta para Select - BEGIN
-$stmt = $db->prepare("
-  SELECT 
-  m.id, 
-  CONCAT(m.nome, ' - ', e.sigla) AS nome
-  FROM bsc_municipio AS m 
-  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id
-  ORDER BY e.nome ASC, m.nome;");
-$stmt->execute();
-$rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt = $db->prepare("
-  SELECT 
-  p.id, 
-  CONCAT(p.nome, ' - ', p.grau) AS nome 
-  FROM bsc_parentesco_grau AS p ;");
-$stmt->execute();
-$rsGrausParentesco = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// $stmt = $db->prepare("
-//   SELECT 
-//     p.id,
-//     p.status,
-//     p.dt_cadastro,
-//     p.nome,
-//     p.nacionalidade,
-//     p.masculino,
-//     p.feminino
-//   FROM bsc_pais AS p
-//   ORDER BY p.id ASC;");
-// $stmt->execute();
-// $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro de Pessoa Jurídica";
 $descricaoPagina          = "Informações de pessoa jurídica";

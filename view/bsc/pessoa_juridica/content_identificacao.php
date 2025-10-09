@@ -32,6 +32,17 @@ if (!($rsRegistroPessoaIdent)) {
 }
 //Identiicação - END
 //Consulta para Edição - END
+//Consulta para Select - BEGIN
+$stmt = $db->prepare("
+  SELECT 
+  m.id, 
+  CONCAT(m.nome, ' - ', e.sigla) AS nome
+  FROM bsc_municipio AS m 
+  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id
+  ORDER BY e.nome ASC, m.nome;");
+$stmt->execute();
+$rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $tituloFormulario1        = "Identificação da Pessoa Jurídica";
 $descricaoFormulario1     = "Dados de identificação da pessoa jurídica";

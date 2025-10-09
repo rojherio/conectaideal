@@ -5,7 +5,7 @@ $status                                   = strip_tags(@$_POST['p_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $tipo                                     = 2; //1 = pessoa física, 2 = pessoa jurídica
 $nome                                     = ucwords(strip_tags(@$_POST['p_nome']?: ''));
-$nome_social                               = ucwords(strip_tags(@$_POST['p_nome_social']?: ''));
+$nome_social                              = ucwords(strip_tags(@$_POST['p_nome_social']?: ''));
 $cpf                                      = strip_tags(@$_POST['p_cpf']?: '');
 $ie                                       = strip_tags(@$_POST['p_ie']?: '');
 $dt_criacao                               = strip_tags(@$_POST['p_dt_criacao']?: '');
@@ -110,10 +110,6 @@ try {
       $stmt->bindValue(8, $dt_criacao?: NULL);
       $stmt->execute();
       $idNew = $db->lastInsertId();
-      // $senhaNome = strtolower(removeAcentos($nome));
-      // $subSenhaNome = explode(' ',$senhaNome);
-      // $subSenhaNome = array_values(array_diff($subSenhaNome, array('')));
-      // $senhaNome = array_shift($subSenhaNome).'.'.array_pop($subSenhaNome);
       $db->commit();
       //MENSAGEM DE SUCESSO
       $result['id'] = $idNew;

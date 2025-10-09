@@ -28,6 +28,18 @@ function divLoaded(){
   $.unblockUI();
   $('button.btn_submit').attr('disabled', false);
 }
+function setOptionSelect(elemId, elemInput){
+  let inputVal = $(elemInput).val();
+  var newOption = new Option(inputVal, inputVal, true, true);
+  $('#'+elemId).append(newOption).trigger('change');
+}
+function setOptionSelectFK(elemId, optionId, text){
+  var newOption = new Option(text, optionId, true, true);
+  $('#'+elemId).append(newOption).trigger('change');
+}
+function setInputFK(elemId, value){
+  $('#'+elemId).val(value);
+}
 function postToURL(path, params, method, target) {
   method = method || "post"; // Set method to post by default, if not specified.
   target = target || "_self"; // Set target to post by default, if not specified.
@@ -230,7 +242,6 @@ function ajaxCompleteSendTabPane(data, status, urlCurrent, urlToGo, tabPane) {
             cancelButtonText: 'Não, quero sair da página de cadastro!'
           }).then((result) => {
             if (result.isConfirmed) {
-              console.log('entrou aqui');
               postToURL(PORTAL_URL + urlCurrent);
             } else {
               postToURL(PORTAL_URL + urlToGo);
@@ -292,7 +303,7 @@ function ajaxSendCadastrarSub(params){
           })
           .always(function (data, status){
             $('#'+params.urlsToSendSub[elemSubKey].elemId).is('input') ? setInputFK(params.urlsToSendSub[elemSubKey].elemId, params.urlsToSendSub[elemSubKey].elemText) : '';
-            $('#'+params.urlsToSendSub[elemSubKey].elemId).is('select') ? setSelectFK(params.urlsToSendSub[elemSubKey].elemId, data.id, params.urlsToSendSub[elemSubKey].elemText) : '';
+            $('#'+params.urlsToSendSub[elemSubKey].elemId).is('select') ? setOptionSelectFK(params.urlsToSendSub[elemSubKey].elemId, data.id, params.urlsToSendSub[elemSubKey].elemText) : '';
             ajaxCompleteSendSub(data, status, params, elemSubKey);
           })
         });

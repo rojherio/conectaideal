@@ -2,6 +2,7 @@
 //Consulta para Edição - BEGIN
 $idUE = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
 $idUE = isset($ue_ue_id) ? $bsc_pessoa_id : $idUE;
+//Consulta para Edição - END
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->

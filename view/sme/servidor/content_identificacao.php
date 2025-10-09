@@ -114,7 +114,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
       <div class="card-body">
         <!-- div row input - BEGIN -->
         <div class="row pb-0">
-          <label>Selecione uma pessoa jurídica. Caso não a encontre na lista, digite o nome/razão social da pessoa jurídica para efetuar o cadastro.</label>
+          <label>Selecione uma pessoa física. Caso não a encontre na lista, digite o nome da pessoa para efetuar o cadastro.</label>
           <?= createSelect(array(
             /*int 1-12*/  'col'         => '12 controller="pj"',
             /*string*/    'label'       => 'Pessoa Jurídica',
@@ -126,11 +126,11 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*string*/    'ariaLabel'   => 'Selecione uma pessoa jurídica',
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => '
-            urltosendsub="model/bsc/pessoa_juridica/salvar_identificacao" 
+            urltosendsub="model/bsc/pessoa_fisica/salvar_identificacao" 
             controller="pj"
             controller-values="0" 
             load="true" 
-            loadurl="view/bsc/pessoa_juridica/content_identificacao/" 
+            loadurl="view/bsc/pessoa_fisica/content_identificacao/" 
             gettextinputid="p_nome" 
             setstatusinputid="p_status" ',
             /*string*/    'display'     => true
@@ -142,7 +142,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
         ?>
         <div id="div_pj" controlled="pj" control-value="0" <?= $displayPJ ;?>>
           <?php 
-          include_once ('view/bsc/pessoa_juridica/content_identificacao.php'); 
+          include_once ('view/bsc/pessoa_fisica/content_identificacao.php'); 
           ?>
         </div>
       </div>

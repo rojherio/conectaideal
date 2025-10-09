@@ -122,29 +122,129 @@ $stmt->bindValue(1, $rsRegistroUEIdent['id']);
 $stmt->execute();
 $rsRegistrosInfraLocalFuncionamId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
 //Locais de Funcionamento - END
-//UO Publicas - BEGIN
-// $stmt = $db->prepare("SELECT 
-//   id,
-//   status,
-//   dt_cadastro,
-//   dt_inicio,
-//   dt_fim,
-//   descricao
-//   FROM ue_ue_ano_letivo
-//   WHERE ue_ue_id = ? ;");
-// $stmt->bindValue(1, $id);
-// $stmt->execute();
-// $rsRegistroAnoLetivos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// if (!$rsRegistroAnoLetivos) {
-//   $rsRegistroAnoLetivos = array();
-//   $rsRegistroAnoLetivos[0]['id'] = 0;
-//   $rsRegistroAnoLetivos[0]['status'] = 1;
-//   $rsRegistroAnoLetivos[0]['dt_cadastro'] = '';
-//   $rsRegistroAnoLetivos[0]['dt_inicio'] = '';
-//   $rsRegistroAnoLetivos[0]['dt_fim'] = '';
-//   $rsRegistroAnoLetivos[0]['descricao'] = '';
-// }
-//UO Publicas - END
+//Consulta para Edição - END
+//Consultas para Select - BEGIN
+//Pessoas Jurídicas - BEGIN
+$stmt = $db->prepare("SELECT 
+  p.id,
+  p.nome
+  FROM bsc_pessoa AS p
+  WHERE p.tipo = 2;");
+$stmt->execute();
+$rsPJs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Pessoas Jurídicas - END
+//Situação Funcionamento - BEGIN
+$stmt = $db->prepare("SELECT 
+  p.id,
+  p.nome
+  FROM ue_funcionam_situacao AS p
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsFuncionamSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Situação Funcionamento - END
+//Zona - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM bsc_zona
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsZonas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Zona - END
+//Localização Diferenciada - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_localizacao_diferenciada
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsLocalizacaoDiferenciadas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Localização Diferenciada - END
+//Esfera Administrativa Dependência - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM bsc_esfera_administrativa
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsEsferaAdmninDepends = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Esfera Administrativa Dependência - END
+//UO Publica - BEGIN
+$stmt = $db->prepare("SELECT 
+  uop.id,
+  p.nome
+  FROM bsc_uo_publica AS uop 
+  LEFT JOIN bsc_pessoa AS p ON p.id = uop.bsc_pessoa_id
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsUOPublicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//UO Publicaa - END
+//Categoria de Escola Privada - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_cat_esc_priv
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsCatEscPrivs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Categoria de Escola Privada - END
+//Ensino Atendimento Tipo - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_ens_atend_tipo
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsEnsAtendTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Atendimento Tipo - END
+//Ensino Modalidade Etapa - BEGIN
+$stmt = $db->prepare("SELECT 
+  eme.id,
+  CONCAT(emt.nome, ' - ', eme.nome) AS nome
+  FROM ue_ens_modalidade_etapa AS eme
+  LEFT JOIN ue_ens_modalidade_tipo AS emt ON emt.id = eme.ue_ens_modalidade_tipo_id
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsEnsModalidadeEtapas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Modalidade Etapa - END
+//Ensino Profissionalizante Forma - BEGIN
+$stmt = $db->prepare("SELECT 
+  epf.id,
+  CONCAT(ept.nome, ' - ', epf.nome) AS nome
+  FROM ue_ens_profis_forma AS epf
+  LEFT JOIN ue_ens_profis_tipo AS ept ON ept.id = epf.ue_ens_profis_tipo_id
+  WHERE 1 = 1");
+$stmt->execute();
+$rsEnsProfisFormas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Profissionalizante Forma - END
+//Situação Regulamentação/Autorização - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_regulam_situacao
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsRegulamSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Situação Regulamentação/Autorização - END
+//Esfera Responsável Regulamentação - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM bsc_esfera_administrativa
+  WHERE id <> 4;");
+$stmt->execute();
+$rsEsferaAdmninRegulams = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Esfera Responsável Regulamentação - END
+//Local de Funcionamento - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_infra_local_funcionam
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsInfraLocalFuncionamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Local de Funcionamento - END
+//Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $ueiTituloFormulario1       = "Identificação da Unidade Educativa";
 $ueiDescricaoFormulario1    = "Seleção da pessoa jurídica referente a esta unidade educativa";

@@ -1,73 +1,7 @@
 <?php
+//Consulta para Edição - BEGIN
 $idUE = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
 $idUE = isset($ue_ue_id) ? $bsc_pessoa_id : $idUE;
-//Consulta para Edição - BEGIN
-//Identificação - BEGIN
-// $stmt = $db->prepare("SELECT 
-//   ue.id,
-//   ue.status,
-//   ue.dt_cadastro,
-//   ue.bsc_pessoa_id,
-//   ue.inep_cod,
-//   ue.ue_funcionam_situacao_id,
-//   ue.ano_letivo_dt_inicio,
-//   ue.ano_letivo_dt_fim,
-//   ue.bsc_zona_id,
-//   ue.ue_localizacao_diferenciada_id,
-//   ue.bsc_esfera_administrativa_id_dependencia,
-//   ue.ue_cat_esc_priv_id,
-//   ue.parceria_see, 
-//   ue.parceria_sme, 
-//   ue.bsc_esfera_administrativa_id_regulam,
-//   ue.ue_regulam_situacao_id,
-//   ue.ue_ue_vinculada_tipo_id,
-//   ue.ue_ue_id_vinculada,
-//   ue.regional_cod,
-//   ue.entidade_superior_acesso,
-//   ue.ue_infra_local_ocupacao_forma_id,
-//   ue.fornece_agua_potavel,
-//   ue.sala_aula_qtd,
-//   ue.sala_aula_climatizada_qtd,
-//   ue.sala_aula_acessibilidade_qtd,
-//   ue.internet_banda_larga_velocidade,
-//   ue.alimentacao_pnae_fnde_oferece
-//   FROM ue_ue AS ue
-//   WHERE ue.id = ? ;");
-// $stmt->bindValue(1, $idUE);
-// $stmt->execute();
-// $rsRegistroUEIdent = $stmt->fetch(PDO::FETCH_ASSOC);
-// if (!($rsRegistroUEIdent)) {
-//   $idUE = 0;
-//   $rsRegistroUEIdent = array();
-//   $rsRegistroUEIdent['id'] = 0;
-//   $rsRegistroUEIdent['status'] = 1;
-//   $rsRegistroUEIdent['dt_cadastro'] = '';
-//   $rsRegistroUEIdent['bsc_pessoa_id'] = '';
-//   $rsRegistroUEIdent['inep_cod'] = '';
-//   $rsRegistroUEIdent['ue_funcionam_situacao_id'] = '';
-//   $rsRegistroUEIdent['ano_letivo_dt_inicio'] = '';
-//   $rsRegistroUEIdent['ano_letivo_dt_fim'] = '';
-//   $rsRegistroUEIdent['bsc_zona_id'] = '';
-//   $rsRegistroUEIdent['ue_localizacao_diferenciada_id'] = '';
-//   $rsRegistroUEIdent['bsc_esfera_administrativa_id_dependencia'] = '';
-//   $rsRegistroUEIdent['ue_cat_esc_priv_id'] = '';
-//   $rsRegistroUEIdent['parceria_see'] = '';
-//   $rsRegistroUEIdent['parceria_sme'] = '';
-//   $rsRegistroUEIdent['bsc_esfera_administrativa_id_regulam'] = '';
-//   $rsRegistroUEIdent['ue_regulam_situacao_id'] = '';
-//   $rsRegistroUEIdent['ue_ue_vinculada_tipo_id'] = '';
-//   $rsRegistroUEIdent['ue_ue_id_vinculada'] = '';
-//   $rsRegistroUEIdent['regional_cod'] = '';
-//   $rsRegistroUEIdent['entidade_superior_acesso'] = '';
-//   $rsRegistroUEIdent['ue_infra_local_ocupacao_forma_id'] = '';
-//   $rsRegistroUEIdent['fornece_agua_potavel'] = '';
-//   $rsRegistroUEIdent['sala_aula_qtd'] = '';
-//   $rsRegistroUEIdent['sala_aula_climatizada_qtd'] = '';
-//   $rsRegistroUEIdent['sala_aula_acessibilidade_qtd'] = '';
-//   $rsRegistroUEIdent['internet_banda_larga_velocidade'] = '';
-//   $rsRegistroUEIdent['alimentacao_pnae_fnde_oferece'] = '';
-// }
-// //Identiicação - END
 //UO Publicas Convenios - BEGIN
 $stmt = $db->prepare("SELECT
   id,
@@ -209,74 +143,18 @@ if ($rsRegistrosUOPublicaVinc) {
   }
 }
 //UO Publicas Convenios - END
-// //Ensino Atendimento Tipo - BEGIN
-// $stmt = $db->prepare("SELECT
-//   id,
-//   ue_ue_id AS tb_base_id,
-//   ue_ens_atend_tipo_id AS tb_ref_id
-//   FROM ue_ue_ens_atend_tipo
-//   WHERE ue_ue_id = ?;");
-// $stmt->bindValue(1, $rsRegistroUEIdent['id']);
-// $stmt->execute();
-// $rsRegistrosEnsAtendTipoId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
-// //Ensino Atendimento Tipo - END//Ensino Modalidade Etapa - BEGIN
-// $stmt = $db->prepare("SELECT 
-//   id,
-//   ue_ue_id AS tb_base_id,
-//   ue_ens_modalidade_etapa_id AS tb_ref_id
-//   FROM ue_ue_ens_modalidade_etapa
-//   WHERE ue_ue_id = ?;");
-// $stmt->bindValue(1, $rsRegistroUEIdent['id']);
-// $stmt->execute();
-// $rsRegistrosEnsModalidadeEtapaId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
-// //Ensino Modalidade Etapa - END
-// //Ensino Profissionalizante Forma - BEGIN
-// $stmt = $db->prepare("SELECT 
-//   id,
-//   ue_ue_id AS tb_base_id,
-//   ue_ens_profis_forma_id AS tb_ref_id
-//   FROM ue_ue_ens_profis_forma
-//   WHERE ue_ue_id = ?;");
-// $stmt->bindValue(1, $rsRegistroUEIdent['id']);
-// $stmt->execute();
-// $rsRegistrosEnsProfisFormaId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
-// //Ensino Profissionalizante Forma - END
-// //Locais de Funcionamento - BEGIN
-// $stmt = $db->prepare("SELECT
-//   id,
-//   ue_ue_id AS tb_base_id,
-//   ue_infra_local_funcionam_id AS tb_ref_id
-//   FROM ue_ue_infra_local_funcionam
-//   WHERE ue_ue_id = ?;");
-// $stmt->bindValue(1, $rsRegistroUEIdent['id']);
-// $stmt->execute();
-// $rsRegistrosInfraLocalFuncionamId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
-//Locais de Funcionamento - END
-//UO Publicas - BEGIN
-// $stmt = $db->prepare("SELECT 
-//   id,
-//   status,
-//   dt_cadastro,
-//   dt_inicio,
-//   dt_fim,
-//   descricao
-//   FROM ue_ue_ano_letivo
-//   WHERE ue_ue_id = ? ;");
-// $stmt->bindValue(1, $id);
-// $stmt->execute();
-// $rsRegistroAnoLetivos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// if (!($rsRegistroAnoLetivos)) {
-//   $rsRegistroAnoLetivos = array();
-//   $rsRegistroAnoLetivos[0]['id'] = 0;
-//   $rsRegistroAnoLetivos[0]['status'] = 1;
-//   $rsRegistroAnoLetivos[0]['dt_cadastro'] = '';
-//   $rsRegistroAnoLetivos[0]['dt_inicio'] = '';
-//   $rsRegistroAnoLetivos[0]['dt_fim'] = '';
-//   $rsRegistroAnoLetivos[0]['descricao'] = '';
-// }
-//UO Publicas - END
 //Consulta para Edição - END
-//Consulta para Select - BEGIN
+//Consultas para Select - BEGIN
+//UO Publica - BEGIN
+$stmt = $db->prepare("SELECT 
+  uop.id,
+  p.nome
+  FROM bsc_uo_publica AS uop 
+  LEFT JOIN bsc_pessoa AS p ON p.id = uop.bsc_pessoa_id
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsUOPublicas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//UO Publicaa - END
 //Parceria/Convenio Forma - BEGIN
 $stmt = $db->prepare("SELECT 
   id,
@@ -287,6 +165,36 @@ $stmt = $db->prepare("SELECT
 $stmt->execute();
 $rsParcConvFormas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Parceria/Convenio Forma - END
+//Ensino Atendimento Tipo - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM ue_ens_atend_tipo
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsEnsAtendTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Atendimento Tipo - END
+//Ensino Modalidade Etapa - BEGIN
+$stmt = $db->prepare("SELECT 
+  eme.id,
+  CONCAT(emt.nome, ' - ', eme.nome) AS nome
+  FROM ue_ens_modalidade_etapa AS eme
+  LEFT JOIN ue_ens_modalidade_tipo AS emt ON emt.id = eme.ue_ens_modalidade_tipo_id
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsEnsModalidadeEtapas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Modalidade Etapa - END
+//Ensino Profissionalizante Forma - BEGIN
+$stmt = $db->prepare("SELECT 
+  epf.id,
+  CONCAT(ept.nome, ' - ', epf.nome) AS nome
+  FROM ue_ens_profis_forma AS epf
+  LEFT JOIN ue_ens_profis_tipo AS ept ON ept.id = epf.ue_ens_profis_tipo_id
+  WHERE 1 = 1");
+$stmt->execute();
+$rsEnsProfisFormas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Ensino Profissionalizante Forma - END
+//Consulta para Select - END
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $uevTituloFormulario1       = "Poder Público Responsável pela Parceria ou Convênio";

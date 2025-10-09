@@ -18,17 +18,17 @@ if (!($rsRegistroS)) {
   $rsRegistroS['id'] = 0;
 }
 //Consulta Base - END
-//Pessoas Jurídicas - BEGIN
+//Pessoas Física - BEGIN
 $stmt = $db->prepare("SELECT 
   p.id,
   p.nome
   FROM bsc_pessoa AS p
-  WHERE p.tipo = 2;");
+  WHERE p.tipo = 1;");
 $stmt->execute();
 $rsPJs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Pessoas Jurídicas - END
+//Pessoas Física - END
 //Consultas para Select - BEGIN
-//Situação Funcionamento - BEGIN
+//Tipos de Servidor - BEGIN
 $stmt = $db->prepare("SELECT 
   id,
   nome
@@ -36,7 +36,7 @@ $stmt = $db->prepare("SELECT
   WHERE 1 = 1;");
 $stmt->execute();
 $rsServidorTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Situação Funcionamento - END
+//Tipos de Servidor - END
 // //Municipio - BEGIN
 // $stmt = $db->prepare("
 //   SELECT 
