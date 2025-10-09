@@ -37,6 +37,24 @@ $stmt = $db->prepare("SELECT
 $stmt->execute();
 $rsServidorTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Tipos de Servidor - END
+//Cargo - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM eo_cargo  
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsServidorCargos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Cargo - END
+//Situação do Servidor - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM sme_serv_situacao  
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsServidorSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Situação do Servidor - END
 // //Municipio - BEGIN
 // $stmt = $db->prepare("
 //   SELECT 
