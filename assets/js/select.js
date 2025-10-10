@@ -11,6 +11,11 @@ $(document).ready(function () {
       if ($.isNumeric(selectVal)) {
         $(new Object()).load(PORTAL_URL+selectLoadUrl+selectVal, function(response, status, xhr){
           $(response).find('[id][name]').each(function(k, elem){
+            if(elem.id == 'p_natural_bsc_municipio_id'){
+              let optText = $(elem).find('option[selected]').text();
+              var newOption = new Option(optText, elem.value, true, true);
+              $('#'+elem.id).append(newOption).trigger('change');
+            }
             $(elem).is('select') ? $('#'+elem.id).val(elem.value).trigger('change') : '';
             $(elem).is('input') ? $('#'+elem.id).val(elem.value) : '';
           });

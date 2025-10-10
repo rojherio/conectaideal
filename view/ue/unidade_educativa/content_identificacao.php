@@ -1,7 +1,7 @@
 <?php
 //Consulta para Edição - BEGIN
 $idUE = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
-$idUE = isset($ue_ue_id) ? $bsc_pessoa_id : $idUE;
+$idUE = isset($ue_ue_id) ? $ue_ue_id : $idUE;
 //Identificação - BEGIN
 $stmt = $db->prepare("SELECT 
   ue.id,

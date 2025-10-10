@@ -602,4 +602,3 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
   </div>
 </div>
 <!-- formulário de cadastro - END -->
-<!-- <script type="text/javascript" src="<?= PORTAL_URL; ?>control/bsc/pessoa_juridica/cadastrar.js"></script> -->

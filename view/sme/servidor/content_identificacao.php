@@ -1,7 +1,7 @@
 <?php
 //Consulta para Edição - BEGIN
 $idS = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
-$idS = isset($sme_servidor_id) ? $bsc_pessoa_id : $idS;
+$idS = isset($sme_servidor_id) ? $sme_servidor_id : $idS;
 //Identificação - BEGIN
 $stmt = $db->prepare("SELECT 
   s.id,
@@ -63,6 +63,44 @@ if (!($rsRegistroSIdent)) {
   $rsRegistroSIdent['senha_nome'] = '';
   $rsRegistroSIdent['sme_sme_id'] = '';
 }
+//Pessoas Física - BEGIN
+$stmt = $db->prepare("SELECT 
+  p.id,
+  p.nome
+  FROM bsc_pessoa AS p
+  WHERE p.tipo = 1;");
+$stmt->execute();
+$rsPFs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Pessoas Física - END
+//Consulta para Edição - END
+//Consultas para Select - BEGIN
+//Tipos de Servidor - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM sme_serv_tipo  
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsServidorTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Tipos de Servidor - END
+//Cargo - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM eo_cargo  
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsServidorCargos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Cargo - END
+//Situação do Servidor - BEGIN
+$stmt = $db->prepare("SELECT 
+  id,
+  nome
+  FROM sme_serv_situacao  
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsServidorSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Situação do Servidor - END
 //Identiicação - END
 //UO Publicas - BEGIN
 // $stmt = $db->prepare("SELECT
@@ -86,7 +124,7 @@ if (!($rsRegistroSIdent)) {
 // $stmt->execute();
 // $rsRegistrosEnsAtendTipoId = array_column($stmt->fetchAll(PDO::FETCH_ASSOC), 'tb_ref_id');
 //Ensino Atendimento Tipo - END
-//Ensino Modalidade Etapa - BEGIN
+//Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $ueiTituloFormulario1       = "Identificação do Servidor";
 $ueiDescricaoFormulario1    = "Seleção da pessoa jurídica referente a este servidor";
@@ -122,12 +160,12 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*string*/    'id'          => 's_bsc_pessoa_id',
             /*string*/    'class'       => 'select2-tags form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroSIdent['bsc_pessoa_id'],
-            /*array()*/   'options'     => $rsPJs,
+            /*array()*/   'options'     => $rsPFs,
             /*string*/    'ariaLabel'   => 'Selecione uma pessoa jurídica',
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => '
             urltosendsub="model/bsc/pessoa_fisica/salvar_identificacao" 
-            controller="pj"
+            controller="pf" 
             controller-values="0" 
             load="true" 
             loadurl="view/bsc/pessoa_fisica/content_identificacao/" 
@@ -139,7 +177,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
         $displayPJ = $rsRegistroSIdent['bsc_pessoa_id'] == '' ? 'style="display: none;"' : '';
         $bsc_pessoa_id = $rsRegistroSIdent['bsc_pessoa_id'];
         ?>
-        <div id="div_pj" controlled="pj" control-value="0" <?= $displayPJ ;?>>
+        <div id="div_pf" controlled="pf" control-value="0" <?= $displayPJ ;?>>
           <?php 
           include_once ('view/bsc/pessoa_fisica/content_identificacao.php'); 
           ?>

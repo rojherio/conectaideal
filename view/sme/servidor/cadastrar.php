@@ -18,77 +18,6 @@ if (!($rsRegistroS)) {
   $rsRegistroS['id'] = 0;
 }
 //Consulta Base - END
-//Pessoas Física - BEGIN
-$stmt = $db->prepare("SELECT 
-  p.id,
-  p.nome
-  FROM bsc_pessoa AS p
-  WHERE p.tipo = 1;");
-$stmt->execute();
-$rsPJs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Pessoas Física - END
-//Consultas para Select - BEGIN
-//Tipos de Servidor - BEGIN
-$stmt = $db->prepare("SELECT 
-  id,
-  nome
-  FROM sme_serv_tipo  
-  WHERE 1 = 1;");
-$stmt->execute();
-$rsServidorTipos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Tipos de Servidor - END
-//Cargo - BEGIN
-$stmt = $db->prepare("SELECT 
-  id,
-  nome
-  FROM eo_cargo  
-  WHERE 1 = 1;");
-$stmt->execute();
-$rsServidorCargos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Cargo - END
-//Situação do Servidor - BEGIN
-$stmt = $db->prepare("SELECT 
-  id,
-  nome
-  FROM sme_serv_situacao  
-  WHERE 1 = 1;");
-$stmt->execute();
-$rsServidorSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Situação do Servidor - END
-// //Municipio - BEGIN
-// $stmt = $db->prepare("
-//   SELECT 
-//   m.id, 
-//   CONCAT(m.nome, ' - ', e.sigla) AS nome
-//   FROM bsc_municipio AS m 
-//   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id
-//   ORDER BY e.nome ASC, m.nome;");
-// $stmt->execute();
-// $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// //Município - END
-// //Grau Parentesco - BEGIN
-// $stmt = $db->prepare("
-//   SELECT 
-//   p.id, 
-//   CONCAT(p.nome, ' - ', p.grau) AS nome 
-//   FROM bsc_parentesco_grau AS p ;");
-// $stmt->execute();
-// $rsGrausParentesco = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Grau Parentesco - END
-// $stmt = $db->prepare("
-//   SELECT 
-//     p.id,
-//     p.status,
-//     p.dt_cadastro,
-//     p.nome,
-//     p.nacionalidade,
-//     p.masculino,
-//     p.feminino
-//   FROM bsc_pais AS p
-//   ORDER BY p.id ASC;");
-// $stmt->execute();
-// $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro de Servidor(a)";
 $descricaoPagina          = "Informações do(a) servidor(a)";
@@ -164,7 +93,7 @@ $descricaoPagina          = "Informações do(a) servidor(a)";
                 <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
                   <form class="app-form" id="form_ue_privada" name="form_ue_privada" method="post" urlToSend="ue/unidade_educativa/salvar_vinculo" action="">
                     <?php 
-                    include_once ('view/ue/unidade_educativa/content_vinculo.php'); 
+                    // include_once ('view/ue/unidade_educativa/content_vinculo.php'); 
                     ?>
                   </form>
                 </div>
@@ -185,4 +114,4 @@ $descricaoPagina          = "Informações do(a) servidor(a)";
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/unidade_educativa/cadastrar.js"></script>
+<script type="text/javascript" src="<?= PORTAL_URL; ?>control/sme/servidor/cadastrar.js"></script>
