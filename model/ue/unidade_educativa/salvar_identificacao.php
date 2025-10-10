@@ -301,7 +301,6 @@ try {
       echo json_encode($result);
       exit();
     } else {
-
       $stmt = $db->prepare('INSERT INTO '.$tableName.' 
         (
           status,
@@ -382,11 +381,6 @@ try {
       $stmt->bindValue(24, $alimentacao_pnae_fnde_oferece);
       $stmt->execute();
       $id = $db->lastInsertId();
-      // $senhaNome = strtolower(removeAcentos($nome));
-      // $subSenhaNome = explode(' ',$senhaNome);
-      // $subSenhaNome = array_values(array_diff($subSenhaNome, array('')));
-      // $senhaNome = array_shift($subSenhaNome).'.'.array_pop($subSenhaNome);
-      //INSERT locais de funcionamento
       if($bsc_uo_publica_id){
         foreach ($bsc_uo_publica_id as $k => $v) {
           $stmt = $db->prepare('

@@ -1,16 +1,16 @@
 <?php
 //Consulta para Edição - BEGIN
-$idUE = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
-$idUE = isset($ue_ue_id) ? $bsc_pessoa_id : $idUE;
-//Parámetros de títutlos - END
+$idS = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
+$idS = isset($sme_servidor_id) ? $sme_servidor_id : $idS;
+//Identificação - BEGIN
 ?>
 <!-- formulário de cadastro - BEGIN -->
 <div>
-  <input type="hidden" name="ue_id" id="ue_id" value="<?= $rsRegistroUEIdent['id'] ;?>">
+  <input type="hidden" name="sme_sme_id" id="sme_sme_id" value="<?= $rsRegistroSIdent['id'] ;?>">
 </div>
 <?php
-$bsc_pessoa_id = $rsRegistroUEIdent['bsc_pessoa_id'];
-include_once ('view/bsc/pessoa_juridica/content_contato.php'); 
+$bsc_pessoa_id = $rsRegistroSIdent['bsc_pessoa_id'];
+include_once ('view/bsc/pessoa_fisica/content_contato.php'); 
 ?>
 <div class="row">
   <div class="col-md-12">

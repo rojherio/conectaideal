@@ -63,6 +63,16 @@ if (!($rsRegistroSIdent)) {
   $rsRegistroSIdent['senha_nome'] = '';
   $rsRegistroSIdent['sme_sme_id'] = '';
 }
+//Secretaria Municipal de Educação - BEGIN
+$stmt = $db->prepare("SELECT 
+  s.id,
+  p.nome
+  FROM sme_sme AS s 
+  LEFT JOIN bsc_pessoa AS p ON p.id = s.bsc_pessoa_id
+  WHERE 1 = 1;");
+$stmt->execute();
+$rsSMEs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Secretaria Municipal de Educação - END
 //Pessoas Física - BEGIN
 $stmt = $db->prepare("SELECT 
   p.id,
@@ -151,6 +161,20 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
       </div>
       <div class="card-body">
         <!-- div row input - BEGIN -->
+        <div class="row">
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 12,
+            /*string*/    'label'       => 'Secretaria Municipal de Educação',
+            /*string*/    'name'        => 's_sme_sme_id',
+            /*string*/    'id'          => 's_sme_sme_id',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroSIdent['sme_sme_id'],
+            /*array()*/   'options'     => $rsSMEs,
+            /*string*/    'ariaLabel'   => 'Selecione uma secretaria municipal',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )); ?>
+        </div>
         <div class="row pb-0">
           <label>Selecione uma pessoa física. Caso não a encontre na lista, digite o nome da pessoa para efetuar o cadastro.</label>
           <?= createSelect(array(
@@ -289,30 +313,28 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createInputDate(array(
             /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Data de Inicio',
-            /*string*/    'type'        => 'date',
             /*string*/    'name'        => 's_situacao_trabalho_dt_inicio',
             /*string*/    'id'          => 's_situacao_trabalho_dt_inicio',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
+            /*string*/    'class'       => 'form-control mask-data',
+            /*int*/       'min'         => '1900-01-01',
+            /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de inicio',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_doe'],
+            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_dt_inicio'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
-          <?= createInput(array(
+          <?= createInputDate(array(
             /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Data de Finalização',
-            /*string*/    'type'        => 'date',
             /*string*/    'name'        => 's_situacao_trabalho_dt_fim',
             /*string*/    'id'          => 's_situacao_trabalho_dt_fim',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite a data de fim',
+            /*string*/    'class'       => 'form-control mask-data',
+            /*int*/       'min'         => '1900-01-01',
+            /*int*/       'maxToday'    => true,
+            /*string*/    'placeholder' => 'Digite a data de finalização',
             /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_dt_fim'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
@@ -441,30 +463,28 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createInputDate(array(
             /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Data de Inicio',
-            /*string*/    'type'        => 'date',
             /*string*/    'name'        => 's_situacao_trabalho_dt_inicio_2',
             /*string*/    'id'          => 's_situacao_trabalho_dt_inicio_2',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
+            /*string*/    'class'       => 'form-control mask-data',
+            /*int*/       'min'         => '1900-01-01',
+            /*int*/       'maxToday'    => true,
             /*string*/    'placeholder' => 'Digite a data de inicio',
             /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_dt_inicio_2'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
-          <?= createInput(array(
+          <?= createInputDate(array(
             /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Data de Finalização',
-            /*string*/    'type'        => 'date',
             /*string*/    'name'        => 's_situacao_trabalho_dt_fim_2',
             /*string*/    'id'          => 's_situacao_trabalho_dt_fim_2',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite a data de fim',
+            /*string*/    'class'       => 'form-control mask-data',
+            /*int*/       'min'         => '1900-01-01',
+            /*int*/       'maxToday'    => true,
+            /*string*/    'placeholder' => 'Digite a data de finalização',
             /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_dt_fim_2'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

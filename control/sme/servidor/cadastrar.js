@@ -12,9 +12,9 @@ $(document).ready(function () {
     let params = {
       formId:         $(this).parents('form').attr('id'),
       formSerialized: $(this).parents('form').serialize(),
-      urlCurrent:     'view/ue/unidade_educativa/cadastrar',
+      urlCurrent:     'view/sme/servidor/cadastrar',
       urlToSend:      'model/'+$(this).parents('form').attr('urltosend'),
-      urlToGo:        'view/ue/unidade_educativa/listar',
+      urlToGo:        'view/sme/servidor/listar',
       tabPane:        $(this).parents('div.tab-pane').attr('tabindex'),
       urlsToSendSub:  []
     };

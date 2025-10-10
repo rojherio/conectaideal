@@ -84,7 +84,7 @@ $descricaoPagina          = "Informações do(a) servidor(a)";
                   </form>
                 </div>
                 <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
-                  <form class="app-form" id="form_ue_contato" name="form_ue_contato" method="post" urlToSend="sme/servidor/salvar_contato" action="">
+                  <form class="app-form" id="form_ue_contato" name="form_ue_contato" method="post" urlToSend="bsc/pessoa_fisica/salvar_contato" action="">
                     <?php 
                     include_once ('view/sme/servidor/content_contato.php'); 
                     ?>
