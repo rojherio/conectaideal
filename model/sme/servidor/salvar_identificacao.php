@@ -67,7 +67,6 @@ try {
       $stmt = $db->prepare('
         UPDATE '.$tableName.' 
           SET
-          id = ?,
           status = ?,
           dt_cadastro = ?,
           bsc_pessoa_id = ?,
@@ -94,31 +93,31 @@ try {
           sme_sme_id = ?
           WHERE id = ?
           ');
-      $stmt->bindValue(1, $id);
-      $stmt->bindValue(2, $status);
-      $stmt->bindValue(3, $dt_cadastro?: NULL);
-      $stmt->bindValue(4, $bsc_pessoa_id?: NULL);
-      $stmt->bindValue(5, $matricula?: NULL);
-      $stmt->bindValue(6, $sme_serv_tipo_id?: NULL);
-      $stmt->bindValue(7, $eo_cargo_id?: NULL);
-      $stmt->bindValue(8, $sme_serv_situacao_id?: NULL);
-      $stmt->bindValue(9, $situacao_trabalho_decreto);
-      $stmt->bindValue(10, $situacao_trabalho_doe);
-      $stmt->bindValue(11, $situacao_trabalho_dt_inicio?: NULL);
-      $stmt->bindValue(12, $situacao_trabalho_dt_fim?: NULL);
-      $stmt->bindValue(13, $situacao_trabalho_obs);
-      $stmt->bindValue(14, $matricula_2?: NULL);
-      $stmt->bindValue(15, $sme_serv_tipo_id_2?: NULL);
-      $stmt->bindValue(16, $eo_cargo_id_2?: NULL);
-      $stmt->bindValue(17, $sme_serv_situacao_id_2?: NULL);
-      $stmt->bindValue(18, $situacao_trabalho_decreto_2);
-      $stmt->bindValue(19, $situacao_trabalho_doe_2);
-      $stmt->bindValue(20, $situacao_trabalho_dt_inicio_2?: NULL);
-      $stmt->bindValue(21, $situacao_trabalho_dt_fim_2?: NULL);
-      $stmt->bindValue(22, $situacao_trabalho_obs_2);
-      $stmt->bindValue(23, $foto);
-      $stmt->bindValue(24, $senha_nome);
-      $stmt->bindValue(25, $sme_sme_id?: NULL);
+      $stmt->bindValue(1, $status);
+      $stmt->bindValue(2, $dt_cadastro?: NULL);
+      $stmt->bindValue(3, $bsc_pessoa_id?: NULL);
+      $stmt->bindValue(4, $matricula?: NULL);
+      $stmt->bindValue(5, $sme_serv_tipo_id?: NULL);
+      $stmt->bindValue(6, $eo_cargo_id?: NULL);
+      $stmt->bindValue(7, $sme_serv_situacao_id?: NULL);
+      $stmt->bindValue(8, $situacao_trabalho_decreto);
+      $stmt->bindValue(9, $situacao_trabalho_doe);
+      $stmt->bindValue(10, $situacao_trabalho_dt_inicio?: NULL);
+      $stmt->bindValue(11, $situacao_trabalho_dt_fim?: NULL);
+      $stmt->bindValue(12, $situacao_trabalho_obs);
+      $stmt->bindValue(13, $matricula_2?: NULL);
+      $stmt->bindValue(14, $sme_serv_tipo_id_2?: NULL);
+      $stmt->bindValue(15, $eo_cargo_id_2?: NULL);
+      $stmt->bindValue(16, $sme_serv_situacao_id_2?: NULL);
+      $stmt->bindValue(17, $situacao_trabalho_decreto_2);
+      $stmt->bindValue(18, $situacao_trabalho_doe_2);
+      $stmt->bindValue(19, $situacao_trabalho_dt_inicio_2?: NULL);
+      $stmt->bindValue(20, $situacao_trabalho_dt_fim_2?: NULL);
+      $stmt->bindValue(21, $situacao_trabalho_obs_2);
+      $stmt->bindValue(22, $foto);
+      $stmt->bindValue(23, $senha_nome);
+      $stmt->bindValue(24, $sme_sme_id?: NULL);
+      $stmt->bindValue(25, $id);
       $stmt->execute();
       $db->commit();
     //MENSAGEM DE SUCESSO

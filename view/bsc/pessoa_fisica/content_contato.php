@@ -211,7 +211,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
         <div class="row">
           <?= createInput(array(
             /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Telfone Residencial',
+            /*string*/    'label'       => 'Telefone Residencial',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_tel_residencial',
             /*string*/    'id'          => 'pc_tel_residencial',
@@ -225,7 +225,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
           )) ;?>
           <?= createInput(array(
             /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Telfone Celular',
+            /*string*/    'label'       => 'Telefone Celular',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_tel_celular',
             /*string*/    'id'          => 'pc_tel_celular',
@@ -239,7 +239,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
           )) ;?>
           <?= createInput(array(
             /*int 1-12*/  'col'         => 4,
-            /*string*/    'label'       => 'Telfone para Recado',
+            /*string*/    'label'       => 'Telefone para Recado',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_tel_recado',
             /*string*/    'id'          => 'pc_tel_recado',
