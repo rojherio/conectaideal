@@ -5,9 +5,6 @@ $idS = isset($sme_servidor_id) ? $sme_servidor_id : $idS;
 //Identificação - BEGIN
 ?>
 <!-- formulário de cadastro - BEGIN -->
-<div>
-  <input type="hidden" name="sme_sme_id" id="sme_sme_id" value="<?= $rsRegistroSIdent['id'] ;?>">
-</div>
 <?php
 $bsc_pessoa_id = $rsRegistroSIdent['bsc_pessoa_id'];
 include_once ('view/bsc/pessoa_fisica/content_documento.php'); 

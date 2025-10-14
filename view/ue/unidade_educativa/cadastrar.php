@@ -67,7 +67,7 @@ $descricaoPagina          = "Informações da unidade educativa";
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">
-                    <button aria-controls="tab-pane-3" data-bs-target="#tab-pane-2" id="tab-3" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                    <button aria-controls="tab-pane-3" data-bs-target="#tab-pane-3" id="tab-3" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
                       <i class="ti ti-history pe-1 ps-1"></i>Vínculos
                     </button>
                   </li>
