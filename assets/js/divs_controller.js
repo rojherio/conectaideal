@@ -24,7 +24,7 @@ $(document).ready(function() {
     let divClone = $(divClonar).clone(true);
     $(divClone).find('input').val('');
     $(this).parents('.div_clonar').after(divClone);
-    $(divClone).find('input[type="checkbox"].toogle').removeAttr(checked);
+    $(divClone).find('input[type="checkbox"].toogle').removeAttr('checked');
     console.log($(divClonar).find('input[type="checkbox"].toogle').attr('id'));
     reorderClones(elemClones);
     // $(divClonar).find('select.select2').val(null).trigger('change');
