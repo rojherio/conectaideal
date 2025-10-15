@@ -132,7 +132,6 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
           <?= createCheckbox(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Ativo',
-            /*string*/    'type'        => 'checkbox',
             /*string*/    'name'        => 'eme_status',
             /*string*/    'id'          => 'eme_status',
             /*string*/    'class'       => 'toggle',
@@ -171,4 +170,3 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
 include_once ('template/footer.php');
 include_once ('template/rodape.php');
 ?>
-<script type="text/javascript" src="<?= PORTAL_URL; ?>control/ue/ensino_modalidade_etapa/cadastrar.js"></script>

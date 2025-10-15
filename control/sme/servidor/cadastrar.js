@@ -34,11 +34,4 @@ $(document).ready(function () {
     }
     return false;
   });
-  $('button.div-add').on('click', function(){
-    let templateId = $(this).attr('template-id');
-    let template = $('#'+templateId)[0];
-    let templateClone = $(template.content).clone(true);
-    $(this).parents('div[template-id="'+templateId+'"]').after(templateClone);
-    return false;
-  });
 });

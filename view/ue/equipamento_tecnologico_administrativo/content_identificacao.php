@@ -111,7 +111,6 @@ if (isset($exibeSituacao)) {
             <?= createCheckbox(array(
               /*int 1-12*/  'col'         => 12,
               /*string*/    'label'       => 'Ativo',
-              /*string*/    'type'        => 'checkbox',
               /*string*/    'name'        => 'eta_status',
               /*string*/    'id'          => 'eta_status',
               /*string*/    'class'       => 'toggle',

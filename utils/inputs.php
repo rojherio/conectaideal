@@ -92,7 +92,7 @@ function createInput($params) {
   $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
   $html .= '      <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" '.($params['type'] == 'number' ? 'min="0"' : '' ).' minlength="'.$params['minlength'].'" maxlength="'.$params['maxlength'].'" placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
-  $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html .= '      <label for="'.$params['id'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html .= '    </div>';
   $html .= '  </div>';
   return $html;
@@ -101,7 +101,7 @@ function createInputDate($params) {
   $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
   $html .= '      <input type="date" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="10" maxlength="10" min="'.$params['min'].'" '.($params['maxToday'] ? 'max="'.date('Y-m-d').'"' : 'max="'.date('Y-m-d', strtotime('+10 years')).'"' ).'  placeholder="'.$params['placeholder'].'" value="'.$params['value'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>';
-  $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html .= '      <label for="'.$params['id'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html .= '    </div>';
   $html .= '  </div>';
   return $html;
@@ -117,7 +117,7 @@ function createSelect($params) {
     }
   }
   $html   .= '      </select>';
-  $html   .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html   .= '      <label for="'.$params['id'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html   .= '    </div>';
   $html   .= '  </div>';
   return $html;
@@ -133,7 +133,7 @@ function createSelectMultiple($params) {
     }
   }
   $html   .= '      </select>';
-  $html   .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html   .= '      <label for="'.$params['id'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html   .= '    </div>';
   $html   .= '  </div>';
   return $html;
@@ -142,8 +142,8 @@ function createCheckbox($params) {
   $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate main-switch main-switch-color">';
   $html .= '      <div class="switch-info swich-size">';
-  $html .= '        <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" '.($params['value'] == $params['checked'] ? 'checked="checked"' : "").' value="'.$params['value'].'" '.$params['prop'].'>';
-  $html .= '        <label for="'.$params['name'].'">'.$params['label'].'</label>';
+  $html .= '        <input type="checkbox" name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" '.($params['value'] == $params['checked'] ? 'checked="checked"' : "").' value="'.$params['value'].'" '.$params['prop'].'>';
+  $html .= '        <label for="'.$params['id'].'">'.$params['label'].'</label>';
   $html .= '      </div>';
   $html .= '    </div>';
   $html .= '  </div>';
@@ -174,7 +174,7 @@ function createTextArea($params) {
   $html  = '  <div class="col-md-'.$params['col'].'">';
   $html .= '    <div class="div-validate form-floating mb-3">';
   $html .= '      <textarea name="'.$params['name'].'" id="'.$params['id'].'" class="'.$params['class'].'" minlength="'.$params['minlength'].'" maxlength="'.$params['maxlength'].'" placeholder="'.$params['placeholder'].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].'>'.$params['value'].'</textarea>';
-  $html .= '      <label for="'.$params['name'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
+  $html .= '      <label for="'.$params['id'].'">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html .= '    </div>';
   $html .= '  </div>';
   return $html;

@@ -68,6 +68,36 @@ $('.select2').select2({
     }
   }
 });
+//Initialize Select2 Elements
+function createSelect2(elem){
+  $(elem).select2({
+    placeholder: 'Selecione uma opção',
+    allowClear: true,
+    language: {
+      inputTooShort: function(args) {
+        // args.minimum is the minimum required length
+        // args.input is the  user-typed text
+        return "Por favor, digite 3 ou mais caracteres";
+      },
+      errorLoading: function() {
+        return "Erro ao carregar resultados";
+      },
+      loadingMore: function() {
+        return "Carregando mais resultados";
+      },
+      noResults: function() {
+        return "Nenhum resultado encontrado";
+      },
+      searching: function() {
+        return "Carregando...";
+      },
+      maximumSelected: function(args) {
+        // args.maximum is the maximum number of items the user may select
+        return "Erro ao carregar resultados";
+      }
+    }
+  });
+}
 $('.select2-multiple').select2({
   placeholder: 'Selecione uma ou mais opções',
   language: {

@@ -83,16 +83,20 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
         <small><?= $siDescricaoFormulario1;?></small>
         <!-- Título da div de cadastro - END -->
       </div>
-      <div class="card-body">
+      <div class="div_clones card-body pt-0">
         <?php
         foreach ($rsRegistrosSInstrucao as $keySI => $objSI) {
+          //Parámetros de exibir/ocultar div - BEGIN
+          $btnAddRemoveDisplay   = $objSI['id'] != 0 ? 'style="display: none;"' : '';
+          //Parámetros de exibir/ocultar div - NED
           ?>
-          <div id="div_escolaridade" div-count="<?=$keySI;?>" class="row border border-outline-primary rounded pt-3 ps-3 ms-0 me-0 mb-3">
-            <h6>Grau de Instrução - <?=$keySI+1;?></h6>
+          <div class="div_clonar row border border-outline-info rounded rounded pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
+            <h6>Escolaridade / Grau de Instrução - <span class="span_contador"><?=$keySI+1;?></span></h6>
             <!-- div row input - BEGIN -->
-            <div class="row">
+            <input type="hidden" name="si_sme_serv_instrucao_id[]" id="si_sme_serv_instrucao_id_<?=$keySI+1;?>" idbase="si_sme_serv_instrucao_id_" value="<?=$objSI['id'];?>"/>
+            <div class="row pe-0">
               <?= createSelect(array(
-                /*int 1-12*/  'col'         => 12,
+                /*int 1-12*/  'col'         => '12 pe-1',
                 /*string*/    'label'       => 'Escolaridade',
                 /*string*/    'name'        => 'si_bsc_escolaridade_id[]',
                 /*string*/    'id'          => 'si_bsc_escolaridade_id_'.$keySI,
@@ -101,12 +105,12 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
                 /*array()*/   'options'     => $rsEscolaridades,
                 /*string*/    'ariaLabel'   => 'Selecione uma escolaridade',
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => ''
+                /*string*/    'prop'        => 'idbase="si_bsc_escolaridade_id_"'
               )); ?>
             </div>
-            <div class="row">
+            <div class="row pe-0">
               <?= createInput(array(
-                /*int 1-12*/  'col'         => 12,
+                /*int 1-12*/  'col'         => '12 pe-1',
                 /*string*/    'label'       => 'Formação',
                 /*string*/    'type'        => 'text',
                 /*string*/    'name'        => 'si_formacao[]',
@@ -117,12 +121,12 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
                 /*string*/    'placeholder' => 'Digite a formação',
                 /*string*/    'value'       => $objSI['formacao'],
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => ''
+                /*string*/    'prop'        => 'idbase="si_formacao_"'
               )) ;?>
             </div>
-            <div class="row">
+            <div class="row pe-0">
               <?= createInput(array(
-                /*int 1-12*/  'col'         => 12,
+                /*int 1-12*/  'col'         => '12 pe-1',
                 /*string*/    'label'       => 'Ano de Conclusão',
                 /*string*/    'type'        => 'number',
                 /*string*/    'name'        => 'si_conclusao_ano[]',
@@ -133,21 +137,30 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
                 /*string*/    'placeholder' => 'Digite o ano de conclusao',
                 /*string*/    'value'       => $objSI['conclusao_ano'],
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => ''
+                /*string*/    'prop'        => 'idbase="si_conclusao_ano_"'
               )) ;?>
             </div>
-            <div class="row">
+            <div class="row pe-0">
               <?= createCheckbox(array(
-                /*int 1-12*/  'col'         => 12,
+                /*int 1-12*/  'col'         => '12 pe-1',
                 /*string*/    'label'       => 'Cursando',
-                /*string*/    'type'        => 'checkbox',
                 /*string*/    'name'        => 'si_cursando[]',
                 /*string*/    'id'          => 'si_cursando_'.$keySI,
                 /*string*/    'class'       => 'toggle',
                 /*string*/    'value'       => 1,
                 /*string*/    'checked'     => $objSI['cursando'],
-                /*string*/    'prop'        => ''
+                /*string*/    'prop'        => 'idbase="si_cursando_"'
               )) ;?>
+            </div>
+            <div class="div_clonar_btns row" <?= $btnAddRemoveDisplay ;?>>
+              <div class="box-footer text-center">
+                <button type="button" class="btn_div_remove btn btn-outline-warning b-r-22">
+                  <i class="ti ti-eraser"></i> Remover esta escolaridade
+                </button>
+                <button type="button" class="btn_div_add btn btn-outline-info b-r-22">
+                  <i class="ti ti-plus"></i> Adicionar outra escolaridade
+                </button>
+              </div>
             </div>
           </div>
           <!-- div row input - END -->

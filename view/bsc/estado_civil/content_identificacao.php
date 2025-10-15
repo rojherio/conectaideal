@@ -74,7 +74,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de estado civil está ativo
           <?= createCheckbox(array(
             /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Exige Registro',
-            /*string*/    'type'        => 'checkbox',
+            
             /*string*/    'name'        => 'ec_exige_registro',
             /*string*/    'id'          => 'ec_exige_registro',
             /*string*/    'class'       => 'toggle',
@@ -106,7 +106,6 @@ if (isset($exibeSituacao)) {
             <?= createCheckbox(array(
               /*int 1-12*/  'col'         => 12,
               /*string*/    'label'       => 'Ativo',
-              /*string*/    'type'        => 'checkbox',
               /*string*/    'name'        => 'ec_status',
               /*string*/    'id'          => 'ec_status',
               /*string*/    'class'       => 'toggle',

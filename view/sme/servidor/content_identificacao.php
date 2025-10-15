@@ -526,7 +526,6 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
           <?= createCheckbox(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Ativo',
-            /*string*/    'type'        => 'checkbox',
             /*string*/    'name'        => 's_status',
             /*string*/    'id'          => 's_status',
             /*string*/    'class'       => 'toggle',

@@ -791,7 +791,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
           <?= createCheckbox(array(
             /*int 1-12*/  'col'         => '12 mb-3',
             /*string*/    'label'       => 'Casado(a) com brasileiro(a)',
-            /*string*/    'type'        => 'checkbox',
+            
             /*string*/    'name'        => 'pd_estrangeiro_casado_brasileiro',
             /*string*/    'id'          => 'pd_estrangeiro_casado_brasileiro',
             /*string*/    'class'       => 'toggle mb-3',
@@ -802,7 +802,6 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
           <?= createCheckbox(array(
             /*int 1-12*/  'col'         => '12 mb-3',
             /*string*/    'label'       => 'Tem filho(a) brasileiro(a)',
-            /*string*/    'type'        => 'checkbox',
             /*string*/    'name'        => 'pd_estrangeiro_filho_brasileiro',
             /*string*/    'id'          => 'pd_estrangeiro_filho_brasileiro',
             /*string*/    'class'       => 'toggle mb-3',

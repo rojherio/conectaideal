@@ -576,7 +576,6 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
           <?= createCheckbox(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Ativo',
-            /*string*/    'type'        => 'checkbox',
             /*string*/    'name'        => 'ue_status',
             /*string*/    'id'          => 'ue_status',
             /*string*/    'class'       => 'toggle',
