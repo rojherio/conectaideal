@@ -117,6 +117,9 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
     </div>
   </div>
 </div>
+<?php
+if (isset($exibeSituacao)) {
+  ?>
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -145,6 +148,10 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
     </div>
   </div>
 </div>
+  <?php
+}
+if (isset($exibeButoes)) {
+  ?>
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -165,8 +172,6 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
     </div>
   </div>
 </div>
-<!-- Main Section - END-->
-<?php
-include_once ('template/footer.php');
-include_once ('template/rodape.php');
+  <?php
+}
 ?>
