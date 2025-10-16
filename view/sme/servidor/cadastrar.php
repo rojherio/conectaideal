@@ -73,7 +73,7 @@ $descricaoPagina          = "Informações do(a) servidor(a)";
                   </li>
                   <li class="nav-item" role="presentation">
                     <button aria-controls="tab-pane-4" data-bs-target="#tab-pane-4" id="tab-4" aria-selected="false" class="nav-link <?= $tabPane == 4 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
-                      <i class="ti ti-history pe-1 ps-1"></i>Escolaridade
+                      <i class="ti ti-history pe-1 ps-1"></i>Grau de Instrução
                     </button>
                   </li>
                   <li class="nav-item" role="presentation">

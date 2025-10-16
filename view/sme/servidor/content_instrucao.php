@@ -27,14 +27,6 @@ if (!$rsRegistrosSInstrucao) {
   $rsRegistrosSInstrucao[0]['formacao'] = '';
   $rsRegistrosSInstrucao[0]['conclusao_ano'] = '';
   $rsRegistrosSInstrucao[0]['cursando'] = '';
-  $rsRegistrosSInstrucao[1]['id'] = 0;
-  $rsRegistrosSInstrucao[1]['status'] = 1;
-  $rsRegistrosSInstrucao[1]['dt_cadastro'] = '';
-  $rsRegistrosSInstrucao[1]['sme_servidor_id'] = '';
-  $rsRegistrosSInstrucao[1]['bsc_escolaridade_id'] = '';
-  $rsRegistrosSInstrucao[1]['formacao'] = '';
-  $rsRegistrosSInstrucao[1]['conclusao_ano'] = '';
-  $rsRegistrosSInstrucao[1]['cursando'] = '';
 }
 //Secretaria Municipal de Educação - BEGIN
 $stmt = $db->prepare("SELECT 
@@ -90,7 +82,7 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
           $btnAddRemoveDisplay   = $objSI['id'] != 0 ? 'style="display: none;"' : '';
           //Parámetros de exibir/ocultar div - NED
           ?>
-          <div class="div_clonar row border border-outline-info rounded rounded pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
+          <div divcount="<?=$keySI+1;?>" class="div_clonar row border border-outline-info rounded rounded pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
             <h6>Escolaridade / Grau de Instrução - <span class="span_contador"><?=$keySI+1;?></span></h6>
             <!-- div row input - BEGIN -->
             <input type="hidden" name="si_sme_serv_instrucao_id[]" id="si_sme_serv_instrucao_id_<?=$keySI+1;?>" idbase="si_sme_serv_instrucao_id_" value="<?=$objSI['id'];?>"/>
@@ -144,7 +136,7 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
               <?= createCheckbox(array(
                 /*int 1-12*/  'col'         => '12 pe-1',
                 /*string*/    'label'       => 'Cursando',
-                /*string*/    'name'        => 'si_cursando[]',
+                /*string*/    'name'        => 'si_cursando_'.$keySI,
                 /*string*/    'id'          => 'si_cursando_'.$keySI,
                 /*string*/    'class'       => 'toggle',
                 /*string*/    'value'       => 1,
