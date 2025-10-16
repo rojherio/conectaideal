@@ -1,211 +1,113 @@
 <?php
 $db                                       = Conexao::getInstance();
+$id                                       = @$_POST['si_sme_serv_instrucao_id']?: '';
 $sme_servidor_id                          = strip_tags(@$_POST['si_sme_servidor_id']?: '');
 $status                                   = strip_tags(@$_POST['si_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$id                                       = @$_POST['si_sme_serv_instrucao_id']?: '';
 $bsc_escolaridade_id                      = @$_POST['si_bsc_escolaridade_id']?: '';
 $formacao                                 = @$_POST['si_formacao']?: '';
 $conclusao_ano                            = @$_POST['si_conclusao_ano']?: '';
-$cursando                                 = @$_POST['si_cursando']?: '';
-// $bsc_escolaridade_id                      = strip_tags(@$_POST['si_bsc_escolaridade_id']?: '');
-// $formacao                                 = ucwords(strtolower(trim(strip_tags(@$_POST['si_formacao']?: ''))));
-// $conclusao_ano                            = ucwords(strtolower(trim(strip_tags(@$_POST['si_conclusao_ano']?: ''))));
-// $cursando                                 = ucwords(strtolower(trim(strip_tags(@$_POST['si_cursando']?: ''))));
-echo json_encode([$id, $bsc_escolaridade_id, $formacao, $conclusao_ano, $cursando]);
-exit();
+$cursando                                 = array();
+//tratamento especial para checkbox
+foreach ($id as $k => $v) {
+  $cursando[$k] = @$_POST['si_cursando_'.($k+1)]?: 0;
+}
 $tableName      = 'sme_serv_instrucao';
 $error          = false;
 $result         = array();
 $msg            = "";
 try {
   $db->beginTransaction();
+  //consulta registros existente para comparar com $_POST
   $stmt = $db->prepare('
-    SELECT p.nome AS "Nome do servidor"
+    SELECT 
+    tb.id, 
+    tb.bsc_escolaridade_id,
+    tb.formacao,
+    tb.conclusao_ano,
+    tb.cursando
     FROM '.$tableName.' AS tb 
-    LEFT JOIN bsc_pessoa AS p ON p.id = tb.bsc_pessoa_id
-    WHERE tb.id <> ? AND (tb.bsc_pessoa_id = ?);');
-  $stmt->bindValue(1, $id);
-  $stmt->bindValue(2, $bsc_pessoa_id);
+    WHERE tb.sme_servidor_id = ?;');
+  $stmt->bindValue(1, $sme_servidor_id);
   $stmt->execute();
-  $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
-  $stmt = $db->prepare('
-    SELECT tb.matricula AS "Matricula", 
-    tb.matricula_2 AS "Matricula-2" 
-    FROM '.$tableName.' AS tb 
-    WHERE tb.id <> ? AND (tb.matricula = ? OR tb.matricula_2 = ?);');
-  $stmt->bindValue(1, $id);
-  $stmt->bindValue(2, $matricula);
-  $stmt->bindValue(3, $matricula_2);
-  $stmt->execute();
-  $rsExistente = array_merge($rsExistente ? : array(), $stmt->fetch(PDO::FETCH_ASSOC) ? : array());
-  if ($rsExistente) {
-    $db->rollback();
-    $existentes = '';
-    $virgula = '';
-    foreach ($rsExistente as $kObj => $vObj) {
-      $existentes .= $virgula.'<br/>'.htmlentities($kObj).': '.$vObj;
-      $virgula = ', ';
-    }
-    $result['status'] = 'error';
-    $result['tipo'] = 'existente';
-    $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe registrado com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
-    echo json_encode($result);
-    exit();
-  } else {
-    if (is_numeric($id) && $id != "" && $id != 0 ) {
-      $stmt = $db->prepare('
-        UPDATE '.$tableName.' 
-          SET
-          status = ?,
-          dt_cadastro = ?,
-          bsc_pessoa_id = ?,
-          matricula = ?,
-          sme_serv_tipo_id = ?,
-          eo_cargo_id = ?,
-          sme_serv_situacao_id = ?,
-          situacao_trabalho_decreto = ?,
-          situacao_trabalho_doe = ?,
-          situacao_trabalho_dt_inicio = ?,
-          situacao_trabalho_dt_fim = ?,
-          situacao_trabalho_obs = ?,
-          matricula_2 = ?,
-          sme_serv_tipo_id_2 = ?,
-          eo_cargo_id_2 = ?,
-          sme_serv_situacao_id_2 = ?,
-          situacao_trabalho_decreto_2 = ?,
-          situacao_trabalho_doe_2 = ?,
-          situacao_trabalho_dt_inicio_2 = ?,
-          situacao_trabalho_dt_fim_2 = ?,
-          situacao_trabalho_obs_2 = ?,
-          foto = ?,
-          senha_nome = ?,
-          sme_sme_id = ?
-          WHERE id = ?
-          ');
-      $stmt->bindValue(1, $status);
-      $stmt->bindValue(2, $dt_cadastro?: NULL);
-      $stmt->bindValue(3, $bsc_pessoa_id?: NULL);
-      $stmt->bindValue(4, $matricula?: NULL);
-      $stmt->bindValue(5, $sme_serv_tipo_id?: NULL);
-      $stmt->bindValue(6, $eo_cargo_id?: NULL);
-      $stmt->bindValue(7, $sme_serv_situacao_id?: NULL);
-      $stmt->bindValue(8, $situacao_trabalho_decreto);
-      $stmt->bindValue(9, $situacao_trabalho_doe);
-      $stmt->bindValue(10, $situacao_trabalho_dt_inicio?: NULL);
-      $stmt->bindValue(11, $situacao_trabalho_dt_fim?: NULL);
-      $stmt->bindValue(12, $situacao_trabalho_obs);
-      $stmt->bindValue(13, $matricula_2?: NULL);
-      $stmt->bindValue(14, $sme_serv_tipo_id_2?: NULL);
-      $stmt->bindValue(15, $eo_cargo_id_2?: NULL);
-      $stmt->bindValue(16, $sme_serv_situacao_id_2?: NULL);
-      $stmt->bindValue(17, $situacao_trabalho_decreto_2);
-      $stmt->bindValue(18, $situacao_trabalho_doe_2);
-      $stmt->bindValue(19, $situacao_trabalho_dt_inicio_2?: NULL);
-      $stmt->bindValue(20, $situacao_trabalho_dt_fim_2?: NULL);
-      $stmt->bindValue(21, $situacao_trabalho_obs_2);
-      $stmt->bindValue(22, $foto);
-      $stmt->bindValue(23, $senha_nome);
-      $stmt->bindValue(24, $sme_sme_id?: NULL);
-      $stmt->bindValue(25, $id);
-      $stmt->execute();
-      $db->commit();
-    //MENSAGEM DE SUCESSO
-      $result['id'] = $id;
-      $result['status'] = 'success';
-      $result['msg'] = 'As novas informações foram registradas com sucesso.';
-      echo json_encode($result);
-      exit();
-    } else {
-      $stmt = $db->prepare('INSERT INTO '.$tableName.' 
-        (
-          status,
-          dt_cadastro,
-          bsc_pessoa_id,
-          matricula,
-          sme_serv_tipo_id,
-          eo_cargo_id,
-          sme_serv_situacao_id,
-          situacao_trabalho_decreto,
-          situacao_trabalho_doe,
-          situacao_trabalho_dt_inicio,
-          situacao_trabalho_dt_fim,
-          situacao_trabalho_obs,
-          matricula_2,
-          sme_serv_tipo_id_2,
-          eo_cargo_id_2,
-          sme_serv_situacao_id_2,
-          situacao_trabalho_decreto_2,
-          situacao_trabalho_doe_2,
-          situacao_trabalho_dt_inicio_2,
-          situacao_trabalho_dt_fim_2,
-          situacao_trabalho_obs_2,
-          foto,
-          senha_nome,
-          sme_sme_id
-          ) 
-        VALUES
-        (
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?, 
-          ?,
-          ?
-        );');
-      $stmt->bindValue(1, $status);
-      $stmt->bindValue(2, $dt_cadastro?: NULL);
-      $stmt->bindValue(3, $bsc_pessoa_id?: NULL);
-      $stmt->bindValue(4, $matricula?: NULL);
-      $stmt->bindValue(5, $sme_serv_tipo_id?: NULL);
-      $stmt->bindValue(6, $eo_cargo_id?: NULL);
-      $stmt->bindValue(7, $sme_serv_situacao_id?: NULL);
-      $stmt->bindValue(8, $situacao_trabalho_decreto);
-      $stmt->bindValue(9, $situacao_trabalho_doe);
-      $stmt->bindValue(10, $situacao_trabalho_dt_inicio?: NULL);
-      $stmt->bindValue(11, $situacao_trabalho_dt_fim?: NULL);
-      $stmt->bindValue(12, $situacao_trabalho_obs);
-      $stmt->bindValue(13, $matricula_2?: NULL);
-      $stmt->bindValue(14, $sme_serv_tipo_id_2?: NULL);
-      $stmt->bindValue(15, $eo_cargo_id_2?: NULL);
-      $stmt->bindValue(16, $sme_serv_situacao_id_2?: NULL);
-      $stmt->bindValue(17, $situacao_trabalho_decreto_2);
-      $stmt->bindValue(18, $situacao_trabalho_doe_2);
-      $stmt->bindValue(19, $situacao_trabalho_dt_inicio_2?: NULL);
-      $stmt->bindValue(20, $situacao_trabalho_dt_fim_2?: NULL);
-      $stmt->bindValue(21, $situacao_trabalho_obs_2);
-      $stmt->bindValue(22, $foto);
-      $stmt->bindValue(23, $senha_nome);
-      $stmt->bindValue(24, $sme_sme_id?: NULL);
-      $stmt->execute();
-      $id = $db->lastInsertId();
-      $db->commit();
-      //MENSAGEM DE SUCESSO
-      $result['id'] = $id;
-      $result['status'] = 'success';
-      $result['msg'] = 'As novas informações foram registradas com sucesso.';
-      echo json_encode($result);
-      exit();
+  $rsRegistroOlds = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  //deleta registros DB removidos na página
+  if ($rsRegistroOlds) {
+    foreach ($rsRegistroOlds as $keyOld => $objOld) {
+      if(!in_array($objOld['id'], $id)) {
+        $stmt = $db->prepare('
+          DELETE 
+            FROM '.$tableName.'
+            WHERE id = ?');
+        $stmt->bindValue(1, $objOld['id']);
+        $stmt->execute();
+      }
     }
   }
+  //atualiza ou insere registros vindos da página
+  foreach ($id as $kId => $vId) {
+    if (is_numeric($bsc_escolaridade_id[$kId])) {
+      if (is_numeric($vId) && $vId != 0 ) {
+        $stmt = $db->prepare('
+          UPDATE '.$tableName.' 
+            SET
+            status = ?,
+            dt_cadastro = ?,
+            sme_servidor_id = ?,
+            bsc_escolaridade_id = ?,
+            formacao = ?,
+            conclusao_ano = ?,
+            cursando = ?
+            WHERE id = ?
+            ');
+        $stmt->bindValue(1, $status);
+        $stmt->bindValue(2, $dt_cadastro?: NULL);
+        $stmt->bindValue(3, $sme_servidor_id?: NULL);
+        $stmt->bindValue(4, $bsc_escolaridade_id[$kId]?: NULL);
+        $stmt->bindValue(5, trim(strip_tags($formacao[$kId]?: '')));
+        $stmt->bindValue(6, trim(strip_tags($conclusao_ano[$kId]?: '')));
+        $stmt->bindValue(7, trim($cursando[$kId]?: 0));
+        $stmt->bindValue(8, $vId);
+        $stmt->execute();
+      } else {
+        $stmt = $db->prepare('INSERT INTO '.$tableName.' 
+          (
+            status,
+            dt_cadastro,
+            sme_servidor_id,
+            bsc_escolaridade_id,
+            formacao,
+            conclusao_ano,
+            cursando
+            ) 
+          VALUES
+          (
+            ?, 
+            ?, 
+            ?, 
+            ?, 
+            ?, 
+            ?, 
+            ?
+          );');
+        $stmt->bindValue(1, $status);
+        $stmt->bindValue(2, $dt_cadastro?: NULL);
+        $stmt->bindValue(3, $sme_servidor_id?: NULL);
+        $stmt->bindValue(4, $bsc_escolaridade_id[$kId]?: NULL);
+        $stmt->bindValue(5, trim(strip_tags($formacao[$kId]?: '')));
+        $stmt->bindValue(6, trim(strip_tags($conclusao_ano[$kId]?: '')));
+        $stmt->bindValue(7, trim($cursando[$kId]?: 0));
+        $stmt->execute();
+      }
+    }
+  }
+  $db->commit();
+  //MENSAGEM DE SUCESSO
+  // $result['id'] = $id;
+  $result['status'] = 'success';
+  $result['msg'] = 'As novas informações foram registradas com sucesso.';
+  echo json_encode($result);
+  exit();
 } catch (PDOException $e) {
   $db->rollback();
   $result['status'] = 'error';

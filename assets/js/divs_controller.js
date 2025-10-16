@@ -23,7 +23,7 @@ $(document).ready(function() {
     let divCount = $(divClonar).attr('divcount');
     $(divClonar).find('select.select2').select2('destroy');
     let divClone = $(divClonar).clone(true);
-    $(divClone).find('input').val('');
+    $(divClone).find('input:not(:checkbox)').val('');
     $(divClone).find('input[type="checkbox"]').each(function (k, elem) { 
       elem.checked = false; 
     });
@@ -42,7 +42,7 @@ $(document).ready(function() {
       $(this).parents('.div_clonar').remove();
     } else {
       $(divClonar).find('select.select2').val(null).trigger('change');
-      $(divClonar).find('input').val('');
+      $(divClone).find('input:not(:checkbox)').val('');
       $(divClonar).find('input[type="checkbox"]').each(function (k, elem) { 
         elem.checked = false; 
       });
