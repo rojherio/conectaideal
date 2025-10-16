@@ -78,9 +78,6 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
       <div class="div_clones card-body pt-0">
         <?php
         foreach ($rsRegistrosSInstrucao as $keySI => $objSI) {
-          //Parámetros de exibir/ocultar div - BEGIN
-          $btnAddRemoveDisplay   = $objSI['id'] != 0 ? 'style="display: none;"' : '';
-          //Parámetros de exibir/ocultar div - NED
           ?>
           <div divcount="<?=$keySI+1;?>" class="div_clonar row border border-outline-info rounded rounded pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
             <h6>Escolaridade / Grau de Instrução - <span class="span_contador"><?=$keySI+1;?></span></h6>
@@ -123,7 +120,7 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
                 /*string*/    'type'        => 'number',
                 /*string*/    'name'        => 'si_conclusao_ano[]',
                 /*string*/    'id'          => 'si_conclusao_ano_'.$keySI,
-                /*string*/    'class'       => 'form-control',
+                /*string*/    'class'       => 'form-control mask-ano max-today',
                 /*int*/       'minlength'   => 4,
                 /*int*/       'maxlength'   => 4,
                 /*string*/    'placeholder' => 'Digite o ano de conclusao',
@@ -144,7 +141,7 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor "
                 /*string*/    'prop'        => 'idbase="si_cursando_"'
               )) ;?>
             </div>
-            <div class="div_clonar_btns row" <?= $btnAddRemoveDisplay ;?>>
+            <div class="div_clonar_btns row">
               <div class="box-footer text-center">
                 <button type="button" class="btn_div_remove btn btn-outline-warning b-r-22">
                   <i class="ti ti-eraser"></i> Remover esta escolaridade

@@ -91,6 +91,23 @@ $(document).ready(function() {
       }
     }
   });
+  $('input[type="number"][maxlength]').keyup(function(){
+    let textVal = $(this).val();
+    let maxLength = $(this).attr('maxlength');
+    let textLength = textVal.length;
+    if (textLength >= maxLength) {
+      textVal = textVal.substring(0, maxLength);
+      $(this).val(textVal);
+      if ($(this).hasClass('mask-ano')) {
+        let yearToday = new Date().getFullYear();
+        if (parseInt(textVal) < 1900) {
+          $(this).val('1900');
+        } else if ($(this).hasClass('max-today') && parseInt(textVal) > yearToday) {
+          $(this).val(''+yearToday);
+        }
+      }
+    }
+  });
   $('input[minlength]').keyup(function(){
     var valMinLength = $(this).attr('minlength');
     var textLength = $(this).val().length;
