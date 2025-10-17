@@ -124,7 +124,7 @@ $('.select2-multiple').select2({
     }
   }
 });
-$(".select2_naturalidade, .select2_conjuge_naturalidade, .select2_eleitor_cidade, .select2_reg_civ_cidadae, .select2_averbacao_cidade").select2({
+$(".select2_municipio").select2({
 	// placeholder: 'Selecione uma opção',
   minimumInputLength: 3,
   cache: true,
