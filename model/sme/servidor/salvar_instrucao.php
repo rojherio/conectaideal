@@ -2,7 +2,7 @@
 $db                                       = Conexao::getInstance();
 $id                                       = @$_POST['si_sme_serv_instrucao_id']?: '';
 $sme_servidor_id                          = strip_tags(@$_POST['si_sme_servidor_id']?: '');
-$status                                   = strip_tags(@$_POST['si_status']?: 0);
+$status                                   = 1;
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $bsc_escolaridade_id                      = @$_POST['si_bsc_escolaridade_id']?: '';
 $formacao                                 = @$_POST['si_formacao']?: '';
@@ -21,11 +21,7 @@ try {
   //consulta registros existente para comparar com $_POST
   $stmt = $db->prepare('
     SELECT 
-    tb.id, 
-    tb.bsc_escolaridade_id,
-    tb.formacao,
-    tb.conclusao_ano,
-    tb.cursando
+    tb.id
     FROM '.$tableName.' AS tb 
     WHERE tb.sme_servidor_id = ?;');
   $stmt->bindValue(1, $sme_servidor_id);
@@ -46,7 +42,14 @@ try {
   }
   //atualiza ou insere registros vindos da página
   foreach ($id as $kId => $vId) {
-    if (is_numeric($bsc_escolaridade_id[$kId])) {
+    if (!is_numeric($bsc_escolaridade_id[$kId])) {
+      $stmt = $db->prepare('
+        DELETE 
+          FROM '.$tableName.'
+          WHERE id = ?');
+      $stmt->bindValue(1, $vId);
+      $stmt->execute();
+    } else {
       if (is_numeric($vId) && $vId != 0 ) {
         $stmt = $db->prepare('
           UPDATE '.$tableName.' 
