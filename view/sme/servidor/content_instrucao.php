@@ -60,13 +60,13 @@ $rsEscolaridades = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Escolaridade - END
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
-$siTituloFormulario1       = "Escolaridade/Grau de Instrução do Servidor";
-$siDescricaoFormulario1    = "Informações de estudo e formação do servidor ";
+$siTituloFormulario1       = "Escolaridade/Grau de Instrução do Servidor(a)";
+$siDescricaoFormulario1    = "Informações de estudo e formação do servidor(a)";
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
 <div class="row">
-  <input type="hidden" name="si_sme_servidor_id" id="si_sme_servidor_id" value="<?= $rsRegistroSIdent['id'] ;?>">
+  <input type="hidden" name="si_sme_servidor_id" id="si_sme_servidor_id" value="<?= $rsRegistroSObs['id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
