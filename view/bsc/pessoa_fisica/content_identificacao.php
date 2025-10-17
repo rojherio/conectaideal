@@ -199,7 +199,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*array()*/   'values'      => array('Feminino', 'Masculino'),
             /*array()*/   'options'     => array("Feminino", "Masculino"),
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => '',
+            /*string*/    'prop'        => ''
           )) ?>
           <?= createSelect(array(
             /*int 1-12*/  'col'         => 4,
@@ -255,7 +255,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => '6 controller="naturalidade"',
+            /*int 1-12*/  'col'         => '6 " controller="naturalidade',
             /*string*/    'label'       => 'Nacionalidade',
             /*string*/    'name'        => 'p_natural_bsc_pais_id',
             /*string*/    'id'          => 'p_natural_bsc_pais_id',
@@ -267,13 +267,13 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'prop'        => 'controller="naturalidade" controller-values="0|1"'
           )); ?>
           <?php
-                //Parámetros de exibir/ocultar div - BEGIN
-          $displayNaturalidadeNacional      = $rsRegistroPessoaIdent['natural_bsc_pais_id'] != 1 ? 'style="display: none;"' : '';
-          $displayNaturalidadeExtranjeiro   = $rsRegistroPessoaIdent['natural_bsc_pais_id'] <= 1 ? 'style="display: none;"' : '';
-                //Parámetros de exibir/ocultar div - NED
+          //Parámetros de exibir/ocultar div - BEGIN
+          $displayNacional      = $rsRegistroPessoaIdent['natural_bsc_pais_id'] != 1 ? 'style="display: none;"' : '';
+          $displayExtranjeiro   = $rsRegistroPessoaIdent['natural_bsc_pais_id'] <= 1 ? 'style="display: none;"' : '';
+          //Parámetros de exibir/ocultar div - NED
           ?>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => '6 " '.$displayNaturalidadeNacional.' controlled="naturalidade" control-value="1' ,
+            /*int 1-12*/  'col'         => '6 " '.$displayNacional.' controlled="naturalidade" control-value="1' ,
             /*string*/    'label'       => 'Naturalidade',
             /*string*/    'name'        => 'p_natural_bsc_municipio_id',
             /*string*/    'id'          => 'p_natural_bsc_municipio_id',
@@ -285,7 +285,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"'
           )); ?>
         </div>
-        <div id="div_naturalidade_extrangeiro" controlled="naturalidade" control-value="0" <?= $displayNaturalidadeExtranjeiro ;?>>
+        <div controlled="naturalidade" control-value="0" <?= $displayExtranjeiro ;?>>
           <div class="row">
             <?= createInput(array(
               /*int 1-12*/  'col'         => 6,

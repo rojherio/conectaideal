@@ -150,7 +150,7 @@ function createCheckbox($params) {
   return $html;
 }
 function createRadio($params) {
-  $html    = '  <div class="div-validate col-md-'.$params['col'].'">';
+  $html    = '  <div class="div-validate mb-3 col-md-'.$params['col'].'">';
   $html   .= '    <div class="check-container form-control delfos-radio">';
   $html   .= '      <label class="delfos-radio">'.$params['label'].''. ($params['required'] ? '<span class="text-danger">*</span>' : '' ).':</label>';
   $html   .= '      <div class="row">';
