@@ -35,7 +35,7 @@ try {
     echo json_encode($result);
     exit();
   } else {
-  if (is_numeric($id) && $id != "" && $id != 0 ) {
+  if (is_numeric($id) && $id != 0) {
     $stmt = $db->prepare('
       UPDATE '.$tableName.'
         SET

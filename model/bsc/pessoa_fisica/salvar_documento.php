@@ -53,7 +53,7 @@ $result         = array();
 $msg            = "";
 try {
   $db->beginTransaction();
-  if (is_numeric($id) && $id != "" && $id != 0 ) {
+  if (is_numeric($id) && $id != 0) {
     $stmt = $db->prepare('
       UPDATE '.$tableName.' 
         SET

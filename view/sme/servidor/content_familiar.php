@@ -106,7 +106,8 @@ $descricaoFormulario3     = "Dados da averbação do registro civil do servidor"
 ?>
 <!-- formulário de cadastro - BEGIN -->
 <div class="row">
-  <input type="hidden" name="si_sme_servidor_id" id="si_sme_servidor_id" value="<?= $rsRegistroSIdent['id'] ;?>">
+  <input type="hidden" name="pf_id" id="pf_id" value="<?= $rsRegistroSFamiliar['id'] ;?>">
+  <input type="hidden" name="sf_sme_servidor_id" id="sf_sme_servidor_id" value="<?= $rsRegistroSIdent['id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">

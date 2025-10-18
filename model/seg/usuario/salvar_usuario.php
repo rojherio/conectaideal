@@ -88,7 +88,7 @@ try {
     exit();
   }
   if ($error == false) {
-    if (is_numeric($id) && $id != "" && $id != 0 ) {
+    if (is_numeric($id) && $id != 0) {
       $stmt = $db->prepare('
         SELECT id, seg_acao_id 
         FROM seg_usuario_acao 
