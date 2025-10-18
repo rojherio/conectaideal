@@ -49,6 +49,57 @@ $('.mask-numeros').each(function(k, elem){
     blocks: [maxLength]
   });
 });
+function maskCleaveApplay(elemDiv){
+  $(elemDiv).find('.mask-cpf').each(function(k, elem){
+    new Cleave(elem, {
+      numericOnly: true,
+      delimiters: ['.', '.', '-'],
+      blocks: [3, 3, 3, 2]
+    });
+  });
+  $(elemDiv).find('.mask-cnpj').each(function(k, elem){
+    new Cleave(elem, {
+      numericOnly: true,
+      delimiters: ['.', '.', '/', '-'],
+      blocks: [2, 3, 3, 4, 2]
+    });
+  });
+  $(elemDiv).find('.mask-cep').each(function(k, elem){
+    new Cleave(elem, {
+      numericOnly: true,
+      delimiters: ['.', '-'],
+      blocks: [2, 3, 3]
+    });
+  });
+  $(elemDiv).find('.mask-tel-resid').each(function(k, elem){
+    new Cleave(elem, {
+      numericOnly: true,
+      delimiters: ['(', ')', '-'],
+      blocks: [0, 2, 4, 4]
+    });
+  });
+  $(elemDiv).find('.mask-tel-cel').each(function(k, elem){
+    new Cleave(elem, {
+      numericOnly: true,
+      delimiters: ['(', ')', '.' , '-'],
+      blocks: [0, 2, 1, 4, 4]
+    });
+  });
+  $(elemDiv).find('.mask-tel-geral').each(function(k, elem){
+    new Cleave(elem, {
+      numericOnly: true,
+      delimiters: ['(', ')', '-'],
+      blocks: [0, 2, 4, 5]
+    });
+  });
+  $(elemDiv).find('.mask-numeros').each(function(k, elem){
+    let maxLength = $(this).attr('maxlength');
+    new Cleave(elem, {
+      numericOnly: true,
+      blocks: [maxLength]
+    });
+  });
+}
 // $('.mask-data').each(function(k, elem){
 //   new Cleave(elem, {
 //     date: true,

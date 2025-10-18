@@ -40,7 +40,7 @@ $(document).ready(function () {
     }
   });
 });
-//Initialize Select2 Elements
+//Initialize Select2
 $('.select2').select2({
 	placeholder: 'Selecione uma opção',
   allowClear: true,
@@ -68,36 +68,7 @@ $('.select2').select2({
     }
   }
 });
-//Initialize Select2 Elements
-function createSelect2(elem){
-  $(elem).select2({
-    placeholder: 'Selecione uma opção',
-    allowClear: true,
-    language: {
-      inputTooShort: function(args) {
-        // args.minimum is the minimum required length
-        // args.input is the  user-typed text
-        return "Por favor, digite 3 ou mais caracteres";
-      },
-      errorLoading: function() {
-        return "Erro ao carregar resultados";
-      },
-      loadingMore: function() {
-        return "Carregando mais resultados";
-      },
-      noResults: function() {
-        return "Nenhum resultado encontrado";
-      },
-      searching: function() {
-        return "Carregando...";
-      },
-      maximumSelected: function(args) {
-        // args.maximum is the maximum number of items the user may select
-        return "Erro ao carregar resultados";
-      }
-    }
-  });
-}
+//Initialize Select2-multiple
 $('.select2-multiple').select2({
   placeholder: 'Selecione uma ou mais opções',
   language: {
@@ -124,15 +95,14 @@ $('.select2-multiple').select2({
     }
   }
 });
+//Initialize Select2_municipio
 $(".select2_municipio").select2({
-	// placeholder: 'Selecione uma opção',
+	placeholder: 'Selecione uma opção',
   minimumInputLength: 3,
   cache: true,
   allowClear: true,
   language: {
     inputTooShort: function(args) {
-      // args.minimum is the minimum required length
-      // args.input is the user-typed text
       return "Por favor, digite 3 ou mais caracteres";
     },
     errorLoading: function() {
@@ -159,7 +129,7 @@ $(".select2_municipio").select2({
     delay: 150,
     data: function(params) {
       return {
-        nome: params.term // search term
+        nome: params.term
       };
     },
     processResults: function(data, params) {
@@ -207,6 +177,109 @@ $('.select2-tags').select2({
     }
   }
 });
+//função criar Select2 clonado
+function createSelect2(elemDiv){
+  $(elemDiv).find('select.select2').each(function (k, elem){
+    $(elem).select2({
+      placeholder: 'Selecione uma opção',
+      allowClear: true,
+      language: {
+        inputTooShort: function(args) {
+        // args.minimum is the minimum required length
+        // args.input is the  user-typed text
+          return "Por favor, digite 3 ou mais caracteres";
+        },
+        errorLoading: function() {
+          return "Erro ao carregar resultados";
+        },
+        loadingMore: function() {
+          return "Carregando mais resultados";
+        },
+        noResults: function() {
+          return "Nenhum resultado encontrado";
+        },
+        searching: function() {
+          return "Carregando...";
+        },
+        maximumSelected: function(args) {
+        // args.maximum is the maximum number of items the user may select
+          return "Erro ao carregar resultados";
+        }
+      }
+    });
+  });
+  $(elemDiv).find('select.select2-multiple').each(function (k, elem){
+    $(elem).select2({
+      placeholder: 'Selecione uma ou mais opções',
+      language: {
+        inputTooShort: function(args) {
+        // args.minimum is the minimum required length
+        // args.input is the  user-typed text
+          return "Por favor, digite 3 ou mais caracteres";
+        },
+        errorLoading: function() {
+          return "Erro ao carregar resultados";
+        },
+        loadingMore: function() {
+          return "Carregando mais resultados";
+        },
+        noResults: function() {
+          return "Nenhum resultado encontrado";
+        },
+        searching: function() {
+          return "Carregando...";
+        },
+        maximumSelected: function(args) {
+        // args.maximum is the maximum number of items the user may select
+          return "Erro ao carregar resultados";
+        }
+      }
+    });
+  });
+  $(elemDiv).find('select.select2_municipio').each(function (k, elem){
+    $(elem).select2({
+      minimumInputLength: 3,
+      cache: true,
+      allowClear: true,
+      language: {
+        inputTooShort: function(args) {
+          return "Por favor, digite 3 ou mais caracteres";
+        },
+        errorLoading: function() {
+          return "Erro ao carregar resultados";
+        },
+        loadingMore: function() {
+          return "Carregando mais resultados";
+        },
+        noResults: function() {
+          return "Nenhum resultado encontrado";
+        },
+        searching: function() {
+          return "Carregando...";
+        },
+        maximumSelected: function(args) {
+          return "Erro ao carregar resultados";
+        }
+      },
+      ajax: {
+        url: PORTAL_URL + "model/bsc/municipio/get_municipios_estados",
+        dataType: 'json',
+        type: "post",
+        delay: 150,
+        data: function(params) {
+          return {
+            nome: params.term
+          };
+        },
+        processResults: function(data, params) {
+          return {
+            results: data.itens
+          };
+        }
+      }
+    });
+  });
+}
 function select2Clear(){
   $('.select2').each(function (k, obj){
     $(obj).val(null).trigger('change');

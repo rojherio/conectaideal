@@ -21,17 +21,20 @@ $(document).ready(function() {
     let elemClones = $(this).parents('.div_clones');
     let divClonar = $(this).parents('.div_clonar');
     let divCount = $(divClonar).attr('divcount');
-    $(divClonar).find('select.select2').select2('destroy');
+    // $(divClonar).find('select.select2, select.select2-multiple, select2_municipio').select2('destroy');
+    $(divClonar).find('select').select2('destroy');
     let divClone = $(divClonar).clone(true);
     $(divClone).find('input:not(:checkbox)').val('');
     $(divClone).find('input[type="checkbox"]').each(function (k, elem) { 
       elem.checked = false; 
     });
-    $(this).parents('.div_clonar').after(divClone);
+    $(divClonar).after(divClone);
+    divClonada = $(this).parents('.div_clonar').next();
     reorderClones(elemClones);
-    $(elemClones).find('select.select2').each(function (k, elem){
-      createSelect2(elem);
-    });
+    maskCleaveApplay(divClonada);
+    createSelect2(divClonar);
+    createSelect2(divClonada);
+    $(divClonada).find('select').val(null).trigger('change');
     return false;
   });
   $('.btn_div_remove').on('click', function(){
@@ -41,8 +44,8 @@ $(document).ready(function() {
     if (qtdDiv>1) {
       $(this).parents('.div_clonar').remove();
     } else {
-      $(divClonar).find('select.select2').val(null).trigger('change');
-      $(divClone).find('input:not(:checkbox)').val('');
+      $(divClonar).find('select.select2, select.select2-multiple, select2_municipio').val(null).trigger('change');
+      $(divClonar).find('input:not(:checkbox)').val('');
       $(divClonar).find('input[type="checkbox"]').each(function (k, elem) { 
         elem.checked = false; 
       });

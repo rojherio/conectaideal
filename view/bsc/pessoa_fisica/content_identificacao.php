@@ -90,7 +90,9 @@ $stmt = $db->prepare("
   CONCAT(m.nome, ' - ', e.sigla) AS nome
   FROM bsc_municipio AS m 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id
-  ORDER BY e.nome ASC, m.nome;");
+  WHERE m.id IN (?)
+  ORDER BY e.sigla ASC, m.nome;");
+$stmt->bindValue(1, $rsRegistroPessoaIdent['natural_bsc_municipio_id']);
 $stmt->execute();
 $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $db->prepare("
