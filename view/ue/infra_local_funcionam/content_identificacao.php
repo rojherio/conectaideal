@@ -17,7 +17,7 @@ $stmt = $db->prepare("SELECT
   WHERE ilf.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
+$rsRegistroILF = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!is_array($rsRegistro)) {
   $rsRegistro = array();
   $rsRegistro['id'] = 0;
@@ -45,7 +45,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de local de funcionamento d
 <!-- Main Section - BEGIN-->
 <!-- div de cadastro - BEGIN -->
 <div class="row">
-  <input type="hidden" name="ilf_id" id="ilf_id" value="<?= $rsRegistro['id'] ;?>">
+  <input type="hidden" name="ilf_id" id="ilf_id" value="<?= $rsRegistroILF['id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -66,24 +66,23 @@ $descricaoFormulario5     = "Defina se esse cadastro de local de funcionamento d
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Local de Funcionamento da Escola',
-            /*string*/    'value'       => $rsRegistro['nome'],
+            /*string*/    'placeholder' => 'Digite o nome do local de funcionamento da escola',
+            /*string*/    'value'       => $rsRegistroILF['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'ilf_descricao',
             /*string*/    'id'          => 'ilf_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Local de Funcionamento da Escola',
-            /*string*/    'value'       => $rsRegistro['descricao'],
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do local de funcionamento da escola',
+            /*string*/    'value'       => $rsRegistroILF['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>

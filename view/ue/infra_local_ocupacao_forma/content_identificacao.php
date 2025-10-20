@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de forma de ocupação do p
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Forma de Ocupação do Prédio Escolar',
+            /*string*/    'placeholder' => 'Digite o nome do forma de ocupação do prédio escolar',
             /*string*/    'value'       => $rsRegistroInfraLocalOcupacaoForma['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'ilof_descricao',
             /*string*/    'id'          => 'ilof_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Forma de Ocupação do Prédio Escolar',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do forma de ocupação do prédio escolar',
             /*string*/    'value'       => $rsRegistroInfraLocalOcupacaoForma['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

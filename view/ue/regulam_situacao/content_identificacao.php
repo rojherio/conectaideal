@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de situação de regulament
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome da Situação de Regulamentação/Autorização da Escola',
+            /*string*/    'placeholder' => 'Digite o nome da situação de regulamentação/autorização da escola',
             /*string*/    'value'       => $rsRegistroRegulamSituacao['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'rs_descricao',
             /*string*/    'id'          => 'rs_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição da Situação de Regulamentação/Autorização da Escola',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição da situação de regulamentação/autorização da escola',
             /*string*/    'value'       => $rsRegistroRegulamSituacao['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

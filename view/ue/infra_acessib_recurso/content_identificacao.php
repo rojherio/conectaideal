@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de recurso de acessibilidad
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Recurso de Acessibilidade',
+            /*string*/    'placeholder' => 'Digite o nome do recurso de acessibilidade',
             /*string*/    'value'       => $rsRegistroInfraestruturaAcessibilidadeRecurso['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'iar_descricao',
             /*string*/    'id'          => 'iar_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Recurso de Acessibilidade',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do recurso de acessibilidade',
             /*string*/    'value'       => $rsRegistroInfraestruturaAcessibilidadeRecurso['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

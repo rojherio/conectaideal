@@ -22,7 +22,7 @@ if (!$rsRegistrosSSaude) {
   $rsRegistrosSSaude[0]['id'] = 0;
   $rsRegistrosSSaude[0]['status'] = 1;
   $rsRegistrosSSaude[0]['dt_cadastro'] = '';
-  $rsRegistrosSSaude[0]['sme_servidor_id'] = '';
+  $rsRegistrosSSaude[0]['sme_servidor_id'] = $idS;
   $rsRegistrosSSaude[0]['dt_ocorrido'] = '';
   $rsRegistrosSSaude[0]['descricao'] = '';
   $rsRegistrosSSaude[0]['dt_inicio'] = '';
@@ -36,7 +36,7 @@ $siDescricaoFormulario1    = "Saude do servidor(a)";
 ?>
 <!-- formulário de cadastro - BEGIN -->
 <div class="row">
-  <input type="hidden" name="ss_sme_servidor_id" id="ss_sme_servidor_id" value="<?= $rsRegistroSIdent['id'] ;?>">
+  <input type="hidden" name="ss_sme_servidor_id" id="ss_sme_servidor_id" value="<?= $idS ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -49,7 +49,7 @@ $siDescricaoFormulario1    = "Saude do servidor(a)";
         <?php
         foreach ($rsRegistrosSSaude as $keySS => $objSS) {
           ?>
-          <div divcount="<?=$keySI+1;?>" class="div_clonar row border border-outline-info rounded rounded pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
+          <div divcount="<?=$keySI+1;?>" class="div_clonar row border border-outline-info rounded  pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
             <h6>Saude - <span class="span_contador"><?=$keySS+1;?></span></h6>
             <!-- div row input - BEGIN -->
             <input type="hidden" name="ss_sme_serv_saude_id[]" id="ss_sme_serv_saude_id_<?=$keySS+1;?>" idbase="ss_sme_serv_saude_id_" value="<?=$objSS['id'];?>"/>
@@ -69,16 +69,15 @@ $siDescricaoFormulario1    = "Saude do servidor(a)";
               )) ;?>
             </div>
             <div class="row pe-0">
-              <?= createInput(array(
-                /*int 1-12*/  'col'         => '12',
+              <?= createTextArea(array(
+                /*int 1-12*/  'col'         => 12,
                 /*string*/    'label'       => 'Descrição',
-                /*string*/    'type'        => 'text',
                 /*string*/    'name'        => 'ss_descricao[]',
                 /*string*/    'id'          => 'ss_descricao_'.$keySS,
                 /*string*/    'class'       => 'form-control',
                 /*int*/       'minlength'   => 3,
-                /*int*/       'maxlength'   => 254,
-                /*string*/    'placeholder' => 'Digite a descrição do ocorrido',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => 'Descreva a descrição do ocorrido',
                 /*string*/    'value'       => $objSS['descricao'],
                 /*bool*/      'required'    => false,
                 /*string*/    'prop'        => 'idbase="ss_descricao_"'

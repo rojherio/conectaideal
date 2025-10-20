@@ -303,7 +303,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*string*/    'class'       => 'select2 form-control form-select select-basic',
                   /*string*/    'value'       => $rsPessoa['natural_bsc_pais_id'],
                   /*array()*/   'options'     => $rsPaises,
-                  /*string*/    'ariaLabel'   => 'Selecione um país',
+                  /*string*/    'ariaLabel'   => 'Digite o nome do país',
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => 'controller="naturalidade"'
                 )); ?>
@@ -318,10 +318,10 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*string*/    'label'       => 'Naturalidade',
                   /*string*/    'name'        => 'p_natural_bsc_municipio_id',
                   /*string*/    'id'          => 'p_natural_bsc_municipio_id',
-                  /*string*/    'class'       => 'select2_municipio form-control form-select select-basic',
+                  /*string*/    'class'       => 'select2-municipio form-control form-select select-basic',
                   /*string*/    'value'       => $rsPessoa['natural_bsc_municipio_id'],
                   /*array()*/   'options'     => ($rsPessoa['natural_bsc_municipio_id'] > 0 ? array(array('id' => $rsPessoa['natural_bsc_municipio_id'], 'nome' => ($rsPessoa['natural_municipio_nome'].' - '.$rsPessoa['natural_estado_sigla']))) : NULL),
-                  /*string*/    'ariaLabel'   => 'Selecione um país',
+                  /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
                   /*bool*/      'required'    => true,
                   /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"',
                   /*string*/    'display'     => !$displayNaturalidadeNacional ? true : false
@@ -430,7 +430,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                       /*string*/    'class'       => 'select2 form-control form-select select-basic',
                       /*string*/    'value'       => $rsPessoa['pai_natural_bsc_pais_id'],
                       /*array()*/   'options'     => $rsPaises,
-                      /*string*/    'ariaLabel'   => 'Selecione um país',
+                      /*string*/    'ariaLabel'   => 'Digite o nome do país',
                       /*bool*/      'required'    => false,
                       /*string*/    'prop'        => ''
                     )); ?>
@@ -476,7 +476,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                       /*string*/    'class'       => 'select2 form-control form-select select-basic',
                       /*string*/    'value'       => $rsPessoa['mae_natural_bsc_pais_id'],
                       /*array()*/   'options'     => $rsPaises,
-                      /*string*/    'ariaLabel'   => 'Selecione um país',
+                      /*string*/    'ariaLabel'   => 'Digite o nome do país',
                       /*bool*/      'required'    => true,
                       /*string*/    'prop'        => ''
                     )); ?>

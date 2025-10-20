@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de fonte de energia elétri
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 150,
-            /*string*/    'placeholder' => 'Digite o nome do Fonte de Energia Elétrica',
+            /*string*/    'placeholder' => 'Digite o nome do fonte de energia elétrica',
             /*string*/    'value'       => $rsRegistroInfraEletricaFonte['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'ief_descricao',
             /*string*/    'id'          => 'ief_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Fonte de Energia Elétricas',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do fonte de energia elétrica',
             /*string*/    'value'       => $rsRegistroInfraEletricaFonte['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

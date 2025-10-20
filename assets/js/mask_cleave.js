@@ -49,6 +49,13 @@ $('.mask-numeros').each(function(k, elem){
     blocks: [maxLength]
   });
 });
+$('.mask-certidao-novo').each(function(k, elem){
+  new Cleave(elem, {
+    numericOnly: true,
+    delimiters: [' ', ' ', ' ', ' ', ' ', ' '],
+    blocks: [10, 4, 1, 4, 3, 7, 2]
+  });
+});
 function maskCleaveApplay(elemDiv){
   $(elemDiv).find('.mask-cpf').each(function(k, elem){
     new Cleave(elem, {
@@ -93,6 +100,31 @@ function maskCleaveApplay(elemDiv){
     });
   });
   $(elemDiv).find('.mask-numeros').each(function(k, elem){
+    let maxLength = $(this).attr('maxlength');
+    new Cleave(elem, {
+      numericOnly: true,
+      blocks: [maxLength]
+    });
+  });
+  $(elemDiv).find('.mask-certidao-novo').each(function(k, elem){
+    new Cleave(elem, {
+      numericOnly: true,
+      delimiters: [' ', ' ', ' ', ' ', ' ', ' '],
+      blocks: [10, 4, 1, 4, 3, 7, 2]
+    });
+  });
+}
+function certidaoNovoApplay(){
+  $('.mask-certidao-novo').each(function(k, elem){
+    new Cleave(elem, {
+      numericOnly: true,
+      delimiters: [' ', ' ', ' ', ' ', ' ', ' '],
+      blocks: [10, 4, 1, 4, 3, 7, 2]
+    });
+  });
+}
+function certidaoAntigoApplay(){
+  $('.mask-numeros').each(function(k, elem){
     let maxLength = $(this).attr('maxlength');
     new Cleave(elem, {
       numericOnly: true,

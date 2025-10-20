@@ -73,15 +73,14 @@ $descricaoFormulario5     = "Defina se esse cadastro da categoria de escola priv
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'cep_descricao',
             /*string*/    'id'          => 'cep_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 254,
+            /*int*/       'maxlength'   => '',
             /*string*/    'placeholder' => 'Descreva a categoria de escola privada',
             /*string*/    'value'       => $rsRegistroCategoriaEscolaPrivada['descricao'],
             /*bool*/      'required'    => false,

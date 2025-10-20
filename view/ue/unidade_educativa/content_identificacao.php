@@ -311,7 +311,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
         $displayPJ = $rsRegistroUEIdent['bsc_pessoa_id'] == '' ? 'style="display: none;"' : '';
         $bsc_pessoa_id = $rsRegistroUEIdent['bsc_pessoa_id'];
         ?>
-        <div id="div_pj" controlled="pj" control-value="0" <?= $displayPJ ;?>>
+        <div id="div_pj" controlled="pj" control-value="0" <?= $displayPJ ;?> class="border border-outline-info rounded  mb-1 ms-0 me-0">
           <?php 
           include_once ('view/bsc/pessoa_juridica/content_identificacao.php'); 
           ?>

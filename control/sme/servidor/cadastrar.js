@@ -34,4 +34,13 @@ $(document).ready(function () {
     }
     return false;
   });
+  $('[name="sf_reg_civil_modelo"]').on('click', function(){
+    if ($(this).val() == 'Novo') {
+      $('[name="sf_reg_civil_numero"]').attr('minlength', '37').removeClass('mask-numeros').addClass('mask-certidao-novo');
+      certidaoNovoApplay();
+    } else {
+      $('[name="sf_reg_civil_numero"]').attr('minlength', '1').removeClass('mask-certidao-novo').addClass('mask-numeros');
+      certidaoAntigoApplay();
+    }
+  });
 });

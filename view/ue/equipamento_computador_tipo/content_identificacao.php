@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de equipamento/comp
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 150,
-            /*string*/    'placeholder' => 'Digite o nome do Tipo de Equipamento/Computador para o Aluno',
+            /*string*/    'placeholder' => 'Digite o nome do tipo de equipamento/computador para o aluno',
             /*string*/    'value'       => $rsRegistroEquipamentoComputadorTipo['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'ect_descricao',
             /*string*/    'id'          => 'ect_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Tipo de Equipamento/Computador para o Aluno',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do tipo de equipamento/computador para o aluno',
             /*string*/    'value'       => $rsRegistroEquipamentoComputadorTipo['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

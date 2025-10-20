@@ -1,18 +1,15 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = @$_POST['si_sme_serv_instrucao_id']?: '';
+$id                                       = @$_POST['sv_sme_serv_vinculo_id']?: '';
 $status                                   = 1;
 $dt_cadastro                              = date("Y-m-d H:i:s");
-$sme_servidor_id                          = strip_tags(@$_POST['si_sme_servidor_id']?: '');
-$bsc_escolaridade_id                      = @$_POST['si_bsc_escolaridade_id']?: '';
-$formacao                                 = @$_POST['si_formacao']?: '';
-$conclusao_ano                            = @$_POST['si_conclusao_ano']?: '';
+$sme_servidor_id                          = strip_tags(@$_POST['sv_sme_servidor_id']?: '');
+$local                                    = @$_POST['sv_local']?: '';
+$bsc_esfera_administrativa_id             = @$_POST['sv_bsc_esfera_administrativa_id']?: '';
+$cargo                                    = @$_POST['sv_cargo']?: '';
+$carga_horaria                            = @$_POST['sv_carga_horaria']?: '';
 $cursando                                 = array();
-//tratamento especial para checkbox
-foreach ($id as $k => $v) {
-  $cursando[$k] = @$_POST['si_cursando_'.($k+1)]?: 0;
-}
-$tableName      = 'sme_serv_instrucao';
+$tableName      = 'sme_serv_vinculo';
 $error          = false;
 $result         = array();
 $msg            = "";
@@ -42,7 +39,7 @@ try {
   }
   //atualiza ou insere registros vindos da página
   foreach ($id as $kId => $vId) {
-    if (!is_numeric($bsc_escolaridade_id[$kId])) {
+    if ($local[$kId] == ''){
       $stmt = $db->prepare('
         DELETE 
           FROM '.$tableName.'
@@ -57,19 +54,19 @@ try {
             status = ?,
             dt_cadastro = ?,
             sme_servidor_id = ?,
-            bsc_escolaridade_id = ?,
-            formacao = ?,
-            conclusao_ano = ?,
-            cursando = ?
+            local = ?,
+            bsc_esfera_administrativa_id = ?,
+            cargo = ?,
+            carga_horaria = ?
             WHERE id = ?
             ');
         $stmt->bindValue(1, $status);
         $stmt->bindValue(2, $dt_cadastro?: NULL);
         $stmt->bindValue(3, $sme_servidor_id?: NULL);
-        $stmt->bindValue(4, $bsc_escolaridade_id[$kId]?: NULL);
-        $stmt->bindValue(5, trim(strip_tags($formacao[$kId]?: '')));
-        $stmt->bindValue(6, trim(strip_tags($conclusao_ano[$kId]?: '')));
-        $stmt->bindValue(7, trim($cursando[$kId]?: 0));
+        $stmt->bindValue(4, trim(strip_tags($local[$kId]?: '')));
+        $stmt->bindValue(5, $bsc_esfera_administrativa_id[$kId]?: NULL);
+        $stmt->bindValue(6, trim(strip_tags($cargo[$kId]?: '')));
+        $stmt->bindValue(7, trim(strip_tags($carga_horaria[$kId]?: '')));
         $stmt->bindValue(8, $vId);
         $stmt->execute();
       } else {
@@ -78,10 +75,10 @@ try {
             status,
             dt_cadastro,
             sme_servidor_id,
-            bsc_escolaridade_id,
-            formacao,
-            conclusao_ano,
-            cursando
+            local,
+            bsc_esfera_administrativa_id,
+            cargo,
+            carga_horaria
             ) 
           VALUES
           (
@@ -96,10 +93,10 @@ try {
         $stmt->bindValue(1, $status);
         $stmt->bindValue(2, $dt_cadastro?: NULL);
         $stmt->bindValue(3, $sme_servidor_id?: NULL);
-        $stmt->bindValue(4, $bsc_escolaridade_id[$kId]?: NULL);
-        $stmt->bindValue(5, trim(strip_tags($formacao[$kId]?: '')));
-        $stmt->bindValue(6, trim(strip_tags($conclusao_ano[$kId]?: '')));
-        $stmt->bindValue(7, trim($cursando[$kId]?: 0));
+        $stmt->bindValue(4, trim(strip_tags($local[$kId]?: '')));
+        $stmt->bindValue(5, $bsc_esfera_administrativa_id[$kId]?: NULL);
+        $stmt->bindValue(6, trim(strip_tags($cargo[$kId]?: '')));
+        $stmt->bindValue(7, trim(strip_tags($carga_horaria[$kId]?: '')));
         $stmt->execute();
       }
     }

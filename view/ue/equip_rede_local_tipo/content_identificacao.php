@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de rede local de in
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Tipo de Rede Local de Interligação de computadores',
+            /*string*/    'placeholder' => 'Digite o nome do tipo de rede local de interligação de computadores',
             /*string*/    'value'       => $rsRegistroEquipRedeLocalTipo['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'erlt_descricao',
             /*string*/    'id'          => 'erlt_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Tipo de Rede Local de Interligação de computadores',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do tipo de rede local de interligação de computadores',
             /*string*/    'value'       => $rsRegistroEquipRedeLocalTipo['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

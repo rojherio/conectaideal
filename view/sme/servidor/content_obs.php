@@ -19,8 +19,7 @@ if (!$rsRegistrosSObs) {
   $rsRegistrosSObs = array();
   $rsRegistrosSObs[0]['id'] = 0;
   $rsRegistrosSObs[0]['status'] = 1;
-  $rsRegistrosSObs[0]['dt_cadastro'] = '';
-  $rsRegistrosSObs[0]['sme_servidor_id'] = '';
+  $rsRegistrosSObs[0]['sme_servidor_id'] = $idS;
   $rsRegistrosSObs[0]['dt_ocorrido'] = '';
   $rsRegistrosSObs[0]['descricao'] = '';
 }
@@ -34,7 +33,7 @@ $siDescricaoFormulario1    = "Observações do servidor(a)";
 ?>
 <!-- formulário de cadastro - BEGIN -->
 <div class="row">
-  <input type="hidden" name="so_sme_servidor_id" id="so_sme_servidor_id" value="<?= $rsRegistroSIdent['id'] ;?>">
+  <input type="hidden" name="so_sme_servidor_id" id="so_sme_servidor_id" value="<?= $idS ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -47,13 +46,13 @@ $siDescricaoFormulario1    = "Observações do servidor(a)";
         <?php
         foreach ($rsRegistrosSObs as $keySO => $objSO) {
           ?>
-          <div divcount="<?=$keySO+1;?>" class="div_clonar row border border-outline-info rounded rounded pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
+          <div divcount="<?=$keySO+1;?>" class="div_clonar row border border-outline-info rounded  pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
             <h6>Observação - <span class="span_contador"><?=$keySO+1;?></span></h6>
             <!-- div row input - BEGIN -->
             <input type="hidden" name="so_sme_servidor_obs_id[]" id="so_sme_servidor_obs_id_<?=$keySO+1;?>" idbase="so_sme_servidor_obs_id_" value="<?=$objSO['id'];?>"/>
             <div class="row">
               <?= createInputDate(array(
-                /*int 1-12*/  'col'         => '12',
+                /*int 1-12*/  'col'         => '4',
                 /*string*/    'label'       => 'Data do Ocorrido',
                 /*string*/    'name'        => 'so_dt_ocorrido[]',
                 /*string*/    'id'          => 'so_dt_ocorrido_'.$keySO,
@@ -67,16 +66,15 @@ $siDescricaoFormulario1    = "Observações do servidor(a)";
               )) ;?>
             </div>
             <div class="row pe-0">
-              <?= createInput(array(
-                /*int 1-12*/  'col'         => '12',
+              <?= createTextArea(array(
+                /*int 1-12*/  'col'         => 12,
                 /*string*/    'label'       => 'Descrição',
-                /*string*/    'type'        => 'text',
                 /*string*/    'name'        => 'so_descricao[]',
                 /*string*/    'id'          => 'so_descricao_'.$keySO,
                 /*string*/    'class'       => 'form-control',
                 /*int*/       'minlength'   => 3,
-                /*int*/       'maxlength'   => 254,
-                /*string*/    'placeholder' => 'Digite a descrição do ocorrido',
+                /*int*/       'maxlength'   => '',
+                /*string*/    'placeholder' => 'Descreva a descrição do ocorrido',
                 /*string*/    'value'       => $objSO['descricao'],
                 /*bool*/      'required'    => false,
                 /*string*/    'prop'        => 'idbase="so_descricao_"'

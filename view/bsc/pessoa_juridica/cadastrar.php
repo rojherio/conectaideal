@@ -57,7 +57,7 @@ $exibeButoes              = true;
           <div class="card-body equal-card">
             <ul class="nav nav-tabs tab-primary bg-primary p-2" id="bg" role="tablist">
               <li class="nav-item" role="presentation">
-                <button aria-controls="tab-pane-p-identificacao" data-bs-target="#tab-pane-p-identificacao" id="tab-p-identificacao" aria-selected="true" class="nav-link <?= $tabPane <=1 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                <button aria-controls="tab-pane-1" data-bs-target="#tab-pane-1" id="tab-1" aria-selected="true" class="nav-link <?= $tabPane <=1 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
                   <i class="ti ti-disc pe-1 ps-1"></i>Identificação
                 </button>
               </li>
@@ -65,12 +65,7 @@ $exibeButoes              = true;
               if ($rsRegistro['id']) {
                 ?>
                 <li class="nav-item" role="presentation">
-                  <button aria-controls="tab-pane-p-documentos" data-bs-target="#tab-pane-p-documentos" id="tab-p-documentos" aria-selected="false" class="nav-link <?= $tabPane == 2 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
-                    <i class="ti ti-history pe-1 ps-1"></i>Documentos
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button aria-controls="tab-pane-p-contatos" data-bs-target="#tab-pane-p-contatos" id="tab-p-contatos" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                  <button aria-controls="tab-pane-2" data-bs-target="#tab-pane-2" id="tab-2" aria-selected="false" class="nav-link <?= $tabPane == 2 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
                     <i class="ti ti-star pe-1 ps-1"></i>Contatos
                   </button>
                 </li>
@@ -79,21 +74,14 @@ $exibeButoes              = true;
               ?>
             </ul>
             <div class="tab-content" id="v-bgContent">
-              <div aria-labelledby="tab-pane-p-identificacao" id="tab-pane-p-identificacao" class="tab-pane fade <?= $tabPane <= 1 ? 'show active' : '' ;?>" role="tabpanel" tabindex="1">
+              <div aria-labelledby="tab-pane-1" id="tab-pane-1" class="tab-pane fade <?= $tabPane <= 1 ? 'show active' : '' ;?>" role="tabpanel" tabindex="1">
                 <form class="app-form" id="form_pessoa" name="form_pessoa" method="post" urltosend="bsc/pessoa_juridica/salvar_identificacao" action="">
                   <?php 
                   include_once ('view/bsc/pessoa_juridica/content_identificacao.php'); 
                   ?>
                 </form>
               </div>
-              <div aria-labelledby="tab-pane-p-documentos" id="tab-pane-p-documentos" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
-                <form class="app-form" id="form_pessoa_documento" name="form_pessoa_documento" method="post" urltosend="bsc/pessoa_juridica/salvar_documento" action="">
-                  <?php 
-                  include_once ('view/bsc/pessoa_juridica/content_documento.php'); 
-                  ?>
-                </form>
-              </div>
-              <div aria-labelledby="tab-pane-p-contatos" id="tab-pane-p-contatos" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
+              <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
                 <form class="app-form" id="form_pessoa_contato" name="form_pessoa_contato" method="post" urltosend="bsc/pessoa_juridica/salvar_contato" action="">
                   <?php 
                   include_once ('view/bsc/pessoa_juridica/content_contato.php'); 

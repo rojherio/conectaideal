@@ -4,7 +4,6 @@ $id                                       = strip_tags(@$_POST['pf_id']);
 $status                                   = 1;
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $sme_servidor_id                          = strip_tags(@$_POST['sf_sme_servidor_id']?: '');
-$bsc_estado_civil_id                      = strip_tags(@$_POST['sf_bsc_estado_civil_id']?: '');
 $conjuge_dt_casamento                     = strip_tags(@$_POST['sf_conjuge_dt_casamento']?: '');
 $conjuge_nome                             = ucwords(strtolower(trim(strip_tags(@$_POST['sf_conjuge_nome']?: ''))));
 $conjuge_cpf                              = trim(strip_tags(@$_POST['sf_conjuge_cpf']?: ''));
@@ -39,7 +38,6 @@ try {
         status = ?,
         dt_cadastro = ?,
         sme_servidor_id = ?,
-        bsc_estado_civil_id = ?,
         conjuge_dt_casamento = ?,
         conjuge_nome = ?,
         conjuge_cpf = ?,
@@ -66,29 +64,28 @@ try {
     $stmt->bindValue(1, $status);
     $stmt->bindValue(2, $dt_cadastro?: NULL);
     $stmt->bindValue(3, $sme_servidor_id?: NULL);
-    $stmt->bindValue(4, $bsc_estado_civil_id?: NULL);
-    $stmt->bindValue(5, $conjuge_dt_casamento?: NULL);
-    $stmt->bindValue(6, $conjuge_nome);
-    $stmt->bindValue(7, $conjuge_cpf);
-    $stmt->bindValue(8, $conjuge_dt_nascimento?: NULL);
-    $stmt->bindValue(9, $bsc_pais_id_conjuge?: NULL);
-    $stmt->bindValue(10, $bsc_municipio_id_conjuge?: NULL);
-    $stmt->bindValue(11, $conjuge_natural_estrangeiro_cidade);
-    $stmt->bindValue(12, $conjuge_natural_estrangeiro_estado);
-    $stmt->bindValue(13, $conjuge_local_trabalho);
-    $stmt->bindValue(14, $reg_civil_modelo);
-    $stmt->bindValue(15, $reg_civil_numero);
-    $stmt->bindValue(16, $reg_civil_livro);
-    $stmt->bindValue(17, $reg_civil_folha);
-    $stmt->bindValue(18, $reg_civil_cartorio);
-    $stmt->bindValue(19, $reg_civil_dt_emissao?: NULL);
-    $stmt->bindValue(20, $bsc_municipio_id_reg_civil?: NULL);
-    $stmt->bindValue(21, $averbacao_tipo);
-    $stmt->bindValue(22, $averbacao_numero);
-    $stmt->bindValue(23, $averbacao_dt_emissao?: NULL);
-    $stmt->bindValue(24, $averbacao_cartorio);
-    $stmt->bindValue(25, $bsc_municipio_id_averbacao?: NULL);
-    $stmt->bindValue(26, $id);
+    $stmt->bindValue(4, $conjuge_dt_casamento?: NULL);
+    $stmt->bindValue(5, $conjuge_nome);
+    $stmt->bindValue(6, $conjuge_cpf);
+    $stmt->bindValue(7, $conjuge_dt_nascimento?: NULL);
+    $stmt->bindValue(8, $bsc_pais_id_conjuge?: NULL);
+    $stmt->bindValue(9, $bsc_municipio_id_conjuge?: NULL);
+    $stmt->bindValue(10, $conjuge_natural_estrangeiro_cidade);
+    $stmt->bindValue(11, $conjuge_natural_estrangeiro_estado);
+    $stmt->bindValue(12, $conjuge_local_trabalho);
+    $stmt->bindValue(13, $reg_civil_modelo);
+    $stmt->bindValue(14, $reg_civil_numero);
+    $stmt->bindValue(15, $reg_civil_livro);
+    $stmt->bindValue(16, $reg_civil_folha);
+    $stmt->bindValue(17, $reg_civil_cartorio);
+    $stmt->bindValue(18, $reg_civil_dt_emissao?: NULL);
+    $stmt->bindValue(19, $bsc_municipio_id_reg_civil?: NULL);
+    $stmt->bindValue(20, $averbacao_tipo);
+    $stmt->bindValue(21, $averbacao_numero);
+    $stmt->bindValue(22, $averbacao_dt_emissao?: NULL);
+    $stmt->bindValue(23, $averbacao_cartorio);
+    $stmt->bindValue(24, $bsc_municipio_id_averbacao?: NULL);
+    $stmt->bindValue(25, $id);
     $stmt->execute();
     $db->commit();
       //MENSAGEM DE SUCESSO
@@ -103,7 +100,6 @@ try {
         status,
         dt_cadastro,
         sme_servidor_id,
-        bsc_estado_civil_id,
         conjuge_dt_casamento,
         conjuge_nome,
         conjuge_cpf,
@@ -151,34 +147,32 @@ try {
         ?, 
         ?, 
         ?, 
-        ?, 
         ?
       )');
     $stmt->bindValue(1, $status);
     $stmt->bindValue(2, $dt_cadastro?: NULL);
     $stmt->bindValue(3, $sme_servidor_id?: NULL);
-    $stmt->bindValue(4, $bsc_estado_civil_id?: NULL);
-    $stmt->bindValue(5, $conjuge_dt_casamento?: NULL);
-    $stmt->bindValue(6, $conjuge_nome);
-    $stmt->bindValue(7, $conjuge_cpf);
-    $stmt->bindValue(8, $conjuge_dt_nascimento?: NULL);
-    $stmt->bindValue(9, $bsc_pais_id_conjuge?: NULL);
-    $stmt->bindValue(10, $bsc_municipio_id_conjuge?: NULL);
-    $stmt->bindValue(11, $conjuge_natural_estrangeiro_cidade);
-    $stmt->bindValue(12, $conjuge_natural_estrangeiro_estado);
-    $stmt->bindValue(13, $conjuge_local_trabalho);
-    $stmt->bindValue(14, $reg_civil_modelo);
-    $stmt->bindValue(15, $reg_civil_numero);
-    $stmt->bindValue(16, $reg_civil_livro);
-    $stmt->bindValue(17, $reg_civil_folha);
-    $stmt->bindValue(18, $reg_civil_cartorio);
-    $stmt->bindValue(19, $reg_civil_dt_emissao?: NULL);
-    $stmt->bindValue(20, $bsc_municipio_id_reg_civil?: NULL);
-    $stmt->bindValue(21, $averbacao_tipo);
-    $stmt->bindValue(22, $averbacao_numero);
-    $stmt->bindValue(23, $averbacao_dt_emissao?: NULL);
-    $stmt->bindValue(24, $averbacao_cartorio);
-    $stmt->bindValue(25, $bsc_municipio_id_averbacao?: NULL);
+    $stmt->bindValue(4, $conjuge_dt_casamento?: NULL);
+    $stmt->bindValue(5, $conjuge_nome);
+    $stmt->bindValue(6, $conjuge_cpf);
+    $stmt->bindValue(7, $conjuge_dt_nascimento?: NULL);
+    $stmt->bindValue(8, $bsc_pais_id_conjuge?: NULL);
+    $stmt->bindValue(9, $bsc_municipio_id_conjuge?: NULL);
+    $stmt->bindValue(10, $conjuge_natural_estrangeiro_cidade);
+    $stmt->bindValue(11, $conjuge_natural_estrangeiro_estado);
+    $stmt->bindValue(12, $conjuge_local_trabalho);
+    $stmt->bindValue(13, $reg_civil_modelo);
+    $stmt->bindValue(14, $reg_civil_numero);
+    $stmt->bindValue(15, $reg_civil_livro);
+    $stmt->bindValue(16, $reg_civil_folha);
+    $stmt->bindValue(17, $reg_civil_cartorio);
+    $stmt->bindValue(18, $reg_civil_dt_emissao?: NULL);
+    $stmt->bindValue(19, $bsc_municipio_id_reg_civil?: NULL);
+    $stmt->bindValue(20, $averbacao_tipo);
+    $stmt->bindValue(21, $averbacao_numero);
+    $stmt->bindValue(22, $averbacao_dt_emissao?: NULL);
+    $stmt->bindValue(23, $averbacao_cartorio);
+    $stmt->bindValue(24, $bsc_municipio_id_averbacao?: NULL);
     $stmt->execute();
     $idNew = $db->lastInsertId();
     $db->commit();

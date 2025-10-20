@@ -1,330 +1,141 @@
 <?php
-$idUE = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
-$idUE = isset($ue_ue_id) ? $bsc_pessoa_id : $idUE;
 //Consulta para Edição - BEGIN
+$idS = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
+$idS = isset($sme_servidor_id) ? $sme_servidor_id : $idS;
+//Identificação - BEGIN
+$stmt = $db->prepare("SELECT 
+  sv.id,
+  sv.status,
+  sv.dt_cadastro,
+  sv.sme_servidor_id,
+  sv.local,
+  sv.bsc_esfera_administrativa_id,
+  sv.cargo,
+  sv.carga_horaria
+  FROM sme_serv_vinculo AS sv
+  WHERE sv.sme_servidor_id = ? ;");
+$stmt->bindValue(1, $idS);
+$stmt->execute();
+$rsRegistrosSVinculo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+if (!$rsRegistrosSVinculo) {
+  $rsRegistrosSVinculo = array();
+  $rsRegistrosSVinculo[0]['id'] = 0;
+  $rsRegistrosSVinculo[0]['status'] = 1;
+  $rsRegistrosSVinculo[0]['dt_cadastro'] = '';
+  $rsRegistrosSVinculo[0]['sme_servidor_id'] = $idS;
+  $rsRegistrosSVinculo[0]['local'] = '';
+  $rsRegistrosSVinculo[0]['bsc_esfera_administrativa_id'] = '';
+  $rsRegistrosSVinculo[0]['cargo'] = '';
+  $rsRegistrosSVinculo[0]['carga_horaria'] = '';
+}
 //Consulta para Edição - END
-//Consulta para Select - BEGIN
-//Parceria/Convenio Forma - BEGIN
+//Esfera Administrativa - BEGIN
 $stmt = $db->prepare("SELECT 
   id,
-  nome,
-  descricao 
-  FROM ue_parc_conv_forma
+  nome
+  FROM bsc_esfera_administrativa  
   WHERE 1 = 1;");
 $stmt->execute();
-$rsParcConvFormas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Parceria/Convenio Forma - END
+$rsEsfAdm = $stmt->fetchAll(PDO::FETCH_ASSOC);
+//Esfera Administrativa - END
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
-$uevTituloFormulario1       = "Poder Público Responsável pela Parceria ou Convênio";
-$uevDescricaoFormulario1    = "Selecione a(s) sercretaría(s) pareceira(s) ou conveniada(s)";
-$uevTituloFormulario2       = "Órgãos/Instituições em Parceria/Convênio";
-$uevDescricaoFormulario2    = "Dados das parcerias/convênios com órgãos/instituições";
-$uevTituloFormulario3        = "";
-$uevDescricaoFormulario3     = "";
-$uevTituloFormulario4        = "";
-$uevDescricaoFormulario4     = "";
-$uevTituloFormulario5        = "Situação";
-$uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa está ativo ou inativo";
+$siTituloFormulario1       = "Outros Vínculos do Servidor";
+$siDescricaoFormulario1    = "Informações de outros vínculos do servidor(a)";
 //Parámetros de títutlos - END
 ?>
 <!-- formulário de cadastro - BEGIN -->
 <div class="row">
+  <input type="hidden" name="sv_sme_servidor_id" id="sv_sme_servidor_id" value="<?= $idS ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
         <!-- Título da div de cadastro - BEGIN -->
-        <h5><?= $ueiTituloFormulario2;?></h5>
-        <small><?= $ueiDescricaoFormulario2;?></small>
+        <h5><?= $siTituloFormulario1;?></h5>
+        <small><?= $siDescricaoFormulario1;?></small>
         <!-- Título da div de cadastro - END -->
       </div>
-      <div class="card-body">
-        <!-- div row input - BEGIN -->
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Matrícula',
-            /*string*/    'type'        => 'number',
-            /*string*/    'name'        => 's_matricula',
-            /*string*/    'id'          => 's_matricula',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 11,
-            /*string*/    'placeholder' => 'Digite a matrícula',
-            /*string*/    'value'       => $rsRegistroSIdent['matricula'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Tipo de Servidor(a)',
-            /*string*/    'name'        => 's_sme_serv_tipo_id',
-            /*string*/    'id'          => 's_sme_serv_tipo_id',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistroSIdent['sme_serv_tipo_id'],
-            /*array()*/   'options'     => $rsServidorTipos,
-            /*string*/    'ariaLabel'   => 'Selecione um tipo de servidor(a)',
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )); ?>
-        </div>
-        <div class="row">
-          <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Cargo',
-            /*string*/    'name'        => 's_eo_cargo_id', 
-            /*string*/    'id'          => 's_eo_cargo_id',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistroSIdent['eo_cargo_id'],
-            /*array()*/   'options'     => $rsServidorCargos,
-            /*string*/    'ariaLabel'   => 'Selecione um cargo',
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )); ?>
-        </div>
-        <div class="row">
-          <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Situação do Servidor(a)',
-            /*string*/    'name'        => 's_sme_serv_situacao_id',
-            /*string*/    'id'          => 's_sme_serv_situacao_id',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistroSIdent['sme_serv_situacao_id'],
-            /*array()*/   'options'     => $rsServidorSituacoes,
-            /*string*/    'ariaLabel'   => 'Selecione uma situação do servidor(a)',
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )); ?>
-        </div>
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Decreto',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 's_situacao_trabalho_decreto',
-            /*string*/    'id'          => 's_situacao_trabalho_decreto',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o decreto da situação de trabalho',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_decreto'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'DOE(Diario Oficial do Estado)',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 's_situacao_trabalho_doe',
-            /*string*/    'id'          => 's_situacao_trabalho_doe',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 15,
-            /*string*/    'placeholder' => 'Digite o DOE(diario oficial do estado)',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_doe'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 6,
-            /*string*/    'label'       => 'Data de Inicio',
-            /*string*/    'name'        => 's_situacao_trabalho_dt_inicio',
-            /*string*/    'id'          => 's_situacao_trabalho_dt_inicio',
-            /*string*/    'class'       => 'form-control mask-data',
-            /*int*/       'min'         => '1900-01-01',
-            /*int*/       'maxToday'    => true,
-            /*string*/    'placeholder' => 'Digite a data de inicio',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_dt_inicio'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-          <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 6,
-            /*string*/    'label'       => 'Data de Finalização',
-            /*string*/    'name'        => 's_situacao_trabalho_dt_fim',
-            /*string*/    'id'          => 's_situacao_trabalho_dt_fim',
-            /*string*/    'class'       => 'form-control mask-data',
-            /*int*/       'min'         => '1900-01-01',
-            /*int*/       'maxToday'    => true,
-            /*string*/    'placeholder' => 'Digite a data de finalização',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_dt_fim'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Observação',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 's_situacao_trabalho_obs',
-            /*string*/    'id'          => 's_situacao_trabalho_obs',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o DOE(diario oficial do estado)',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_obs'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <!-- div row input - END -->
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <!-- Título da div de cadastro - BEGIN -->
-        <h5><?= $ueiTituloFormulario3;?></h5>
-        <small><?= $ueiDescricaoFormulario3;?></small>
-        <!-- Título da div de cadastro - END -->
-      </div>
-      <div class="card-body">
-        <!-- div row input - BEGIN -->
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Matrícula',
-            /*string*/    'type'        => 'number',
-            /*string*/    'name'        => 's_matricula_2',
-            /*string*/    'id'          => 's_matricula_2',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 11,
-            /*string*/    'placeholder' => 'Digite a matrícula',
-            /*string*/    'value'       => $rsRegistroSIdent['matricula_2'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Tipo de Servidor(a)',
-            /*string*/    'name'        => 's_sme_serv_tipo_id_2',
-            /*string*/    'id'          => 's_sme_serv_tipo_id_2',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistroSIdent['sme_serv_tipo_id_2'],
-            /*array()*/   'options'     => $rsServidorTipos,
-            /*string*/    'ariaLabel'   => 'Selecione um tipo de servidor(a)',
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )); ?>
-        </div>
-        <div class="row">
-          <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Cargo',
-            /*string*/    'name'        => 's_eo_cargo_id_2',
-            /*string*/    'id'          => 's_eo_cargo_id_2',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistroSIdent['eo_cargo_id_2'],
-            /*array()*/   'options'     => $rsServidorCargos,
-            /*string*/    'ariaLabel'   => 'Selecione um cargo',
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )); ?>
-        </div>
-        <div class="row">
-          <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Situação do Servidor(a)',
-            /*string*/    'name'        => 's_sme_serv_situacao_id_2',
-            /*string*/    'id'          => 's_sme_serv_situacao_id_2',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistroSIdent['sme_serv_situacao_id_2'],
-            /*array()*/   'options'     => $rsServidorSituacoes,
-            /*string*/    'ariaLabel'   => 'Selecione uma situação do servidor(a)',
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )); ?>
-        </div>
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Decreto',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 's_situacao_trabalho_decreto_2',
-            /*string*/    'id'          => 's_situacao_trabalho_decreto_2',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o decreto da situação de trabalho',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_decreto_2'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'DOE(Diario Oficial do Estado)',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 's_situacao_trabalho_doe_2',
-            /*string*/    'id'          => 's_situacao_trabalho_doe_2',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 15,
-            /*string*/    'placeholder' => 'Digite o DOE(diario oficial do estado)',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_doe_2'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 6,
-            /*string*/    'label'       => 'Data de Inicio',
-            /*string*/    'name'        => 's_situacao_trabalho_dt_inicio_2',
-            /*string*/    'id'          => 's_situacao_trabalho_dt_inicio_2',
-            /*string*/    'class'       => 'form-control mask-data',
-            /*int*/       'min'         => '1900-01-01',
-            /*int*/       'maxToday'    => true,
-            /*string*/    'placeholder' => 'Digite a data de inicio',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_dt_inicio_2'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-          <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 6,
-            /*string*/    'label'       => 'Data de Finalização',
-            /*string*/    'name'        => 's_situacao_trabalho_dt_fim_2',
-            /*string*/    'id'          => 's_situacao_trabalho_dt_fim_2',
-            /*string*/    'class'       => 'form-control mask-data',
-            /*int*/       'min'         => '1900-01-01',
-            /*int*/       'maxToday'    => true,
-            /*string*/    'placeholder' => 'Digite a data de finalização',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_dt_fim_2'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Observação',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 's_situacao_trabalho_obs_2',
-            /*string*/    'id'          => 's_situacao_trabalho_obs_2',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o DOE(diario oficial do estado)',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_obs_2'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <!-- div row input - END -->
+      <div class="div_clones card-body pt-0">
+        <?php
+        foreach ($rsRegistrosSVinculo as $keySV => $objSV) {
+          ?>
+          <div divcount="<?=$keySV+1;?>" class="div_clonar row border border-outline-info rounded  pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
+            <h6>Outro vínculo - <span class="span_contador"><?=$keySV+1;?></span></h6>
+            <!-- div row input - BEGIN -->
+            <input type="hidden" name="sv_sme_serv_vinculo_id[]" id="sv_sme_serv_vinculo_id<?=$keySV+1;?>" idbase="sv_sme_serv_vinculo_id_" value="<?=$objSV['id'];?>"/>
+            <div class="row pe-0">
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => '7 pe-1',
+                /*string*/    'label'       => 'Local',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => 'sv_local[]',
+                /*string*/    'id'          => 'sv_local_'.$keySV,
+                /*string*/    'class'       => 'form-control mask-ano max-today',
+                /*int*/       'minlength'   => 3,
+                /*int*/       'maxlength'   => 50,
+                /*string*/    'placeholder' => 'Digite o local de vínculo',
+                /*string*/    'value'       => $objSV['local'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'idbase="sv_local_"'
+              )) ;?>
+              <?= createSelect(array(
+                /*int 1-12*/  'col'         => '5 pe-1',
+                /*string*/    'label'       => 'Esfera Administrativa',
+                /*string*/    'name'        => 'sv_bsc_esfera_administrativa_id[]',
+                /*string*/    'id'          => 'sv_bsc_esfera_administrativa_id_'.$keySV,
+                /*string*/    'class'       => 'select2 form-control form-select select-basic',
+                /*string*/    'value'       => $objSV['bsc_esfera_administrativa_id'],
+                /*array()*/   'options'     => $rsEsfAdm,
+                /*string*/    'ariaLabel'   => 'Selecione a esfera administrativa de vínculo',
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'idbase="sv_bsc_esfera_administrativa_id_"'
+              )); ?>
+            </div>
+            <div class="row pe-0">
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => '7 pe-1',
+                /*string*/    'label'       => 'Cargo',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => 'sv_cargo[]',
+                /*string*/    'id'          => 'sv_cargo_'.$keySV,
+                /*string*/    'class'       => 'form-control mask-ano max-today',
+                /*int*/       'minlength'   => 3,
+                /*int*/       'maxlength'   => 50,
+                /*string*/    'placeholder' => 'Digite o cargo do vínculo',
+                /*string*/    'value'       => $objSV['cargo'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'idbase="sv_cargo_"'
+              )) ;?>
+              <?= createInput(array(
+                /*int 1-12*/  'col'         => '5 pe-1',
+                /*string*/    'label'       => 'Carga-Horária',
+                /*string*/    'type'        => 'text',
+                /*string*/    'name'        => 'sv_carga_horaria[]',
+                /*string*/    'id'          => 'sv_carga_horaria_'.$keySV,
+                /*string*/    'class'       => 'form-control mask-ano max-today',
+                /*int*/       'minlength'   => 1,
+                /*int*/       'maxlength'   => 20,
+                /*string*/    'placeholder' => 'Digite a carga-horária do vínculo',
+                /*string*/    'value'       => $objSV['carga_horaria'],
+                /*bool*/      'required'    => false,
+                /*string*/    'prop'        => 'idbase="sv_carga_horaria_"'
+              )) ;?>
+            </div>
+            <div class="div_clonar_btns row">
+              <div class="box-footer text-center">
+                <button type="button" class="btn_div_remove btn btn-outline-warning b-r-22">
+                  <i class="ti ti-eraser"></i> Remover este vínculo
+                </button>
+                <button type="button" class="btn_div_add btn btn-outline-info b-r-22">
+                  <i class="ti ti-plus"></i> Adicionar outro vínculo
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- div row input - END -->
+          <?php
+        }
+        ?>
       </div>
     </div>
   </div>
@@ -349,4 +160,3 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
     </div>
   </div>
 </div>
-<!-- formulário de cadastro - END -->

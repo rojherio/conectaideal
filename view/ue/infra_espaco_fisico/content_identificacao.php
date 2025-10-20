@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de dependência/espaço fí
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Dependência/Espaço Físico',
+            /*string*/    'placeholder' => 'Digite o nome do dependência/espaço físico',
             /*string*/    'value'       => $rsRegistroInfraEspacoFisico['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'ief_descricao',
             /*string*/    'id'          => 'ief_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Dependência/Espaço Físico',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do dependência/espaço físico',
             /*string*/    'value'       => $rsRegistroInfraEspacoFisico['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

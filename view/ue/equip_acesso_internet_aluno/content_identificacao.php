@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de Equipamento para Acessar
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Equipamento para Acessar a Internet',
+            /*string*/    'placeholder' => 'Digite o nome do equipamento para acessar a internet',
             /*string*/    'value'       => $rsRegistroEquipAcessoInternetAluno['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'eaia_descricao',
             /*string*/    'id'          => 'eaia_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Equipamento para Acessar a Internet',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do equipamento para acessar a internet',
             /*string*/    'value'       => $rsRegistroEquipAcessoInternetAluno['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

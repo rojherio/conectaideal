@@ -13,11 +13,9 @@ $stmt = $db->prepare("SELECT
   p.cpf,
   p.dt_nascimento,
   p.sexo,
+  p.bsc_estado_civil_id,
   p.natural_bsc_pais_id,
   p.natural_bsc_municipio_id,
-  m.nome AS natural_municipio_nome, 
-  e.id AS natural_estado_id, 
-  e.sigla AS natural_estado_sigla, 
   p.natural_estrangeiro_dt_ingresso,
   p.natural_estrangeiro_cidade,
   p.natural_estrangeiro_estado,
@@ -34,8 +32,6 @@ $stmt = $db->prepare("SELECT
   p.enfermidade_portador,
   p.enfermidade_codigo_internacional
   FROM bsc_pessoa AS p
-  LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
-  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
   WHERE p.tipo = 1 AND p.id = ? ;");
 $stmt->bindValue(1, $idPessoa);
 $stmt->execute();
@@ -52,11 +48,9 @@ if (!$rsRegistroPessoaIdent) {
   $rsRegistroPessoaIdent['dt_nascimento'] = '';
   $rsRegistroPessoaIdent['dt_criacao'] = '';
   $rsRegistroPessoaIdent['sexo'] = 'Feminino';
+  $rsRegistroPessoaIdent['bsc_estado_civil_id'] = '';
   $rsRegistroPessoaIdent['natural_bsc_pais_id'] = '';
   $rsRegistroPessoaIdent['natural_bsc_municipio_id'] = '';
-  $rsRegistroPessoaIdent['natural_municipio_nome'] = '';
-  $rsRegistroPessoaIdent['natural_estado_id'] = '';
-  $rsRegistroPessoaIdent['natural_estado_sigla'] = '';
   $rsRegistroPessoaIdent['natural_estrangeiro_dt_ingresso'] = '';
   $rsRegistroPessoaIdent['natural_estrangeiro_cidade'] = '';
   $rsRegistroPessoaIdent['natural_estrangeiro_estado'] = '';
@@ -78,10 +72,21 @@ if (!$rsRegistroPessoaIdent) {
 //Consulta para Select - BEGIN
 $stmt = $db->prepare("
   SELECT 
+  id, 
+  nome 
+  FROM bsc_estado_civil;");
+$stmt->execute();
+$rsEstadoCivils = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("
+  SELECT 
   id,
-  nome
+  CONCAT(nome, ' - ', nacionalidade) AS nome
   FROM bsc_pais 
+  WHERE id IN (?, ?, ?)
   ORDER BY id ASC;");
+$stmt->bindValue(1, $rsRegistroPessoaIdent['natural_bsc_pais_id']);
+$stmt->bindValue(2, $rsRegistroPessoaIdent['pai_natural_bsc_pais_id']);
+$stmt->bindValue(3, $rsRegistroPessoaIdent['mae_natural_bsc_pais_id']);
 $stmt->execute();
 $rsPaises = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $db->prepare("
@@ -131,7 +136,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 8,
             /*string*/    'label'       => 'Nome',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'p_nome',
@@ -142,22 +147,6 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'placeholder' => 'Digite o nome da pessoa',
             /*string*/    'value'       => $rsRegistroPessoaIdent['nome'],
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => ''
-          )) ;?>
-        </div>
-        <div class="row">
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 4,
-            /*string*/    'label'       => 'Nome Social',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 'p_nome_social',
-            /*string*/    'id'          => 'p_nome_social',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 254,
-            /*string*/    'placeholder' => 'Digite o nome social da pessoa',
-            /*string*/    'value'       => $rsRegistroPessoaIdent['nome_social'],
-            /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
@@ -172,6 +161,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'placeholder' => 'Digite o CPF da pessoa',
             /*string*/    'value'       => $rsRegistroPessoaIdent['cpf'],
             /*bool*/      'required'    => true,
+            /*string*/    'prop'        => ''
+          )) ;?>
+        </div>
+        <div class="row">
+          <?= createInput(array(
+            /*int 1-12*/  'col'         => 8,
+            /*string*/    'label'       => 'Nome Social',
+            /*string*/    'type'        => 'text',
+            /*string*/    'name'        => 'p_nome_social',
+            /*string*/    'id'          => 'p_nome_social',
+            /*string*/    'class'       => 'form-control',
+            /*int*/       'minlength'   => 3,
+            /*int*/       'maxlength'   => 254,
+            /*string*/    'placeholder' => 'Digite o nome social da pessoa',
+            /*string*/    'value'       => $rsRegistroPessoaIdent['nome_social'],
+            /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
@@ -190,7 +195,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
         </div>
         <div class="row">
           <?= createRadio(array(
-            /*int 1-12*/  'col'         => 4,
+            /*int 1-12*/  'col'         => 6,
             /*int 1-12*/  'colOption'   => 6,
             /*string*/    'label'       => 'Sexo',
             /*string*/    'type'        => 'radio',
@@ -204,7 +209,21 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'prop'        => ''
           )) ?>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 4,
+            /*int 1-12*/  'col'         => 6,
+            /*string*/    'label'       => 'Estado Civil',
+            /*string*/    'name'        => 'p_bsc_estado_civil_id',
+            /*string*/    'id'          => 'p_bsc_estado_civil_id',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroPessoaIdent['bsc_estado_civil_id'],
+            /*array()*/   'options'     => $rsEstadoCivils,
+            /*string*/    'ariaLabel'   => 'Selecione uma estado civil',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )); ?>
+        </div>
+        <div class="row">
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Tipo Sanaguíneo',
             /*string*/    'name'        => 'p_sangue_tipo',
             /*string*/    'id'          => 'p_sangue_tipo',
@@ -225,7 +244,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'prop'        => ''
           )); ?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 4,
+            /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Raça',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'p_raca',
@@ -261,10 +280,10 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'label'       => 'Nacionalidade',
             /*string*/    'name'        => 'p_natural_bsc_pais_id',
             /*string*/    'id'          => 'p_natural_bsc_pais_id',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-nacionalidade form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroPessoaIdent['natural_bsc_pais_id'],
             /*array()*/   'options'     => $rsPaises,
-            /*string*/    'ariaLabel'   => 'Selecione um país',
+            /*string*/    'ariaLabel'   => 'Digite o nome do país',
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => 'controller="naturalidade" controller-values="0|1"'
           )); ?>
@@ -279,10 +298,10 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'label'       => 'Naturalidade',
             /*string*/    'name'        => 'p_natural_bsc_municipio_id',
             /*string*/    'id'          => 'p_natural_bsc_municipio_id',
-            /*string*/    'class'       => 'select2_municipio form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-municipio form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroPessoaIdent['natural_bsc_municipio_id'],
-            /*array()*/   'options'     => ($rsRegistroPessoaIdent['natural_bsc_municipio_id'] > 0 ? array(array('id' => $rsRegistroPessoaIdent['natural_bsc_municipio_id'], 'nome' => ($rsRegistroPessoaIdent['natural_municipio_nome'].' - '.$rsRegistroPessoaIdent['natural_estado_sigla']))) : NULL),
-            /*string*/    'ariaLabel'   => 'Selecione um país',
+            /*array()*/   'options'     => $rsMunicipios,
+            /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"'
           )); ?>
@@ -387,10 +406,10 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                 /*string*/    'label'       => 'Nacionalidade do Pai',
                 /*string*/    'name'        => 'p_pai_natural_bsc_pais_id',
                 /*string*/    'id'          => 'p_pai_natural_bsc_pais_id',
-                /*string*/    'class'       => 'select2 form-control form-select select-basic',
+                /*string*/    'class'       => 'select2-nacionalidade form-control form-select select-basic',
                 /*string*/    'value'       => $rsRegistroPessoaIdent['pai_natural_bsc_pais_id'],
                 /*array()*/   'options'     => $rsPaises,
-                /*string*/    'ariaLabel'   => 'Selecione um país',
+                /*string*/    'ariaLabel'   => 'Digite o nome do país',
                 /*bool*/      'required'    => false,
                 /*string*/    'prop'        => ''
               )); ?>
@@ -433,10 +452,10 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                 /*string*/    'label'       => 'Nacionalidade da Mãe',
                 /*string*/    'name'        => 'p_mae_natural_bsc_pais_id',
                 /*string*/    'id'          => 'p_mae_natural_bsc_pais_id',
-                /*string*/    'class'       => 'select2 form-control form-select select-basic',
+                /*string*/    'class'       => 'select2-nacionalidade form-control form-select select-basic',
                 /*string*/    'value'       => $rsRegistroPessoaIdent['mae_natural_bsc_pais_id'],
                 /*array()*/   'options'     => $rsPaises,
-                /*string*/    'ariaLabel'   => 'Selecione um país',
+                /*string*/    'ariaLabel'   => 'Digite o nome do país',
                 /*bool*/      'required'    => true,
                 /*string*/    'prop'        => ''
               )); ?>

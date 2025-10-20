@@ -1,7 +1,7 @@
 <?php
 $db                                       = Conexao::getInstance();
 $id                                       = @$_POST['so_sme_servidor_obs_id']?: '';
-$status                                   = @$_POST['so_status']?: 0;
+$status                                   = 1;
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $sme_servidor_id                          = strip_tags(@$_POST['so_sme_servidor_id']?: '');
 $dt_ocorrido                              = @$_POST['so_dt_ocorrido']?: '';

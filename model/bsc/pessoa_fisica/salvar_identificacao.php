@@ -9,6 +9,7 @@ $nome_social                              = ucwords(strtolower(trim(strip_tags(@
 $cpf                                      = strip_tags(@$_POST['p_cpf']?: '');
 $dt_nascimento                            = strip_tags(@$_POST['p_dt_nascimento']?: '');
 $sexo                                     = strip_tags(@$_POST['p_sexo']?: '');
+$bsc_estado_civil_id                      = strip_tags(@$_POST['p_bsc_estado_civil_id']?: '');
 $natural_bsc_pais_id                      = strip_tags(@$_POST['p_natural_bsc_pais_id']?: '');
 $natural_bsc_municipio_id                 = strip_tags(@$_POST['p_natural_bsc_municipio_id']?: '');
 $natural_estrangeiro_dt_ingresso          = strip_tags(@$_POST['p_natural_estrangeiro_dt_ingresso']?: '');
@@ -66,6 +67,7 @@ try {
           cpf = ?,
           dt_nascimento = ?,
           sexo = ?,
+          bsc_estado_civil_id = ?,
           natural_bsc_pais_id = ?,
           natural_bsc_municipio_id = ?,
           natural_estrangeiro_dt_ingresso = ?,
@@ -93,24 +95,25 @@ try {
       $stmt->bindValue(6, $cpf);
       $stmt->bindValue(7, $dt_nascimento?: NULL);
       $stmt->bindValue(8, $sexo);
-      $stmt->bindValue(9, $natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(10, $natural_bsc_municipio_id?: NULL);
-      $stmt->bindValue(11, $natural_estrangeiro_dt_ingresso?: NULL);
-      $stmt->bindValue(12, $natural_estrangeiro_cidade);
-      $stmt->bindValue(13, $natural_estrangeiro_estado);
-      $stmt->bindValue(14, $natural_estrangeiro_condicao_trabalho);
-      $stmt->bindValue(15, $pai_nome);
-      $stmt->bindValue(16, $pai_natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(17, $pai_profissao);
-      $stmt->bindValue(18, $mae_nome);
-      $stmt->bindValue(19, $mae_natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(20, $mae_profissao);
-      $stmt->bindValue(21, $foto);
-      $stmt->bindValue(22, $sangue_tipo);
-      $stmt->bindValue(23, $raca);
-      $stmt->bindValue(24, $enfermidade_portador);
-      $stmt->bindValue(25, $enfermidade_codigo_internacional);
-      $stmt->bindValue(26, $id);
+      $stmt->bindValue(9, $bsc_estado_civil_id?: NULL);
+      $stmt->bindValue(10, $natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(11, $natural_bsc_municipio_id?: NULL);
+      $stmt->bindValue(12, $natural_estrangeiro_dt_ingresso?: NULL);
+      $stmt->bindValue(13, $natural_estrangeiro_cidade);
+      $stmt->bindValue(14, $natural_estrangeiro_estado);
+      $stmt->bindValue(15, $natural_estrangeiro_condicao_trabalho);
+      $stmt->bindValue(16, $pai_nome);
+      $stmt->bindValue(17, $pai_natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(18, $pai_profissao);
+      $stmt->bindValue(19, $mae_nome);
+      $stmt->bindValue(20, $mae_natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(21, $mae_profissao);
+      $stmt->bindValue(22, $foto);
+      $stmt->bindValue(23, $sangue_tipo);
+      $stmt->bindValue(24, $raca);
+      $stmt->bindValue(25, $enfermidade_portador);
+      $stmt->bindValue(26, $enfermidade_codigo_internacional);
+      $stmt->bindValue(27, $id);
       $stmt->execute();
       $db->commit();
       //MENSAGEM DE SUCESSO
@@ -130,6 +133,7 @@ try {
           cpf,
           dt_nascimento,
           sexo,
+          bsc_estado_civil_id,
           natural_bsc_pais_id,
           natural_bsc_municipio_id,
           natural_estrangeiro_dt_ingresso,
@@ -174,6 +178,7 @@ try {
           ?, 
           ?, 
           ?, 
+          ?, 
           ?
         )');
       $stmt->bindValue(1, $status);
@@ -184,23 +189,24 @@ try {
       $stmt->bindValue(6, $cpf);
       $stmt->bindValue(7, $dt_nascimento?: NULL);
       $stmt->bindValue(8, $sexo);
-      $stmt->bindValue(9, $natural_bsc_pais_id)?: NULL;
-      $stmt->bindValue(10, $natural_bsc_municipio_id?: NULL);
-      $stmt->bindValue(11, $natural_estrangeiro_dt_ingresso?: NULL);
-      $stmt->bindValue(12, $natural_estrangeiro_cidade);
-      $stmt->bindValue(13, $natural_estrangeiro_estado);
-      $stmt->bindValue(14, $natural_estrangeiro_condicao_trabalho);
-      $stmt->bindValue(15, $pai_nome);
-      $stmt->bindValue(16, $pai_natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(17, $pai_profissao);
-      $stmt->bindValue(18, $mae_nome);
-      $stmt->bindValue(19, $mae_natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(20, $mae_profissao);
-      $stmt->bindValue(21, $foto);
-      $stmt->bindValue(22, $sangue_tipo);
-      $stmt->bindValue(23, $raca);
-      $stmt->bindValue(24, $enfermidade_portador);
-      $stmt->bindValue(25, $enfermidade_codigo_internacional);
+      $stmt->bindValue(9, $bsc_estado_civil_id?: NULL);
+      $stmt->bindValue(10, $natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(11, $natural_bsc_municipio_id?: NULL);
+      $stmt->bindValue(12, $natural_estrangeiro_dt_ingresso?: NULL);
+      $stmt->bindValue(13, $natural_estrangeiro_cidade);
+      $stmt->bindValue(14, $natural_estrangeiro_estado);
+      $stmt->bindValue(15, $natural_estrangeiro_condicao_trabalho);
+      $stmt->bindValue(16, $pai_nome);
+      $stmt->bindValue(17, $pai_natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(18, $pai_profissao);
+      $stmt->bindValue(19, $mae_nome);
+      $stmt->bindValue(20, $mae_natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(21, $mae_profissao);
+      $stmt->bindValue(22, $foto);
+      $stmt->bindValue(23, $sangue_tipo);
+      $stmt->bindValue(24, $raca);
+      $stmt->bindValue(25, $enfermidade_portador);
+      $stmt->bindValue(26, $enfermidade_codigo_internacional);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       $db->commit();

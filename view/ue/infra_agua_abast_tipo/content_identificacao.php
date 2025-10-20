@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de abastecimento de
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Tipo de Abastecimento de Água',
+            /*string*/    'placeholder' => 'Digite o nome do tipo de abastecimento de água',
             /*string*/    'value'       => $rsRegistroInfraAguaAbastTipo['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'iaat_descricao',
             /*string*/    'id'          => 'iaat_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Tipo de Abastecimento de Água',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do tipo de abastecimento de água',
             /*string*/    'value'       => $rsRegistroInfraAguaAbastTipo['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

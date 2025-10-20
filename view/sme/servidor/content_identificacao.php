@@ -137,11 +137,11 @@ $rsServidorSituacoes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $ueiTituloFormulario1       = "Identificação do Servidor";
-$ueiDescricaoFormulario1    = "Seleção da pessoa jurídica referente a este servidor";
-$ueiTituloFormulario2       = "Dados da Matricula 1";
-$ueiDescricaoFormulario2    = "Dados que identificam a primeira matricula";
-$ueiTituloFormulario3        = "Dados da Matricula 2";
-$ueiDescricaoFormulario3     = "Dados que identificam a segunda matricula";
+$ueiDescricaoFormulario1    = "Dados de identificação do servidor";
+$ueiTituloFormulario2       = "Matricula 1";
+$ueiDescricaoFormulario2    = "Dados de identificação da primeira matricula";
+$ueiTituloFormulario3        = "Matricula 2";
+$ueiDescricaoFormulario3     = "Dados de identificação da segunda matricula";
 $ueiTituloFormulario4        = "";
 $ueiDescricaoFormulario4     = "";
 $ueiTituloFormulario5        = "Situação";
@@ -163,7 +163,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 8,
             /*string*/    'label'       => 'Secretaria Municipal de Educação',
             /*string*/    'name'        => 's_sme_sme_id',
             /*string*/    'id'          => 's_sme_sme_id',
@@ -198,10 +198,10 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
           )); ?>
         </div>
         <?php
-        $displayPJ = $rsRegistroSIdent['bsc_pessoa_id'] == '' ? 'style="display: none;"' : '';
+        $displayPF = $rsRegistroSIdent['bsc_pessoa_id'] == '' ? 'style="display: none;"' : '';
         $bsc_pessoa_id = $rsRegistroSIdent['bsc_pessoa_id'];
         ?>
-        <div id="div_pf" controlled="pf" control-value="0" <?= $displayPJ ;?>>
+        <div id="div_pf" controlled="pf" control-value="0" <?= $displayPF ;?> class="border border-outline-info rounded  mb-1 ms-0 me-0">
           <?php 
           include_once ('view/bsc/pessoa_fisica/content_identificacao.php'); 
           ?>
@@ -224,7 +224,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Matrícula',
             /*string*/    'type'        => 'number',
             /*string*/    'name'        => 's_matricula',
@@ -237,10 +237,8 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
-        </div>
-        <div class="row">
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Tipo de Servidor(a)',
             /*string*/    'name'        => 's_sme_serv_tipo_id',
             /*string*/    'id'          => 's_sme_serv_tipo_id',
@@ -251,24 +249,8 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )); ?>
-        </div>
-        <div class="row">
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Cargo',
-            /*string*/    'name'        => 's_eo_cargo_id',
-            /*string*/    'id'          => 's_eo_cargo_id',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistroSIdent['eo_cargo_id'],
-            /*array()*/   'options'     => $rsServidorCargos,
-            /*string*/    'ariaLabel'   => 'Selecione um cargo',
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )); ?>
-        </div>
-        <div class="row">
-          <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Situação do Servidor(a)',
             /*string*/    'name'        => 's_sme_serv_situacao_id',
             /*string*/    'id'          => 's_sme_serv_situacao_id',
@@ -281,8 +263,20 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
           )); ?>
         </div>
         <div class="row">
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'Cargo',
+            /*string*/    'name'        => 's_eo_cargo_id',
+            /*string*/    'id'          => 's_eo_cargo_id',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroSIdent['eo_cargo_id'],
+            /*array()*/   'options'     => $rsServidorCargos,
+            /*string*/    'ariaLabel'   => 'Selecione um cargo',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )); ?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Decreto',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 's_situacao_trabalho_decreto',
@@ -295,10 +289,8 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
-        </div>
-        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'DOE(Diario Oficial do Estado)',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 's_situacao_trabalho_doe',
@@ -314,7 +306,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
         </div>
         <div class="row">
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 6,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de Inicio',
             /*string*/    'name'        => 's_situacao_trabalho_dt_inicio',
             /*string*/    'id'          => 's_situacao_trabalho_dt_inicio',
@@ -327,7 +319,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 6,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de Finalização',
             /*string*/    'name'        => 's_situacao_trabalho_dt_fim',
             /*string*/    'id'          => 's_situacao_trabalho_dt_fim',
@@ -341,16 +333,15 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Observação',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 's_situacao_trabalho_obs',
             /*string*/    'id'          => 's_situacao_trabalho_obs',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o DOE(diario oficial do estado)',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Descreva a observação',
             /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_obs'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
@@ -374,7 +365,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Matrícula',
             /*string*/    'type'        => 'number',
             /*string*/    'name'        => 's_matricula_2',
@@ -387,10 +378,8 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
-        </div>
-        <div class="row">
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Tipo de Servidor(a)',
             /*string*/    'name'        => 's_sme_serv_tipo_id_2',
             /*string*/    'id'          => 's_sme_serv_tipo_id_2',
@@ -401,24 +390,8 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )); ?>
-        </div>
-        <div class="row">
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Cargo',
-            /*string*/    'name'        => 's_eo_cargo_id_2',
-            /*string*/    'id'          => 's_eo_cargo_id_2',
-            /*string*/    'class'       => 'select2 form-control form-select select-basic',
-            /*string*/    'value'       => $rsRegistroSIdent['eo_cargo_id_2'],
-            /*array()*/   'options'     => $rsServidorCargos,
-            /*string*/    'ariaLabel'   => 'Selecione um cargo',
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )); ?>
-        </div>
-        <div class="row">
-          <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Situação do Servidor(a)',
             /*string*/    'name'        => 's_sme_serv_situacao_id_2',
             /*string*/    'id'          => 's_sme_serv_situacao_id_2',
@@ -431,8 +404,20 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
           )); ?>
         </div>
         <div class="row">
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'Cargo',
+            /*string*/    'name'        => 's_eo_cargo_id_2',
+            /*string*/    'id'          => 's_eo_cargo_id_2',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroSIdent['eo_cargo_id_2'],
+            /*array()*/   'options'     => $rsServidorCargos,
+            /*string*/    'ariaLabel'   => 'Selecione um cargo',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )); ?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Decreto',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 's_situacao_trabalho_decreto_2',
@@ -440,15 +425,13 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o decreto da situação de trabalho',
-            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_decreto_2'],
+            /*string*/    'placeholder' => 'Digite o decreto da situação de trabalho_2',
+            /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_decreto'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
-        </div>
-        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'DOE(Diario Oficial do Estado)',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 's_situacao_trabalho_doe_2',
@@ -464,7 +447,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
         </div>
         <div class="row">
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 6,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de Inicio',
             /*string*/    'name'        => 's_situacao_trabalho_dt_inicio_2',
             /*string*/    'id'          => 's_situacao_trabalho_dt_inicio_2',
@@ -477,7 +460,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 6,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de Finalização',
             /*string*/    'name'        => 's_situacao_trabalho_dt_fim_2',
             /*string*/    'id'          => 's_situacao_trabalho_dt_fim_2',
@@ -491,16 +474,15 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Observação',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 's_situacao_trabalho_obs_2',
             /*string*/    'id'          => 's_situacao_trabalho_obs_2',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o DOE(diario oficial do estado)',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Descreva a observação',
             /*string*/    'value'       => $rsRegistroSIdent['situacao_trabalho_obs_2'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

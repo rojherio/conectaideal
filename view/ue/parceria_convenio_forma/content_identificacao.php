@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de forma de contratação d
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome da Forma de Contratação de Parceria ou Convênio',
+            /*string*/    'placeholder' => 'Digite o nome da forma de contratação de parceria ou convênio',
             /*string*/    'value'       => $rsRegistroParceriaConvenioForma['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pcf_descricao',
             /*string*/    'id'          => 'pcf_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Forma de Contratação de Parceria ou Convênio',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição da forma de contratação de parceria ou convênio',
             /*string*/    'value'       => $rsRegistroParceriaConvenioForma['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

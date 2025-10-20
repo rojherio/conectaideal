@@ -36,7 +36,7 @@ $stmt = $db->prepare("SELECT
   FROM ue_ens_modalidade_tipo AS emt
   ORDER BY emt.nome");
 $stmt->execute();
-$rsRegistroEnsinoModalidadeEtapa2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$rsEnsinoModalidadeEtapas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Cadastro da Etapa de Ensino";
@@ -91,7 +91,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
             /*string*/    'id'          => 'eme_ue_ens_modalidade_tipo_id',
             /*string*/    'class'       => 'select2 form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroEnsinoModalidadeEtapa['ue_ens_modalidade_tipo_id'],
-            /*array()*/   'options'     => $rsRegistroEnsinoModalidadeEtapa2,
+            /*array()*/   'options'     => $rsEnsinoModalidadeEtapas,
             /*string*/    'ariaLabel'   => 'Selecione uma modalidade de ensino',
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
@@ -105,7 +105,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de etapa de ensino está at
             /*string*/    'id'          => 'eme_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 254,
+            /*int*/       'maxlength'   => '',
             /*string*/    'placeholder' => 'Descreva a Etapa de Ensino',
             /*string*/    'value'       => $rsRegistroEnsinoModalidadeEtapa['descricao'],
             /*bool*/      'required'    => false,

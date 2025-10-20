@@ -96,7 +96,7 @@ $('.select2-multiple').select2({
   }
 });
 //Initialize Select2_municipio
-$(".select2_municipio").select2({
+$(".select2-municipio").select2({
 	placeholder: 'Selecione uma opção',
   minimumInputLength: 3,
   cache: true,
@@ -124,6 +124,50 @@ $(".select2_municipio").select2({
   },
   ajax: {
     url: PORTAL_URL + "model/bsc/municipio/get_municipios_estados",
+    dataType: 'json',
+    type: "post",
+    delay: 150,
+    data: function(params) {
+      return {
+        nome: params.term
+      };
+    },
+    processResults: function(data, params) {
+      return {
+        results: data.itens
+      };
+    }
+  }
+});
+//Initialize Select2_municipio
+$(".select2-nacionalidade").select2({
+  placeholder: 'Selecione uma opção',
+  minimumInputLength: 3,
+  cache: true,
+  allowClear: true,
+  language: {
+    inputTooShort: function(args) {
+      return "Por favor, digite 3 ou mais caracteres";
+    },
+    errorLoading: function() {
+      return "Erro ao carregar resultados";
+    },
+    loadingMore: function() {
+      return "Carregando mais resultados";
+    },
+    noResults: function() {
+      return "Nenhum resultado encontrado";
+    },
+    searching: function() {
+      return "Carregando...";
+    },
+    maximumSelected: function(args) {
+      // args.maximum is the maximum number of items the user may select
+      return "Erro ao carregar resultados";
+    }
+  },
+  ajax: {
+    url: PORTAL_URL + "model/bsc/pais/get_nacionalidades",
     dataType: 'json',
     type: "post",
     delay: 150,
@@ -236,7 +280,7 @@ function createSelect2(elemDiv){
       }
     });
   });
-  $(elemDiv).find('select.select2_municipio').each(function (k, elem){
+  $(elemDiv).find('select.select2-municipio').each(function (k, elem){
     $(elem).select2({
       minimumInputLength: 3,
       cache: true,
@@ -263,6 +307,51 @@ function createSelect2(elemDiv){
       },
       ajax: {
         url: PORTAL_URL + "model/bsc/municipio/get_municipios_estados",
+        dataType: 'json',
+        type: "post",
+        delay: 150,
+        data: function(params) {
+          return {
+            nome: params.term
+          };
+        },
+        processResults: function(data, params) {
+          return {
+            results: data.itens
+          };
+        }
+      }
+    });
+  });
+  $(elemDiv).find('select.select2-nacionalidade').each(function (k, elem){
+    $(elem).select2({
+      placeholder: 'Selecione uma opção',
+      minimumInputLength: 3,
+      cache: true,
+      allowClear: true,
+      language: {
+        inputTooShort: function(args) {
+          return "Por favor, digite 3 ou mais caracteres";
+        },
+        errorLoading: function() {
+          return "Erro ao carregar resultados";
+        },
+        loadingMore: function() {
+          return "Carregando mais resultados";
+        },
+        noResults: function() {
+          return "Nenhum resultado encontrado";
+        },
+        searching: function() {
+          return "Carregando...";
+        },
+        maximumSelected: function(args) {
+      // args.maximum is the maximum number of items the user may select
+          return "Erro ao carregar resultados";
+        }
+      },
+      ajax: {
+        url: PORTAL_URL + "model/bsc/pais/get_nacionalidades",
         dataType: 'json',
         type: "post",
         delay: 150,

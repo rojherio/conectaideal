@@ -73,15 +73,14 @@ $descricaoFormulario5     = "Defina se esse cadastro da tipo de ensino profissio
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'ept_descricao',
             /*string*/    'id'          => 'ept_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 254,
+            /*int*/       'maxlength'   => '',
             /*string*/    'placeholder' => 'Descreva o tipo de ensino profissional',
             /*string*/    'value'       => $rsRegistroEnsinoProfissionalTipo['descricao'],
             /*bool*/      'required'    => false,

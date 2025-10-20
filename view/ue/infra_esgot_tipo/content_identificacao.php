@@ -17,7 +17,7 @@ $stmt = $db->prepare("SELECT
   WHERE iet.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
-$rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
+$rsRegistroIET = $stmt->fetch(PDO::FETCH_ASSOC);
 if (!is_array($rsRegistro)) {
   $rsRegistro = array();
   $rsRegistro['id'] = 0;
@@ -45,7 +45,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de esgotamento sani
 <!-- Main Section - BEGIN-->
 <!-- div de cadastro - BEGIN -->
 <div class="row">
-  <input type="hidden" name="iet_id" id="iet_id" value="<?= $rsRegistro['id'] ;?>">
+  <input type="hidden" name="iet_id" id="iet_id" value="<?= $rsRegistroIET['id'] ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -66,24 +66,23 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de esgotamento sani
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Tipo de Esgotamento Sanitário',
-            /*string*/    'value'       => $rsRegistro['nome'],
+            /*string*/    'placeholder' => 'Digite o nome do tipo de esgotamento sanitário',
+            /*string*/    'value'       => $rsRegistroIET['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'iet_descricao',
             /*string*/    'id'          => 'iet_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Tipo de Esgotamento Sanitário',
-            /*string*/    'value'       => $rsRegistro['descricao'],
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do tipo de esgotamento sanitário',
+            /*string*/    'value'       => $rsRegistroIET['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -115,7 +114,7 @@ if (isset($exibeSituacao)) {
               /*string*/    'id'          => 'iet_status',
               /*string*/    'class'       => 'toggle',
               /*string*/    'value'       => 1,
-              /*string*/    'checked'     => $rsRegistro['status'],
+              /*string*/    'checked'     => $rsRegistroIET['status'],
               /*string*/    'prop'        => ''
             )) ;?>
           </div>

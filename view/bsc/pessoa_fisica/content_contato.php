@@ -15,8 +15,6 @@ $stmt = $db->prepare("
   pc.end_complemento,
   pc.end_bairro,
   pc.bsc_municipio_id,
-  m.nome AS end_municipio_nome, 
-  e.sigla AS end_estado_sigla, 
   pc.tel_residencial,
   pc.tel_celular,
   pc.tel_recado,
@@ -30,9 +28,6 @@ $stmt = $db->prepare("
   pc.emergencia_end,
   pc.emergencia_tel
   FROM bsc_pessoa_contato AS pc 
-  LEFT JOIN bsc_municipio AS m ON m.id = pc.bsc_municipio_id 
-  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
-  LEFT JOIN bsc_parentesco_grau AS pg ON pg.id = pc.bsc_parentesco_grau_id 
   WHERE pc.bsc_pessoa_id = ?;");
 $stmt->bindValue(1, $idPessoa);
 $stmt->execute();
@@ -48,8 +43,6 @@ if (!($rsRegistroPessoaCont)) {
   $rsRegistroPessoaCont['end_complemento'] = '';
   $rsRegistroPessoaCont['end_bairro'] = '';
   $rsRegistroPessoaCont['bsc_municipio_id'] = '';
-  $rsRegistroPessoaCont['end_municipio_nome'] = '';
-  $rsRegistroPessoaCont['end_estado_sigla'] = '';
   $rsRegistroPessoaCont['tel_residencial'] = '';
   $rsRegistroPessoaCont['tel_celular'] = '';
   $rsRegistroPessoaCont['tel_recado'] = '';
@@ -72,7 +65,9 @@ $stmt = $db->prepare("
   CONCAT(m.nome, ' - ', e.sigla) AS nome
   FROM bsc_municipio AS m 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id
-  ORDER BY e.nome ASC, m.nome;");
+  WHERE m.id IN (?)
+  ORDER BY e.sigla ASC, m.nome;");
+$stmt->bindValue(1, $rsRegistroPessoaCont['bsc_municipio_id']);
 $stmt->execute();
 $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt = $db->prepare("
@@ -97,7 +92,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
 <!-- formulário de cadastro - BEGIN -->
 <div class="row">
   <input type="hidden" name="pc_id" id="pc_id" value="<?= $rsRegistroPessoaCont['id'] ;?>">
-  <input type="hidden" name="pc_bsc_pessoa_id" id="pc_bsc_pessoa_id" value="<?= $rsRegistroPessoaCont['bsc_pessoa_id'] ;?>">
+  <input type="hidden" name="pc_bsc_pessoa_id" id="pc_bsc_pessoa_id" value="<?= $idPessoa ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -110,7 +105,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'CEP',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_end_cep',
@@ -123,8 +118,10 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 10,
             /*string*/    'label'       => 'Logradouro',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_end_logradouro',
@@ -138,7 +135,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 2,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_end_numero',
@@ -151,8 +148,10 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Complemento',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_end_complemento',
@@ -166,7 +165,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Bairro',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_end_bairro',
@@ -180,14 +179,14 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Cidade',
             /*string*/    'name'        => 'pc_bsc_municipio_id',
             /*string*/    'id'          => 'pc_bsc_municipio_id',
-            /*string*/    'class'       => 'select2_municipio form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-municipio form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroPessoaCont['bsc_municipio_id'],
             /*array()*/   'options'     => $rsMunicipios,
-            /*string*/    'ariaLabel'   => 'Selecione uma cidade',
+            /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )); ?>
@@ -210,7 +209,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Telefone Residencial',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_tel_residencial',
@@ -224,7 +223,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Telefone Celular',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_tel_celular',
@@ -251,8 +250,10 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 4,
+            /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Nome do Contato para Recado',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_tel_recado_nome',
@@ -266,7 +267,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 4,
+            /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Grau de Parentesco do Contato para Recado',
             /*string*/    'name'        => 'pc_bsc_parentesco_grau_id',
             /*string*/    'id'          => 'pc_bsc_parentesco_grau_id',
@@ -296,7 +297,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'E-mail Institucional',
             /*string*/    'type'        => 'email',
             /*string*/    'name'        => 'pc_email_institucional',
@@ -310,7 +311,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'E-mail Pessoal',
             /*string*/    'type'        => 'email',
             /*string*/    'name'        => 'pc_email_pessoal',
@@ -323,8 +324,10 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'E-mail Alternativo',
             /*string*/    'type'        => 'email',
             /*string*/    'name'        => 'pc_email_alternativo',
@@ -338,7 +341,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 6,
             /*string*/    'label'       => 'Site',
             /*string*/    'type'        => 'url',
             /*string*/    'name'        => 'pc_site',
@@ -370,7 +373,7 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 8,
             /*string*/    'label'       => 'Nome do Contato de Emergência',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pc_emergencia_nome',
@@ -380,6 +383,20 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'maxlength'   => 100,
             /*string*/    'placeholder' => 'Digite o nome do contato de emergência',
             /*string*/    'value'       => $rsRegistroPessoaCont['emergencia_nome'],
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )) ;?>
+          <?= createInput(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'Telefone/Celular do contato de emergência',
+            /*string*/    'type'        => 'text',
+            /*string*/    'name'        => 'pc_emergencia_tel',
+            /*string*/    'id'          => 'pc_emergencia_tel',
+            /*string*/    'class'       => 'form-control mask-tel-geral',
+            /*int*/       'minlength'   => 13,
+            /*int*/       'maxlength'   => 15,
+            /*string*/    'placeholder' => 'Digite o telefone do contato de emergência',
+            /*string*/    'value'       => $rsRegistroPessoaCont['emergencia_tel'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -394,20 +411,6 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'maxlength'   => 254,
             /*string*/    'placeholder' => 'Digite o endereço do contato de emergência',
             /*string*/    'value'       => $rsRegistroPessoaCont['emergencia_end'],
-            /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
-          )) ;?>
-          <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Telefone/Celular do contato de emergência',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 'pc_emergencia_tel',
-            /*string*/    'id'          => 'pc_emergencia_tel',
-            /*string*/    'class'       => 'form-control mask-tel-geral',
-            /*int*/       'minlength'   => 13,
-            /*int*/       'maxlength'   => 15,
-            /*string*/    'placeholder' => 'Digite o telefone do contato de emergência',
-            /*string*/    'value'       => $rsRegistroPessoaCont['emergencia_tel'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>

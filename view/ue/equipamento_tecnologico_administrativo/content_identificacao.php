@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de equipamento para uso té
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Equipamento para Uso Técnico e Administrativo',
+            /*string*/    'placeholder' => 'Digite o nome do equipamento para uso técnico e administrativo',
             /*string*/    'value'       => $rsRegistroEquipamentoTecnologicoAdministrativo['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'eta_descricao',
             /*string*/    'id'          => 'eta_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Equipamento para Uso Técnico e Administrativo',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do equipamento para uso técnico e administrativo',
             /*string*/    'value'       => $rsRegistroEquipamentoTecnologicoAdministrativo['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

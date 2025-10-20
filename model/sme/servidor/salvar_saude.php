@@ -1,7 +1,7 @@
 <?php
 $db                                       = Conexao::getInstance();
 $id                                       = @$_POST['ss_sme_serv_saude_id']?: '';
-$status                                   = @$_POST['ss_status']?: 0;
+$status                                   = 1;
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $sme_servidor_id                          = strip_tags(@$_POST['ss_sme_servidor_id']?: '');
 $dt_ocorrido                              = @$_POST['ss_dt_ocorrido']?: '';
@@ -62,10 +62,10 @@ try {
         $stmt->bindValue(1, $status);
         $stmt->bindValue(2, $dt_cadastro?: NULL);
         $stmt->bindValue(3, $sme_servidor_id?: NULL);
-        $stmt->bindValue(4, $dt_ocorrido?: NULL);
-        $stmt->bindValue(5, $descricao);
-        $stmt->bindValue(6, $dt_inicio?: NULL);
-        $stmt->bindValue(7, $dt_fim?: NULL);
+        $stmt->bindValue(4, $dt_ocorrido[$kId]?: NULL);
+        $stmt->bindValue(5, trim(strip_tags($descricao[$kId]?: '')));
+        $stmt->bindValue(6, $dt_inicio[$kId]?: NULL);
+        $stmt->bindValue(7, $dt_fim[$kId]?: NULL);
         $stmt->bindValue(8, $vId);
         $stmt->execute();
       } else {
@@ -93,7 +93,7 @@ try {
         $stmt->bindValue(2, $dt_cadastro?: NULL);
         $stmt->bindValue(3, $sme_servidor_id?: NULL);
         $stmt->bindValue(4, $dt_ocorrido[$kId]?: NULL);
-        $stmt->bindValue(5, trim(strip_tags($descricao[$kId])));
+        $stmt->bindValue(5, trim(strip_tags($descricao[$kId]?: '')));
         $stmt->bindValue(6, $dt_inicio[$kId]?: NULL);
         $stmt->bindValue(7, $dt_fim[$kId]?: NULL);
         $stmt->execute();

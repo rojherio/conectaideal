@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de equipamento para ensino 
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Equipamento para Ensino e Aprendizagem',
+            /*string*/    'placeholder' => 'Digite o nome do equipamento para ensino e aprendizagem',
             /*string*/    'value'       => $rsRegistroEquipamentoEnsinoAprendizTipo['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'eeat_descricao',
             /*string*/    'id'          => 'eeat_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Equipamento para Ensino e Aprendizagem',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do equipamento para ensino e aprendizagem',
             /*string*/    'value'       => $rsRegistroEquipamentoEnsinoAprendizTipo['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

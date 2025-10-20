@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de tipo de tratamento do li
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 100,
-            /*string*/    'placeholder' => 'Digite o nome do Tipo de tratamento do Lixo/Resíduos',
+            /*string*/    'placeholder' => 'Digite o nome do tipo de tratamento do lixo/resíduos',
             /*string*/    'value'       => $rsRegistroInfraLixoResidTratTipo['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'ilrtt_descricao',
             /*string*/    'id'          => 'ilrtt_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Tipo de tratamento do Lixo/Resíduos',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do tipo de tratamento do lixo/resíduos',
             /*string*/    'value'       => $rsRegistroInfraLixoResidTratTipo['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

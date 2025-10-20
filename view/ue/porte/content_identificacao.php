@@ -66,23 +66,22 @@ $descricaoFormulario5     = "Defina se esse cadastro de porte de alunos está at
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 150,
-            /*string*/    'placeholder' => 'Digite o nome do Porte de Alunos',
+            /*string*/    'placeholder' => 'Digite o nome do porte de alunos',
             /*string*/    'value'       => $rsRegistroPorte['nome'],
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>
         <div class="row">
-          <?= createInput(array(
+          <?= createTextArea(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Descrição',
-            /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'p_descricao',
             /*string*/    'id'          => 'p_descricao',
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 256,
-            /*string*/    'placeholder' => 'Digite a descrição do Porte de Alunos',
+            /*int*/       'maxlength'   => '',
+            /*string*/    'placeholder' => 'Digite a descrição do porte de alunos',
             /*string*/    'value'       => $rsRegistroPorte['descricao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''

@@ -22,8 +22,6 @@ $stmt = $db->prepare("
   pd.eleitor_zona,
   pd.eleitor_secao,
   pd.eleitor_bsc_municipio_id,
-  m.nome AS eleitor_municipio_nome, 
-  e.sigla AS eleitor_estado_sigla, 
   pd.eleitor_insc_orgao_classe,
   pd.ctps_numero,
   pd.ctps_serie,
@@ -55,8 +53,6 @@ $stmt = $db->prepare("
   pd.estrangeiro_casado_brasileiro,
   pd.estrangeiro_filho_brasileiro 
   FROM bsc_pessoa_documento AS pd 
-  LEFT JOIN bsc_municipio AS m ON m.id = pd.eleitor_bsc_municipio_id 
-  LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
   WHERE pd.bsc_pessoa_id = ?;");
 $stmt->bindValue(1, $idPessoa);
 $stmt->execute();
@@ -79,8 +75,6 @@ if (!($rsRegistroPessoaDoc)) {
   $rsRegistroPessoaDoc['eleitor_zona'] = '';
   $rsRegistroPessoaDoc['eleitor_secao'] = '';
   $rsRegistroPessoaDoc['eleitor_bsc_municipio_id'] = '';
-  $rsRegistroPessoaDoc['eleitor_municipio_nome'] = '';
-  $rsRegistroPessoaDoc['eleitor_estado_sigla'] = '';
   $rsRegistroPessoaDoc['eleitor_insc_orgao_classe'] = '';
   $rsRegistroPessoaDoc['ctps_numero'] = '';
   $rsRegistroPessoaDoc['ctps_serie'] = '';
@@ -121,7 +115,9 @@ $stmt = $db->prepare("
   CONCAT(m.nome, ' - ', e.sigla) AS nome
   FROM bsc_municipio AS m 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id
-  ORDER BY e.nome ASC, m.nome;");
+  WHERE m.id IN (?)
+  ORDER BY e.sigla ASC, m.nome;");
+$stmt->bindValue(1, $rsRegistroPessoaDoc['eleitor_bsc_municipio_id']);
 $stmt->execute();
 $rsMunicipios = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para Select - END
@@ -149,7 +145,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
 <!-- formulário de cadastro - BEGIN -->
 <div class="row">
   <input type="hidden" name="pd_id" id="pd_id" value="<?= $rsRegistroPessoaDoc['id'] ;?>">
-  <input type="hidden" name="pd_bsc_pessoa_id" id="pd_bsc_pessoa_id" value="<?= $rsRegistroPessoaDoc['bsc_pessoa_id'] ;?>">
+  <input type="hidden" name="pd_bsc_pessoa_id" id="pd_bsc_pessoa_id" value="<?= $idPessoa ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -162,7 +158,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rg_numero',
@@ -176,7 +172,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de emissão',
             /*string*/    'name'        => 'pd_rg_dt_emissao',
             /*string*/    'id'          => 'pd_rg_dt_emissao',
@@ -189,7 +185,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Órgão expedidor',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rg_orgao_expedidor',
@@ -221,7 +217,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_pis_numero',
@@ -235,7 +231,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de cadastro',
             /*string*/    'name'        => 'pd_pis_dt_cadastro',
             /*string*/    'id'          => 'pd_pis_dt_cadastro',
@@ -247,8 +243,10 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Domicílio bancário',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_pis_domicilio_bancario',
@@ -262,7 +260,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Número do banco',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pis_banco_numero',
@@ -276,7 +274,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Agência bancária',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_pis_banco_agencia',
@@ -289,6 +287,8 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
             /*int 1-12*/  'col'         => 12,
             /*string*/    'label'       => 'Endereço da agência',
@@ -298,7 +298,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 3,
             /*int*/       'maxlength'   => 50,
-            /*string*/    'placeholder' => 'Digite o endereço da agência do PIS/PASEP',
+            /*string*/    'placeholder' => 'Digite o endereço da agência bancária do PIS/PASEP',
             /*string*/    'value'       => $rsRegistroPessoaDoc['pis_banco_end'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
@@ -322,7 +322,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 3,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_eleitor_numero',
@@ -330,13 +330,13 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
-            /*string*/    'placeholder' => 'Digite o número do título eleitoral',
+            /*string*/    'placeholder' => 'Digite o número do título',
             /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_numero'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 2,
             /*string*/    'label'       => 'Zona',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_eleitor_zona',
@@ -344,13 +344,13 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 1,
             /*int*/       'maxlength'   => 5,
-            /*string*/    'placeholder' => 'Digite a zona do título eleitoral',
+            /*string*/    'placeholder' => 'Digite a zona do título',
             /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_zona'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 2,
             /*string*/    'label'       => 'Seção',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_eleitor_secao',
@@ -358,20 +358,20 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 1,
             /*int*/       'maxlength'   => 5,
-            /*string*/    'placeholder' => 'Digite a seção do título eleitoral',
+            /*string*/    'placeholder' => 'Digite a seção do título',
             /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_secao'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 5,
             /*string*/    'label'       => 'Cidade',
             /*string*/    'name'        => 'pd_eleitor_bsc_municipio_id',
             /*string*/    'id'          => 'pd_eleitor_bsc_municipio_id',
-            /*string*/    'class'       => 'select2_municipio form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-municipio form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_bsc_municipio_id'],
             /*array()*/   'options'     => $rsMunicipios,
-            /*string*/    'ariaLabel'   => 'Selecione uma cidade',
+            /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )); ?>
@@ -394,7 +394,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_ctps_numero',
@@ -408,7 +408,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Série',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_ctps_serie',
@@ -422,7 +422,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de emissão',
             /*string*/    'name'        => 'pd_ctps_dt_emissao',
             /*string*/    'id'          => 'pd_ctps_dt_emissao',
@@ -434,8 +434,10 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Órgão expedidor',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_ctps_orgao_expedidor',
@@ -449,7 +451,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Ano do primeiro emprego',
             /*string*/    'type'        => 'number',
             /*string*/    'name'        => 'pd_ctps_primeiro_emprego_ano',
@@ -481,7 +483,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_cnh_numero',
@@ -495,7 +497,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Categoria',
             /*string*/    'name'        => 'pd_cnh_categoria',
             /*string*/    'id'          => 'pd_cnh_categoria',
@@ -517,7 +519,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )); ?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de emissão',
             /*string*/    'name'        => 'pd_cnh_dt_emissao',
             /*string*/    'id'          => 'pd_cnh_dt_emissao',
@@ -529,8 +531,10 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Órgão expedidor',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_cnh_orgao_expedidor',
@@ -544,7 +548,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de validade',
             /*string*/    'name'        => 'pd_cnh_validade',
             /*string*/    'id'          => 'pd_cnh_validade',
@@ -557,7 +561,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de primeira habilitação',
             /*string*/    'name'        => 'pd_cnh_dt_primeira_habilitacao',
             /*string*/    'id'          => 'pd_cnh_dt_primeira_habilitacao',
@@ -588,7 +592,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rm_numero',
@@ -602,7 +606,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Categoria',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rm_categoria',
@@ -616,7 +620,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Ano de emissão',
             /*string*/    'type'        => 'number',
             /*string*/    'name'        => 'pd_rm_emissao_ano',
@@ -629,8 +633,10 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Órgão expedidor',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rm_orgao_expedidor',
@@ -644,7 +650,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Espécie',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rm_especie',
@@ -676,7 +682,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 3,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rp_numero',
@@ -690,7 +696,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 3,
             /*string*/    'label'       => 'Data de emissão',
             /*string*/    'name'        => 'pd_rp_dt_emissao',
             /*string*/    'id'          => 'pd_rp_dt_emissao',
@@ -703,7 +709,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 3,
             /*string*/    'label'       => 'Órgão expedidor',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rp_orgao_expedidor',
@@ -717,7 +723,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 3,
             /*string*/    'label'       => 'Data de validade',
             /*string*/    'name'        => 'pd_rp_dt_validade',
             /*string*/    'id'          => 'pd_rp_dt_validade',
@@ -748,7 +754,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rne_numero',
@@ -762,7 +768,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Data de emissão',
             /*string*/    'name'        => 'pd_rne_dt_emissao',
             /*string*/    'id'          => 'pd_rne_dt_emissao',
@@ -775,7 +781,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Órgão expedidor',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_rne_orgao_expedidor',
@@ -788,9 +794,11 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
+        </div>
+        <div class="row">
           <?= createCheckbox(array(
-            /*int 1-12*/  'col'         => '12 mb-3',
-            /*string*/    'label'       => 'Casado(a) com brasileiro(a)',
+            /*int 1-12*/  'col'         => '6 mb-3',
+            /*string*/    'label'       => 'Casado(a) com brasileiro(a)?',
             /*string*/    'name'        => 'pd_estrangeiro_casado_brasileiro',
             /*string*/    'id'          => 'pd_estrangeiro_casado_brasileiro',
             /*string*/    'class'       => 'toggle mb-3',
@@ -799,8 +807,8 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createCheckbox(array(
-            /*int 1-12*/  'col'         => '12 mb-3',
-            /*string*/    'label'       => 'Tem filho(a) brasileiro(a)',
+            /*int 1-12*/  'col'         => '6 mb-3',
+            /*string*/    'label'       => 'Tem filho(a) brasileiro(a)?',
             /*string*/    'name'        => 'pd_estrangeiro_filho_brasileiro',
             /*string*/    'id'          => 'pd_estrangeiro_filho_brasileiro',
             /*string*/    'class'       => 'toggle mb-3',
@@ -827,7 +835,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 4,
             /*string*/    'label'       => 'Número',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_fgts_numero',
@@ -841,7 +849,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 2,
             /*string*/    'label'       => 'Opção',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_fgts_opcao',
@@ -855,7 +863,7 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 3,
             /*string*/    'label'       => 'Conta bancária vinculada',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'pd_fgts_conta_vinculaa_banco',
@@ -863,13 +871,13 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'class'       => 'form-control',
             /*int*/       'minlength'   => 2,
             /*int*/       'maxlength'   => 18,
-            /*string*/    'placeholder' => 'Digite conta bancária vinculada ao FGTS',
+            /*string*/    'placeholder' => 'Digite a conta bancária vinculada ao FGTS',
             /*string*/    'value'       => $rsRegistroPessoaDoc['rne_orgao_expedidor'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
           <?= createInputDate(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 3,
             /*string*/    'label'       => 'Data de retificação',
             /*string*/    'name'        => 'pd_fgts_dt_retificacao',
             /*string*/    'id'          => 'pd_fgts_dt_retificacao',
