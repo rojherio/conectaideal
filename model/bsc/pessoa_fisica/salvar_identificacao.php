@@ -1,6 +1,6 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['p_id']);
+$id                                       = strip_tags(@$_POST['p_id']?: '');
 $status                                   = strip_tags(@$_POST['p_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $tipo                                     = 1; //1 = pessoa física, 2 = pessoa jurídica

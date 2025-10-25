@@ -2,7 +2,7 @@
 //Consulta para Edição - BEGIN
 $idS = isset($id) ? $id : (isset($parametromodulo) ? $parametromodulo : 0);
 $idS = isset($sme_servidor_id) ? $sme_servidor_id : $idS;
-//Contato - BEGIN
+//Bancario - BEGIN
 $stmt = $db->prepare("
   SELECT 
   sb.id,
@@ -30,7 +30,7 @@ if (!($rsRegistroSBancario)) {
   $rsRegistroSBancario['conta'] = '';
   $rsRegistroSBancario['op'] = '';
 }
-//Contato - END
+//Bancario - END
 //Consulta para Edição - END
 //Consulta para Select - BEGIN
 //Banco Conta Tipo - BEGIN

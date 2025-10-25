@@ -5,6 +5,8 @@ $status                                   = strip_tags(@$_POST['ue_status']?: 0)
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $bsc_pessoa_id                            = strip_tags(@$_POST['ue_bsc_pessoa_id']?: '');
 $inep_cod                                 = trim(strip_tags(@$_POST['ue_inep_cod']?: ''));
+$orgao_regional_cod                       = trim(strip_tags(@$_POST['ue_orgao_regional_cod']?: ''));
+$orgao_regional_nome                      = trim(strip_tags(@$_POST['ue_orgao_regional_nome']?: ''));
 $ue_funcionam_situacao_id                 = strip_tags(@$_POST['ue_ue_funcionam_situacao_id']?: '');
 $ano_letivo_dt_inicio                     = strip_tags(@$_POST['ue_ano_letivo_dt_inicio']?: '');
 $ano_letivo_dt_fim                        = strip_tags(@$_POST['ue_ano_letivo_dt_fim']?: '');
@@ -16,7 +18,6 @@ $bsc_esfera_administrativa_id_regulam     = strip_tags(@$_POST['ue_bsc_esfera_ad
 $ue_regulam_situacao_id                   = strip_tags(@$_POST['ue_ue_regulam_situacao_id']?: '');
 $ue_ue_vinculada_tipo_id                  = strip_tags(@$_POST['ue_ue_ue_vinculada_tipo_id']?: '');
 $ue_ue_id_vinculada                       = strip_tags(@$_POST['ue_ue_ue_id_vinculada']?: '');
-$regional_cod                             = trim(strip_tags(@$_POST['ue_regional_cod']?: ''));
 $entidade_superior_acesso                 = trim(strip_tags(@$_POST['ue_entidade_superior_acesso']?: ''));
 $ue_infra_local_ocupacao_forma_id         = strip_tags(@$_POST['ue_ue_infra_local_ocupacao_forma_id']?: '');
 $fornece_agua_potavel                     = trim(strip_tags(@$_POST['ue_fornece_agua_potavel']?: 0));
@@ -35,15 +36,6 @@ $tableName      = 'ue_ue';
 $error          = false;
 $result         = array();
 $msg            = "";
-// sleep(10);
-// $result = array(
-//   'id'      => '',
-//   'tipo'    => '',
-//   'status' => 'succes',
-//   'msg' => 'Dados pessoais do servidor atualizados com sucesso.'
-// );
-// echo json_encode(array('status' => 'success', 'msg' => 'As novas informações foram registradas com sucesso.'));
-// exit();
 try {
   $db->beginTransaction();
   $stmt = $db->prepare('
@@ -85,6 +77,8 @@ try {
           dt_cadastro = ?,
           bsc_pessoa_id = ?,
           inep_cod = ?,
+          orgao_regional_cod = ?,
+          orgao_regional_nome = ?,
           ue_funcionam_situacao_id = ?,
           ano_letivo_dt_inicio = ?,
           ano_letivo_dt_fim = ?,
@@ -96,7 +90,6 @@ try {
           ue_regulam_situacao_id = ?,
           ue_ue_vinculada_tipo_id = ?,
           ue_ue_id_vinculada = ?,
-          regional_cod = ?,
           entidade_superior_acesso = ?,
           ue_infra_local_ocupacao_forma_id = ?,
           fornece_agua_potavel = ?,
@@ -111,27 +104,28 @@ try {
       $stmt->bindValue(2, $dt_cadastro?: NULL);
       $stmt->bindValue(3, $bsc_pessoa_id?: NULL);
       $stmt->bindValue(4, $inep_cod);
-      $stmt->bindValue(5, $ue_funcionam_situacao_id?: NULL);
-      $stmt->bindValue(6, $ano_letivo_dt_inicio?: NULL);
-      $stmt->bindValue(7, $ano_letivo_dt_fim?: NULL);
-      $stmt->bindValue(8, $bsc_zona_id?: NULL);
-      $stmt->bindValue(9, $ue_localizacao_diferenciada_id?: NULL);
-      $stmt->bindValue(10, $bsc_esfera_administrativa_id_dependencia?: NULL);
-      $stmt->bindValue(11, $ue_cat_esc_priv_id?: NULL);
-      $stmt->bindValue(12, $bsc_esfera_administrativa_id_regulam?: NULL);
-      $stmt->bindValue(13, $ue_regulam_situacao_id?: NULL);
-      $stmt->bindValue(14, $ue_ue_vinculada_tipo_id?: NULL);
-      $stmt->bindValue(15, $ue_ue_id_vinculada?: NULL);
-      $stmt->bindValue(16, $regional_cod);
-      $stmt->bindValue(17, $entidade_superior_acesso);
-      $stmt->bindValue(18, $ue_infra_local_ocupacao_forma_id?: NULL);
-      $stmt->bindValue(19, $fornece_agua_potavel);
-      $stmt->bindValue(20, $sala_aula_qtd);
-      $stmt->bindValue(21, $sala_aula_climatizada_qtd);
-      $stmt->bindValue(22, $sala_aula_acessibilidade_qtd);
-      $stmt->bindValue(23, $internet_banda_larga_velocidade);
-      $stmt->bindValue(24, $alimentacao_pnae_fnde_oferece);
-      $stmt->bindValue(25, $id);
+      $stmt->bindValue(5, $orgao_regional_cod);
+      $stmt->bindValue(6, $orgao_regional_nome);
+      $stmt->bindValue(7, $ue_funcionam_situacao_id?: NULL);
+      $stmt->bindValue(8, $ano_letivo_dt_inicio?: NULL);
+      $stmt->bindValue(9, $ano_letivo_dt_fim?: NULL);
+      $stmt->bindValue(10, $bsc_zona_id?: NULL);
+      $stmt->bindValue(11, $ue_localizacao_diferenciada_id?: NULL);
+      $stmt->bindValue(12, $bsc_esfera_administrativa_id_dependencia?: NULL);
+      $stmt->bindValue(13, $ue_cat_esc_priv_id?: NULL);
+      $stmt->bindValue(14, $bsc_esfera_administrativa_id_regulam?: NULL);
+      $stmt->bindValue(15, $ue_regulam_situacao_id?: NULL);
+      $stmt->bindValue(16, $ue_ue_vinculada_tipo_id?: NULL);
+      $stmt->bindValue(17, $ue_ue_id_vinculada?: NULL);
+      $stmt->bindValue(18, $entidade_superior_acesso);
+      $stmt->bindValue(19, $ue_infra_local_ocupacao_forma_id?: NULL);
+      $stmt->bindValue(20, $fornece_agua_potavel);
+      $stmt->bindValue(21, $sala_aula_qtd);
+      $stmt->bindValue(22, $sala_aula_climatizada_qtd);
+      $stmt->bindValue(23, $sala_aula_acessibilidade_qtd);
+      $stmt->bindValue(24, $internet_banda_larga_velocidade);
+      $stmt->bindValue(25, $alimentacao_pnae_fnde_oferece);
+      $stmt->bindValue(26, $id);
       $stmt->execute();
     //DELETE ue_ue_uo_publica_vinc
       $stmt = $db->prepare('
@@ -307,6 +301,8 @@ try {
           dt_cadastro,
           bsc_pessoa_id,
           inep_cod,
+          orgao_regional_cod,
+          orgao_regional_nome,
           ue_funcionam_situacao_id,
           ano_letivo_dt_inicio,
           ano_letivo_dt_fim,
@@ -318,7 +314,6 @@ try {
           ue_regulam_situacao_id,
           ue_ue_vinculada_tipo_id,
           ue_ue_id_vinculada,
-          regional_cod,
           entidade_superior_acesso,
           ue_infra_local_ocupacao_forma_id,
           fornece_agua_potavel,
@@ -353,32 +348,34 @@ try {
           ?, 
           ?, 
           ?, 
+          ?, 
           ?
         );');
       $stmt->bindValue(1, $status);
       $stmt->bindValue(2, $dt_cadastro?: NULL);
       $stmt->bindValue(3, $bsc_pessoa_id?: NULL);
       $stmt->bindValue(4, $inep_cod);
-      $stmt->bindValue(5, $ue_funcionam_situacao_id?: NULL);
-      $stmt->bindValue(6, $ano_letivo_dt_inicio?: NULL);
-      $stmt->bindValue(7, $ano_letivo_dt_fim?: NULL);
-      $stmt->bindValue(8, $bsc_zona_id?: NULL);
-      $stmt->bindValue(9, $ue_localizacao_diferenciada_id?: NULL);
-      $stmt->bindValue(10, $bsc_esfera_administrativa_id_dependencia?: NULL);
-      $stmt->bindValue(11, $ue_cat_esc_priv_id?: NULL);
-      $stmt->bindValue(12, $bsc_esfera_administrativa_id_regulam?: NULL);
-      $stmt->bindValue(13, $ue_regulam_situacao_id?: NULL);
-      $stmt->bindValue(14, $ue_ue_vinculada_tipo_id?: NULL);
-      $stmt->bindValue(15, $ue_ue_id_vinculada?: NULL);
-      $stmt->bindValue(16, $regional_cod);
-      $stmt->bindValue(17, $entidade_superior_acesso);
-      $stmt->bindValue(18, $ue_infra_local_ocupacao_forma_id?: NULL);
-      $stmt->bindValue(19, $fornece_agua_potavel);
-      $stmt->bindValue(20, $sala_aula_qtd);
-      $stmt->bindValue(21, $sala_aula_climatizada_qtd);
-      $stmt->bindValue(22, $sala_aula_acessibilidade_qtd);
-      $stmt->bindValue(23, $internet_banda_larga_velocidade);
-      $stmt->bindValue(24, $alimentacao_pnae_fnde_oferece);
+      $stmt->bindValue(5, $orgao_regional_cod);
+      $stmt->bindValue(6, $orgao_regional_nome);
+      $stmt->bindValue(7, $ue_funcionam_situacao_id?: NULL);
+      $stmt->bindValue(8, $ano_letivo_dt_inicio?: NULL);
+      $stmt->bindValue(9, $ano_letivo_dt_fim?: NULL);
+      $stmt->bindValue(10, $bsc_zona_id?: NULL);
+      $stmt->bindValue(11, $ue_localizacao_diferenciada_id?: NULL);
+      $stmt->bindValue(12, $bsc_esfera_administrativa_id_dependencia?: NULL);
+      $stmt->bindValue(13, $ue_cat_esc_priv_id?: NULL);
+      $stmt->bindValue(14, $bsc_esfera_administrativa_id_regulam?: NULL);
+      $stmt->bindValue(15, $ue_regulam_situacao_id?: NULL);
+      $stmt->bindValue(16, $ue_ue_vinculada_tipo_id?: NULL);
+      $stmt->bindValue(17, $ue_ue_id_vinculada?: NULL);
+      $stmt->bindValue(18, $entidade_superior_acesso);
+      $stmt->bindValue(19, $ue_infra_local_ocupacao_forma_id?: NULL);
+      $stmt->bindValue(20, $fornece_agua_potavel);
+      $stmt->bindValue(21, $sala_aula_qtd);
+      $stmt->bindValue(22, $sala_aula_climatizada_qtd);
+      $stmt->bindValue(23, $sala_aula_acessibilidade_qtd);
+      $stmt->bindValue(24, $internet_banda_larga_velocidade);
+      $stmt->bindValue(25, $alimentacao_pnae_fnde_oferece);
       $stmt->execute();
       $id = $db->lastInsertId();
       if($bsc_uo_publica_id){

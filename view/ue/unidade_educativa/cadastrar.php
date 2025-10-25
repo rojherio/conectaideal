@@ -71,6 +71,16 @@ $descricaoPagina          = "Informações da unidade educativa";
                       <i class="ti ti-history pe-1 ps-1"></i>Vínculos
                     </button>
                   </li>
+                  <li class="nav-item" role="presentation">
+                    <button aria-controls="tab-pane-4" data-bs-target="#tab-pane-4" id="tab-4" aria-selected="false" class="nav-link <?= $tabPane == 4 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                      <i class="ti ti-history pe-1 ps-1"></i>Alimentação Escolar/Infraestrutura
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button aria-controls="tab-pane-5" data-bs-target="#tab-pane-5" id="tab-4" aria-selected="false" class="nav-link <?= $tabPane == 5 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                      <i class="ti ti-history pe-1 ps-1"></i>Equipamentos
+                    </button>
+                  </li>
                   <?php
                 }
                 ?>
@@ -90,17 +100,28 @@ $descricaoPagina          = "Informações da unidade educativa";
                     ?>
                   </form>.
                 </div>
-                <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
+                <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="3">
                   <form class="app-form" id="form_ue_privada" name="form_ue_privada" method="post" urlToSend="ue/unidade_educativa/salvar_vinculo" action="">
                     <?php 
                     include_once ('view/ue/unidade_educativa/content_vinculo.php'); 
                     ?>
                   </form>
                 </div>
+                <div aria-labelledby="tab-pane-4" id="tab-pane-4" class="tab-pane fade <?= $tabPane == 4 ? 'show active' : '' ;?>" role="tabpanel" tabindex="4">
+                  <form class="app-form" id="form_ue_infraestrutura" name="form_ue_infraestrutura" method="post" urlToSend="ue/unidade_educativa/salvar_infraestrutura" action="">
+                    <?php 
+                    include_once ('view/ue/unidade_educativa/content_infraestrutura.php'); 
+                    ?>
+                  </form>
+                </div>
+                <div aria-labelledby="tab-pane-5" id="tab-pane-5" class="tab-pane fade <?= $tabPane == 5 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
+                  <form class="app-form" id="form_ue_equipamento" name="form_ue_equipamento" method="post" urlToSend="ue/unidade_educativa/salvar_equipamento" action="">
+                    <?php 
+                    include_once ('view/ue/unidade_educativa/content_equipamento.php'); 
+                    ?>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div id="teste">
-
             </div>
           </div>
         </div>

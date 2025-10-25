@@ -283,7 +283,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                 /*array()*/   'values'      => array('Não', 'Sim'),
                 /*array()*/   'options'     => array("Não", "Sim"),
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => '" controller="benef_'.$keySD.'" controller-values="Sim"',
+                /*string*/    'prop'        => 'controller="benef_'.$keySD.'" controller-values="Sim"',
                 /*string*/    'prop_aux'    => array('idbase="sd_beneficiario_nao_"', 'idbase="sd_beneficiario_sim_"')
               )) ?>
             </div>
@@ -578,7 +578,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o nome',
                   /*string*/    'value'       => $objSD['benef_repres_nome'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_nome_" controlled="benef_'.$keySD.' repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_nome_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
               </div>
               <div class="row pe-3">

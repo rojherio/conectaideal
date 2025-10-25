@@ -60,7 +60,7 @@ $siDescricaoFormulario1    = "Informações de estudo e formação do servidor(a
         <?php
         foreach ($rsRegistrosSInstrucao as $keySI => $objSI) {
           ?>
-          <div divcount="<?=$keySI+1;?>" class="div_clonar row border border-outline-info rounded  pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
+          <div divcount="<?=$keySI+1;?>" class="div_clonar row border border-outline-info rounded pt-3 pb-3 ps-1 pe-0 mt-3 mb-1 ms-0 me-0">
             <h6>Escolaridade / Grau de Instrução - <span class="span_contador"><?=$keySI+1;?></span></h6>
             <!-- div row input - BEGIN -->
             <input type="hidden" name="si_sme_serv_instrucao_id[]" id="si_sme_serv_instrucao_id_<?=$keySI+1;?>" idbase="si_sme_serv_instrucao_id_" value="<?=$objSI['id'];?>"/>

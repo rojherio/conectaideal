@@ -4418,6 +4418,8 @@ CREATE TABLE `ue_ue` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `bsc_pessoa_id` int(11) NOT NULL,
   `inep_cod` int(11) DEFAULT NULL,
+  `orgao_regional_cod` varchar(30) DEFAULT NULL,
+  `orgao_regional_nome` varchar(130) DEFAULT NULL,
   `ue_funcionam_situacao_id` int(11) DEFAULT NULL,
   `ano_letivo_dt_inicio` date DEFAULT NULL,
   `ano_letivo_dt_fim` date DEFAULT NULL,
@@ -4431,7 +4433,6 @@ CREATE TABLE `ue_ue` (
   `ue_regulam_situacao_id` int(11) DEFAULT NULL,
   `ue_ue_vinculada_tipo_id` int(11) DEFAULT NULL,
   `ue_ue_id_vinculada` int(11) DEFAULT NULL,
-  `regional_cod` varchar(30) DEFAULT NULL,
   `entidade_superior_acesso` varchar(100) DEFAULT NULL,
   `ue_infra_local_ocupacao_forma_id` int(11) DEFAULT NULL,
   `fornece_agua_potavel` tinyint(1) DEFAULT '0',
@@ -4472,7 +4473,7 @@ CREATE TABLE `ue_ue` (
 
 LOCK TABLES `ue_ue` WRITE;
 /*!40000 ALTER TABLE `ue_ue` DISABLE KEYS */;
-INSERT INTO `ue_ue` VALUES (1,1,'2025-10-02 18:31:47',5,10,1,'2025-02-10','2025-12-10',2,NULL,3,NULL,0,0,3,3,NULL,NULL,'','',NULL,0,0,0,0,'',0),(2,1,'2025-09-28 02:41:15',18,11,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,'','',NULL,0,0,0,0,'',0),(3,1,'2025-10-03 19:09:06',16,12,1,'2027-02-15','2027-12-15',2,NULL,1,NULL,0,0,2,2,NULL,NULL,'','',NULL,0,0,0,0,'',0),(5,1,'2025-10-02 14:47:32',21,2,2,NULL,NULL,2,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,'','',NULL,0,0,0,0,'',0);
+INSERT INTO `ue_ue` VALUES (1,1,'2025-10-02 18:31:47',5,10,'',NULL,1,'2025-02-10','2025-12-10',2,NULL,3,NULL,0,0,3,3,NULL,NULL,'',NULL,0,0,0,0,'',0),(2,1,'2025-09-28 02:41:15',18,11,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,'',NULL,0,0,0,0,'',0),(3,1,'2025-10-03 19:09:06',16,12,'',NULL,1,'2027-02-15','2027-12-15',2,NULL,1,NULL,0,0,2,2,NULL,NULL,'',NULL,0,0,0,0,'',0),(5,1,'2025-10-02 14:47:32',21,2,'',NULL,2,NULL,NULL,2,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,'',NULL,0,0,0,0,'',0);
 /*!40000 ALTER TABLE `ue_ue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6227,4 +6228,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-20  4:03:34
+-- Dump completed on 2025-10-21 17:37:06
