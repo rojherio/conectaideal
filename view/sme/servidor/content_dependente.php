@@ -283,7 +283,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                 /*array()*/   'values'      => array('Não', 'Sim'),
                 /*array()*/   'options'     => array("Não", "Sim"),
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => 'controller="benef_'.$keySD.'" controller-values="Sim"',
+                /*string*/    'prop'        => 'namebase="sd_beneficiario_" controllerbase="benef_" controller="benef_'.$keySD.'" controller-values="Sim"',
                 /*string*/    'prop_aux'    => array('idbase="sd_beneficiario_nao_"', 'idbase="sd_beneficiario_sim_"')
               )) ?>
             </div>
@@ -292,7 +292,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
             $displayBenef        = $objSD['benef_rg_numero'] == '' ? 'style="display: none;"' : '';
               //Parámetros de exibir/ocultar div - NED
             ?>
-            <div controlled="benef_<?=$keySD;?>" control-value="Sim" <?= $displayBenef ;?>>
+            <div controllerbase="benef_" controlled="benef_<?=$keySD;?>" control-value="Sim" <?= $displayBenef ;?>>
             <h6>Dados complementários do dependente beneficiário de pensão</h6>
             <div class="row pe-0">
               <?= createInput(array(
@@ -554,7 +554,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                 /*array()*/   'values'      => array('Não', 'Sim'),
                 /*array()*/   'options'     => array("Não", "Sim"),
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => 'controller="repres_benef_'.$keySD.'" controller-values="Sim" controlled="benef_'.$keySD.'" control-value="Sim"',
+                /*string*/    'prop'        => 'namebase="sd_representante_" controllerbase="repres_benef_" controller="repres_benef_'.$keySD.'" controller-values="Sim" controlled="benef_'.$keySD.'" control-value="Sim"',
                 /*string*/    'prop_aux'    => array('idbase="sd_representante_nao_"', 'idbase="sd_representante_sim_"')
               )) ?>
             </div>
@@ -563,7 +563,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
             $displayRepres        = $objSD['benef_repres_nome'] == '' ? 'style="display: none;"' : '';
               //Parámetros de exibir/ocultar div - NED
             ?>
-            <div controlled="repres_benef_<?=$keySD;?> benef_<?=$keySD;?>" control-value="Sim" controlled-noshow="benef_<?=$keySD;?>" <?= $displayRepres ;?>>
+            <div controlled="repres_benef_<?=$keySD;?>" control-value="Sim" controlled-noshow="benef_<?=$keySD;?>" <?= $displayRepres ;?>>
               <h6>Dados complementários do representante do dependente beneficiário de pensão</h6>
               <div class="row pe-3">
                 <?= createInput(array(
@@ -578,7 +578,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o nome',
                   /*string*/    'value'       => $objSD['benef_repres_nome'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_nome_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_nome_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
               </div>
               <div class="row pe-3">
@@ -594,7 +594,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o CPF',
                   /*string*/    'value'       => $objSD['benef_repres_cpf'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_cpf_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_cpf_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
               </div>
               <div class="row pe-3">
@@ -610,7 +610,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o número do RG',
                   /*string*/    'value'       => $objSD['benef_repres_rg_numero'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_rg_numeroo_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_rg_numeroo_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
                 <?= createInputDate(array(
                   /*int 1-12*/  'col'         => '4 pe-1',
@@ -623,7 +623,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite a data de emissão do RG',
                   /*string*/    'value'       => $objSD['benef_repres_rg_dt_emissao'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_rg_dt_emissao_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_rg_dt_emissao_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => '4 pe-1',
@@ -637,7 +637,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o órgão expedidor do RG',
                   /*string*/    'value'       => $objSD['benef_repres_rg_orgao_expedidor'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_rg_orgao_expedidor_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_rg_orgao_expedidor_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
               </div>
               <div class="row pe-3">
@@ -653,7 +653,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o cep do endereço',
                   /*string*/    'value'       => $objSD['benef_repres_end_cep'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_cep_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_cep_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
               </div>
               <div class="row pe-3">
@@ -669,7 +669,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o logradouro do endereço',
                   /*string*/    'value'       => $objSD['benef_repres_end_logradouro'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_logradouro_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_logradouro_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => '2 pe-1',
@@ -683,7 +683,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o número do endereço',
                   /*string*/    'value'       => $objSD['benef_repres_end_numero'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_numero_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_numero_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
               </div>
               <div class="row pe-3">
@@ -699,7 +699,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o complemento do endereço',
                   /*string*/    'value'       => $objSD['benef_repres_end_complemento'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_complemento_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_complemento_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => '4 pe-1',
@@ -713,7 +713,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o bairro do endereço',
                   /*string*/    'value'       => $objSD['benef_repres_end_bairro'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_bairro_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_end_bairro_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
                 <?= createSelect(array(
                   /*int 1-12*/  'col'         => '4 pe-1',
@@ -725,7 +725,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*array()*/   'options'     => $rsMunicipios,
                   /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_bsc_municipio_id_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_bsc_municipio_id_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )); ?>
               </div>
               <div class="row pe-3">
@@ -741,7 +741,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o número telefônico residencial',
                   /*string*/    'value'       => $objSD['benef_repres_tel_residencial'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_tel_residencial_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_tel_residencial_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
                 <?= createInput(array(
                   /*int 1-12*/  'col'         => '6 pe-1',
@@ -755,7 +755,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
                   /*string*/    'placeholder' => 'Digite o número telefônico celular',
                   /*string*/    'value'       => $objSD['benef_repres_tel_celular'],
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="sd_benef_repres_tel_celular_" controlled="repres_benef_'.$keySD.' benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
+                  /*string*/    'prop'        => 'idbase="sd_benef_repres_tel_celular_" controlled="repres_benef_'.$keySD.'" control-value="Sim" controlled-noshow="benef_'.$keySD.'"'
                 )) ;?>
               </div>
             </div>

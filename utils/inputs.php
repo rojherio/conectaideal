@@ -158,7 +158,7 @@ function createRadio($params) {
     foreach ($params['values'] as $kObj => $vObj) {
       $html   .= '        <div class="col-md-'.$params['colOption'].'">';
       $html .= '          <label class="check-box">';
-      $html .= '            <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'][$kObj].'" class="" '.($params['value'] == $vObj ? 'checked="checked"' : "").'" value="'.$params['values'][$kObj].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].' '.(isset($params['prop_aux']) ? (is_array($params['prop_aux']) ? $params['prop_aux'][$kObj] : '' ) : '') .'>';
+      $html .= '            <input type="'.$params['type'].'" name="'.$params['name'].'" id="'.$params['id'][$kObj].'" '.($params['value'] == $vObj ? 'checked="checked"' : "").' value="'.$params['values'][$kObj].'" '.($params['required'] ? 'required' : '' ).' '.$params['prop'].' '.(isset($params['prop_aux']) ? (is_array($params['prop_aux']) ? $params['prop_aux'][$kObj] : '' ) : '') .'>';
       $html .= '            <span class="'.$params['class'].'"></span>';
       $html .= '            <span class="text">'.$params['options'][$kObj].'</span>';
       $html .= '          </label>';

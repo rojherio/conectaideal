@@ -260,7 +260,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
           <?php
           foreach ($rsRegistrosUOPublicaVinc as $keyUOPV => $objUOPV) {
             ?>
-            <div divcount="<?=$keyUOPV;?>" class="div_clonar border border-outline-info rounded pt-3 pb-0 ps-3 pe-3 mt-0">
+            <div divcount="<?=$keyUOPV;?>" class="div_clonar border border-outline-info rounded pt-3 pb-0 ps-3 pe-3 mt-0 mb-3">
               <h6>Órgão/Instituição em parceria/convênio - <span class="span_contador"><?=$keyUOPV+1;?></span></h6>
               <div>
                 <?= createSelect(array(
@@ -273,7 +273,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                   /*array()*/   'options'     => $rsUOPublicas,
                   /*string*/    'ariaLabel'   => 'Selecione os órgãos vinculados',
                   /*bool*/      'required'    => false,
-                  /*string*/    'prop'        => 'idbase="ue_bsc_uo_publica_id_vinc_" controller="forma_parc_'.$keyUOPV.'" controller-values="0"'
+                  /*string*/    'prop'        => 'idbase="ue_bsc_uo_publica_id_vinc_" controllerbase="forma_parc_" controller="forma_parc_'.$keyUOPV.'" controller-values="0"'
                 )); ?>
               </div>
               <?php
@@ -298,7 +298,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                         /*array()*/   'options'     => $rsParcConvFormas,
                         /*string*/    'ariaLabel'   => 'Selecione uma forma de contratação',
                         /*bool*/      'required'    => false,
-                        /*string*/    'prop'        => 'idbasesub="ue_ue_parc_conv_forma_id_" controlled="forma_parc_'.$keyUOPV.'" control-value="0" controller="ue_ue_parc_conv_forma_id_'.$keyUOPV.'_'.$keyPCF.'" controller-values="0" '
+                        /*string*/    'prop'        => 'idbasesub="ue_ue_parc_conv_forma_id_" controlled="forma_parc_'.$keyUOPV.'" control-value="0" controllerbase="ue_ue_parc_conv_forma_id_" controller="ue_ue_parc_conv_forma_id_'.$keyUOPV.'_'.$keyPCF.'" controller-values="0" '
                       )); ?>
                     </div>
                     <?php
@@ -306,7 +306,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                     $displayParcConvForma   = $objPCF['ue_parc_conv_forma_id'] == 0 ? 'style="display: none;"' : '';
                     //Parámetros de exibir/ocultar div - NED
                     ?>
-                    <div dividbasesub="ue_ue_parc_conv_forma_id_" controlled="ue_ue_parc_conv_forma_id_<?=$keyUOPV;?>_<?=$keyPCF;?>" control-value="0" class="div_controlled_sub" <?= $displayParcConvForma ;?>>
+                    <div idbasesub="ue_ue_parc_conv_forma_id_" controlled="ue_ue_parc_conv_forma_id_<?=$keyUOPV;?>_<?=$keyPCF;?>" control-value="0" <?= $displayParcConvForma ;?>>
                       <div class="row mt-0 mb-3">
                         <!-- Small Table start -->
                         <div class="col-xl-12">
@@ -332,6 +332,10 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                                       controlled-noshow="forma_parc_<?=$keyUOPV;?>" 
                                       id="ue_ue_pcf_eat_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>" 
                                       name="ue_ue_pcf_eat_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>" 
+                                      class="" 
+                                      minlength="1" 
+                                      min="1" 
+                                      maxlength="10" 
                                       value="<?=$obj1['matricula_qtd'];?>">
                                     </td>
                                     <td><label for="ue_ue_pcf_eat_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>"><?= $obj1['nome'];?></label></td>
@@ -360,6 +364,10 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                                       controlled-noshow="forma_parc_<?=$keyUOPV;?>" 
                                       id="ue_ue_pcf_eme_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>" 
                                       name="ue_ue_pcf_eme_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>" 
+                                      class="" 
+                                      minlength="1" 
+                                      min="1" 
+                                      maxlength="10" 
                                       value="<?=$obj1['matricula_qtd'];?>">
                                     </td>
                                     <td><label for="ue_ue_pcf_eme_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>"><?= $obj1['nome'];?></label></td>
@@ -388,6 +396,10 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                                       controlled-noshow="forma_parc_<?=$keyUOPV;?>" 
                                       id="ue_ue_pcf_epf_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>" 
                                       name="ue_ue_pcf_epf_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>" 
+                                      class="" 
+                                      minlength="1" 
+                                      min="1" 
+                                      maxlength="10" 
                                       value="<?=$obj1['matricula_qtd'];?>">
                                     </td>
                                     <td><label for="ue_ue_pcf_epf_matricula_qtd_<?=$keyUOPV;?>_<?=$keyPCF;?>_<?=$obj1['id'];?>"><?= $obj1['nome'];?></label></td>
@@ -402,7 +414,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                         <!-- Small Table end -->
                       </div>
                     </div>
-                    <div dividbasesub="ue_ue_parc_conv_forma_id_" controlled="ue_ue_parc_conv_forma_id_<?=$keyUOPV;?>_<?=$keyPCF;?> forma_parc_<?=$keyUOPV;?>" control-value="0" controlled-noshow="forma_parc_<?=$keyUOPV;?>" class="div_controlled_sub row" <?= $displayParcConvForma ;?>>
+                    <div idbasesub="ue_ue_parc_conv_forma_id_" controlled="ue_ue_parc_conv_forma_id_<?=$keyUOPV;?>_<?=$keyPCF;?>" control-value="0" controlled-noshow="forma_parc_<?=$keyUOPV;?>" class="row" <?= $displayParcConvForma ;?>>
                       <div class="box-footer text-center mb-3">
                         <button type="button" class="btn_div_n2_remove btn btn-outline-warning waves-light b-r-22">
                           <i class="ti ti-eraser"></i> Remover esta forma de parceria
