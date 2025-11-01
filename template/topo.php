@@ -12,7 +12,7 @@
 	<!-- METAS END -->
 	<!-- FAVICON BEGIN -->
 	<link rel="icon" type="image/png" sizes="16x16" href="<?= FAVICON_SISTEMA; ?>">
-	<title>:: DELFOS | SISTEMA DE GESTÃO ESCOLAR ::</title>
+	<title>:: ConectaIdeal | SISTEMA DE GESTÃO ESCOLAR ::</title>
 	<!-- FAVICON END-->
 	<link rel="icon" href="favicon.ico" type="image/x-icon">
 	<!-- Google Fonts -->
@@ -37,7 +37,7 @@
 	<!-- CSS CUSTON BEGIN -->
 	<link rel="stylesheet" type="text/css" href="<?= CSS_FOLDER; ?>style.css">
 	<link rel="stylesheet" type="text/css" href="<?= CSS_FOLDER; ?>responsive.css"></head>
-	<link rel="stylesheet" type="text/css" href="<?= CSS_FOLDER; ?>delfos.css"></head>
+	<link rel="stylesheet" type="text/css" href="<?= CSS_FOLDER; ?>conectaideal.css"></head>
 	<!-- CSS CUSTON END -->	
 </head>
 <body>

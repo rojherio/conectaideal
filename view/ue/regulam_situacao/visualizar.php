@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Situação de Regulamentação/Autorização da Escola";
 $descricaoPagina          = "Informações do situação de regulamentação/autorização da escola";
 $tituloFormulario1        = "Tabela informações do Situação de Regulamentação/Autorização da Escola";
-$descricaoFormulario1     = "Dados de informações do situação de regulamentação/autorização da escola cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do situação de regulamentação/autorização da escola cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do situação de regulamentação/autorização da escola cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do situação de regulamentação/autorização da escola cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

@@ -28,8 +28,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem da Unidade Organizacional/Órgão Público(a)";
 $descricaoPagina          = "Informações da unidade organizacional/órgão público(a)";
 $tituloFormulario1        = "Tabela informações da Unidade Organizacional/Órgão Público(a)";
-$descricaoFormulario1     = "Dados de informações da unidade organizacional/órgão público(a) cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da unidade organizacional/órgão público(a) cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da unidade organizacional/órgão público(a) cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da unidade organizacional/órgão público(a) cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Tipo de tratamento do Lixo/Resíduos";
 $descricaoPagina          = "Informações do tipo de tratamento do lixo/resíduos";
 $tituloFormulario1        = "Tabela informações do Tipo de tratamento do Lixo/Resíduos";
-$descricaoFormulario1     = "Dados de informações do tipo de tratamento do lixo/resíduos cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do tipo de tratamento do lixo/resíduos cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do tipo de tratamento do lixo/resíduos cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do tipo de tratamento do lixo/resíduos cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

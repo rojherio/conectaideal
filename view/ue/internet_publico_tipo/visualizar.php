@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Público a Usufruir Da Internet da Unidade Escolar";
 $descricaoPagina          = "Informações do público a usufruir da internet da unidade escolar";
 $tituloFormulario1        = "Tabela informações do Público a Usufruir Da Internet da Unidade Escolar";
-$descricaoFormulario1     = "Dados de informações do público a usufruir da internet da unidade escolar cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do público a usufruir da internet da unidade escolar cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do público a usufruir da internet da unidade escolar cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do público a usufruir da internet da unidade escolar cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

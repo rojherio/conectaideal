@@ -23,8 +23,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Horário de Turno";
 $descricaoPagina          = "Informações do turno";
 $tituloFormulario1        = "Tabela informações do Horário de Turno";
-$descricaoFormulario1     = "Dados de informações do turno cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do turno cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do turno cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do turno cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

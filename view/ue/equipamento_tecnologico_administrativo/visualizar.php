@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Equipamento para Uso Técnico e Administrativo";
 $descricaoPagina          = "Informações do equipamento para uso técnico e administrativo";
 $tituloFormulario1        = "Tabela informações do Equipamento para Uso Técnico e Administrativo";
-$descricaoFormulario1     = "Dados de informações do equipamento para uso técnico e administrativo cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do equipamento para uso técnico e administrativo cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do equipamento para uso técnico e administrativo cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do equipamento para uso técnico e administrativo cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

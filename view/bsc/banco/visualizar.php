@@ -26,8 +26,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Banco (Instituição Financeira)";
 $descricaoPagina          = "Informações do banco (instuição financeira";
 $tituloFormulario1        = "Tabela informações do Banco (Instituição Financeira)";
-$descricaoFormulario1     = "Dados de informações do banco cadastrado no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do banco cadastrado no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do banco cadastrado no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do banco cadastrado no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

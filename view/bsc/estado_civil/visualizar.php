@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Estado Civil";
 $descricaoPagina          = "Informações de estado civil";
 $tituloFormulario1        = "Tabela informações do Estado Civil";
-$descricaoFormulario1     = "Dados de informações de estado civil cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações de estado civil cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações de estado civil cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações de estado civil cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

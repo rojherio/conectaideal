@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `delfos` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `delfos`;
+CREATE DATABASE  IF NOT EXISTS `conectaideal` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `conectaideal`;
 -- MySQL dump 10.13  Distrib 8.0.42, for macos15 (x86_64)
 --
--- Host: localhost    Database: delfos
+-- Host: localhost    Database: conectaideal
 -- ------------------------------------------------------
 -- Server version	5.7.39
 
@@ -70,13 +70,13 @@ LOCK TABLES `TABLE_BASE_UE_copy1` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `TbBaseDelfosA`
+-- Table structure for table `TbBaseconectaidealA`
 --
 
-DROP TABLE IF EXISTS `TbBaseDelfosA`;
+DROP TABLE IF EXISTS `TbBaseconectaidealA`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `TbBaseDelfosA` (
+CREATE TABLE `TbBaseconectaidealA` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -85,22 +85,22 @@ CREATE TABLE `TbBaseDelfosA` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TbBaseDelfosA`
+-- Dumping data for table `TbBaseconectaidealA`
 --
 
-LOCK TABLES `TbBaseDelfosA` WRITE;
-/*!40000 ALTER TABLE `TbBaseDelfosA` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TbBaseDelfosA` ENABLE KEYS */;
+LOCK TABLES `TbBaseconectaidealA` WRITE;
+/*!40000 ALTER TABLE `TbBaseconectaidealA` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TbBaseconectaidealA` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `TbBaseDelfosB`
+-- Table structure for table `TbBaseconectaidealB`
 --
 
-DROP TABLE IF EXISTS `TbBaseDelfosB`;
+DROP TABLE IF EXISTS `TbBaseconectaidealB`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `TbBaseDelfosB` (
+CREATE TABLE `TbBaseconectaidealB` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -109,22 +109,22 @@ CREATE TABLE `TbBaseDelfosB` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TbBaseDelfosB`
+-- Dumping data for table `TbBaseconectaidealB`
 --
 
-LOCK TABLES `TbBaseDelfosB` WRITE;
-/*!40000 ALTER TABLE `TbBaseDelfosB` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TbBaseDelfosB` ENABLE KEYS */;
+LOCK TABLES `TbBaseconectaidealB` WRITE;
+/*!40000 ALTER TABLE `TbBaseconectaidealB` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TbBaseconectaidealB` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `TbBaseDelfosR`
+-- Table structure for table `TbBaseconectaidealR`
 --
 
-DROP TABLE IF EXISTS `TbBaseDelfosR`;
+DROP TABLE IF EXISTS `TbBaseconectaidealR`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `TbBaseDelfosR` (
+CREATE TABLE `TbBaseconectaidealR` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -133,22 +133,22 @@ CREATE TABLE `TbBaseDelfosR` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TbBaseDelfosR`
+-- Dumping data for table `TbBaseconectaidealR`
 --
 
-LOCK TABLES `TbBaseDelfosR` WRITE;
-/*!40000 ALTER TABLE `TbBaseDelfosR` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TbBaseDelfosR` ENABLE KEYS */;
+LOCK TABLES `TbBaseconectaidealR` WRITE;
+/*!40000 ALTER TABLE `TbBaseconectaidealR` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TbBaseconectaidealR` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `TbBaseDelfosV`
+-- Table structure for table `TbBaseconectaidealV`
 --
 
-DROP TABLE IF EXISTS `TbBaseDelfosV`;
+DROP TABLE IF EXISTS `TbBaseconectaidealV`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `TbBaseDelfosV` (
+CREATE TABLE `TbBaseconectaidealV` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -157,12 +157,12 @@ CREATE TABLE `TbBaseDelfosV` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `TbBaseDelfosV`
+-- Dumping data for table `TbBaseconectaidealV`
 --
 
-LOCK TABLES `TbBaseDelfosV` WRITE;
-/*!40000 ALTER TABLE `TbBaseDelfosV` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TbBaseDelfosV` ENABLE KEYS */;
+LOCK TABLES `TbBaseconectaidealV` WRITE;
+/*!40000 ALTER TABLE `TbBaseconectaidealV` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TbBaseconectaidealV` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

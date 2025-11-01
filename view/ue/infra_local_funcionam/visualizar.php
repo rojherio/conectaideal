@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Local de Funcionamento da Escola";
 $descricaoPagina          = "Informações do local de funcionamento da escola";
 $tituloFormulario1        = "Tabela informações do Local de Funcionamento da Escola";
-$descricaoFormulario1     = "Dados de informações do local de funcionamento da escola cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do local de funcionamento da escola cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do local de funcionamento da escola cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do local de funcionamento da escola cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

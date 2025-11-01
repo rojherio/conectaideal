@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem da Categoria de Escola Privada";
 $descricaoPagina          = "Informações da categoria de escola privada";
 $tituloFormulario1        = "Tabela informações da Categoria de Escola Privada";
-$descricaoFormulario1     = "Dados de informações da categoria de escola privada cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da categoria de escola privada cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da categoria de escola privada cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da categoria de escola privada cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

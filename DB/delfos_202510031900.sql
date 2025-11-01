@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `delfos` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `delfos`;
+CREATE DATABASE  IF NOT EXISTS `conectaideal` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `conectaideal`;
 -- MySQL dump 10.13  Distrib 8.0.42, for macos15 (x86_64)
 --
--- Host: localhost    Database: delfos
+-- Host: localhost    Database: conectaideal
 -- ------------------------------------------------------
 -- Server version	5.7.39
 
@@ -450,7 +450,7 @@ CREATE TABLE `bsc_pessoa_contato` (
 
 LOCK TABLES `bsc_pessoa_contato` WRITE;
 /*!40000 ALTER TABLE `bsc_pessoa_contato` DISABLE KEYS */;
-INSERT INTO `bsc_pessoa_contato` VALUES (1,1,'2025-09-12 03:44:51',7,'69.915-122','R. Cruzeiro Do Sul','420','Q-27, C-08','Esperança',94,'(68)3226-1249','(68)9.8405-0791','(68)9992-84356','Gabriel',3,'Rojheriorosas@gmail.com','Rogerioegabriel@hotmail.com','Garoto.ac@hotmail.com','Delfos.com.br','Thaís','Av. Japón, 2605','(68)9996-81402'),(2,1,'2025-10-02 19:01:34',5,'69.915-216','Rua Cristo Rei','110','','Esperança',94,'(68)3226-1249','(68)9.9928-4356','','',NULL,'','','','Delfos.com.br','','',''),(3,1,'2025-10-02 21:50:11',19,'69.915-122','Rua Cristo Rei','110','','Esperança',94,'','','','',NULL,'','Rojheriorosas@gmail.com','','','','','');
+INSERT INTO `bsc_pessoa_contato` VALUES (1,1,'2025-09-12 03:44:51',7,'69.915-122','R. Cruzeiro Do Sul','420','Q-27, C-08','Esperança',94,'(68)3226-1249','(68)9.8405-0791','(68)9992-84356','Gabriel',3,'Rojheriorosas@gmail.com','Rogerioegabriel@hotmail.com','Garoto.ac@hotmail.com','conectaideal.com.br','Thaís','Av. Japón, 2605','(68)9996-81402'),(2,1,'2025-10-02 19:01:34',5,'69.915-216','Rua Cristo Rei','110','','Esperança',94,'(68)3226-1249','(68)9.9928-4356','','',NULL,'','','','conectaideal.com.br','','',''),(3,1,'2025-10-02 21:50:11',19,'69.915-122','Rua Cristo Rei','110','','Esperança',94,'','','','',NULL,'','Rojheriorosas@gmail.com','','','','','');
 /*!40000 ALTER TABLE `bsc_pessoa_contato` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1468,13 +1468,13 @@ LOCK TABLES `table_base_ue` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbbasedelfosa`
+-- Table structure for table `tbbaseconectaideala`
 --
 
-DROP TABLE IF EXISTS `tbbasedelfosa`;
+DROP TABLE IF EXISTS `tbbaseconectaideala`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbbasedelfosa` (
+CREATE TABLE `tbbaseconectaideala` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1483,22 +1483,22 @@ CREATE TABLE `tbbasedelfosa` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbbasedelfosa`
+-- Dumping data for table `tbbaseconectaideala`
 --
 
-LOCK TABLES `tbbasedelfosa` WRITE;
-/*!40000 ALTER TABLE `tbbasedelfosa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbbasedelfosa` ENABLE KEYS */;
+LOCK TABLES `tbbaseconectaideala` WRITE;
+/*!40000 ALTER TABLE `tbbaseconectaideala` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbbaseconectaideala` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbbasedelfosb`
+-- Table structure for table `tbbaseconectaidealb`
 --
 
-DROP TABLE IF EXISTS `tbbasedelfosb`;
+DROP TABLE IF EXISTS `tbbaseconectaidealb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbbasedelfosb` (
+CREATE TABLE `tbbaseconectaidealb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1507,22 +1507,22 @@ CREATE TABLE `tbbasedelfosb` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbbasedelfosb`
+-- Dumping data for table `tbbaseconectaidealb`
 --
 
-LOCK TABLES `tbbasedelfosb` WRITE;
-/*!40000 ALTER TABLE `tbbasedelfosb` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbbasedelfosb` ENABLE KEYS */;
+LOCK TABLES `tbbaseconectaidealb` WRITE;
+/*!40000 ALTER TABLE `tbbaseconectaidealb` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbbaseconectaidealb` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbbasedelfosr`
+-- Table structure for table `tbbaseconectaidealr`
 --
 
-DROP TABLE IF EXISTS `tbbasedelfosr`;
+DROP TABLE IF EXISTS `tbbaseconectaidealr`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbbasedelfosr` (
+CREATE TABLE `tbbaseconectaidealr` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1531,22 +1531,22 @@ CREATE TABLE `tbbasedelfosr` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbbasedelfosr`
+-- Dumping data for table `tbbaseconectaidealr`
 --
 
-LOCK TABLES `tbbasedelfosr` WRITE;
-/*!40000 ALTER TABLE `tbbasedelfosr` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbbasedelfosr` ENABLE KEYS */;
+LOCK TABLES `tbbaseconectaidealr` WRITE;
+/*!40000 ALTER TABLE `tbbaseconectaidealr` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbbaseconectaidealr` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbbasedelfosv`
+-- Table structure for table `tbbaseconectaidealv`
 --
 
-DROP TABLE IF EXISTS `tbbasedelfosv`;
+DROP TABLE IF EXISTS `tbbaseconectaidealv`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbbasedelfosv` (
+CREATE TABLE `tbbaseconectaidealv` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -1555,12 +1555,12 @@ CREATE TABLE `tbbasedelfosv` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbbasedelfosv`
+-- Dumping data for table `tbbaseconectaidealv`
 --
 
-LOCK TABLES `tbbasedelfosv` WRITE;
-/*!40000 ALTER TABLE `tbbasedelfosv` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbbasedelfosv` ENABLE KEYS */;
+LOCK TABLES `tbbaseconectaidealv` WRITE;
+/*!40000 ALTER TABLE `tbbaseconectaidealv` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbbaseconectaidealv` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

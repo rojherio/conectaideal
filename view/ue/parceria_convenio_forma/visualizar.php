@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem da Forma de Contratação de Parceria ou Convênio";
 $descricaoPagina          = "Informações da forma de contratação de parceria ou convênio";
 $tituloFormulario1        = "Tabela informações da Forma de Contratação de Parceria ou Convênio";
-$descricaoFormulario1     = "Dados de informações da forma de contratação de parceria ou convênio cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da forma de contratação de parceria ou convênio cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da forma de contratação de parceria ou convênio cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da forma de contratação de parceria ou convênio cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

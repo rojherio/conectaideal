@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Recurso de Acessibilidade";
 $descricaoPagina          = "Informações do recurso de acessibilidade";
 $tituloFormulario1        = "Tabela informações do Recurso de Acessibilidade";
-$descricaoFormulario1     = "Dados de informações do recurso de acessibilidade cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do recurso de acessibilidade cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do recurso de acessibilidade cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do recurso de acessibilidade cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

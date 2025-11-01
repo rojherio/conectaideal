@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Ação";
 $descricaoPagina          = "Informações do ação";
 $tituloFormulario1        = "Tabela informações do Ação";
-$descricaoFormulario1     = "Dados de informações do ação cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do ação cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do ação cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do ação cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

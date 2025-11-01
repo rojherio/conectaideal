@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Situação do Servidor";
 $descricaoPagina          = "Informações do situação do servidor";
 $tituloFormulario1        = "Tabela informações do Situação do Servidor";
-$descricaoFormulario1     = "Dados de informações do situação do servidor cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do situação do servidor cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do situação do servidor cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do situação do servidor cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

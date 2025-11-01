@@ -17,11 +17,11 @@
 .ml-n5 { 
   margin-left: -3rem !important; 
 }
-div.delfos-radio {
+div.conectaideal-radio {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
-label.delfos-radio {
+label.conectaideal-radio {
   margin-top: .3rem !important;
   margin-bottom: 0 !important;
   margin-left: -1.3rem !important;
@@ -32,7 +32,7 @@ label.delfos-radio {
 span.error_validator {
   padding-left: .75rem;
 }
-div.loadding-delfos {
+div.loadding-conectaideal {
   /*width: -moz-fit-content;
   width: fit-content;*/
   font-weight: bold;
@@ -43,7 +43,7 @@ div.loadding-delfos {
   background-clip: text;
   animation: l8 1.5s infinite steps(25);
 }
-div.loadding-delfos:before {
+div.loadding-conectaideal:before {
   content: "Aguarde...";
 }
 .custom-light-info {
@@ -55,7 +55,7 @@ div.loadding-delfos:before {
 .custom-light-danger {
   --bs-tooltip-bg:rgba(var(--danger),0.8);
 }
-.btn.icon-btn-delfos {
+.btn.icon-btn-conectaideal {
     height: 25px;
     width: 25px;
     display: inline-flex;

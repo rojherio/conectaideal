@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Tipo de Vínculo a Outra Unidade Escolar";
 $descricaoPagina          = "Informações do tipo de vínculo a outra unidade escolar";
 $tituloFormulario1        = "Tabela informações do Tipo de Vínculo a Outra Unidade Escolar";
-$descricaoFormulario1     = "Dados de informações do tipo de vínculo a outra unidade escolar cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do tipo de vínculo a outra unidade escolar cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do tipo de vínculo a outra unidade escolar cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do tipo de vínculo a outra unidade escolar cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

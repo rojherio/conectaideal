@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Tipo de Rede Local de Interligação de computadores";
 $descricaoPagina          = "Informações do tipo de rede local de interligação de computadores";
 $tituloFormulario1        = "Tabela informações do Tipo de Rede Local de Interligação de computadores";
-$descricaoFormulario1     = "Dados de informações do tipo de rede local de interligação de computadores cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do tipo de rede local de interligação de computadores cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do tipo de rede local de interligação de computadores cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do tipo de rede local de interligação de computadores cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

@@ -27,8 +27,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Unidade Organizacional";
 $descricaoPagina          = "Informações do unidade organizacional";
 $tituloFormulario1        = "Tabela informações do Unidade Organizacional";
-$descricaoFormulario1     = "Dados de informações do unidade organizacional cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do unidade organizacional cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do unidade organizacional cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do unidade organizacional cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

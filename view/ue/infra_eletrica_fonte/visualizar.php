@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Fonte de Energia Elétrica";
 $descricaoPagina          = "Informações do fonte de energia elétrica";
 $tituloFormulario1        = "Tabela informações do Fonte de Energia Elétrica";
-$descricaoFormulario1     = "Dados de informações do fonte de energia elétrica cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do fonte de energia elétrica cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do fonte de energia elétrica cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do fonte de energia elétrica cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

@@ -9,7 +9,7 @@
       <div class="modal-body">
         <div class="row">
           <div class="col-lg-12 ps-4">
-            <div class="loadding-delfos text-center"></div>
+            <div class="loadding-conectaideal text-center"></div>
           </div>
         </div>
       </div>

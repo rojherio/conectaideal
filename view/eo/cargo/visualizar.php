@@ -23,8 +23,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Cargo";
 $descricaoPagina          = "Informações do cargo";
 $tituloFormulario1        = "Tabela informações do Cargo";
-$descricaoFormulario1     = "Dados de informações do cargo cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do cargo cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do cargo cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do cargo cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

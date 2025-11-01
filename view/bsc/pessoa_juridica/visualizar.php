@@ -28,8 +28,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Pessoa Jurídica";
 $descricaoPagina          = "Informações da pessoas jurídica";
 $tituloFormulario1        = "Tabela informações da Pessoaa Jurídica";
-$descricaoFormulario1     = "Dados de informações da pessoa jurídica cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da pessoa jurídica cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da pessoa jurídica cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da pessoa jurídica cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

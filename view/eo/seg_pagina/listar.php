@@ -25,7 +25,7 @@ $tituloPagina             = "Listagem de Pagina";
 $descricaoPagina          = "Informações de pagina";
 $tituloFormulario1        = "Tabela com listagem de Pagina";
 $descricaoFormulario1     = "Dados de identificação de pagina";
-$tituloImpressao          = "Relatório de pagina cadastradas no sistema DELFOS";
+$tituloImpressao          = "Relatório de pagina cadastradas no sistema conectaideal";
 //Parámetros de títutlos - END
 ?>
 <!-- Main Section - BEGIN-->
@@ -108,13 +108,13 @@ $tituloImpressao          = "Relatório de pagina cadastradas no sistema DELFOS"
                         <td id="td_caminho"><?= $vObj['caminho']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
-                          <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
+                          <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-conectaideal b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
                             <i class="ti ti-report-search"></i>
                           </button>
-                          <button type="button" id="btn_editar" class="btn_editar_registro btn btn-light-warning icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-warning" data-bs-toggle="tooltip" title="Editar este registro" onclick="btnEditar(this);">
+                          <button type="button" id="btn_editar" class="btn_editar_registro btn btn-light-warning icon-btn-conectaideal b-r-4" data-bs-custom-class="custom-light-warning" data-bs-toggle="tooltip" title="Editar este registro" onclick="btnEditar(this);">
                             <i class="ti ti-edit"></i>
                           </button>
-                          <button type="button" id="btn_excluir" class="btn_excluir_registro btn btn-light-danger icon-btn-delfos b-r-4" data-bs-custom-class="custom-light-danger" data-bs-toggle="tooltip" title="Excluir este registro" <?= $btnExcluirOnClick; ?>>
+                          <button type="button" id="btn_excluir" class="btn_excluir_registro btn btn-light-danger icon-btn-conectaideal b-r-4" data-bs-custom-class="custom-light-danger" data-bs-toggle="tooltip" title="Excluir este registro" <?= $btnExcluirOnClick; ?>>
                             <i class="ti ti-trash"></i>
                           </button>
                         </td>

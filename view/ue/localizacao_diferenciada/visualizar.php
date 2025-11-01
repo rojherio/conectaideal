@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Localização Diferenciada";
 $descricaoPagina          = "Informações de localização diferenciada";
 $tituloFormulario1        = "Tabela informações da Localização Diferenciada";
-$descricaoFormulario1     = "Dados de informações de localização diferenciada cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações de localização diferenciada cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações de localização diferenciada cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações de localização diferenciada cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

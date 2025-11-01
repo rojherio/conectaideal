@@ -26,8 +26,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem da Função Desempenhada por Funcionarios";
 $descricaoPagina          = "Informações da função desempenhada por funcionarios";
 $tituloFormulario1        = "Tabela informações da Função Desempenhada por Funcionarios";
-$descricaoFormulario1     = "Dados de informações da função desempenhada por funcionarios cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da função desempenhada por funcionarios cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da função desempenhada por funcionarios cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da função desempenhada por funcionarios cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

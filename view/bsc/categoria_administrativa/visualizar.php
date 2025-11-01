@@ -23,8 +23,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Categoria Administrativa";
 $descricaoPagina          = "Informações de categoria administrativa";
 $tituloFormulario1        = "Tabela informações da Categoria Administrativa";
-$descricaoFormulario1     = "Dados de informações de categoria cdministrativa cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações de categoria administrativa cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações de categoria cdministrativa cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações de categoria administrativa cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

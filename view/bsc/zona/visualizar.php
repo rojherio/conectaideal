@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Zona";
 $descricaoPagina          = "Informações de zona";
 $tituloFormulario1        = "Tabela informações da Zona";
-$descricaoFormulario1     = "Dados de informações de zona cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações de zona cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações de zona cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações de zona cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

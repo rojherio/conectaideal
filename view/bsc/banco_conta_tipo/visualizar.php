@@ -23,8 +23,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Tipo de Conta Bancária";
 $descricaoPagina          = "Informações de tipo de conta bancária";
 $tituloFormulario1        = "Tabela informações do Tipo de Conta Bancária";
-$descricaoFormulario1     = "Dados de informações do tipo de conta bancária cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do tipo de conta bancária cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do tipo de conta bancária cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do tipo de conta bancária cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

@@ -1,1 +1,1 @@
-const PORTAL_URL = 'http://localhost/delfos/';
+const PORTAL_URL = 'http://localhost/conectaideal/';

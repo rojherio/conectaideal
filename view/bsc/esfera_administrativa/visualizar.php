@@ -23,8 +23,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Esfera Administrativa";
 $descricaoPagina          = "Informações de esfera administrativa";
 $tituloFormulario1        = "Tabela informações da Esfera Administrativa";
-$descricaoFormulario1     = "Dados de informações de esfera cdministrativa cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações de esfera administrativa cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações de esfera cdministrativa cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações de esfera administrativa cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

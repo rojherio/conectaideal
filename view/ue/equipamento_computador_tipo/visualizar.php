@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Tipo de Equipamento/Computador para o Aluno";
 $descricaoPagina          = "Informações do tipo de equipamento/computador para o aluno";
 $tituloFormulario1        = "Tabela informações do Tipo de Equipamento/Computador para o Aluno";
-$descricaoFormulario1     = "Dados de informações do tipo de equipamento/computador para o aluno cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do tipo de equipamento/computador para o aluno cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do tipo de equipamento/computador para o aluno cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do tipo de equipamento/computador para o aluno cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

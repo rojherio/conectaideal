@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Setor Publico";
 $descricaoPagina          = "Informações do setor publico";
 $tituloFormulario1        = "Tabela informações do Setor Publico";
-$descricaoFormulario1     = "Dados de informações do setor publico cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do setor publico cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do setor publico cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do setor publico cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

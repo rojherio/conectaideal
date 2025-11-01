@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Tipo de Ensino Profissional";
 $descricaoPagina          = "Informações do tipo de ensino profissional";
 $tituloFormulario1        = "Tabela informações do Tipo de Ensino Profissional";
-$descricaoFormulario1     = "Dados de informações do tipo de ensino profissional cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do tipo de ensino profissional cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do tipo de ensino profissional cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do tipo de ensino profissional cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

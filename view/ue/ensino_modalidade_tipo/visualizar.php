@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem da Modalidade de Ensino";
 $descricaoPagina          = "Informações da modalidade de ensino";
 $tituloFormulario1        = "Tabela informações da Modalidade de Ensino";
-$descricaoFormulario1     = "Dados de informações da modalidade de ensino cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da modalidade de ensino cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da modalidade de ensino cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da modalidade de ensino cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

@@ -27,8 +27,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Nivel de Ensino";
 $descricaoPagina          = "Informações do nivel de ensino";
 $tituloFormulario1        = "Tabela informações do Nivel de Ensino";
-$descricaoFormulario1     = "Dados de informações do nivel de ensino cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do nivel de ensino cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do nivel de ensino cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do nivel de ensino cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

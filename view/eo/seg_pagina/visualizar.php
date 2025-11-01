@@ -29,8 +29,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Pagina";
 $descricaoPagina          = "Informações do pagina";
 $tituloFormulario1        = "Tabela informações do Pagina";
-$descricaoFormulario1     = "Dados de informações do pagina cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do pagina cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do pagina cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do pagina cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

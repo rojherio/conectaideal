@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Dependência/Espaço Físico";
 $descricaoPagina          = "Informações do dependência/espaço físico";
 $tituloFormulario1        = "Tabela informações do Dependência/Espaço Físico";
-$descricaoFormulario1     = "Dados de informaçõe do dependência/espaço físicos cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informaçõe do dependência/espaço físicos cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informaçõe do dependência/espaço físicos cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informaçõe do dependência/espaço físicos cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

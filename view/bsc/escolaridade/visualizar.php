@@ -23,8 +23,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Escolaridade";
 $descricaoPagina          = "Informações de escolaridade";
 $tituloFormulario1        = "Tabela informações da Escolaridade";
-$descricaoFormulario1     = "Dados de informações de escolaridade cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações de escolaridade cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações de escolaridade cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações de escolaridade cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

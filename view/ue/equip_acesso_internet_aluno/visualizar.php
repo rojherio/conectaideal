@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Equipamento para Acessar a Internet";
 $descricaoPagina          = "Informações do equipamento para acessar a internet";
 $tituloFormulario1        = "Tabela informações do Equipamento para Acessar a Internet";
-$descricaoFormulario1     = "Dados de informações do equipamento para acessar a internet cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do equipamento para acessar a internet cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do equipamento para acessar a internet cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do equipamento para acessar a internet cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

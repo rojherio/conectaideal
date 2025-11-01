@@ -27,8 +27,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem da Infraestrutura";
 $descricaoPagina          = "Informações da infraestrutura";
 $tituloFormulario1        = "Tabela informações da Infraestrutura";
-$descricaoFormulario1     = "Dados de informações da infraestrutura cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da infraestrutura cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da infraestrutura cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da infraestrutura cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Porte de Alunos";
 $descricaoPagina          = "Informações do porte de alunos";
 $tituloFormulario1        = "Tabela informações do Porte de Alunos";
-$descricaoFormulario1     = "Dados de informações do porte de alunos cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do porte de alunos cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do porte de alunos cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do porte de alunos cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

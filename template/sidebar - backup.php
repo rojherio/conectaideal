@@ -1,7 +1,7 @@
 <nav>
   <div class="app-logo">
     <a class="logo d-inline-block" href="index-2.html">
-      <img alt="#" src="<?= IMG_FOLDER; ?>logo/delfos4.png">
+      <img alt="#" src="<?= IMG_FOLDER; ?>logo/conectaideal4.png">
     </a>
     <span class="bg-light-primary toggle-semi-nav">
       <i class="ti ti-chevrons-right f-s-20"></i>

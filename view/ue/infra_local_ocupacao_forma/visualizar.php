@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Forma de Ocupação do Prédio Escolar";
 $descricaoPagina          = "Informações do forma de ocupação do prédio escolar";
 $tituloFormulario1        = "Tabela informações do Forma de Ocupação do Prédio Escolar";
-$descricaoFormulario1     = "Dados de informações do forma de ocupação do prédio escolar cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do forma de ocupação do prédio escolar cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do forma de ocupação do prédio escolar cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do forma de ocupação do prédio escolar cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

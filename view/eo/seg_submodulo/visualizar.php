@@ -29,8 +29,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do SubModulo";
 $descricaoPagina          = "Informações do submodulo";
 $tituloFormulario1        = "Tabela informações do SubModulo";
-$descricaoFormulario1     = "Dados de informações do submodulo cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do submodulo cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do submodulo cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do submodulo cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

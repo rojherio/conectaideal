@@ -29,8 +29,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem do Pasta";
 $descricaoPagina          = "Informações do pasta";
 $tituloFormulario1        = "Tabela informações do Pasta";
-$descricaoFormulario1     = "Dados de informações do pasta cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações do pasta cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do pasta cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações do pasta cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

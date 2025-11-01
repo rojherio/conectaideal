@@ -24,8 +24,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Grau de Parentesco";
 $descricaoPagina          = "Informações de grau de parentesco";
 $tituloFormulario1        = "Tabela informações do Grau de Parentesco";
-$descricaoFormulario1     = "Dados de informações do grau de parentesco cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações descricaoFormulario1 grau de parentesco cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações do grau de parentesco cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações descricaoFormulario1 grau de parentesco cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

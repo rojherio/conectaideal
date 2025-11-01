@@ -29,8 +29,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Unidade de Medida";
 $descricaoPagina          = "Informações da unidade de medida";
 $tituloFormulario1        = "Tabela informações da Unidade de Medida";
-$descricaoFormulario1     = "Dados de informações da unidade de medida cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da unidade de medida cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da unidade de medida cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da unidade de medida cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->

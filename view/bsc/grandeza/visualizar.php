@@ -23,8 +23,8 @@ $rsRegistro = $stmt->fetch(PDO::FETCH_ASSOC);
 $tituloPagina             = "Listagem de Grandeza";
 $descricaoPagina          = "Informações da grandeza";
 $tituloFormulario1        = "Tabela informações da Grandeza";
-$descricaoFormulario1     = "Dados de informações da grandeza cadastrada no sistema DELFOS";
-$tituloImpressao          = "Relatório de informações da grandeza cadastrada no sistema DELFOS";
+$descricaoFormulario1     = "Dados de informações da grandeza cadastrada no sistema conectaideal";
+$tituloImpressao          = "Relatório de informações da grandeza cadastrada no sistema conectaideal";
 //Parámetros de títutlos - NED
 ?>
 <!--Main Section - BEGIN -->
