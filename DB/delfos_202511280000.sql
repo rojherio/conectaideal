@@ -1,21 +1,45 @@
-CREATE DATABASE  IF NOT EXISTS `delfos` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `delfos`;
 -- MySQL dump 10.13  Distrib 8.0.42, for macos15 (x86_64)
 --
--- Host: localhost    Database: delfos
+-- Host: localhost    Database: conectaidealcom_db
 -- ------------------------------------------------------
 -- Server version	5.7.39
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `TABLE_BASE_UE`
+--
+
+DROP TABLE IF EXISTS `TABLE_BASE_UE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `TABLE_BASE_UE` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(100) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `TABLE_BASE_UE`
+--
+
+LOCK TABLES `TABLE_BASE_UE` WRITE;
+/*!40000 ALTER TABLE `TABLE_BASE_UE` DISABLE KEYS */;
+/*!40000 ALTER TABLE `TABLE_BASE_UE` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `bsc_banco`
@@ -33,7 +57,7 @@ CREATE TABLE `bsc_banco` (
   `sigla` varchar(80) NOT NULL,
   `ispb` varchar(8) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=445 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=445 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -59,7 +83,7 @@ CREATE TABLE `bsc_banco_conta_tipo` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -85,7 +109,7 @@ CREATE TABLE `bsc_categoria_administrativa` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +135,7 @@ CREATE TABLE `bsc_escolaridade` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +161,7 @@ CREATE TABLE `bsc_esfera_administrativa` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +191,7 @@ CREATE TABLE `bsc_estado` (
   PRIMARY KEY (`id`),
   KEY `fk_bsc_estado_bsc_pais_idx` (`bsc_pais_id`),
   CONSTRAINT `fk_bsc_estado_bsc_pais` FOREIGN KEY (`bsc_pais_id`) REFERENCES `bsc_pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +218,7 @@ CREATE TABLE `bsc_estado_civil` (
   `nome` varchar(50) NOT NULL,
   `exige_registro` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +244,7 @@ CREATE TABLE `bsc_grandeza` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,6 +255,32 @@ LOCK TABLES `bsc_grandeza` WRITE;
 /*!40000 ALTER TABLE `bsc_grandeza` DISABLE KEYS */;
 INSERT INTO `bsc_grandeza` VALUES (1,1,'2025-07-24 20:38:46','Área'),(2,1,'2025-07-24 20:38:46','Capacidade'),(3,1,'2025-07-24 20:38:46','Comprimento'),(4,1,'2025-07-24 20:38:46','Massa'),(5,1,'2025-07-24 20:38:46','Temperatura'),(6,1,'2025-07-24 20:38:46','Tempo'),(7,1,'2025-07-24 20:38:46','Velocidade'),(8,1,'2025-07-24 20:38:46','Volume');
 /*!40000 ALTER TABLE `bsc_grandeza` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bsc_indigena_lingua`
+--
+
+DROP TABLE IF EXISTS `bsc_indigena_lingua`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bsc_indigena_lingua` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cod_inep` int(4) NOT NULL,
+  `nome` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bsc_indigena_lingua`
+--
+
+LOCK TABLES `bsc_indigena_lingua` WRITE;
+/*!40000 ALTER TABLE `bsc_indigena_lingua` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bsc_indigena_lingua` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -248,7 +298,7 @@ CREATE TABLE `bsc_mes` (
   `nome` varchar(45) NOT NULL,
   `abreviacao` varchar(5) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,6 +309,32 @@ LOCK TABLES `bsc_mes` WRITE;
 /*!40000 ALTER TABLE `bsc_mes` DISABLE KEYS */;
 INSERT INTO `bsc_mes` VALUES (12,1,'2025-09-27 02:34:00','1','Janeiro','jan'),(13,1,'2025-09-27 02:34:00','2','Fevereiro','fev'),(14,1,'2025-09-27 02:34:00','3','Marça','mar'),(15,1,'2025-09-27 02:34:00','4','Abril','abr'),(16,1,'2025-09-27 02:34:00','5','Maio','mai'),(17,1,'2025-09-27 02:34:00','6','Junho','jun'),(18,1,'2025-09-27 02:34:00','7','Julho','jul'),(19,1,'2025-09-27 02:34:00','8','Agosto','ago'),(20,1,'2025-09-27 02:34:00','9','Setembro','set'),(21,1,'2025-09-27 02:34:00','10','Outubro','out'),(22,1,'2025-09-27 02:34:00','11','Novembro','nov'),(23,1,'2025-09-27 02:34:00','12','Dezembro','dez');
 /*!40000 ALTER TABLE `bsc_mes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bsc_midia_social_tipo`
+--
+
+DROP TABLE IF EXISTS `bsc_midia_social_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bsc_midia_social_tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bsc_midia_social_tipo`
+--
+
+LOCK TABLES `bsc_midia_social_tipo` WRITE;
+/*!40000 ALTER TABLE `bsc_midia_social_tipo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bsc_midia_social_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -277,7 +353,7 @@ CREATE TABLE `bsc_municipio` (
   PRIMARY KEY (`id`),
   KEY `fk_bsc_municipio_bsc_estado1_idx` (`bsc_estado_id`),
   CONSTRAINT `fk_bsc_municipio_bsc_estado1` FOREIGN KEY (`bsc_estado_id`) REFERENCES `bsc_estado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5565 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5565 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,7 +382,7 @@ CREATE TABLE `bsc_pais` (
   `masculino` varchar(100) NOT NULL,
   `feminino` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -333,7 +409,7 @@ CREATE TABLE `bsc_parentesco_grau` (
   `nome` varchar(100) NOT NULL,
   `grau` varchar(25) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -394,7 +470,7 @@ CREATE TABLE `bsc_pessoa` (
   CONSTRAINT `fk_bsc_pessoa_bsc_pais1` FOREIGN KEY (`natural_bsc_pais_id`) REFERENCES `bsc_pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bsc_pessoa_bsc_pais2` FOREIGN KEY (`pai_natural_bsc_pais_id`) REFERENCES `bsc_pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bsc_pessoa_bsc_pais3` FOREIGN KEY (`mae_natural_bsc_pais_id`) REFERENCES `bsc_pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -444,7 +520,7 @@ CREATE TABLE `bsc_pessoa_contato` (
   CONSTRAINT `fk_bsc_pessoa_contato_bsc_municipio1` FOREIGN KEY (`bsc_municipio_id`) REFERENCES `bsc_municipio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bsc_pessoa_contato_bsc_parentesco_grau1` FOREIGN KEY (`bsc_parentesco_grau_id`) REFERENCES `bsc_parentesco_grau` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bsc_pessoa_contato_bsc_pessoa1` FOREIGN KEY (`bsc_pessoa_id`) REFERENCES `bsc_pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -453,7 +529,7 @@ CREATE TABLE `bsc_pessoa_contato` (
 
 LOCK TABLES `bsc_pessoa_contato` WRITE;
 /*!40000 ALTER TABLE `bsc_pessoa_contato` DISABLE KEYS */;
-INSERT INTO `bsc_pessoa_contato` VALUES (1,1,'2025-10-19 02:50:39',7,'69.915-122','R. Cruzeiro Do Sul','420','Q-27, C-08','Esperança',94,'(68)3226-1249','(68)9.8405-0791','(68)9992-84356','Gabriel',NULL,'Rojheriorosas@gmail.com','Rogerioegabriel@hotmail.com','Garoto.ac@hotmail.com','Delfos.com.br','','',''),(2,1,'2025-10-02 19:01:34',5,'69.915-216','Rua Cristo Rei','110','','Esperança',94,'(68)3226-1249','(68)9.9928-4356','','',NULL,'','','','Delfos.com.br','','',''),(3,1,'2025-10-02 21:50:11',19,'69.915-122','Rua Cristo Rei','110','','Esperança',94,'','','','',NULL,'','Rojheriorosas@gmail.com','','','','',''),(4,1,'2025-10-09 01:45:42',22,'68.900-999','Calle Del Ciprés','De7','Urb. Sequoia 1','Valle Aranjuez',94,'(69)7775-1575','(68)9.6019-7035','','',2,'Daviillatarco@gmail.com','Daviillatarco@gmail.com','Daviillatarco@gmail.com','Daviillatarco.com.br','','',''),(5,1,'2025-10-19 02:58:16',1,'22.224-242','Dfasfd Fadfas Asf','232','232','232',99,'(42)4242-4242','(24)2.4242-4242','(42)4242-42424','',NULL,'Dfafs@gad.com','','','Dfasdfsfas.ocm','','','');
+INSERT INTO `bsc_pessoa_contato` VALUES (1,1,'2025-10-19 02:50:39',7,'69.915-122','R. Cruzeiro Do Sul','420','Q-27, C-08','Esperança',94,'(68)3226-1249','(68)9.8405-0791','(68)9992-84356','Gabriel',NULL,'Rojheriorosas@gmail.com','Rogerioegabriel@hotmail.com','Garoto.ac@hotmail.com','conectaidealcom_db.com.br','','',''),(2,1,'2025-10-02 19:01:34',5,'69.915-216','Rua Cristo Rei','110','','Esperança',94,'(68)3226-1249','(68)9.9928-4356','','',NULL,'','','','conectaidealcom_db.com.br','','',''),(3,1,'2025-10-02 21:50:11',19,'69.915-122','Rua Cristo Rei','110','','Esperança',94,'','','','',NULL,'','Rojheriorosas@gmail.com','','','','',''),(4,1,'2025-10-09 01:45:42',22,'68.900-999','Calle Del Ciprés','De7','Urb. Sequoia 1','Valle Aranjuez',94,'(69)7775-1575','(68)9.6019-7035','','',2,'Daviillatarco@gmail.com','Daviillatarco@gmail.com','Daviillatarco@gmail.com','Daviillatarco.com.br','','',''),(5,1,'2025-10-19 02:58:16',1,'22.224-242','Dfasfd Fadfas Asf','232','232','232',99,'(42)4242-4242','(24)2.4242-4242','(42)4242-42424','',NULL,'Dfafs@gad.com','','','Dfasdfsfas.ocm','','','');
 /*!40000 ALTER TABLE `bsc_pessoa_contato` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -517,7 +593,7 @@ CREATE TABLE `bsc_pessoa_documento` (
   KEY `fk_bsc_pessoa_documento_bsc_municipio1_idx` (`eleitor_bsc_municipio_id`),
   CONSTRAINT `fk_bsc_pessoa_documento_bsc_municipio1` FOREIGN KEY (`eleitor_bsc_municipio_id`) REFERENCES `bsc_municipio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bsc_pessoa_documento_bsc_pessoa1` FOREIGN KEY (`bsc_pessoa_id`) REFERENCES `bsc_pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -528,6 +604,33 @@ LOCK TABLES `bsc_pessoa_documento` WRITE;
 /*!40000 ALTER TABLE `bsc_pessoa_documento` DISABLE KEYS */;
 INSERT INTO `bsc_pessoa_documento` VALUES (1,1,'2025-09-10 21:20:16',7,'12345678','2020-10-10','SSP-AC','',NULL,'','','','','','','',NULL,'','','',NULL,'',NULL,'','',NULL,'',NULL,NULL,'','',NULL,'','','',NULL,'',NULL,'',NULL,'','','','',NULL,'',''),(2,1,'2025-10-09 01:45:04',22,'191919','2021-10-10','SEGIP','999999','2022-10-10','','','','','876876','LA PA','',NULL,'','FASDFSL','',NULL,'',NULL,'','',NULL,'SEGIP',NULL,NULL,'','',NULL,'','','',NULL,'',NULL,'',NULL,'','','','',NULL,'','1'),(3,1,'2025-10-19 02:58:26',1,'4343','2010-10-20','aap','4242','2025-02-11','','','','','232323','232','232',94,'','4343','',NULL,'',NULL,'','',NULL,'',NULL,NULL,'','',NULL,'','','',NULL,'',NULL,'',NULL,'','34343','','',NULL,'1','1');
 /*!40000 ALTER TABLE `bsc_pessoa_documento` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bsc_produto`
+--
+
+DROP TABLE IF EXISTS `bsc_produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bsc_produto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bsc_produto`
+--
+
+LOCK TABLES `bsc_produto` WRITE;
+/*!40000 ALTER TABLE `bsc_produto` DISABLE KEYS */;
+INSERT INTO `bsc_produto` VALUES (1,1,'2025-10-31 03:14:38','Fitas de áudio',NULL),(2,1,'2025-10-31 03:14:38','Meios magnéticos de armazenamento de áudio',NULL),(3,1,'2025-10-31 03:14:38','Discos de vinil',NULL),(4,1,'2025-10-31 03:14:38','Fitas de vídeo',NULL),(5,1,'2025-10-31 03:14:38','Mídias em CD contendo obras literárias, mapas, enciclopédias, acervos de fotos, documentários ou vídeos com obras de ficção (clássicos e informativos)',NULL),(6,1,'2025-10-31 03:14:38','Mídias em DVDs contendo obras literárias, mapas, enciclopédias, acervos de fotos, documentários ou vídeos com obras de ficção (clássicos e informativos)',NULL),(7,1,'2025-10-31 03:35:13','Blocos lógicos',NULL),(8,1,'2025-10-31 03:35:13','Jogos de memória',NULL),(9,1,'2025-10-31 03:35:13','Dominós',NULL),(10,1,'2025-10-31 03:35:13','Blocos de encaixe',NULL),(11,1,'2025-10-31 03:35:13','Quebra-cabeça',NULL),(12,1,'2025-10-31 03:35:13','Blocos de construção',NULL),(13,1,'2025-10-31 03:35:13','Bonecos diversos',NULL),(14,1,'2025-10-31 03:35:13','Pelúcias',NULL),(15,1,'2025-10-31 03:38:27','Microscópio',NULL),(16,1,'2025-10-31 03:38:27','Telescópio',NULL),(17,1,'2025-10-31 03:38:27','Micrômetro',NULL),(18,1,'2025-10-31 03:38:27','Paquímetro',NULL),(19,1,'2025-10-31 03:38:27','Trena',NULL),(20,1,'2025-10-31 03:38:27','Tubos de ensaio',NULL),(21,1,'2025-10-31 03:38:27','Pipetas',NULL),(22,1,'2025-10-31 03:41:37','Caixas de som',NULL),(23,1,'2025-10-31 03:41:37','Caixas amplificadas',NULL),(24,1,'2025-10-31 03:41:37','Microfones',NULL),(25,1,'2025-10-31 03:41:37','Pedestais',NULL),(26,1,'2025-10-31 03:41:37','Equalizadores',NULL),(27,1,'2025-10-31 03:41:37','Mesa de som com separação de canais',NULL),(28,1,'2025-10-31 03:41:37','Processadores de som',NULL),(29,1,'2025-10-31 03:41:37','Cabos de ligação',NULL),(30,1,'2025-10-31 03:45:18','Instrumentos de percussão (tambor, surdo, caixa etc.)',NULL),(31,1,'2025-10-31 03:45:18','Instrumentos de cordas (piano, violão, viola etc.)',NULL),(32,1,'2025-10-31 03:45:18','Instrumentos de sopro (flauta, clarineta, saxofone etc.)',NULL),(33,1,'2025-10-31 03:46:57','Jogos educativos',NULL),(34,1,'2025-10-31 03:48:55','Pincéis',NULL),(35,1,'2025-10-31 03:48:55','Tintas',NULL),(36,1,'2025-10-31 03:48:55','Argila',NULL),(37,1,'2025-10-31 03:48:55','Forno para queima de cerámica',NULL),(38,1,'2025-10-31 03:48:55','Cenários',NULL),(39,1,'2025-10-31 03:48:55','Fantoches',NULL),(40,1,'2025-10-31 03:48:55','Roupas e fantasias',NULL),(41,1,'2025-10-31 03:55:35','Tecido',NULL),(42,1,'2025-10-31 03:55:35','Agulhas',NULL),(43,1,'2025-10-31 03:55:35','Linhas',NULL),(44,1,'2025-10-31 03:55:35','Máquinas de costura',NULL),(45,1,'2025-10-31 03:55:35','Torno mecânico',NULL),(46,1,'2025-10-31 03:55:35','Ferramentas para mecânico,',NULL),(47,1,'2025-10-31 03:55:35','Lubrificantes para mecânico',NULL),(48,1,'2025-10-31 03:55:35','Detergentes para mecânico',NULL),(49,1,'2025-10-31 03:58:31','Bolas esportivas',NULL),(50,1,'2025-10-31 03:58:31','Redes esportivas',NULL),(51,1,'2025-10-31 03:58:31','Uniformes de jogos esportivos',NULL),(52,1,'2025-10-31 03:58:31','Cordas esportivas',NULL),(53,1,'2025-10-31 03:58:31','Bastões esportivos',NULL),(54,1,'2025-10-31 03:58:31','Bambolês',NULL),(55,1,'2025-10-31 03:58:31','Fitas',NULL),(56,1,'2025-10-31 03:58:31','Materiais didáticos para a educação indígena',NULL),(57,1,'2025-10-31 03:58:31','Materiais didáticos para a educação das relações étnico-raciais',NULL),(58,1,'2025-10-31 03:58:31','Materiais didáticos para a educação do campo',NULL);
+/*!40000 ALTER TABLE `bsc_produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -544,7 +647,7 @@ CREATE TABLE `bsc_setor_publico` (
   `nome` varchar(150) NOT NULL,
   `descricao` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -575,7 +678,7 @@ CREATE TABLE `bsc_unidade_medida` (
   PRIMARY KEY (`id`),
   KEY `fk_bsc_unidade_medida_bsc_grandeza1_idx` (`bsc_grandeza_id`),
   CONSTRAINT `fk_bsc_unidade_medida_bsc_grandeza1` FOREIGN KEY (`bsc_grandeza_id`) REFERENCES `bsc_grandeza` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -606,7 +709,7 @@ CREATE TABLE `bsc_uo_publica` (
   KEY `fk_bsc_uo_publica_bsc_pessoa1_idx` (`bsc_pessoa_id`),
   CONSTRAINT `fk_bsc_uo_publica_bsc_pessoa1` FOREIGN KEY (`bsc_pessoa_id`) REFERENCES `bsc_pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_bsc_uo_publica_bsc_setor_publico1` FOREIGN KEY (`bsc_setor_publico_id`) REFERENCES `bsc_setor_publico` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -633,7 +736,7 @@ CREATE TABLE `bsc_zona` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -659,7 +762,7 @@ CREATE TABLE `eo_cargo` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -685,7 +788,7 @@ CREATE TABLE `eo_setor` (
   `nome` varchar(150) NOT NULL,
   `numero` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=203 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -714,7 +817,7 @@ CREATE TABLE `eo_uo` (
   PRIMARY KEY (`id`),
   KEY `fk_eo_uo_eo_uo_tipo1_idx` (`eo_uo_tipo_id`),
   CONSTRAINT `fk_eo_uo_eo_uo_tipo1` FOREIGN KEY (`eo_uo_tipo_id`) REFERENCES `eo_uo_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -739,7 +842,7 @@ CREATE TABLE `eo_uo_tipo` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -749,30 +852,6 @@ CREATE TABLE `eo_uo_tipo` (
 LOCK TABLES `eo_uo_tipo` WRITE;
 /*!40000 ALTER TABLE `eo_uo_tipo` DISABLE KEYS */;
 /*!40000 ALTER TABLE `eo_uo_tipo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `eo_uo_tipo_copy2`
---
-
-DROP TABLE IF EXISTS `eo_uo_tipo_copy2`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `eo_uo_tipo_copy2` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `eo_uo_tipo_copy2`
---
-
-LOCK TABLES `eo_uo_tipo_copy2` WRITE;
-/*!40000 ALTER TABLE `eo_uo_tipo_copy2` DISABLE KEYS */;
-/*!40000 ALTER TABLE `eo_uo_tipo_copy2` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -787,7 +866,7 @@ CREATE TABLE `gov_governador` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -811,7 +890,7 @@ CREATE TABLE `gov_governo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -835,7 +914,7 @@ CREATE TABLE `gov_uo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(SEE, SESACRE, IAPEN)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(SEE, SESACRE, IAPEN)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -859,7 +938,7 @@ CREATE TABLE `gov_uo_sub` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -883,7 +962,7 @@ CREATE TABLE `gov_uo_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Secretarias, Institutos, Autarquias)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Secretarias, Institutos, Autarquias)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -907,7 +986,7 @@ CREATE TABLE `pref_prefeito` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -931,7 +1010,7 @@ CREATE TABLE `pref_prefeitura` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -955,7 +1034,7 @@ CREATE TABLE `pref_uo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(SEME, SecMunSaude)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(SEME, SecMunSaude)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -979,7 +1058,7 @@ CREATE TABLE `pref_uo_sub` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1003,7 +1082,7 @@ CREATE TABLE `pref_uo_sub_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Assesoria Adjunta)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Assesoria Adjunta)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1027,7 +1106,7 @@ CREATE TABLE `pref_uo_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Secretarias, Institutos, Autarquias)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Secretarias, Institutos, Autarquias)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1054,7 +1133,7 @@ CREATE TABLE `rh_servidor_bancario` (
   `bancario_conta` varchar(15) DEFAULT NULL,
   `bancario_op` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1078,7 +1157,7 @@ CREATE TABLE `see_secretaria` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1102,7 +1181,7 @@ CREATE TABLE `see_secretaria_responsavel` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1129,7 +1208,7 @@ CREATE TABLE `see_see` (
   PRIMARY KEY (`id`),
   KEY `fk_see_see_bsc_pessoa1_idx` (`bsc_pessoa_id`),
   CONSTRAINT `fk_see_see_bsc_pessoa1` FOREIGN KEY (`bsc_pessoa_id`) REFERENCES `bsc_pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1153,7 +1232,7 @@ CREATE TABLE `see_uo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Secretaria Adjunta de ADM, Assessoria de Juventude)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Secretaria Adjunta de ADM, Assessoria de Juventude)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1177,7 +1256,7 @@ CREATE TABLE `see_uo_sub` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Diretoria, Gestão Operacional, Gabinete Secretário Adjunto)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Diretoria, Gestão Operacional, Gabinete Secretário Adjunto)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1201,7 +1280,7 @@ CREATE TABLE `see_uo_sub_divisao` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Departamento Almoxarifado, Assessoria Técnica, Divisão de Articulação)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Departamento Almoxarifado, Assessoria Técnica, Divisão de Articulação)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1225,7 +1304,7 @@ CREATE TABLE `see_uo_sub_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Secretaria Adjunta, Gabinete, Assessoria)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Secretaria Adjunta, Gabinete, Assessoria)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1249,7 +1328,7 @@ CREATE TABLE `see_uo_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Secretaria Adjunta, Assessoria, Gabinete, Departamento)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Secretaria Adjunta, Assessoria, Gabinete, Departamento)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1275,7 +1354,7 @@ CREATE TABLE `seg_acao` (
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1303,7 +1382,7 @@ CREATE TABLE `seg_modulo` (
   `pasta` varchar(100) DEFAULT NULL,
   `caminho` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1334,7 +1413,7 @@ CREATE TABLE `seg_pagina` (
   PRIMARY KEY (`id`),
   KEY `fk_seg_pagina_seg_pasta1_idx` (`seg_pasta_id`),
   CONSTRAINT `fk_seg_pagina_seg_pasta1` FOREIGN KEY (`seg_pasta_id`) REFERENCES `seg_pasta` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1365,7 +1444,7 @@ CREATE TABLE `seg_pasta` (
   PRIMARY KEY (`id`),
   KEY `fk_seg_pasta_seg_submodulo1_idx` (`seg_submodulo_id`),
   CONSTRAINT `fk_seg_pasta_seg_submodulo1` FOREIGN KEY (`seg_submodulo_id`) REFERENCES `seg_submodulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1396,7 +1475,7 @@ CREATE TABLE `seg_submodulo` (
   PRIMARY KEY (`id`),
   KEY `fk_seg_submodulo_seg_modulo1_idx` (`seg_modulo_id`),
   CONSTRAINT `fk_seg_submodulo_seg_modulo1` FOREIGN KEY (`seg_modulo_id`) REFERENCES `seg_modulo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1420,7 +1499,7 @@ CREATE TABLE `seme_categoria_unidade_educativa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Tipo A-E)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Tipo A-E)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1444,7 +1523,7 @@ CREATE TABLE `seme_secretaria` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(SEME)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(SEME)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1468,7 +1547,7 @@ CREATE TABLE `seme_secretaria_responsavel` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1492,7 +1571,7 @@ CREATE TABLE `seme_unidade_educativa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Escola Municipal ...)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Escola Municipal ...)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1516,7 +1595,7 @@ CREATE TABLE `seme_unidade_educativa_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Escola, Creche, Instituto)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Escola, Creche, Instituto)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1540,7 +1619,7 @@ CREATE TABLE `seme_uo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Secretaria Adjunta de ADM, Assessoria de Juventude)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Secretaria Adjunta de ADM, Assessoria de Juventude)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1564,7 +1643,7 @@ CREATE TABLE `seme_uo_responsavel` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1588,7 +1667,7 @@ CREATE TABLE `seme_uo_sub` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Diretoria, Gestão Operacional, Gabinete Secretário Adjunto)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Diretoria, Gestão Operacional, Gabinete Secretário Adjunto)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1612,7 +1691,7 @@ CREATE TABLE `seme_uo_sub_divisao` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Departamento Almoxarifado, Coord Folha Pag)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Departamento Almoxarifado, Coord Folha Pag)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1636,7 +1715,7 @@ CREATE TABLE `seme_uo_sub_divisao_responsavel` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1660,7 +1739,7 @@ CREATE TABLE `seme_uo_sub_responsavel` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1684,7 +1763,7 @@ CREATE TABLE `seme_uo_sub_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Diretoria, Gabinente, Departamento)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Diretoria, Gabinente, Departamento)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1708,7 +1787,7 @@ CREATE TABLE `seme_uo_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Secretaria Adjunta, Assessoria, Gabinete, Departamento)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Secretaria Adjunta, Assessoria, Gabinete, Departamento)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1744,7 +1823,7 @@ CREATE TABLE `sme_serv_bancario` (
   CONSTRAINT `fk_sme_serv_bancario_bsc_banco1` FOREIGN KEY (`bsc_banco_id`) REFERENCES `bsc_banco` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_serv_bancario_bsc_banco_conta_tipo1` FOREIGN KEY (`bsc_banco_conta_tipo_id`) REFERENCES `bsc_banco_conta_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_serv_bancario_sme_servidor1` FOREIGN KEY (`sme_servidor_id`) REFERENCES `sme_servidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1790,7 +1869,7 @@ CREATE TABLE `sme_serv_contrato` (
   CONSTRAINT `fk_sme_servi_contrato_eo_cargo1` FOREIGN KEY (`eo_cargo_id`) REFERENCES `eo_cargo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_servi_contrato_sme_serv_tipo1` FOREIGN KEY (`sme_serv_tipo_id`) REFERENCES `sme_serv_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_servi_contrato_sme_servidor1` FOREIGN KEY (`sme_servidor_id`) REFERENCES `sme_servidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1827,7 +1906,7 @@ CREATE TABLE `sme_serv_contrato_alteracao` (
   PRIMARY KEY (`id`),
   KEY `fk_sme_serv_contrato_alteracao_sme_serv_contrato1_idx` (`sme_serv_contrato_id`),
   CONSTRAINT `fk_sme_serv_contrato_alteracao_sme_serv_contrato1` FOREIGN KEY (`sme_serv_contrato_id`) REFERENCES `sme_serv_contrato` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1859,7 +1938,7 @@ CREATE TABLE `sme_serv_contrato_ferias` (
   PRIMARY KEY (`id`),
   KEY `fk_sme_serv_contrato_ferias_sme_serv_contrato1_idx` (`sme_serv_contrato_id`),
   CONSTRAINT `fk_sme_serv_contrato_ferias_sme_serv_contrato1` FOREIGN KEY (`sme_serv_contrato_id`) REFERENCES `sme_serv_contrato` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1933,7 +2012,7 @@ CREATE TABLE `sme_serv_dependente` (
   CONSTRAINT `fk_sme_serv_dependente_bsc_municipio2` FOREIGN KEY (`benef_repres_bsc_municipio_id`) REFERENCES `bsc_municipio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_serv_dependente_bsc_parentesco_grau1` FOREIGN KEY (`bsc_parentesco_grau_id`) REFERENCES `bsc_parentesco_grau` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_serv_dependente_sme_servidor1` FOREIGN KEY (`sme_servidor_id`) REFERENCES `sme_servidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1989,7 +2068,7 @@ CREATE TABLE `sme_serv_familiar` (
   CONSTRAINT `fk_sme_serv_familiar_bsc_municipio3` FOREIGN KEY (`bsc_municipio_id_averbacao`) REFERENCES `bsc_municipio` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_serv_familiar_bsc_pais1` FOREIGN KEY (`bsc_pais_id_conjuge`) REFERENCES `bsc_pais` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_serv_familiar_sme_servidor1` FOREIGN KEY (`sme_servidor_id`) REFERENCES `sme_servidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2023,7 +2102,7 @@ CREATE TABLE `sme_serv_instrucao` (
   KEY `fk_sme_serv_instrucao_bsc_escolaridade1_idx` (`bsc_escolaridade_id`),
   CONSTRAINT `fk_sme_serv_instrucao_bsc_escolaridade1` FOREIGN KEY (`bsc_escolaridade_id`) REFERENCES `bsc_escolaridade` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_serv_instrucao_sme_servidor1` FOREIGN KEY (`sme_servidor_id`) REFERENCES `sme_servidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2032,7 +2111,7 @@ CREATE TABLE `sme_serv_instrucao` (
 
 LOCK TABLES `sme_serv_instrucao` WRITE;
 /*!40000 ALTER TABLE `sme_serv_instrucao` DISABLE KEYS */;
-INSERT INTO `sme_serv_instrucao` VALUES (1,1,'2025-10-19 03:07:35',1,8,'Graduação completo','2001',0),(3,1,'2025-10-19 03:07:35',1,12,'Mestre completo','2002',1),(4,1,'2025-10-19 03:07:35',1,13,'Doutorado Cursando','2003',0);
+INSERT INTO `sme_serv_instrucao` VALUES (1,1,'2025-10-28 03:40:53',1,8,'Graduação completo','2001',0),(3,1,'2025-10-28 03:40:53',1,12,'Mestre completo','2002',0),(4,1,'2025-10-28 03:40:53',1,13,'Doutorado Cursando','2003',0);
 /*!40000 ALTER TABLE `sme_serv_instrucao` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2053,7 +2132,7 @@ CREATE TABLE `sme_serv_obs` (
   PRIMARY KEY (`id`),
   KEY `fk_sme_serv_obs_sme_servidor1_idx` (`sme_servidor_id`),
   CONSTRAINT `fk_sme_serv_obs_sme_servidor1` FOREIGN KEY (`sme_servidor_id`) REFERENCES `sme_servidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2085,7 +2164,7 @@ CREATE TABLE `sme_serv_saude` (
   PRIMARY KEY (`id`),
   KEY `fk_sme_serv_saude_sme_servidor1_idx` (`sme_servidor_id`),
   CONSTRAINT `fk_sme_serv_saude_sme_servidor1` FOREIGN KEY (`sme_servidor_id`) REFERENCES `sme_servidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2112,7 +2191,7 @@ CREATE TABLE `sme_serv_situacao` (
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2139,7 +2218,7 @@ CREATE TABLE `sme_serv_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` varchar(254) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2173,7 +2252,7 @@ CREATE TABLE `sme_serv_vinculo` (
   KEY `fk_sme_serv_vinculo_bsc_esfera_administrativa1_idx` (`bsc_esfera_administrativa_id`),
   CONSTRAINT `fk_sme_serv_vinculo_bsc_esfera_administrativa1` FOREIGN KEY (`bsc_esfera_administrativa_id`) REFERENCES `bsc_esfera_administrativa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_serv_vinculo_sme_servidor1` FOREIGN KEY (`sme_servidor_id`) REFERENCES `sme_servidor` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2236,7 +2315,7 @@ CREATE TABLE `sme_servidor` (
   CONSTRAINT `fk_sme_servidor_sme_serv_tipo1` FOREIGN KEY (`sme_serv_tipo_id`) REFERENCES `sme_serv_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_servidor_sme_serv_tipo2` FOREIGN KEY (`sme_serv_tipo_id_2`) REFERENCES `sme_serv_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_sme_servidor_sme_sme1` FOREIGN KEY (`sme_sme_id`) REFERENCES `sme_sme` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2264,7 +2343,7 @@ CREATE TABLE `sme_sme` (
   PRIMARY KEY (`id`),
   KEY `fk_sme_sme_bsc_pessoa1_idx` (`bsc_pessoa_id`),
   CONSTRAINT `fk_sme_sme_bsc_pessoa1` FOREIGN KEY (`bsc_pessoa_id`) REFERENCES `bsc_pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2278,125 +2357,99 @@ INSERT INTO `sme_sme` VALUES (1,1,'2025-10-15 13:55:02',5);
 UNLOCK TABLES;
 
 --
--- Table structure for table `table_base_ue`
+-- Table structure for table `tbbaseconectaidealcom_dba`
 --
 
-DROP TABLE IF EXISTS `table_base_ue`;
+DROP TABLE IF EXISTS `tbbaseconectaidealcom_dba`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `table_base_ue` (
+CREATE TABLE `tbbaseconectaidealcom_dba` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `nome` varchar(100) NOT NULL,
-  `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `table_base_ue`
+-- Dumping data for table `tbbaseconectaidealcom_dba`
 --
 
-LOCK TABLES `table_base_ue` WRITE;
-/*!40000 ALTER TABLE `table_base_ue` DISABLE KEYS */;
-/*!40000 ALTER TABLE `table_base_ue` ENABLE KEYS */;
+LOCK TABLES `tbbaseconectaidealcom_dba` WRITE;
+/*!40000 ALTER TABLE `tbbaseconectaidealcom_dba` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbbaseconectaidealcom_dba` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbbasedelfosa`
+-- Table structure for table `tbbaseconectaidealcom_dbb`
 --
 
-DROP TABLE IF EXISTS `tbbasedelfosa`;
+DROP TABLE IF EXISTS `tbbaseconectaidealcom_dbb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbbasedelfosa` (
+CREATE TABLE `tbbaseconectaidealcom_dbb` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbbasedelfosa`
+-- Dumping data for table `tbbaseconectaidealcom_dbb`
 --
 
-LOCK TABLES `tbbasedelfosa` WRITE;
-/*!40000 ALTER TABLE `tbbasedelfosa` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbbasedelfosa` ENABLE KEYS */;
+LOCK TABLES `tbbaseconectaidealcom_dbb` WRITE;
+/*!40000 ALTER TABLE `tbbaseconectaidealcom_dbb` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbbaseconectaidealcom_dbb` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbbasedelfosb`
+-- Table structure for table `tbbaseconectaidealcom_dbr`
 --
 
-DROP TABLE IF EXISTS `tbbasedelfosb`;
+DROP TABLE IF EXISTS `tbbaseconectaidealcom_dbr`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbbasedelfosb` (
+CREATE TABLE `tbbaseconectaidealcom_dbr` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbbasedelfosb`
+-- Dumping data for table `tbbaseconectaidealcom_dbr`
 --
 
-LOCK TABLES `tbbasedelfosb` WRITE;
-/*!40000 ALTER TABLE `tbbasedelfosb` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbbasedelfosb` ENABLE KEYS */;
+LOCK TABLES `tbbaseconectaidealcom_dbr` WRITE;
+/*!40000 ALTER TABLE `tbbaseconectaidealcom_dbr` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbbaseconectaidealcom_dbr` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tbbasedelfosr`
+-- Table structure for table `tbbaseconectaidealcom_dbv`
 --
 
-DROP TABLE IF EXISTS `tbbasedelfosr`;
+DROP TABLE IF EXISTS `tbbaseconectaidealcom_dbv`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbbasedelfosr` (
+CREATE TABLE `tbbaseconectaidealcom_dbv` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tbbasedelfosr`
+-- Dumping data for table `tbbaseconectaidealcom_dbv`
 --
 
-LOCK TABLES `tbbasedelfosr` WRITE;
-/*!40000 ALTER TABLE `tbbasedelfosr` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbbasedelfosr` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tbbasedelfosv`
---
-
-DROP TABLE IF EXISTS `tbbasedelfosv`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tbbasedelfosv` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tbbasedelfosv`
---
-
-LOCK TABLES `tbbasedelfosv` WRITE;
-/*!40000 ALTER TABLE `tbbasedelfosv` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tbbasedelfosv` ENABLE KEYS */;
+LOCK TABLES `tbbaseconectaidealcom_dbv` WRITE;
+/*!40000 ALTER TABLE `tbbaseconectaidealcom_dbv` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tbbaseconectaidealcom_dbv` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2411,7 +2464,7 @@ CREATE TABLE `ue_aula_aluno` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2435,7 +2488,7 @@ CREATE TABLE `ue_aula_avaliacao_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2459,7 +2512,7 @@ CREATE TABLE `ue_aula_curso` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2483,7 +2536,7 @@ CREATE TABLE `ue_aula_curso_materia` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2507,7 +2560,7 @@ CREATE TABLE `ue_aula_curso_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2531,7 +2584,7 @@ CREATE TABLE `ue_aula_materia` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2555,7 +2608,7 @@ CREATE TABLE `ue_aula_materia_avaliacao` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2579,7 +2632,7 @@ CREATE TABLE `ue_aula_materia_conteudo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2603,7 +2656,7 @@ CREATE TABLE `ue_aula_periodo_letivo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2627,7 +2680,7 @@ CREATE TABLE `ue_aula_programa_ensino` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2651,7 +2704,7 @@ CREATE TABLE `ue_aula_turma` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2675,7 +2728,7 @@ CREATE TABLE `ue_aula_turma_aluno` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2699,7 +2752,7 @@ CREATE TABLE `ue_aula_turma_aluno_materia` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2723,7 +2776,7 @@ CREATE TABLE `ue_aula_turma_aluno_materia_avaliacao` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2747,7 +2800,7 @@ CREATE TABLE `ue_aula_turma_aluno_materia_frequencia` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2771,7 +2824,7 @@ CREATE TABLE `ue_aula_turma_materia` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2795,7 +2848,7 @@ CREATE TABLE `ue_aula_turma_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2821,7 +2874,7 @@ CREATE TABLE `ue_cat_esc_priv` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2832,6 +2885,33 @@ LOCK TABLES `ue_cat_esc_priv` WRITE;
 /*!40000 ALTER TABLE `ue_cat_esc_priv` DISABLE KEYS */;
 INSERT INTO `ue_cat_esc_priv` VALUES (1,1,'2025-09-03 03:13:51','Particular','Escola instituída e mantida por uma ou mais pessoas físicas ou jurídicas de direito privado, que cobra pelos serviços\neducativos prestados e não se enquadra como comunitária, confessional ou filantrópica.'),(2,1,'2025-09-03 03:13:51','Comunitária','Escola instituída por grupo de pessoas físicas ou por uma ou mais pessoas jurídicas, inclusive cooperativas\neducacionais sem fins lucrativos que incluem em sua entidade mantenedora representantes da comunidade.'),(3,1,'2025-09-03 03:13:51','Confessional','Escola instituída por grupo de pessoas físicas ou por uma ou mais pessoas jurídicas que atendem a orientação\nconfessional e a ideologia específica.'),(4,1,'2025-09-03 03:13:51','Filantrópica','Escola instituída por pessoas jurídicas de direito privado, sem fins lucrativos, reconhecida como entidade\nbeneficente de assistência social, com a finalidade de prestação de serviços na área de educação, e que atende\naos critérios da Lei nº 12.101, de 27 de novembro de 2009.');
 /*!40000 ALTER TABLE `ue_cat_esc_priv` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_cota_grupo_esp`
+--
+
+DROP TABLE IF EXISTS `ue_cota_grupo_esp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_cota_grupo_esp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_cota_grupo_esp`
+--
+
+LOCK TABLES `ue_cota_grupo_esp` WRITE;
+/*!40000 ALTER TABLE `ue_cota_grupo_esp` DISABLE KEYS */;
+INSERT INTO `ue_cota_grupo_esp` VALUES (1,1,'2025-10-31 04:11:24','Autodeclarado preto, pardo ou indígena (PPI)','Quando se estabelece como critério de acesso à vaga/matrícula a autodeclaração étnica-racial: preto, pardo ou indígena (PPI).\nDeve ser apresentado à escola um documento comprobatório, por autodeclaração do aluno, quando maior de 16 anos, ou por declaração dos pais e/\nou responsáveis legais.'),(2,1,'2025-10-31 04:11:24','Condição de renda','Quando se estabelece como critério de acesso à vaga/matrícula a condição de baixa renda familiar, aferida com base no rendimento individual\ndos moradores de um mesmo domicílio (considerando de forma complementar'),(3,1,'2025-10-31 04:11:24','Oriundo de escola pública','Estudantes que realizaram a trajetória escolar de forma parcial ou integral em escola pública.'),(4,1,'2025-10-31 04:11:24','Pessoa com deficiência (PcD)','São aquelas pessoas que têm impedimentos de longo prazo, de natureza física, mental, intelectual ou sensorial, os quais, em interação com\ndiversas barreiras, podem obstruir sua participação plena e efetiva na sociedade em igualdade de condições com as demais pessoas.'),(5,1,'2025-10-31 04:11:24','Outros grupos que não os listados','Grupos de pessoas que não se enquadram nos listados acima, mas são atendidos por meio de reserva de vagas por sistema de cotas.');
+/*!40000 ALTER TABLE `ue_cota_grupo_esp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2848,7 +2928,7 @@ CREATE TABLE `ue_ens_atend_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2857,7 +2937,7 @@ CREATE TABLE `ue_ens_atend_tipo` (
 
 LOCK TABLES `ue_ens_atend_tipo` WRITE;
 /*!40000 ALTER TABLE `ue_ens_atend_tipo` DISABLE KEYS */;
-INSERT INTO `ue_ens_atend_tipo` VALUES (1,1,'2025-09-26 20:25:24','Atividade complementar',''),(2,1,'2025-09-26 20:25:24','Atendimento educacional especializado ',NULL);
+INSERT INTO `ue_ens_atend_tipo` VALUES (1,1,'2025-09-26 20:25:24','Escolarização','Turma com atividades previstas no currículo escolar da instituição ou da rede de ensino\ncorrespondentes às etapas ofertadas. A proposta curricular deverá estar em acordo com as\norientações do Conselho Nacional de Educação (CNE) e dos conselhos locais (municipal e estadual\nde educação) e com a Base Nacional Comum Curricular (BNCC) para as diferentes etapas\ne modalidades.'),(2,1,'2025-09-26 20:25:24','Atendimento educacional especializado ','O atendimento educacional especializado (AEE) é a mediação pedagógica que visa possibilitar o acesso ao currículo pelo atendimento\nàs necessidades educacionais específicas dos alunos com deficiência, transtorno do espectro autista (TEA) e altas habilidades ou\nsuperdotação, público da Educação Especial, devendo a sua oferta constar do projeto pedagógico da escola (Decreto nº 7.611/2011),\nem todas as etapas e modalidades da educação básica. Tem como função identificar, elaborar e organizar recursos pedagógicos e de\nacessibilidade que eliminem as barreiras para a plena participação dos alunos. As atividades desenvolvidas no AEE diferenciam-se\ndaquelas realizadas na sala de aula comum, não sendo substitutivas à escolarização. Esse atendimento complementa e/ou suplementa a\nformação dos alunos com vistas à autonomia e independência na escola e fora dela e é realizado prioritariamente nas salas de recursos\nmultifuncionais (SRM) da própria escola, ou de outra escola de ensino regular, ou em centros de atendimento educacional especializado\n(CAEE). As atividades visam ao desenvolvimento de habilidades cognitivas, socioafetivas, psicomotoras, comunicacionais, linguísticas,\nidentitárias e culturais dos estudantes, considerando suas singularidades. As ações pedagógicas realizadas pelo professor especializado\nvisam apoiar as atividades realizadas pelo professor na classe comum.'),(3,1,'2025-09-26 20:25:24','Atividade complementar','Turma com atividade de livre escolha que complementa a escolarização e o currículo obrigatório.\nÉ oferecida em horário distinto ao da escolarização.');
 /*!40000 ALTER TABLE `ue_ens_atend_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2878,7 +2958,7 @@ CREATE TABLE `ue_ens_modalidade_etapa` (
   PRIMARY KEY (`id`),
   KEY `fk_ue_ens_modalidade_etapa_ue_ens_modalidade_tipo1_idx` (`ue_ens_modalidade_tipo_id`),
   CONSTRAINT `fk_ue_ens_modalidade_etapa_ue_ens_modalidade_tipo1` FOREIGN KEY (`ue_ens_modalidade_tipo_id`) REFERENCES `ue_ens_modalidade_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2905,7 +2985,7 @@ CREATE TABLE `ue_ens_modalidade_tipo` (
   `nome` varchar(150) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2935,7 +3015,7 @@ CREATE TABLE `ue_ens_profis_forma` (
   PRIMARY KEY (`id`),
   KEY `fk_ue_ens_profis_forma_ue_ens_profis_tipo1_idx` (`ue_ens_profis_tipo_id`),
   CONSTRAINT `fk_ue_ens_profis_forma_ue_ens_profis_tipo1` FOREIGN KEY (`ue_ens_profis_tipo_id`) REFERENCES `ue_ens_profis_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2962,7 +3042,7 @@ CREATE TABLE `ue_ens_profis_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2989,7 +3069,7 @@ CREATE TABLE `ue_equip_acesso_internet_aluno` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3016,7 +3096,7 @@ CREATE TABLE `ue_equip_comput_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3043,7 +3123,7 @@ CREATE TABLE `ue_equip_ens_aprendiz_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3070,7 +3150,7 @@ CREATE TABLE `ue_equip_rede_local_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3097,7 +3177,7 @@ CREATE TABLE `ue_equip_tecn_administrativo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3108,63 +3188,6 @@ LOCK TABLES `ue_equip_tecn_administrativo` WRITE;
 /*!40000 ALTER TABLE `ue_equip_tecn_administrativo` DISABLE KEYS */;
 INSERT INTO `ue_equip_tecn_administrativo` VALUES (1,1,'2025-09-27 01:48:16','Computadores',NULL);
 /*!40000 ALTER TABLE `ue_equip_tecn_administrativo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ue_funcao`
---
-
-DROP TABLE IF EXISTS `ue_funcao`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ue_funcao` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `nome` varchar(100) NOT NULL,
-  `descricao` text,
-  `ue_funcao_tipo_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_ue_funcao_ue_funcao_tipo1_idx` (`ue_funcao_tipo_id`),
-  CONSTRAINT `fk_ue_funcao_ue_funcao_tipo1` FOREIGN KEY (`ue_funcao_tipo_id`) REFERENCES `ue_funcao_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ue_funcao`
---
-
-LOCK TABLES `ue_funcao` WRITE;
-/*!40000 ALTER TABLE `ue_funcao` DISABLE KEYS */;
-INSERT INTO `ue_funcao` VALUES (16,1,'2025-09-27 02:20:13','Auxiliares de secretaria ou auxiliares administrativos e atendentes',NULL,2),(17,1,'2025-09-27 02:20:13','Auxiliar de serviços gerais, porteiro(a), zelador(a), faxineiro(a), horticultor(a) e jardineiro(a)',NULL,1),(18,1,'2025-09-27 02:20:13','Bibliotecário(a), auxiliar de biblioteca ou monitor(a) da sala de leitura',NULL,2),(19,1,'2025-09-27 02:20:13','Bombeiro(a) brigadista, profissionais de assistência à saúde ',NULL,4),(20,1,'2025-09-27 02:20:13','Coordenador(a) de turno/disciplinar',NULL,2),(21,1,'2025-09-27 02:20:13','Fonoaudiólogo(a)',NULL,4),(22,1,'2025-09-27 02:20:13','Nutricionista',NULL,4),(23,1,'2025-09-27 02:20:13','Orientador(a) comunitário(a) ou assistente social',NULL,2),(24,1,'2025-09-27 02:20:13','Psicólogo(a) escolar',NULL,4),(25,1,'2025-09-27 02:20:13','Profissionais de preparação e segurança alimentar, cozinheiro(a), merendeira e auxiliar de cozinha',NULL,4),(26,1,'2025-09-27 02:20:13','Profissionais de apoio e supervisão pedagógica',NULL,3),(27,1,'2025-09-27 02:20:13','Secretário(a) escolar',NULL,2),(28,1,'2025-09-27 02:20:13','Segurança, guarda ou segurança patrimonial',NULL,5),(29,1,'2025-09-27 02:20:13','Técnicos(as), monitores(as), supervisores(as) ou auxiliares de laboratório(s)',NULL,1),(30,1,'2025-09-27 02:20:13','Vice-diretor(a) ou diretor(a) adjunto(a)',NULL,2),(31,1,'2025-09-27 02:20:13','Não há funcionários para as funções listadas.',NULL,6);
-/*!40000 ALTER TABLE `ue_funcao` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ue_funcao_tipo`
---
-
-DROP TABLE IF EXISTS `ue_funcao_tipo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ue_funcao_tipo` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `nome` varchar(100) NOT NULL,
-  `descricao` text,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ue_funcao_tipo`
---
-
-LOCK TABLES `ue_funcao_tipo` WRITE;
-/*!40000 ALTER TABLE `ue_funcao_tipo` DISABLE KEYS */;
-INSERT INTO `ue_funcao_tipo` VALUES (1,1,'2025-09-27 02:06:33','Técnicas',NULL),(2,1,'2025-09-27 02:06:33','Administrativas',NULL),(3,1,'2025-09-27 02:06:33','Pedagógicas',NULL),(4,1,'2025-09-27 02:06:33','Saúde',NULL),(5,1,'2025-09-27 02:06:33','Segurança',NULL),(6,1,'2025-09-27 02:06:33','Nenhum',NULL);
-/*!40000 ALTER TABLE `ue_funcao_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -3181,7 +3204,7 @@ CREATE TABLE `ue_funcionam_situacao` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3208,7 +3231,7 @@ CREATE TABLE `ue_infra_acessib_recurso` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3235,7 +3258,7 @@ CREATE TABLE `ue_infra_agua_abast_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3262,7 +3285,7 @@ CREATE TABLE `ue_infra_eletrica_fonte` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3289,7 +3312,7 @@ CREATE TABLE `ue_infra_esgot_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3316,7 +3339,7 @@ CREATE TABLE `ue_infra_espaco_fisico` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3343,7 +3366,7 @@ CREATE TABLE `ue_infra_lixo_dest_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3370,7 +3393,7 @@ CREATE TABLE `ue_infra_lixo_resid_trat_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3397,7 +3420,7 @@ CREATE TABLE `ue_infra_local_funcionam` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3424,7 +3447,7 @@ CREATE TABLE `ue_infra_local_ocupacao_forma` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3450,7 +3473,7 @@ CREATE TABLE `ue_infraestrutura` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3475,7 +3498,7 @@ CREATE TABLE `ue_infraestrutura_tipo` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3501,7 +3524,7 @@ CREATE TABLE `ue_internet_pub_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3528,7 +3551,7 @@ CREATE TABLE `ue_localizacao_diferenciada` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3539,6 +3562,92 @@ LOCK TABLES `ue_localizacao_diferenciada` WRITE;
 /*!40000 ALTER TABLE `ue_localizacao_diferenciada` DISABLE KEYS */;
 INSERT INTO `ue_localizacao_diferenciada` VALUES (1,1,'2025-08-31 21:37:18','Área de assentamento','Área de terra na qual uma população está instalada, destinada à exploração agrícola, obtida ou conquistada por\nmeio de programas de reforma agrária.'),(2,1,'2025-08-31 21:37:18','Área onde se localiza comunidade remanescente de quilombos','Territórios tradicionalmente ocupados por comunidades que abrigam os grupos étnico-raciais, segundo critérios\nde autoatribuição, com trajetória histórica própria, dotados de relações territoriais específicas, com presunção de\nancestralidade negra relacionada à resistência à opressão histórica sofrida. Essas comunidades são reconhecidas\npela Fundação Cultural Palmares.'),(3,1,'2025-08-31 21:37:18','Terra indígena','Territórios tradicionalmente ocupados por um ou mais povos indígenas. As terras indígenas ocupadas por povos\nindígenas podem ter localização rural ou urbana e, para efeitos do Censo Escolar, não correspondem às diferentes\nsituações de regularização fundiária, ou seja, não precisam estar homologadas ou demarcadas.');
 /*!40000 ALTER TABLE `ue_localizacao_diferenciada` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_mater_ens_aprendiz`
+--
+
+DROP TABLE IF EXISTS `ue_mater_ens_aprendiz`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_mater_ens_aprendiz` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `descricao` text,
+  `ue_mater_ens_aprendiz_tipo_id` int(11) NOT NULL,
+  `bsc_produto_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_mea_ue_mea_tipo1_idx` (`ue_mater_ens_aprendiz_tipo_id`),
+  KEY `fk_ue_mea_bsc_produto1_idx` (`bsc_produto_id`),
+  CONSTRAINT `fk_ue_mater_ens_aprendiz_bsc_produto1` FOREIGN KEY (`bsc_produto_id`) REFERENCES `bsc_produto` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_mater_ens_aprendiz_ue_mater_ens_aprendiz_tipo1` FOREIGN KEY (`ue_mater_ens_aprendiz_tipo_id`) REFERENCES `ue_mater_ens_aprendiz_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COMMENT='Material de Ensino e Aprendizagem';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_mater_ens_aprendiz`
+--
+
+LOCK TABLES `ue_mater_ens_aprendiz` WRITE;
+/*!40000 ALTER TABLE `ue_mater_ens_aprendiz` DISABLE KEYS */;
+INSERT INTO `ue_mater_ens_aprendiz` VALUES (1,1,'2025-10-31 03:33:30',NULL,1,1),(2,1,'2025-10-31 03:33:30',NULL,1,2),(3,1,'2025-10-31 03:33:30',NULL,1,3),(4,1,'2025-10-31 03:33:30',NULL,1,4),(5,1,'2025-10-31 03:33:30',NULL,1,5),(6,1,'2025-10-31 03:33:30',NULL,1,6),(7,1,'2025-10-31 03:33:30',NULL,2,7),(8,1,'2025-10-31 03:33:30',NULL,2,8),(9,1,'2025-10-31 03:33:30',NULL,2,9),(10,1,'2025-10-31 03:33:30',NULL,2,10),(11,1,'2025-10-31 03:33:30',NULL,2,11),(12,1,'2025-10-31 03:33:30',NULL,2,12),(13,1,'2025-10-31 03:33:30',NULL,2,13),(14,1,'2025-10-31 03:33:30',NULL,2,14),(15,1,'2025-10-31 03:33:30',NULL,3,15),(16,1,'2025-10-31 03:33:30',NULL,3,16),(17,1,'2025-10-31 03:33:30',NULL,3,17),(18,1,'2025-10-31 03:33:30',NULL,3,18),(19,1,'2025-10-31 03:33:30',NULL,3,19),(20,1,'2025-10-31 03:33:30',NULL,3,20),(21,1,'2025-10-31 03:33:30',NULL,3,21),(22,1,'2025-10-31 03:33:30',NULL,4,22),(23,1,'2025-10-31 03:33:30',NULL,4,23),(24,1,'2025-10-31 03:33:30',NULL,4,24),(25,1,'2025-10-31 03:33:30',NULL,4,25),(26,1,'2025-10-31 03:33:30',NULL,4,26),(27,1,'2025-10-31 03:33:30',NULL,4,27),(28,1,'2025-10-31 03:33:30',NULL,4,28),(29,1,'2025-10-31 03:33:30',NULL,4,29),(30,1,'2025-10-31 03:33:30',NULL,5,30),(31,1,'2025-10-31 03:33:30',NULL,5,31),(32,1,'2025-10-31 03:33:30',NULL,5,32),(33,1,'2025-10-31 03:33:30',NULL,6,33),(34,1,'2025-10-31 03:33:30',NULL,7,34),(35,1,'2025-10-31 03:33:30',NULL,7,35),(36,1,'2025-10-31 03:33:30',NULL,7,36),(37,1,'2025-10-31 03:33:30',NULL,7,37),(38,1,'2025-10-31 03:33:30',NULL,7,38),(39,1,'2025-10-31 03:33:30',NULL,7,39),(40,1,'2025-10-31 03:33:30',NULL,7,40),(41,1,'2025-10-31 03:33:30',NULL,8,41),(42,1,'2025-10-31 03:33:30',NULL,8,42),(43,1,'2025-10-31 03:33:30',NULL,8,43),(44,1,'2025-10-31 03:33:30',NULL,8,44),(45,1,'2025-10-31 03:33:30',NULL,8,45),(46,1,'2025-10-31 03:33:30',NULL,8,46),(47,1,'2025-10-31 03:33:30',NULL,8,47),(48,1,'2025-10-31 03:33:30',NULL,8,48),(49,1,'2025-10-31 03:33:30',NULL,9,49),(50,1,'2025-10-31 03:33:30',NULL,9,50),(51,1,'2025-10-31 03:33:30',NULL,9,51),(52,1,'2025-10-31 03:33:30',NULL,9,52),(53,1,'2025-10-31 03:33:30',NULL,9,53),(54,1,'2025-10-31 03:33:30',NULL,9,54),(55,1,'2025-10-31 03:33:30',NULL,9,55),(56,1,'2025-10-31 03:33:30',NULL,10,56),(57,1,'2025-10-31 03:33:30',NULL,11,57),(58,1,'2025-10-31 03:33:30',NULL,12,58);
+/*!40000 ALTER TABLE `ue_mater_ens_aprendiz` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_mater_ens_aprendiz_tipo`
+--
+
+DROP TABLE IF EXISTS `ue_mater_ens_aprendiz_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_mater_ens_aprendiz_tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='Material de Ensino e Aprendizagem Tipo';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_mater_ens_aprendiz_tipo`
+--
+
+LOCK TABLES `ue_mater_ens_aprendiz_tipo` WRITE;
+/*!40000 ALTER TABLE `ue_mater_ens_aprendiz_tipo` DISABLE KEYS */;
+INSERT INTO `ue_mater_ens_aprendiz_tipo` VALUES (1,1,'2025-10-31 03:07:23','Acervo multimídia','Entende-se como acervo multimídia os materiais em diversos suportes de mídia, compreendendo: fitas de áudio e outros meios magnéticos\nde armazenamento, discos de vinil, fitas de vídeo, mídias em CD ou DVDs contendo obras literárias, mapas, enciclopédias, acervos de fotos,\ndocumentários ou vídeos com obras de ficção (clássicos e informativos) e materiais que abordem os componentes curriculares em seus objetivos,\nconteúdos programáticos e aplicações. Não considerar materiais entregues pelo Programa Nacional do Livro e do Material Didático (PNLD).'),(2,1,'2025-10-31 03:07:23','Brinquedos para educação infantil','Materiais e itens que possam ser utilizados pelos professores da educação infantil para as atividades pedagógicas, no desenvolvimento das\naulas ou em projetos de ensino, tais como: blocos lógicos, jogos de memória, dominós, blocos de encaixe e quebra-cabeça, blocos de\nconstrução, bonecos diversos, pelúcias, entre outros.'),(3,1,'2025-10-31 03:07:23','Conjunto de materiais científicos','Conjunto de materiais científicos (aparelhos de medição e materiais de laboratórios) que possam ser utilizados pelos professores junto com\nos alunos para aulas práticas em laboratório e/ou aulas de campo, tais como: microscópio, telescópio, micrômetro, paquímetro, trena, tubos\nde ensaio, pipetas, entre outros itens usados em aulas práticas dos componentes curriculares.'),(4,1,'2025-10-31 03:07:23','Equipamento para amplificação e difusão de som/áudio','Equipamentos de som/áudio que podem ser utilizados pela comunidade escolar em atividades diversas, tais como teatro, dança, reuniões\ne assembleias, rádio escola ou rádio de pátio e/ou atividades que necessitem da amplificação de som ou da difusão de música, dentre eles:\ncaixas de som ou caixas amplificadas, microfones e pedestais, equalizadores, mesa de som com separação de canais, processadores de som,\ncabos de ligação, entre outros.'),(5,1,'2025-10-31 03:07:23','Instrumentos musicais para conjunto, banda/fanfarra e/ou aulas de música','Entende-se como instrumentos musicais os itens que produzem som, utilizados pelos professores com os alunos nas aulas de banda ou conjunto\nmusicais e/ou aulas de música ou apreciação musical, tais como: instrumentos de percussão (tambor, surdo, caixa etc.), instrumentos de\ncordas (piano, violão, viola etc.), instrumentos de sopro (flauta, clarineta, saxofone etc.), entre outros.'),(6,1,'2025-10-31 03:07:23','Jogos educativos','Jogos elaborados especificamente para ensinar as pessoas sobre um determinado assunto, expandir conceitos, reforçar desenvolvimento\ne entendimento sobre um evento histórico ou cultural.'),(7,1,'2025-10-31 03:07:23','Materiais para atividades culturais e artísticas','Materiais que podem ser utilizados pelos professores com os alunos para aulas de educação artística e teatro, tais como: pincéis, tintas, argila,\nforno para queima de cerâmica, cenários, fantoches, roupas e fantasias, entre outros.'),(8,1,'2025-10-31 03:07:23','Materiais para educação profissional','Envolve suprimentos e insumos específicos para o curso de educação profissional ofertado na escola (por exemplo, para o curso técnico em moda\na disponibilização de tecidos, agulhas, linhas, máquinas, etc; para o curso técnico em mecânica, a disponibilização de torno mecânico, ferramentas,\nlubrificantes, detergentes, etc.).'),(9,1,'2025-10-31 03:07:23','Materiais para prática desportiva e recreação','Materiais destinados a práticas esportivas e recreação que possam ser utilizados pelos professores com os alunos, dentre eles: bolas, redes,\nuniformes de jogos, cordas, bastões, bambolês, fitas, entre outros.'),(10,1,'2025-10-31 03:07:23','Materiais pedagógicos para a educação escolar indígena','Materiais didáticos específicos publicados e distribuídos pelo Ministério da Educação ou pelas secretarias de educação, direcionados para as\ncomunidades indígenas e para a utilização nas escolas brasileiras com objetivo de valorizar suas culturas.'),(11,1,'2025-10-31 03:07:23','Materiais pedagógicos para a educação das relações étnico-raciais','Materiais didáticos específicos publicados e distribuídos pelo Ministério da Educação ou pelas secretarias de educação, direcionados para a utilização\nnas escolas brasileiras com objetivo de valorizar suas culturas.'),(12,1,'2025-10-31 03:07:23','Materiais pedagógicos para a educação do campo','Materiais didáticos específicos publicados e distribuídos pelo Ministério da Educação ou pelas secretarias de educação, direcionados para\nas comunidades do campo e para a utilização nas escolas brasileiras com objetivo de valorizar suas culturas.');
+/*!40000 ALTER TABLE `ue_mater_ens_aprendiz_tipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_orgao_colegiado`
+--
+
+DROP TABLE IF EXISTS `ue_orgao_colegiado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_orgao_colegiado` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_orgao_colegiado`
+--
+
+LOCK TABLES `ue_orgao_colegiado` WRITE;
+/*!40000 ALTER TABLE `ue_orgao_colegiado` DISABLE KEYS */;
+INSERT INTO `ue_orgao_colegiado` VALUES (1,1,'2025-10-31 04:15:23','Associação de pais','É uma entidade – composta exclusivamente por representantes dos pais/responsáveis pelos estudantes da escola – que tem por finalidade colaborar no aprimoramento do processo educacional, na assistência ao estudante e na integração família-escola-comunidade.'),(2,1,'2025-10-31 04:15:23','Associação de pais e mestres','É uma entidade – composta por representantes dos pais/responsáveis pelos estudantes e por representantes dos professores – que tem por finalidade colaborar para o aprimoramento do processo educacional, a assistência ao estudante e a integração família-escola-comunidade. Associação de pais e mestres, associação de pais e professores e outras denominações são equivalentes, desde que possuam representantes apenas dos dois segmentos.'),(3,1,'2025-10-31 04:15:23','Conselho escolar','É o órgão colegiado da escola composto por representantes dos estudantes, dos pais/responsáveis pelos alunos, dos professores, dos demais funcionários, do diretor da escola e da comunidade local, se for o caso. O conselho escolar deve participar da gestão administrativa, financeira e pedagógica da escola,contribuindo para a melhoria da qualidade da educação.'),(4,1,'2025-10-31 04:15:23','Grêmio estudantil','É a entidade representativa dos interesses dos estudantes e da escola, com finalidades educacionais, culturais, cívicas, esportivas e sociais.');
+/*!40000 ALTER TABLE `ue_orgao_colegiado` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -3555,7 +3664,7 @@ CREATE TABLE `ue_parc_conv_forma` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3582,7 +3691,7 @@ CREATE TABLE `ue_porte` (
   `nome` varchar(150) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3613,7 +3722,7 @@ CREATE TABLE `ue_priv_mantenedora_pessoa` (
   KEY `fk_ue_priv_mantenedora_pessoa_bsc_pessoa_documento1_idx` (`bsc_pessoa_documento_id`),
   CONSTRAINT `fk_ue_priv_mantenedora_pessoa_bsc_pessoa_documento1` FOREIGN KEY (`bsc_pessoa_documento_id`) REFERENCES `bsc_pessoa_documento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_priv_mantenedora_pessoa_ue_priv_mantenedora_tipo1` FOREIGN KEY (`ue_priv_mantenedora_tipo_id`) REFERENCES `ue_priv_mantenedora_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3639,7 +3748,7 @@ CREATE TABLE `ue_priv_mantenedora_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3663,7 +3772,7 @@ CREATE TABLE `ue_processo_afastamento` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(licença)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(licença)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3687,7 +3796,7 @@ CREATE TABLE `ue_processo_credenciamento_reconhecimento` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3711,7 +3820,7 @@ CREATE TABLE `ue_processo_devolucao` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3735,7 +3844,7 @@ CREATE TABLE `ue_processo_eleicao_direta_diretor` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3759,7 +3868,7 @@ CREATE TABLE `ue_processo_eleicao_diretor` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3783,7 +3892,7 @@ CREATE TABLE `ue_processo_lotacao` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3807,7 +3916,7 @@ CREATE TABLE `ue_processo_lotacao_auxiliar_escola` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3831,7 +3940,7 @@ CREATE TABLE `ue_processo_lotacao_auxiliar_secretaria` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3855,7 +3964,7 @@ CREATE TABLE `ue_processo_lotacao_coord_administrativo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3879,7 +3988,7 @@ CREATE TABLE `ue_processo_lotacao_coord_ensino` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3903,7 +4012,7 @@ CREATE TABLE `ue_processo_lotacao_coord_pedagogico` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3927,7 +4036,7 @@ CREATE TABLE `ue_processo_lotacao_diretoria` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3951,7 +4060,7 @@ CREATE TABLE `ue_processo_lotacao_docente` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3975,7 +4084,7 @@ CREATE TABLE `ue_processo_lotacao_docente_apoio_pedagogico` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3999,7 +4108,7 @@ CREATE TABLE `ue_processo_lotacao_merendeira` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4023,7 +4132,7 @@ CREATE TABLE `ue_processo_lotacao_merendeira_servente_rural` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4047,7 +4156,7 @@ CREATE TABLE `ue_processo_lotacao_secretaria` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4071,7 +4180,7 @@ CREATE TABLE `ue_processo_lotacao_servente` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4095,7 +4204,7 @@ CREATE TABLE `ue_processo_lotacao_vigia` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4119,7 +4228,7 @@ CREATE TABLE `ue_processo_matricula` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4143,7 +4252,7 @@ CREATE TABLE `ue_processo_matricula_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4167,7 +4276,7 @@ CREATE TABLE `ue_processo_penalidade` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4191,7 +4300,7 @@ CREATE TABLE `ue_processo_programa_ensino` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(curriculo/materias)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(curriculo/materias)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4215,7 +4324,7 @@ CREATE TABLE `ue_processo_programa_especial` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(classes de aceleração)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(classes de aceleração)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4239,7 +4348,7 @@ CREATE TABLE `ue_processo_projeto_pedagógico` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4263,7 +4372,7 @@ CREATE TABLE `ue_processo_regimento_escolar` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4287,7 +4396,7 @@ CREATE TABLE `ue_processo_tipo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(administrativo, aula)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(administrativo, aula)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4313,7 +4422,7 @@ CREATE TABLE `ue_regulam_situacao` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4338,7 +4447,7 @@ CREATE TABLE `ue_responsavel` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4348,6 +4457,63 @@ CREATE TABLE `ue_responsavel` (
 LOCK TABLES `ue_responsavel` WRITE;
 /*!40000 ALTER TABLE `ue_responsavel` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ue_responsavel` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_rh_funcao`
+--
+
+DROP TABLE IF EXISTS `ue_rh_funcao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_rh_funcao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(100) NOT NULL,
+  `descricao` text,
+  `ue_rh_funcao_tipo_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_rh_funcao_ue_rh_funcao_tipo1_idx` (`ue_rh_funcao_tipo_id`),
+  CONSTRAINT `fk_ue_rh_funcao_ue_rh_funcao_tipo1` FOREIGN KEY (`ue_rh_funcao_tipo_id`) REFERENCES `ue_rh_funcao_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_rh_funcao`
+--
+
+LOCK TABLES `ue_rh_funcao` WRITE;
+/*!40000 ALTER TABLE `ue_rh_funcao` DISABLE KEYS */;
+INSERT INTO `ue_rh_funcao` VALUES (16,1,'2025-09-27 02:20:13','Auxiliares de secretaria ou auxiliares administrativos e atendentes',NULL,0),(17,1,'2025-09-27 02:20:13','Auxiliar de serviços gerais, porteiro(a), zelador(a), faxineiro(a), horticultor(a) e jardineiro(a)',NULL,0),(18,1,'2025-09-27 02:20:13','Bibliotecário(a), auxiliar de biblioteca ou monitor(a) da sala de leitura',NULL,0),(19,1,'2025-09-27 02:20:13','Bombeiro(a) brigadista, profissionais de assistência à saúde ',NULL,0),(20,1,'2025-09-27 02:20:13','Coordenador(a) de turno/disciplinar',NULL,0),(21,1,'2025-09-27 02:20:13','Fonoaudiólogo(a)',NULL,0),(22,1,'2025-09-27 02:20:13','Nutricionista',NULL,0),(23,1,'2025-09-27 02:20:13','Orientador(a) comunitário(a) ou assistente social',NULL,0),(24,1,'2025-09-27 02:20:13','Psicólogo(a) escolar',NULL,0),(25,1,'2025-09-27 02:20:13','Profissionais de preparação e segurança alimentar, cozinheiro(a), merendeira e auxiliar de cozinha',NULL,0),(26,1,'2025-09-27 02:20:13','Profissionais de apoio e supervisão pedagógica',NULL,0),(27,1,'2025-09-27 02:20:13','Secretário(a) escolar',NULL,0),(28,1,'2025-09-27 02:20:13','Segurança, guarda ou segurança patrimonial',NULL,0),(29,1,'2025-09-27 02:20:13','Técnicos(as), monitores(as), supervisores(as) ou auxiliares de laboratório(s)',NULL,0),(30,1,'2025-09-27 02:20:13','Vice-diretor(a) ou diretor(a) adjunto(a)',NULL,0),(31,1,'2025-09-27 02:20:13','Não há funcionários para as funções listadas.',NULL,0);
+/*!40000 ALTER TABLE `ue_rh_funcao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_rh_funcao_tipo`
+--
+
+DROP TABLE IF EXISTS `ue_rh_funcao_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_rh_funcao_tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(100) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_rh_funcao_tipo`
+--
+
+LOCK TABLES `ue_rh_funcao_tipo` WRITE;
+/*!40000 ALTER TABLE `ue_rh_funcao_tipo` DISABLE KEYS */;
+INSERT INTO `ue_rh_funcao_tipo` VALUES (1,1,'2025-09-27 02:06:33','Técnicas',NULL),(2,1,'2025-09-27 02:06:33','Administrativas',NULL),(3,1,'2025-09-27 02:06:33','Pedagógicas',NULL),(4,1,'2025-09-27 02:06:33','Saúde',NULL),(5,1,'2025-09-27 02:06:33','Segurança',NULL),(6,1,'2025-09-27 02:06:33','Nenhum',NULL);
+/*!40000 ALTER TABLE `ue_rh_funcao_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -4363,7 +4529,7 @@ CREATE TABLE `ue_turno` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(150) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4411,6 +4577,14 @@ CREATE TABLE `ue_ue` (
   `sala_aula_acessibilidade_qtd` int(11) DEFAULT NULL,
   `internet_banda_larga_velocidade` tinyint(1) DEFAULT '0',
   `alimentacao_pnae_fnde_oferece` tinyint(1) DEFAULT '0',
+  `educacao_indigina` tinyint(1) DEFAULT '0',
+  `bsc_indigena_lingua_id_1` int(11) DEFAULT NULL,
+  `bsc_indigena_lingua_id_2` int(11) DEFAULT NULL,
+  `bsc_indigena_lingua_id_3` int(11) DEFAULT NULL,
+  `processo_seletivo_usa` tinyint(1) DEFAULT '0',
+  `integracao_escola_comunidade` text,
+  `ens_aprendiz_espaco_entorno` text,
+  `porposta_pedagogica_atualizada` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_ue_ue_ue_funcionam_situacao1_idx` (`ue_funcionam_situacao_id`),
   KEY `fk_ue_ue_bsc_zona1_idx` (`bsc_zona_id`),
@@ -4423,8 +4597,14 @@ CREATE TABLE `ue_ue` (
   KEY `fk_ue_ue_ue_ue1_idx` (`ue_ue_id_vinculada`),
   KEY `fk_ue_ue_ue_infra_local_ocupacao_forma1_idx` (`ue_infra_local_ocupacao_forma_id`),
   KEY `fk_ue_ue_bsc_pessoa1_idx` (`bsc_pessoa_id`),
+  KEY `fk_ue_ue_bsc_indigena_lingua1_idx` (`bsc_indigena_lingua_id_1`),
+  KEY `fk_ue_ue_bsc_indigena_lingua2_idx` (`bsc_indigena_lingua_id_2`),
+  KEY `fk_ue_ue_bsc_indigena_lingua3_idx` (`bsc_indigena_lingua_id_3`),
   CONSTRAINT `fk_ue_ue_bsc_esfera_administrativa1` FOREIGN KEY (`bsc_esfera_administrativa_id_dependencia`) REFERENCES `bsc_esfera_administrativa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_bsc_esfera_administrativa2` FOREIGN KEY (`bsc_esfera_administrativa_id_regulam`) REFERENCES `bsc_esfera_administrativa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_ue_bsc_indigena_lingua1` FOREIGN KEY (`bsc_indigena_lingua_id_1`) REFERENCES `bsc_indigena_lingua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_ue_bsc_indigena_lingua2` FOREIGN KEY (`bsc_indigena_lingua_id_2`) REFERENCES `bsc_indigena_lingua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_ue_bsc_indigena_lingua3` FOREIGN KEY (`bsc_indigena_lingua_id_3`) REFERENCES `bsc_indigena_lingua` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_bsc_pessoa1` FOREIGN KEY (`bsc_pessoa_id`) REFERENCES `bsc_pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_bsc_zona1` FOREIGN KEY (`bsc_zona_id`) REFERENCES `bsc_zona` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ue_cat_esc_priv1` FOREIGN KEY (`ue_cat_esc_priv_id`) REFERENCES `ue_cat_esc_priv` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
@@ -4434,7 +4614,7 @@ CREATE TABLE `ue_ue` (
   CONSTRAINT `fk_ue_ue_ue_regulam_situacao1` FOREIGN KEY (`ue_regulam_situacao_id`) REFERENCES `ue_regulam_situacao` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ue_ue1` FOREIGN KEY (`ue_ue_id_vinculada`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ue_ue_vinculada_tipo1` FOREIGN KEY (`ue_ue_vinculada_tipo_id`) REFERENCES `ue_ue_vinculada_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4443,7 +4623,7 @@ CREATE TABLE `ue_ue` (
 
 LOCK TABLES `ue_ue` WRITE;
 /*!40000 ALTER TABLE `ue_ue` DISABLE KEYS */;
-INSERT INTO `ue_ue` VALUES (1,1,'2025-10-24 13:12:49',5,10,'11','orgao 11',1,'2025-02-10','2025-12-10',2,NULL,3,NULL,0,0,3,3,NULL,NULL,'',2,0,6,4,2,0,1),(2,1,'2025-09-28 02:41:15',18,11,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,'',NULL,0,0,0,0,0,0),(3,1,'2025-10-03 19:09:06',16,12,'',NULL,1,'2027-02-15','2027-12-15',2,NULL,1,NULL,0,0,2,2,NULL,NULL,'',NULL,0,0,0,0,0,0),(5,1,'2025-10-02 14:47:32',21,2,'',NULL,2,NULL,NULL,2,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,'',NULL,0,0,0,0,0,0);
+INSERT INTO `ue_ue` VALUES (1,1,'2025-10-30 01:28:19',5,10,'11','orgao 11',1,'2025-02-10','2025-12-10',2,NULL,3,NULL,0,0,3,3,NULL,NULL,'',2,0,6,4,2,0,1,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL),(2,1,'2025-09-28 02:41:15',18,11,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,'',NULL,0,0,0,0,0,0,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL),(3,1,'2025-10-03 19:09:06',16,12,'',NULL,1,'2027-02-15','2027-12-15',2,NULL,1,NULL,0,0,2,2,NULL,NULL,'',NULL,0,0,0,0,0,0,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL),(5,1,'2025-10-02 14:47:32',21,2,'',NULL,2,NULL,NULL,2,NULL,NULL,NULL,0,0,NULL,NULL,NULL,NULL,'',NULL,0,0,0,0,0,0,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `ue_ue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4473,7 +4653,7 @@ CREATE TABLE `ue_ue_aluno_comput_tipo` (
   KEY `fk_ue_ue_aluno_comput_tipo_ue_equip_comput_tipo1_idx` (`ue_equip_comput_tipo_id`),
   CONSTRAINT `fk_ue_ue_aluno_comput_tipo_ue_equip_comput_tipo1` FOREIGN KEY (`ue_equip_comput_tipo_id`) REFERENCES `ue_equip_comput_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_aluno_comput_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4484,6 +4664,39 @@ LOCK TABLES `ue_ue_aluno_comput_tipo` WRITE;
 /*!40000 ALTER TABLE `ue_ue_aluno_comput_tipo` DISABLE KEYS */;
 INSERT INTO `ue_ue_aluno_comput_tipo` VALUES (13,1,'2025-10-24 13:12:49',NULL,7,NULL,NULL,7,NULL,NULL,NULL,1,1),(14,1,'2025-10-24 13:12:49',NULL,8,NULL,NULL,8,NULL,NULL,NULL,1,2);
 /*!40000 ALTER TABLE `ue_ue_aluno_comput_tipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_ue_cota_grupo_esp`
+--
+
+DROP TABLE IF EXISTS `ue_ue_cota_grupo_esp`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_ue_cota_grupo_esp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  `qtd_vagas` varchar(45) DEFAULT NULL,
+  `ue_ue_id` int(11) NOT NULL,
+  `ue_cota_grupo_esp_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_ue_cota_grupo_esp_ue_ue1_idx` (`ue_ue_id`),
+  KEY `fk_ue_ue_cota_grupo_esp_ue_cge1_idx` (`ue_cota_grupo_esp_id`),
+  CONSTRAINT `fk_ue_ue_cota_grupo_esp_ue_cota_grupo_esp1` FOREIGN KEY (`ue_cota_grupo_esp_id`) REFERENCES `ue_cota_grupo_esp` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_ue_cota_grupo_esp_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_ue_cota_grupo_esp`
+--
+
+LOCK TABLES `ue_ue_cota_grupo_esp` WRITE;
+/*!40000 ALTER TABLE `ue_ue_cota_grupo_esp` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_ue_cota_grupo_esp` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -4504,7 +4717,7 @@ CREATE TABLE `ue_ue_ens_atend_tipo` (
   KEY `fk_ue_ue_ens_atend_tipo_ue_ens_atend_tipo1_idx` (`ue_ens_atend_tipo_id`),
   CONSTRAINT `fk_ue_ue_ens_atend_tipo_ue_ens_atend_tipo1` FOREIGN KEY (`ue_ens_atend_tipo_id`) REFERENCES `ue_ens_atend_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ens_atend_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4535,7 +4748,7 @@ CREATE TABLE `ue_ue_ens_modalidade_etapa` (
   KEY `fk_ue_ue_ens_modalidade_etapa_ue_ens_modalidade_etapa1_idx` (`ue_ens_modalidade_etapa_id`),
   CONSTRAINT `fk_ue_ue_ens_modalidade_etapa_ue_ens_modalidade_etapa1` FOREIGN KEY (`ue_ens_modalidade_etapa_id`) REFERENCES `ue_ens_modalidade_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ens_modalidade_etapa_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4566,7 +4779,7 @@ CREATE TABLE `ue_ue_ens_profis_forma` (
   KEY `fk_ue_ue_ens_profis_forma_ue_ens_profis_forma1_idx` (`ue_ens_profis_forma_id`),
   CONSTRAINT `fk_ue_ue_ens_profis_forma_ue_ens_profis_forma1` FOREIGN KEY (`ue_ens_profis_forma_id`) REFERENCES `ue_ens_profis_forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ens_profis_forma_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4598,7 +4811,7 @@ CREATE TABLE `ue_ue_equip_acesso_internet_aluno` (
   KEY `fk_ue_ue_equip_acesso_internet_aluno_ue_equip_acesso_intern_idx` (`ue_equip_acesso_internet_aluno_id`),
   CONSTRAINT `fk_ue_ue_equip_acesso_internet_aluno_ue_equip_acesso_internet1` FOREIGN KEY (`ue_equip_acesso_internet_aluno_id`) REFERENCES `ue_equip_acesso_internet_aluno` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_equip_acesso_internet_aluno_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4637,7 +4850,7 @@ CREATE TABLE `ue_ue_equip_ens_aprendiz_tipo` (
   KEY `fk_ue_ue_equip_ens_apr_tipo_ue_equip_ens_apr_tipo1_idx` (`ue_equip_ens_aprendiz_tipo_id`),
   CONSTRAINT `fk_ue_ue_equip_ens_apr_tipo_ue_equip_ens_apr_tipo1` FOREIGN KEY (`ue_equip_ens_aprendiz_tipo_id`) REFERENCES `ue_equip_ens_aprendiz_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_equip_ens_aprendiz_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4669,7 +4882,7 @@ CREATE TABLE `ue_ue_equip_rede_local_tipo` (
   KEY `fk_ue_ue_equip_rede_local_tipo_ue_equip_rede_local_tipo1_idx` (`ue_equip_rede_local_tipo_id`),
   CONSTRAINT `fk_ue_ue_equip_rede_local_tipo_ue_equip_rede_local_tipo1` FOREIGN KEY (`ue_equip_rede_local_tipo_id`) REFERENCES `ue_equip_rede_local_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_equip_rede_local_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4708,7 +4921,7 @@ CREATE TABLE `ue_ue_equip_tecn_administrativo` (
   KEY `fk_ue_ue_equip_tecn_administrativo_ue_equip_tecn_administra_idx` (`ue_equip_tecn_administrativo_id`),
   CONSTRAINT `fk_ue_ue_equip_tecn_administrativo_ue_equip_tecn_administrati1` FOREIGN KEY (`ue_equip_tecn_administrativo_id`) REFERENCES `ue_equip_tecn_administrativo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_equip_tecn_administrativo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4719,38 +4932,6 @@ LOCK TABLES `ue_ue_equip_tecn_administrativo` WRITE;
 /*!40000 ALTER TABLE `ue_ue_equip_tecn_administrativo` DISABLE KEYS */;
 INSERT INTO `ue_ue_equip_tecn_administrativo` VALUES (10,1,'2025-10-24 13:12:49',NULL,1,NULL,NULL,1,NULL,NULL,NULL,1,1);
 /*!40000 ALTER TABLE `ue_ue_equip_tecn_administrativo` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `ue_ue_funcao`
---
-
-DROP TABLE IF EXISTS `ue_ue_funcao`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `ue_ue_funcao` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `qtd_funcionario` varchar(45) DEFAULT NULL,
-  `descricao` text,
-  `ue_ue_id` int(11) NOT NULL,
-  `ue_funcao_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_ue_ue_funcao_ue_ue1_idx` (`ue_ue_id`),
-  KEY `fk_ue_ue_funcao_ue_funcao1_idx` (`ue_funcao_id`),
-  CONSTRAINT `fk_ue_ue_funcao_ue_funcao1` FOREIGN KEY (`ue_funcao_id`) REFERENCES `ue_funcao` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ue_ue_funcao_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `ue_ue_funcao`
---
-
-LOCK TABLES `ue_ue_funcao` WRITE;
-/*!40000 ALTER TABLE `ue_ue_funcao` DISABLE KEYS */;
-/*!40000 ALTER TABLE `ue_ue_funcao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -4772,7 +4953,7 @@ CREATE TABLE `ue_ue_infra_acessib_recurso` (
   KEY `fk_ue_ue_infra_acessib_recurso_ue_infra_acessib_recurso1_idx` (`ue_infra_acessib_recurso_id`),
   CONSTRAINT `fk_ue_ue_infra_acessib_recurso_ue_infra_acessib_recurso1` FOREIGN KEY (`ue_infra_acessib_recurso_id`) REFERENCES `ue_infra_acessib_recurso` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_acessib_recurso_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4804,7 +4985,7 @@ CREATE TABLE `ue_ue_infra_agua_abast_tipo` (
   KEY `fk_ue_ue_infra_agua_abast_tipo_ue_infra_agua_abast_tipo1_idx` (`ue_infra_agua_abast_tipo_id`),
   CONSTRAINT `fk_ue_ue_infra_agua_abast_tipo_ue_infra_agua_abast_tipo1` FOREIGN KEY (`ue_infra_agua_abast_tipo_id`) REFERENCES `ue_infra_agua_abast_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_agua_abast_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4836,7 +5017,7 @@ CREATE TABLE `ue_ue_infra_eletrica_fonte` (
   KEY `fk_ue_ue_infra_eletrica_fonte_ue_infra_eletrica_fonte1_idx` (`ue_infra_eletrica_fonte_id`),
   CONSTRAINT `fk_ue_ue_infra_eletrica_fonte_ue_infra_eletrica_fonte1` FOREIGN KEY (`ue_infra_eletrica_fonte_id`) REFERENCES `ue_infra_eletrica_fonte` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_eletrica_fonte_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4867,7 +5048,7 @@ CREATE TABLE `ue_ue_infra_esgot_tipo` (
   KEY `fk_ue_ue_infra_esgot_tipo_ue_infra_esgot_tipo1_idx` (`ue_infra_esgot_tipo_id`),
   CONSTRAINT `fk_ue_ue_infra_esgot_tipo_ue_infra_esgot_tipo1` FOREIGN KEY (`ue_infra_esgot_tipo_id`) REFERENCES `ue_infra_esgot_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_esgot_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4899,7 +5080,7 @@ CREATE TABLE `ue_ue_infra_espaco_fisico` (
   KEY `fk_ue_ue_infra_espaco_fisico_ue_infra_espaco_fisico1_idx` (`ue_infra_espaco_fisico_id`),
   CONSTRAINT `fk_ue_ue_infra_espaco_fisico_ue_infra_espaco_fisico1` FOREIGN KEY (`ue_infra_espaco_fisico_id`) REFERENCES `ue_infra_espaco_fisico` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_espaco_fisico_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4931,7 +5112,7 @@ CREATE TABLE `ue_ue_infra_lixo_dest_tipo` (
   KEY `fk_ue_ue_infra_lixo_dest_tipo_ue_infra_lixo_dest_tipo1_idx` (`ue_infra_lixo_dest_tipo_id`),
   CONSTRAINT `fk_ue_ue_infra_lixo_dest_tipo_ue_infra_lixo_dest_tipo1` FOREIGN KEY (`ue_infra_lixo_dest_tipo_id`) REFERENCES `ue_infra_lixo_dest_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_lixo_dest_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4963,7 +5144,7 @@ CREATE TABLE `ue_ue_infra_lixo_resid_trat_tipo` (
   KEY `fk_ue_ue_infra_lixo_resid_trat_tipo_ue_infra_lixo_resid_tra_idx` (`ue_infra_lixo_resid_trat_tipo_id`),
   CONSTRAINT `fk_ue_ue_infra_lixo_resid_trat_tipo_ue_infra_lixo_resid_trat_1` FOREIGN KEY (`ue_infra_lixo_resid_trat_tipo_id`) REFERENCES `ue_infra_lixo_resid_trat_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_lixo_resid_trat_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4994,7 +5175,7 @@ CREATE TABLE `ue_ue_infra_local_funcionam` (
   KEY `fk_ue_ue_infra_local_funcionam_ue_infra_local_funcionam1_idx` (`ue_infra_local_funcionam_id`),
   CONSTRAINT `fk_ue_ue_infra_local_funcionam_ue_infra_local_funcionam1` FOREIGN KEY (`ue_infra_local_funcionam_id`) REFERENCES `ue_infra_local_funcionam` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_local_funcionam_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5026,7 +5207,7 @@ CREATE TABLE `ue_ue_infra_ue_compartilha` (
   KEY `fk_ue_ue_infra_ue_compartilha_ue_ue2_idx` (`ue_ue_id_compartilha`),
   CONSTRAINT `fk_ue_ue_infra_ue_compartilha_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_infra_ue_compartilha_ue_ue2` FOREIGN KEY (`ue_ue_id_compartilha`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5058,7 +5239,7 @@ CREATE TABLE `ue_ue_inst_parc_conv` (
   KEY `fk_ue_ue_inst_parc_conv_bsc_uo_publica1_idx` (`bsc_uo_publica_id`),
   CONSTRAINT `fk_ue_ue_inst_parc_conv_bsc_uo_publica1` FOREIGN KEY (`bsc_uo_publica_id`) REFERENCES `bsc_uo_publica` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_inst_parc_conv_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5067,6 +5248,7 @@ CREATE TABLE `ue_ue_inst_parc_conv` (
 
 LOCK TABLES `ue_ue_inst_parc_conv` WRITE;
 /*!40000 ALTER TABLE `ue_ue_inst_parc_conv` DISABLE KEYS */;
+INSERT INTO `ue_ue_inst_parc_conv` VALUES (13,1,'2025-10-30 01:28:19','',1,1),(14,1,'2025-10-30 01:28:19','',1,2),(15,1,'2025-10-30 01:28:19','',1,3);
 /*!40000 ALTER TABLE `ue_ue_inst_parc_conv` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5081,7 +5263,7 @@ CREATE TABLE `ue_ue_inst_parc_conv_ens_atend_tipo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `matricula_qtd` int(11) NOT NULL,
+  `matricula_qtd` int(11) DEFAULT NULL,
   `descricao` text,
   `ue_ens_atend_tipo_id` int(11) NOT NULL,
   `ue_ue_isnt_parc_conv_forma_id` int(11) NOT NULL,
@@ -5090,7 +5272,7 @@ CREATE TABLE `ue_ue_inst_parc_conv_ens_atend_tipo` (
   KEY `fk_ue_ue_ipceat_ue_ue_isnt_parc_conv_forma1` (`ue_ue_isnt_parc_conv_forma_id`),
   CONSTRAINT `fk_ue_ue_inst_parc_conv_ens_atend_tipo_ue_ens_atend_tipo1` FOREIGN KEY (`ue_ens_atend_tipo_id`) REFERENCES `ue_ens_atend_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ipceat_ue_ue_isnt_parc_conv_forma1` FOREIGN KEY (`ue_ue_isnt_parc_conv_forma_id`) REFERENCES `ue_ue_isnt_parc_conv_forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5099,6 +5281,7 @@ CREATE TABLE `ue_ue_inst_parc_conv_ens_atend_tipo` (
 
 LOCK TABLES `ue_ue_inst_parc_conv_ens_atend_tipo` WRITE;
 /*!40000 ALTER TABLE `ue_ue_inst_parc_conv_ens_atend_tipo` DISABLE KEYS */;
+INSERT INTO `ue_ue_inst_parc_conv_ens_atend_tipo` VALUES (21,1,'2025-10-30 01:28:19',NULL,'',1,4),(22,1,'2025-10-30 01:28:19',2,'',2,4),(23,1,'2025-10-30 01:28:19',NULL,'',1,5),(24,1,'2025-10-30 01:28:19',33,'',2,5),(25,1,'2025-10-30 01:28:19',NULL,'',1,9),(26,1,'2025-10-30 01:28:19',7,'',2,9),(27,1,'2025-10-30 01:28:19',4,'',1,6),(28,1,'2025-10-30 01:28:19',NULL,'',2,6),(29,1,'2025-10-30 01:28:19',777,'',1,10),(30,1,'2025-10-30 01:28:19',777,'',2,10);
 /*!40000 ALTER TABLE `ue_ue_inst_parc_conv_ens_atend_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5113,16 +5296,16 @@ CREATE TABLE `ue_ue_inst_parc_conv_ens_modalidade_etapa` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `matricula_qtd` int(11) NOT NULL,
+  `matricula_qtd` int(11) DEFAULT NULL,
   `descricao` text,
   `ue_ens_modalidade_etapa_id` int(11) NOT NULL,
   `ue_ue_isnt_parc_conv_forma_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_ue_ue_inst_parc_conv_ens_mod_etapa_ue_ens_mod_etapa1_idx` (`ue_ens_modalidade_etapa_id`),
   KEY `fk_ue_ue_ipceme_ue_ue_isnt_parc_conv_forma1_idx` (`ue_ue_isnt_parc_conv_forma_id`),
+  KEY `fk_ue_ue_inst_parc_conv_ens_mod_etapa_ue_ens_mod_etapa1_idx` (`ue_ens_modalidade_etapa_id`),
   CONSTRAINT `fk_ue_ue_inst_parc_conv_ens_mod_etapa_ue_ens_mod_etapa1` FOREIGN KEY (`ue_ens_modalidade_etapa_id`) REFERENCES `ue_ens_modalidade_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ipceme_ue_ue_isnt_parc_conv_forma1` FOREIGN KEY (`ue_ue_isnt_parc_conv_forma_id`) REFERENCES `ue_ue_isnt_parc_conv_forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5131,6 +5314,7 @@ CREATE TABLE `ue_ue_inst_parc_conv_ens_modalidade_etapa` (
 
 LOCK TABLES `ue_ue_inst_parc_conv_ens_modalidade_etapa` WRITE;
 /*!40000 ALTER TABLE `ue_ue_inst_parc_conv_ens_modalidade_etapa` DISABLE KEYS */;
+INSERT INTO `ue_ue_inst_parc_conv_ens_modalidade_etapa` VALUES (67,1,'2025-10-30 01:28:19',NULL,'',1,4),(68,1,'2025-10-30 01:28:19',NULL,'',2,4),(69,1,'2025-10-30 01:28:19',22,'',3,4),(70,1,'2025-10-30 01:28:19',22,'',4,4),(71,1,'2025-10-30 01:28:19',NULL,'',5,4),(72,1,'2025-10-30 01:28:19',NULL,'',6,4),(73,1,'2025-10-30 01:28:19',NULL,'',7,4),(74,1,'2025-10-30 01:28:19',NULL,'',8,4),(75,1,'2025-10-30 01:28:19',3,'',1,5),(76,1,'2025-10-30 01:28:19',33,'',2,5),(77,1,'2025-10-30 01:28:19',NULL,'',3,5),(78,1,'2025-10-30 01:28:19',NULL,'',4,5),(79,1,'2025-10-30 01:28:19',NULL,'',5,5),(80,1,'2025-10-30 01:28:19',NULL,'',6,5),(81,1,'2025-10-30 01:28:19',NULL,'',7,5),(82,1,'2025-10-30 01:28:19',NULL,'',8,5),(83,1,'2025-10-30 01:28:19',7,'',1,9),(84,1,'2025-10-30 01:28:19',NULL,'',2,9),(85,1,'2025-10-30 01:28:19',NULL,'',3,9),(86,1,'2025-10-30 01:28:19',NULL,'',4,9),(87,1,'2025-10-30 01:28:19',NULL,'',5,9),(88,1,'2025-10-30 01:28:19',NULL,'',6,9),(89,1,'2025-10-30 01:28:19',NULL,'',7,9),(90,1,'2025-10-30 01:28:19',NULL,'',8,9),(91,1,'2025-10-30 01:28:19',44,'',1,6),(92,1,'2025-10-30 01:28:19',NULL,'',2,6),(93,1,'2025-10-30 01:28:19',NULL,'',3,6),(94,1,'2025-10-30 01:28:19',444,'',4,6),(95,1,'2025-10-30 01:28:19',NULL,'',5,6),(96,1,'2025-10-30 01:28:19',NULL,'',6,6),(97,1,'2025-10-30 01:28:19',NULL,'',7,6),(98,1,'2025-10-30 01:28:19',NULL,'',8,6),(99,1,'2025-10-30 01:28:19',NULL,'',1,10),(100,1,'2025-10-30 01:28:19',NULL,'',2,10),(101,1,'2025-10-30 01:28:19',777,'',3,10),(102,1,'2025-10-30 01:28:19',777,'',4,10),(103,1,'2025-10-30 01:28:19',777,'',5,10),(104,1,'2025-10-30 01:28:19',NULL,'',6,10),(105,1,'2025-10-30 01:28:19',NULL,'',7,10),(106,1,'2025-10-30 01:28:19',NULL,'',8,10);
 /*!40000 ALTER TABLE `ue_ue_inst_parc_conv_ens_modalidade_etapa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5145,7 +5329,7 @@ CREATE TABLE `ue_ue_inst_parc_conv_ens_profis_forma` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `matricula_qtd` int(11) NOT NULL,
+  `matricula_qtd` int(11) DEFAULT NULL,
   `descricao` text,
   `ue_ens_profis_forma_id` int(11) NOT NULL,
   `ue_ue_isnt_parc_conv_forma_id` int(11) NOT NULL,
@@ -5154,7 +5338,7 @@ CREATE TABLE `ue_ue_inst_parc_conv_ens_profis_forma` (
   KEY `fk_ue_ue_ipcepf_ue_ue_isnt_parc_conv_forma1_idx` (`ue_ue_isnt_parc_conv_forma_id`),
   CONSTRAINT `fk_ue_ue_inst_parc_conv_ens_profis_for_ue_ens_profis_forma1` FOREIGN KEY (`ue_ens_profis_forma_id`) REFERENCES `ue_ens_profis_forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_ipcepf_ue_ue_isnt_parc_conv_forma1` FOREIGN KEY (`ue_ue_isnt_parc_conv_forma_id`) REFERENCES `ue_ue_isnt_parc_conv_forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5163,6 +5347,7 @@ CREATE TABLE `ue_ue_inst_parc_conv_ens_profis_forma` (
 
 LOCK TABLES `ue_ue_inst_parc_conv_ens_profis_forma` WRITE;
 /*!40000 ALTER TABLE `ue_ue_inst_parc_conv_ens_profis_forma` DISABLE KEYS */;
+INSERT INTO `ue_ue_inst_parc_conv_ens_profis_forma` VALUES (113,1,'2025-10-30 01:28:19',NULL,'',1,4),(114,1,'2025-10-30 01:28:19',NULL,'',2,4),(115,1,'2025-10-30 01:28:19',NULL,'',3,4),(116,1,'2025-10-30 01:28:19',NULL,'',4,4),(117,1,'2025-10-30 01:28:19',NULL,'',5,4),(118,1,'2025-10-30 01:28:19',NULL,'',6,4),(119,1,'2025-10-30 01:28:19',NULL,'',7,4),(120,1,'2025-10-30 01:28:19',NULL,'',8,4),(121,1,'2025-10-30 01:28:19',NULL,'',9,4),(122,1,'2025-10-30 01:28:19',NULL,'',10,4),(123,1,'2025-10-30 01:28:19',NULL,'',11,4),(124,1,'2025-10-30 01:28:19',22,'',12,4),(125,1,'2025-10-30 01:28:19',22,'',13,4),(126,1,'2025-10-30 01:28:19',NULL,'',14,4),(127,1,'2025-10-30 01:28:19',NULL,'',1,5),(128,1,'2025-10-30 01:28:19',NULL,'',2,5),(129,1,'2025-10-30 01:28:19',NULL,'',3,5),(130,1,'2025-10-30 01:28:19',NULL,'',4,5),(131,1,'2025-10-30 01:28:19',NULL,'',5,5),(132,1,'2025-10-30 01:28:19',NULL,'',6,5),(133,1,'2025-10-30 01:28:19',NULL,'',7,5),(134,1,'2025-10-30 01:28:19',NULL,'',8,5),(135,1,'2025-10-30 01:28:19',NULL,'',9,5),(136,1,'2025-10-30 01:28:19',NULL,'',10,5),(137,1,'2025-10-30 01:28:19',NULL,'',11,5),(138,1,'2025-10-30 01:28:19',NULL,'',12,5),(139,1,'2025-10-30 01:28:19',33,'',13,5),(140,1,'2025-10-30 01:28:19',3,'',14,5),(141,1,'2025-10-30 01:28:19',NULL,'',1,9),(142,1,'2025-10-30 01:28:19',NULL,'',2,9),(143,1,'2025-10-30 01:28:19',NULL,'',3,9),(144,1,'2025-10-30 01:28:19',NULL,'',4,9),(145,1,'2025-10-30 01:28:19',NULL,'',5,9),(146,1,'2025-10-30 01:28:19',NULL,'',6,9),(147,1,'2025-10-30 01:28:19',NULL,'',7,9),(148,1,'2025-10-30 01:28:19',NULL,'',8,9),(149,1,'2025-10-30 01:28:19',NULL,'',9,9),(150,1,'2025-10-30 01:28:19',NULL,'',10,9),(151,1,'2025-10-30 01:28:19',NULL,'',11,9),(152,1,'2025-10-30 01:28:19',NULL,'',12,9),(153,1,'2025-10-30 01:28:19',NULL,'',13,9),(154,1,'2025-10-30 01:28:19',NULL,'',14,9),(155,1,'2025-10-30 01:28:19',4,'',1,6),(156,1,'2025-10-30 01:28:19',4,'',2,6),(157,1,'2025-10-30 01:28:19',NULL,'',3,6),(158,1,'2025-10-30 01:28:19',NULL,'',4,6),(159,1,'2025-10-30 01:28:19',NULL,'',5,6),(160,1,'2025-10-30 01:28:19',NULL,'',6,6),(161,1,'2025-10-30 01:28:19',NULL,'',7,6),(162,1,'2025-10-30 01:28:19',NULL,'',8,6),(163,1,'2025-10-30 01:28:19',NULL,'',9,6),(164,1,'2025-10-30 01:28:19',NULL,'',10,6),(165,1,'2025-10-30 01:28:19',NULL,'',11,6),(166,1,'2025-10-30 01:28:19',NULL,'',12,6),(167,1,'2025-10-30 01:28:19',NULL,'',13,6),(168,1,'2025-10-30 01:28:19',NULL,'',14,6),(169,1,'2025-10-30 01:28:19',NULL,'',1,10),(170,1,'2025-10-30 01:28:19',NULL,'',2,10),(171,1,'2025-10-30 01:28:19',NULL,'',3,10),(172,1,'2025-10-30 01:28:19',NULL,'',4,10),(173,1,'2025-10-30 01:28:19',NULL,'',5,10),(174,1,'2025-10-30 01:28:19',NULL,'',6,10),(175,1,'2025-10-30 01:28:19',NULL,'',7,10),(176,1,'2025-10-30 01:28:19',NULL,'',8,10),(177,1,'2025-10-30 01:28:19',NULL,'',9,10),(178,1,'2025-10-30 01:28:19',NULL,'',10,10),(179,1,'2025-10-30 01:28:19',NULL,'',11,10),(180,1,'2025-10-30 01:28:19',NULL,'',12,10),(181,1,'2025-10-30 01:28:19',NULL,'',13,10),(182,1,'2025-10-30 01:28:19',NULL,'',14,10);
 /*!40000 ALTER TABLE `ue_ue_inst_parc_conv_ens_profis_forma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -5185,7 +5370,7 @@ CREATE TABLE `ue_ue_internet_pub_tipo` (
   KEY `fk_ue_ue_internet_pub_tipo_ue_internet_pub_tipo1_idx` (`ue_internet_pub_tipo_id`),
   CONSTRAINT `fk_ue_ue_internet_pub_tipo_ue_internet_pub_tipo1` FOREIGN KEY (`ue_internet_pub_tipo_id`) REFERENCES `ue_internet_pub_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_internet_pub_tipo_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5206,7 +5391,7 @@ DROP TABLE IF EXISTS `ue_ue_isnt_parc_conv_forma`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `ue_ue_isnt_parc_conv_forma` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `descricao` text,
@@ -5217,7 +5402,7 @@ CREATE TABLE `ue_ue_isnt_parc_conv_forma` (
   KEY `fk_ue_ue_isnt_parc_conv_forma_ue_ue_inst_parc_conv1_idx` (`ue_ue_inst_parc_conv_id`),
   CONSTRAINT `fk_ue_ue_isnt_parc_conv_forma_ue_parc_conv_forma1` FOREIGN KEY (`ue_parc_conv_forma_id`) REFERENCES `ue_parc_conv_forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_isnt_parc_conv_forma_ue_ue_inst_parc_conv1` FOREIGN KEY (`ue_ue_inst_parc_conv_id`) REFERENCES `ue_ue_inst_parc_conv` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5226,7 +5411,102 @@ CREATE TABLE `ue_ue_isnt_parc_conv_forma` (
 
 LOCK TABLES `ue_ue_isnt_parc_conv_forma` WRITE;
 /*!40000 ALTER TABLE `ue_ue_isnt_parc_conv_forma` DISABLE KEYS */;
+INSERT INTO `ue_ue_isnt_parc_conv_forma` VALUES (4,1,'2025-10-30 01:28:19','',2,13),(5,1,'2025-10-30 01:28:19','',3,14),(6,1,'2025-10-30 01:28:19','',4,14),(9,1,'2025-10-30 01:28:19','',5,14),(10,1,'2025-10-30 01:28:19','',6,15);
 /*!40000 ALTER TABLE `ue_ue_isnt_parc_conv_forma` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_ue_mater_ens_aprendiz_produto`
+--
+
+DROP TABLE IF EXISTS `ue_ue_mater_ens_aprendiz_produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_ue_mater_ens_aprendiz_produto` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `descricao` text,
+  `ue_ue_id` int(11) NOT NULL,
+  `ue_mater_ens_aprendiz_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_ue_meap_ue_ue1_idx` (`ue_mater_ens_aprendiz_id`),
+  KEY `fk_ue_ue_meap_ue_meap1_idx` (`ue_ue_id`),
+  CONSTRAINT `fk_ue_ue_meap_ue_ue1` FOREIGN KEY (`ue_mater_ens_aprendiz_id`) REFERENCES `ue_mater_ens_aprendiz` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_ue_meap_ue_ue_meap1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_ue_mater_ens_aprendiz_produto`
+--
+
+LOCK TABLES `ue_ue_mater_ens_aprendiz_produto` WRITE;
+/*!40000 ALTER TABLE `ue_ue_mater_ens_aprendiz_produto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_ue_mater_ens_aprendiz_produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_ue_midia_social`
+--
+
+DROP TABLE IF EXISTS `ue_ue_midia_social`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_ue_midia_social` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) DEFAULT NULL,
+  `descricao` text,
+  `ue_ue_id` int(11) NOT NULL,
+  `bsc_midia_social_tipo_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_ue_midia_social_ue_ue1_idx` (`ue_ue_id`),
+  KEY `fk_ue_ue_midia_social_bsc_midia_social_tipo1_idx` (`bsc_midia_social_tipo_id`),
+  CONSTRAINT `fk_ue_ue_midia_social_bsc_midia_social_tipo1` FOREIGN KEY (`bsc_midia_social_tipo_id`) REFERENCES `bsc_midia_social_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_ue_midia_social_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_ue_midia_social`
+--
+
+LOCK TABLES `ue_ue_midia_social` WRITE;
+/*!40000 ALTER TABLE `ue_ue_midia_social` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_ue_midia_social` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_ue_orgao_colegiado`
+--
+
+DROP TABLE IF EXISTS `ue_ue_orgao_colegiado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_ue_orgao_colegiado` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `descricao` text,
+  `ue_ue_id` int(11) NOT NULL,
+  `ue_orgao_colegiado_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_ue_orgao_colegiado_ue_ue1_idx` (`ue_ue_id`),
+  KEY `fk_ue_ue_orgao_colegiado_ue_orgao_colegiado1_idx` (`ue_orgao_colegiado_id`),
+  CONSTRAINT `fk_ue_ue_orgao_colegiado_ue_orgao_colegiado1` FOREIGN KEY (`ue_orgao_colegiado_id`) REFERENCES `ue_orgao_colegiado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_ue_orgao_colegiado_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_ue_orgao_colegiado`
+--
+
+LOCK TABLES `ue_ue_orgao_colegiado` WRITE;
+/*!40000 ALTER TABLE `ue_ue_orgao_colegiado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_ue_orgao_colegiado` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -5247,7 +5527,7 @@ CREATE TABLE `ue_ue_priv_mantenedora_pessoa` (
   KEY `fk_ue_ue_priv_mantenedora_pessoa_ue_priv_mantenedora_pessoa_idx` (`ue_priv_mantenedora_pessoa_id`),
   CONSTRAINT `fk_ue_ue_priv_mantenedora_pessoa_ue_priv_mantenedora_pessoa1` FOREIGN KEY (`ue_priv_mantenedora_pessoa_id`) REFERENCES `ue_priv_mantenedora_pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_priv_mantenedora_pessoa_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5257,6 +5537,38 @@ CREATE TABLE `ue_ue_priv_mantenedora_pessoa` (
 LOCK TABLES `ue_ue_priv_mantenedora_pessoa` WRITE;
 /*!40000 ALTER TABLE `ue_ue_priv_mantenedora_pessoa` DISABLE KEYS */;
 /*!40000 ALTER TABLE `ue_ue_priv_mantenedora_pessoa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_ue_rh_funcao`
+--
+
+DROP TABLE IF EXISTS `ue_ue_rh_funcao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_ue_rh_funcao` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `qtd_funcionario` varchar(45) DEFAULT NULL,
+  `descricao` text,
+  `ue_ue_id` int(11) NOT NULL,
+  `ue_rh_funcao_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_ue_rh_funcao_ue_ue1_idx` (`ue_ue_id`),
+  KEY `fk_ue_ue_rh_funcao_ue_rh_funcao1_idx` (`ue_rh_funcao_id`),
+  CONSTRAINT `fk_ue_ue_rh_funcao_ue_rh_funcao1` FOREIGN KEY (`ue_rh_funcao_id`) REFERENCES `ue_rh_funcao` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ue_ue_rh_funcao_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_ue_rh_funcao`
+--
+
+LOCK TABLES `ue_ue_rh_funcao` WRITE;
+/*!40000 ALTER TABLE `ue_ue_rh_funcao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_ue_rh_funcao` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -5277,7 +5589,7 @@ CREATE TABLE `ue_ue_uo_publica_vinc` (
   KEY `fk_ue_ue_uo_publica_vinc_bsc_uo_publica1_idx` (`bsc_uo_publica_id`),
   CONSTRAINT `fk_ue_ue_inst_vinc_ue_ue1` FOREIGN KEY (`ue_ue_id`) REFERENCES `ue_ue` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_ue_ue_uo_publica_vinc_bsc_uo_publica1` FOREIGN KEY (`bsc_uo_publica_id`) REFERENCES `bsc_uo_publica` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5304,7 +5616,7 @@ CREATE TABLE `ue_ue_vinculada_tipo` (
   `nome` varchar(100) NOT NULL,
   `descricao` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5329,7 +5641,7 @@ CREATE TABLE `ue_unidade_educativa_infraestrutura` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(ue = unidade educativa)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5353,7 +5665,7 @@ CREATE TABLE `ue_unidade_educativa_uo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5381,7 +5693,7 @@ CREATE TABLE `ue_uo` (
   PRIMARY KEY (`id`),
   KEY `fk_ue_uo_ue_uo_tipo1_idx` (`ue_uo_tipo_id`),
   CONSTRAINT `fk_ue_uo_ue_uo_tipo1` FOREIGN KEY (`ue_uo_tipo_id`) REFERENCES `ue_uo_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5405,7 +5717,7 @@ CREATE TABLE `ue_uo_biblioteca` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5429,7 +5741,7 @@ CREATE TABLE `ue_uo_biblioteca_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5453,7 +5765,7 @@ CREATE TABLE `ue_uo_comissao_eleitoral` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5477,7 +5789,7 @@ CREATE TABLE `ue_uo_comissao_eleitoral_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5501,7 +5813,7 @@ CREATE TABLE `ue_uo_comite_executivo` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5525,7 +5837,7 @@ CREATE TABLE `ue_uo_comite_executivo_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5549,7 +5861,7 @@ CREATE TABLE `ue_uo_conselho_escolar` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5573,7 +5885,7 @@ CREATE TABLE `ue_uo_conselho_escolar_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5597,7 +5909,7 @@ CREATE TABLE `ue_uo_coord_administrativa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5621,7 +5933,7 @@ CREATE TABLE `ue_uo_coord_administrativa_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5645,7 +5957,7 @@ CREATE TABLE `ue_uo_coord_ensino` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5669,7 +5981,7 @@ CREATE TABLE `ue_uo_coord_ensino_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5693,7 +6005,7 @@ CREATE TABLE `ue_uo_coord_pedagogica` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5717,7 +6029,7 @@ CREATE TABLE `ue_uo_coord_pedagogica_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5741,7 +6053,7 @@ CREATE TABLE `ue_uo_corpo_docente` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5765,7 +6077,7 @@ CREATE TABLE `ue_uo_corpo_docente_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5789,7 +6101,7 @@ CREATE TABLE `ue_uo_digitador` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5813,7 +6125,7 @@ CREATE TABLE `ue_uo_digitador_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5837,7 +6149,7 @@ CREATE TABLE `ue_uo_diretor` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5861,7 +6173,7 @@ CREATE TABLE `ue_uo_diretor_vice` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5885,7 +6197,7 @@ CREATE TABLE `ue_uo_diretoria` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5909,7 +6221,7 @@ CREATE TABLE `ue_uo_escola_auxiliar` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5933,7 +6245,7 @@ CREATE TABLE `ue_uo_escola_auxiliar_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5957,7 +6269,7 @@ CREATE TABLE `ue_uo_merendeira` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5981,7 +6293,7 @@ CREATE TABLE `ue_uo_merendeira_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6005,7 +6317,7 @@ CREATE TABLE `ue_uo_secretaria` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6029,7 +6341,7 @@ CREATE TABLE `ue_uo_secretaria_auxiliar_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6053,7 +6365,7 @@ CREATE TABLE `ue_uo_secretaria_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6077,7 +6389,7 @@ CREATE TABLE `ue_uo_servente` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6101,7 +6413,7 @@ CREATE TABLE `ue_uo_servente_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6126,7 +6438,7 @@ CREATE TABLE `ue_uo_tipo` (
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `nome` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='(Apoio adm, Direção Escolar, Corpo Docente, Comitê, Conselho, Comissão)';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(Apoio adm, Direção Escolar, Corpo Docente, Comitê, Conselho, Comissão)';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6150,7 +6462,7 @@ CREATE TABLE `ue_uo_vigia` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6174,7 +6486,7 @@ CREATE TABLE `ue_uo_vigia_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6198,7 +6510,7 @@ CREATE TABLE `ue_uo_zelador` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6222,7 +6534,7 @@ CREATE TABLE `ue_uo_zelador_pessoa` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6243,4 +6555,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-10-28  0:16:59
+-- Dump completed on 2025-11-01  0:51:30

@@ -182,7 +182,8 @@
   --box-shadow: 0px 0px 21px 3px rgba(var(--secondary), 0.05);
   --hover-shadow: 0 0.5rem 2rem var(--light-gray);
   --app-transition: all 0.3s ease;
-  --light-gray: #f4f7f8;
+  /*--light-gray: #f4f7f8;*/
+  --light-gray: #c1c5c7;
   --p-line-height: 1.6;
   --link-color: var(--primary-color);
   --font-size: 14px;
@@ -52953,7 +52954,8 @@ select#model {
     rgba(var(--primary), .6) 50%,
     rgba(var(--primary), .3) 100%
   );
-  --light-gray-bg: #f8f8f8;
+  /*--light-gray-bg: #f8f8f8;*/
+  --light-gray-bg: #c1c5c7;
 }
 
 .navbar-toggler {

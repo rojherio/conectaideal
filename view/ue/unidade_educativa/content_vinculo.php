@@ -38,7 +38,7 @@ if ($rsRegistrosUOPublicaVinc) {
           ueueipceat.id,
           ueueipceat.matricula_qtd,
           ueueipceat.descricao,
-          ueueipceme.ue_ens_atend_tipo_id,
+          ueueipceat.ue_ens_atend_tipo_id,
           ueueipceat.ue_ue_isnt_parc_conv_forma_id
           FROM ue_ue_inst_parc_conv_ens_atend_tipo AS ueueipceat
           WHERE ueueipceat.ue_ue_isnt_parc_conv_forma_id = ? 
@@ -63,7 +63,7 @@ if ($rsRegistrosUOPublicaVinc) {
           ueueipceme.ue_ue_isnt_parc_conv_forma_id
           FROM ue_ue_inst_parc_conv_ens_modalidade_etapa AS ueueipceme
           WHERE ueueipceme.ue_ue_isnt_parc_conv_forma_id = ? 
-          ) AS ueipceme ON ueipceme.ue_ens_modalidade_etapa_id = emt.id
+          ) AS ueipceme ON ueipceme.ue_ens_modalidade_etapa_id = eme.id
         LEFT JOIN ue_ens_modalidade_tipo AS emt ON emt.id = eme.ue_ens_modalidade_tipo_id
         WHERE 1 = 1;");
       $stmt->bindValue(1, $obj1['id']);
@@ -81,7 +81,7 @@ if ($rsRegistrosUOPublicaVinc) {
           ueueipceat.id,
           ueueipceat.matricula_qtd,
           ueueipceat.descricao,
-          ueueipceme.ue_ens_profis_forma_id,
+          ueueipceat.ue_ens_profis_forma_id,
           ueueipceat.ue_ue_isnt_parc_conv_forma_id
           FROM ue_ue_inst_parc_conv_ens_profis_forma AS ueueipceat
           WHERE ueueipceat.ue_ue_isnt_parc_conv_forma_id = ? 
@@ -208,7 +208,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
 ?>
 <!-- formulário de cadastro - BEGIN -->
 <div class="row">
-  <input type="hidden" name="ue_id" id="ue_id" value="<?= $rsRegistroUEIdent['id'] ;?>">
+  <input type="hidden" name="ue_id" id="ue_id" value="<?= $idUE ;?>">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header">
@@ -261,6 +261,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
           foreach ($rsRegistrosUOPublicaVinc as $keyUOPV => $objUOPV) {
             ?>
             <div divcount="<?=$keyUOPV;?>" class="div_clonar border border-outline-info rounded pt-3 pb-0 ps-3 pe-3 mt-0 mb-3">
+              <input type="hidden" name="ue_ue_inst_parc_conv_id[]" id="ue_ue_inst_parc_conv_id_<?=$keyUOPV;?>" value="<?= $objUOPV['id'] ;?>" idbase="ue_ue_inst_parc_conv_id_">
               <h6>Órgão/Instituição em parceria/convênio - <span class="span_contador"><?=$keyUOPV+1;?></span></h6>
               <div>
                 <?= createSelect(array(
@@ -286,6 +287,7 @@ $uevDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
                 foreach ($objUOPV['ParcConvFormas'] as $keyPCF => $objPCF) {
                   ?>
                   <div divcountsub="<?=$keyPCF;?>" controlled="forma_parc_<?=$keyUOPV;?>" control-value="0" class="div_clonar_sub border border-outline-primary rounded pt-3 pb-0 ps-3 pe-3 mt-0 mb-3" <?= $displayUOPublicaVinc ;?>>
+                    <input type="hidden" name="ue_ue_isnt_parc_conv_forma_id_<?=$keyUOPV;?>[]" id="ue_ue_isnt_parc_conv_forma_id_<?=$keyUOPV;?>" value="<?= $objPCF['id'] ;?>" idbasesub="ue_ue_isnt_parc_conv_forma_id_" controlled="forma_parc_<?=$keyUOPV;?>" control-value="0">
                     <h6>Forma da Contratação da Parceria/Convênio -  <span class="span_contador_sub"><?=$keyPCF+1;?></span></h6>
                     <div class="row">
                       <?= createSelect(array(
