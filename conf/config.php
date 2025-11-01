@@ -8,7 +8,7 @@ date_default_timezone_set("America/Rio_Branco");
 // DEFININDO OS DADOS DE ACESSO AO BANCO DE DADOS
 define("DB", 'mysql');
 define("DB_HOST", "localhost");
-define("DB_NAME", "delfos");
+define("DB_NAME", "conectaidealcom_db");
 define("DB_USER", "root");
 define("DB_PASS", "root");
 // CONFIGURACOES PADRAO DO SISTEMA

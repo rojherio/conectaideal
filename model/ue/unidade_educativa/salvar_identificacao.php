@@ -123,8 +123,8 @@ try {
       $stmt->bindValue(21, $sala_aula_qtd);
       $stmt->bindValue(22, $sala_aula_climatizada_qtd);
       $stmt->bindValue(23, $sala_aula_acessibilidade_qtd);
-      $stmt->bindValue(24, $internet_banda_larga_velocidade);
-      $stmt->bindValue(25, $alimentacao_pnae_fnde_oferece);
+      $stmt->bindValue(24, $internet_banda_larga_velocidade?: NULL);
+      $stmt->bindValue(25, $alimentacao_pnae_fnde_oferece?: NULL);
       $stmt->bindValue(26, $id);
       $stmt->execute();
     //DELETE ue_ue_uo_publica_vinc
