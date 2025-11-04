@@ -366,10 +366,10 @@ CREATE TABLE `bsc_indigena_lingua` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `cod_inep` int(4) NOT NULL,
-  `nome` varchar(45) NOT NULL,
+  `cod_inep` int(11) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=323 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -378,6 +378,7 @@ CREATE TABLE `bsc_indigena_lingua` (
 
 LOCK TABLES `bsc_indigena_lingua` WRITE;
 /*!40000 ALTER TABLE `bsc_indigena_lingua` DISABLE KEYS */;
+INSERT INTO `bsc_indigena_lingua` VALUES (1,1,'2025-11-04 22:42:52',1,'Aikaná/Aikanã'),(2,1,'2025-11-04 22:42:52',2,'Ajuru/Wayoro, Ajurú'),(3,1,'2025-11-04 22:42:52',4,'Suruí do Pará/ Suruí do Tocantins/ Aikewara'),(4,1,'2025-11-04 22:42:52',5,'Xavánte/Xavante'),(5,1,'2025-11-04 22:42:52',6,'Xerénte'),(6,1,'2025-11-04 22:42:52',7,'Amanayé'),(7,1,'2025-11-04 22:42:52',10,'Apalaí'),(8,1,'2025-11-04 22:42:52',11,'Apiaká'),(9,1,'2025-11-04 22:42:52',12,'Apinayé'),(10,1,'2025-11-04 22:42:52',13,'Apurinã'),(11,1,'2025-11-04 22:42:52',14,'Arapáso'),(12,1,'2025-11-04 22:42:52',15,'Arara do Acre, Shawãdawa'),(13,1,'2025-11-04 22:42:52',17,'Araweté'),(14,1,'2025-11-04 22:42:52',18,'Arikapú/Jabutí'),(15,1,'2025-11-04 22:42:52',19,'Aruá'),(16,1,'2025-11-04 22:42:52',20,'Asuriní do Tocantins'),(17,1,'2025-11-04 22:42:52',21,'Asuriní do Xingu'),(18,1,'2025-11-04 22:42:52',22,'Ava-Canoeiro/Avá-Canoeiro, Avá, Canoeiro'),(19,1,'2025-11-04 22:42:52',23,'Awetí'),(20,1,'2025-11-04 22:42:52',24,'Bakairí'),(21,1,'2025-11-04 22:42:52',25,'Banawá'),(22,1,'2025-11-04 22:42:52',26,'Baníwa/Tapiira Tapuya, Kawa Tapuya'),(23,1,'2025-11-04 22:42:52',28,'Bará'),(24,1,'2025-11-04 22:42:52',29,'Baré'),(25,1,'2025-11-04 22:42:52',30,'Boróro'),(26,1,'2025-11-04 22:42:52',31,'Cinta Larga/Cinta-Larga'),(27,1,'2025-11-04 22:42:52',32,'Dení'),(28,1,'2025-11-04 22:42:52',33,'Desána'),(29,1,'2025-11-04 22:42:52',34,'Dâw'),(30,1,'2025-11-04 22:42:52',35,'Galibí do Oiapoque, Galibí (Ka’ríña)'),(31,1,'2025-11-04 22:42:52',36,'Gavião (Ikõro, Digüt), Gavião de Rondônia/ Ikolen'),(32,1,'2025-11-04 22:42:52',37,'Guajá'),(33,1,'2025-11-04 22:42:52',38,'Guaraní Kaiowá/Guarani Kayová'),(34,1,'2025-11-04 22:42:52',39,'Guaraní Mbyá'),(35,1,'2025-11-04 22:42:52',40,'Guaraní Nhandéva'),(36,1,'2025-11-04 22:42:52',42,'Guató'),(37,1,'2025-11-04 22:42:52',43,'Hixkaryána'),(38,1,'2025-11-04 22:42:52',45,'Ingarikó'),(39,1,'2025-11-04 22:42:52',46,'Irántxe'),(40,1,'2025-11-04 22:42:52',47,'Djeoromitxí/Jabotí/Jabutí'),(41,1,'2025-11-04 22:42:52',48,'Jarawára'),(42,1,'2025-11-04 22:42:52',49,'Yamináwa'),(43,1,'2025-11-04 22:42:52',50,'Javaé'),(44,1,'2025-11-04 22:42:52',51,'Jurúna/Yudjá'),(45,1,'2025-11-04 22:42:52',52,'Ka\'apor/Urubu, Ka’apór'),(46,1,'2025-11-04 22:42:52',53,'Kadiwéu'),(47,1,'2025-11-04 22:42:52',58,'Kalapálo'),(48,1,'2025-11-04 22:42:52',59,'Kamayurá'),(49,1,'2025-11-04 22:42:52',60,'Ashanínka/Axanínka'),(50,1,'2025-11-04 22:42:52',61,'Kanamarí'),(51,1,'2025-11-04 22:42:52',62,'Kanoé/Kanoê'),(52,1,'2025-11-04 22:42:52',63,'Karajá'),(53,1,'2025-11-04 22:42:52',64,'Karapanã'),(54,1,'2025-11-04 22:42:52',65,'Karitiána'),(55,1,'2025-11-04 22:42:52',66,'Arara de Rondônia/Káro'),(56,1,'2025-11-04 22:42:52',67,'Katawixí'),(57,1,'2025-11-04 22:42:52',68,'Katukína do Acre'),(58,1,'2025-11-04 22:42:52',69,'Katukína'),(59,1,'2025-11-04 22:42:52',76,'Uru-Eu-Wau-Wau/Uruewawau'),(60,1,'2025-11-04 22:42:52',77,'Kaxararí'),(61,1,'2025-11-04 22:42:52',78,'Kaxinawá'),(62,1,'2025-11-04 22:42:52',80,'Kayabí'),(63,1,'2025-11-04 22:42:52',81,'Gorotire (Kayapó)'),(64,1,'2025-11-04 22:42:52',82,'Kararaô (Kayapó)'),(65,1,'2025-11-04 22:42:52',83,'Kokraimoro (Kayapó)'),(66,1,'2025-11-04 22:42:52',84,'Kubenkrngkegn (Kayapó)'),(67,1,'2025-11-04 22:42:52',85,'Menkrangnoti (Kayapó)'),(68,1,'2025-11-04 22:42:52',86,'Mentuktíre, Txukahamae (Kayapó)'),(69,1,'2025-11-04 22:42:52',87,'Xikrin (Kayapó)'),(70,1,'2025-11-04 22:42:52',90,'Kokáma'),(71,1,'2025-11-04 22:42:52',91,'Korúbo'),(72,1,'2025-11-04 22:42:52',92,'Krenák'),(73,1,'2025-11-04 22:42:52',93,'Kubéo, Kubewa'),(74,1,'2025-11-04 22:42:52',94,'Kuikúro'),(75,1,'2025-11-04 22:42:52',95,'Kulína Madijá/Kulina, Kulína Madihá (Madija)'),(76,1,'2025-11-04 22:42:52',96,'Kuruáya'),(77,1,'2025-11-04 22:42:52',99,'Makuráp'),(78,1,'2025-11-04 22:42:52',100,'Makuxí'),(79,1,'2025-11-04 22:42:52',102,'Marúbo'),(80,1,'2025-11-04 22:42:52',103,'Matipú'),(81,1,'2025-11-04 22:42:52',104,'Matís'),(82,1,'2025-11-04 22:42:52',105,'Matsés'),(83,1,'2025-11-04 22:42:52',106,'Mawé'),(84,1,'2025-11-04 22:42:52',107,'Maxakalí'),(85,1,'2025-11-04 22:42:52',108,'Yekuána, Mayongong, Makiritáre,'),(86,1,'2025-11-04 22:42:52',109,'Mehináku'),(87,1,'2025-11-04 22:42:52',110,'Sakurabiat/Kampé'),(88,1,'2025-11-04 22:42:52',111,'Mondé, Tupí-Mondé'),(89,1,'2025-11-04 22:42:52',112,'Mundurukú'),(90,1,'2025-11-04 22:42:52',113,'Múra'),(91,1,'2025-11-04 22:42:52',114,'Mynky/Mynk!, Meky, Menky, Menki'),(92,1,'2025-11-04 22:42:52',115,'Nadëb'),(93,1,'2025-11-04 22:42:52',116,'Nahukwá'),(94,1,'2025-11-04 22:42:52',120,'Negarotê/Negarote'),(95,1,'2025-11-04 22:42:52',126,'Lingua Geral Amazônica, Nheengatu'),(96,1,'2025-11-04 22:42:52',127,'Ninám'),(97,1,'2025-11-04 22:42:52',128,'Nukiní'),(98,1,'2025-11-04 22:42:52',129,'Ofayé'),(99,1,'2025-11-04 22:42:52',130,'Oro Win'),(100,1,'2025-11-04 22:42:52',131,'Palikúr'),(101,1,'2025-11-04 22:42:52',132,'Panará, Krenakarôre/Kren-akarôre'),(102,1,'2025-11-04 22:42:52',133,'Paresí'),(103,1,'2025-11-04 22:42:52',134,'Karipúna do Amapá'),(104,1,'2025-11-04 22:42:52',135,'Galibí Marwórno/Galibi Marworno'),(105,1,'2025-11-04 22:42:52',136,'Paumarí'),(106,1,'2025-11-04 22:42:52',137,'Pirahã'),(107,1,'2025-11-04 22:42:52',138,'Piratapúya'),(108,1,'2025-11-04 22:42:52',140,'Poyanáwa'),(109,1,'2025-11-04 22:42:52',141,'Puruborá'),(110,1,'2025-11-04 22:42:52',142,'Canoeiros/ Rikbaktsá'),(111,1,'2025-11-04 22:42:52',143,'Sabanê'),(112,1,'2025-11-04 22:42:52',145,'Enawenê-Nawê'),(113,1,'2025-11-04 22:42:52',146,'Sanumá'),(114,1,'2025-11-04 22:42:52',148,'Zuruwahá, Suruahá (Zuruahá)'),(115,1,'2025-11-04 22:42:52',150,'Suyá, Kisêdjê/Kisedjê'),(116,1,'2025-11-04 22:42:52',151,'Tapirapé'),(117,1,'2025-11-04 22:42:52',152,'Tariána'),(118,1,'2025-11-04 22:42:52',153,'Taulipáng'),(119,1,'2025-11-04 22:42:52',155,'Tembé'),(120,1,'2025-11-04 22:42:52',156,'Teréna'),(121,1,'2025-11-04 22:42:52',157,'Tikúna'),(122,1,'2025-11-04 22:42:52',167,'Tiriyó/Tarona'),(123,1,'2025-11-04 22:42:52',168,'Torá'),(124,1,'2025-11-04 22:42:52',169,'Trumái'),(125,1,'2025-11-04 22:42:52',171,'Tuparí'),(126,1,'2025-11-04 22:42:52',172,'Tuyúca/Tuyuca'),(127,1,'2025-11-04 22:42:52',173,'Ikpeng/ Ikpéng'),(128,1,'2025-11-04 22:42:52',174,'Tsohom Djapa/Tsohondjapá (Tsohom Djapa)'),(129,1,'2025-11-04 22:42:52',175,'Urupá'),(130,1,'2025-11-04 22:42:52',176,'Waimirí-Atroarí'),(131,1,'2025-11-04 22:42:52',177,'Wái Wái/Waiwái'),(132,1,'2025-11-04 22:42:52',178,'Wanána/Guanána'),(133,1,'2025-11-04 22:42:52',179,'Wapixána'),(134,1,'2025-11-04 22:42:52',180,'Warekéna'),(135,1,'2025-11-04 22:42:52',182,'Wauja/Waurá'),(136,1,'2025-11-04 22:42:52',183,'Wayampí/Oyampi'),(137,1,'2025-11-04 22:42:52',184,'Wayána'),(138,1,'2025-11-04 22:42:52',185,'Xambioá'),(139,1,'2025-11-04 22:42:52',186,'Xetá'),(140,1,'2025-11-04 22:42:52',187,'Xipáya'),(141,1,'2025-11-04 22:42:52',188,'Xokléng'),(142,1,'2025-11-04 22:42:52',190,'Yanomám/Yanonmán'),(143,1,'2025-11-04 22:42:52',191,'Yanomámi'),(144,1,'2025-11-04 22:42:52',192,'Fulni-ô/Yathê'),(145,1,'2025-11-04 22:42:52',193,'Yawalapití'),(146,1,'2025-11-04 22:42:52',194,'Yawanawá'),(147,1,'2025-11-04 22:42:52',196,'Zo\'é'),(148,1,'2025-11-04 22:42:52',197,'Zoró'),(149,1,'2025-11-04 22:42:52',198,'Akuntsú'),(150,1,'2025-11-04 22:42:52',199,'Amondáwa'),(151,1,'2025-11-04 22:42:52',200,'Arara do Aripuana/Arara do Aripuanã'),(152,1,'2025-11-04 22:42:52',201,'Arara do Pará, Arara do Xingu'),(153,1,'2025-11-04 22:42:52',203,'Barasána'),(154,1,'2025-11-04 22:42:52',204,'Kambéba'),(155,1,'2025-11-04 22:42:52',205,'Kanéla Rankocamekra/Canela Ramkokamekrã'),(156,1,'2025-11-04 22:42:52',206,'Chamakóko/Samúko, Chamacoco'),(157,1,'2025-11-04 22:42:52',207,'Chiquitáno/Chiquito'),(158,1,'2025-11-04 22:42:52',208,'Diahói/Diahui'),(159,1,'2025-11-04 22:42:52',211,'GuajajáraW'),(160,1,'2025-11-04 22:42:52',215,'Júma/Juma'),(161,1,'2025-11-04 22:42:52',216,'Yurutí, Juriti'),(162,1,'2025-11-04 22:42:52',218,'Kapon Patamóna/Kapon Ptamóna'),(163,1,'2025-11-04 22:42:52',219,'Karipúna'),(164,1,'2025-11-04 22:42:52',220,'Kayapó'),(165,1,'2025-11-04 22:42:52',221,'Mebengokré(Kayapó)'),(166,1,'2025-11-04 22:42:52',222,'Kinikináu, Kinikinawa'),(167,1,'2025-11-04 22:42:52',223,'Kreje/Krenjé'),(168,1,'2025-11-04 22:42:52',224,'Krikatí/Krinkatí'),(169,1,'2025-11-04 22:42:52',225,'Kujubím'),(170,1,'2025-11-04 22:42:52',226,'Kuripáko'),(171,1,'2025-11-04 22:42:52',227,'Kwazá'),(172,1,'2025-11-04 22:42:52',228,'Lakondê'),(173,1,'2025-11-04 22:42:52',229,'Latundê'),(174,1,'2025-11-04 22:42:52',230,'Mamaindê'),(175,1,'2025-11-04 22:42:52',231,'Mandúka/Nambikwára do Campo'),(176,1,'2025-11-04 22:42:52',233,'Miránha'),(177,1,'2025-11-04 22:42:52',234,'Tukáno/Miriti-Tapuia'),(178,1,'2025-11-04 22:42:52',235,'Kaingáng'),(179,1,'2025-11-04 22:42:52',236,'Suruí de Rondônia'),(180,1,'2025-11-04 22:42:52',237,'Parakanã'),(181,1,'2025-11-04 22:42:52',238,'Parintintín'),(182,1,'2025-11-04 22:42:52',240,'Gavião Pukobiyé/Gavião Pukobié'),(183,1,'2025-11-04 22:42:52',241,'Tapayúna'),(184,1,'2025-11-04 22:42:52',242,'Tawandê'),(185,1,'2025-11-04 22:42:52',243,'Tenharím/Tenharim'),(186,1,'2025-11-04 22:42:52',244,'Umutína'),(187,1,'2025-11-04 22:42:52',245,'Pakaá Nóva/Migueleno, Miguelenho'),(188,1,'2025-11-04 22:42:52',246,'Shanenáwa/Xanenáwa, Xawanawa'),(189,1,'2025-11-04 22:42:52',250,'Tupí, Tupi Antigo'),(190,1,'2025-11-04 22:42:52',251,'Canela'),(191,1,'2025-11-04 22:42:52',252,'Kanéla Apaniekra/Canela Apaniekrã'),(192,1,'2025-11-04 22:42:52',253,'Gavião Krikatêjê/Gavião Krinkatejé'),(193,1,'2025-11-04 22:42:52',254,'Gavião Parkatêjê/Guató Parakatejé/Gavião do Pará'),(194,1,'2025-11-04 22:42:52',255,'Krahô/ Crao, Kraô'),(195,1,'2025-11-04 22:42:52',256,'Krao Kanela'),(196,1,'2025-11-04 22:42:52',257,'Kokuiregatêjê/Kokuiregatejje'),(197,1,'2025-11-04 22:42:52',258,'Timbira'),(198,1,'2025-11-04 22:42:52',259,'Xacriabá/Xakriabá'),(199,1,'2025-11-04 22:42:52',260,'Jê (não específico)'),(200,1,'2025-11-04 22:42:52',261,'Pataxó'),(201,1,'2025-11-04 22:42:52',262,'Pataxó Hã Hã Hãe/Pataxó Há-Há-Há'),(202,1,'2025-11-04 22:42:52',263,'Salamãy'),(203,1,'2025-11-04 22:42:52',264,'Ramaráma'),(204,1,'2025-11-04 22:42:52',265,'Urucú/Urucu'),(205,1,'2025-11-04 22:42:52',266,'Guaraní'),(206,1,'2025-11-04 22:42:52',267,'Lingua De Sinais Ka\'apor/Língua de Sinais Urubu-Kaapór'),(207,1,'2025-11-04 22:42:52',268,'Kawahíb'),(208,1,'2025-11-04 22:42:52',269,'Turiwára'),(209,1,'2025-11-04 22:42:52',270,'Tupí-Guaraní'),(210,1,'2025-11-04 22:42:52',271,'Kaixána/Kayuisiana'),(211,1,'2025-11-04 22:42:52',272,'Machinéri'),(212,1,'2025-11-04 22:42:52',273,'Mawayána'),(213,1,'2025-11-04 22:42:52',274,'Aruák'),(214,1,'2025-11-04 22:42:52',275,'Naravúte'),(215,1,'2025-11-04 22:42:52',276,'Kaxuyána/Kahyána, Warikyána'),(216,1,'2025-11-04 22:42:52',277,'Xikuyána/Sikiyána'),(217,1,'2025-11-04 22:42:52',278,'Karib'),(218,1,'2025-11-04 22:42:52',279,'Kulína Páno'),(219,1,'2025-11-04 22:42:52',280,'Pano'),(220,1,'2025-11-04 22:42:52',281,'Makúna, Yebá-masã'),(221,1,'2025-11-04 22:42:52',282,'Siriáno/Suriana, Suriána'),(222,1,'2025-11-04 22:42:52',283,'Arawá'),(223,1,'2025-11-04 22:42:52',284,'Himarimã/Hi-merimã, Mirimã, Himarimá'),(224,1,'2025-11-04 22:42:52',285,'Jamamadí-Kanamanti/Jamamadí'),(225,1,'2025-11-04 22:42:52',286,'Hup, Húpda, Maku, Yuhupde, Yuhúp'),(226,1,'2025-11-04 22:42:52',287,'Alaketesú'),(227,1,'2025-11-04 22:42:52',288,'Alantesú'),(228,1,'2025-11-04 22:42:52',289,'Hahaintesú'),(229,1,'2025-11-04 22:42:52',290,'Halotesú'),(230,1,'2025-11-04 22:42:52',291,'Kithaulú'),(231,1,'2025-11-04 22:42:52',292,'Sararé'),(232,1,'2025-11-04 22:42:52',300,'Sawentesú'),(233,1,'2025-11-04 22:42:52',301,'Waikisú'),(234,1,'2025-11-04 22:42:52',302,'Wakalitesú'),(235,1,'2025-11-04 22:42:52',303,'Wasusú'),(236,1,'2025-11-04 22:42:52',304,'Nambikwára'),(237,1,'2025-11-04 22:42:52',305,'Miguelénho/Migueleno, Miguelenho'),(238,1,'2025-11-04 22:42:52',306,'Txapakúra'),(239,1,'2025-11-04 22:42:52',307,'Bóra'),(240,1,'2025-11-04 22:42:52',308,'Guaikurú'),(241,1,'2025-11-04 22:42:52',309,'Witóto'),(242,1,'2025-11-04 22:42:52',310,'Acona/Akona'),(243,1,'2025-11-04 22:42:52',311,'Aimoré'),(244,1,'2025-11-04 22:42:52',312,'Anacé'),(245,1,'2025-11-04 22:42:52',313,'Apolima - Arara'),(246,1,'2025-11-04 22:42:52',314,'Arana'),(247,1,'2025-11-04 22:42:52',315,'Arapiun'),(248,1,'2025-11-04 22:42:52',316,'Arikén'),(249,1,'2025-11-04 22:42:52',317,'Arikose'),(250,1,'2025-11-04 22:42:52',318,'Atikum'),(251,1,'2025-11-04 22:42:52',319,'Awi'),(252,1,'2025-11-04 22:42:52',320,'Baenã'),(253,1,'2025-11-04 22:42:52',321,'Borari'),(254,1,'2025-11-04 22:42:52',322,'Botocudo'),(255,1,'2025-11-04 22:42:52',323,'Catokin (Katukína)'),(256,1,'2025-11-04 22:42:52',324,'Charrúa/Charrua'),(257,1,'2025-11-04 22:42:52',325,'Coiupanka'),(258,1,'2025-11-04 22:42:52',326,'Guara'),(259,1,'2025-11-04 22:42:52',327,'Guarino'),(260,1,'2025-11-04 22:42:52',328,'Guaru'),(261,1,'2025-11-04 22:42:52',329,'Isse'),(262,1,'2025-11-04 22:42:52',330,'Jaricuna'),(263,1,'2025-11-04 22:42:52',331,'Jeripancó/Jeripankó'),(264,1,'2025-11-04 22:42:52',332,'Kaete'),(265,1,'2025-11-04 22:42:52',333,'Kaimbé'),(266,1,'2025-11-04 22:42:52',334,'Kalabassa'),(267,1,'2025-11-04 22:42:52',335,'Kalankó'),(268,1,'2025-11-04 22:42:52',336,'Kamba/Kámba'),(269,1,'2025-11-04 22:42:52',337,'Kambiwá'),(270,1,'2025-11-04 22:42:52',338,'Kambiwá Pipipã'),(271,1,'2025-11-04 22:42:52',339,'Kanindé'),(272,1,'2025-11-04 22:42:52',340,'Kantaruré'),(273,1,'2025-11-04 22:42:52',341,'Kapinawá'),(274,1,'2025-11-04 22:42:52',342,'Karapoto/Karapotó'),(275,1,'2025-11-04 22:42:52',343,'Karijo'),(276,1,'2025-11-04 22:42:52',344,'Kariri/Karirí'),(277,1,'2025-11-04 22:42:52',345,'Kariri - Xocó/Karirí-Xocó'),(278,1,'2025-11-04 22:42:52',346,'Kaxixó'),(279,1,'2025-11-04 22:42:52',347,'Kayuisiana -(Kaixána)'),(280,1,'2025-11-04 22:42:52',348,'Kiriri'),(281,1,'2025-11-04 22:42:52',349,'Kueskue'),(282,1,'2025-11-04 22:42:52',350,'Manao/Manáo'),(283,1,'2025-11-04 22:42:52',351,'Maragua'),(284,1,'2025-11-04 22:42:52',352,'Maytapu'),(285,1,'2025-11-04 22:42:52',353,'Mucurim'),(286,1,'2025-11-04 22:42:52',354,'Nawa/Náwa'),(287,1,'2025-11-04 22:42:52',355,'Paiaku'),(288,1,'2025-11-04 22:42:52',356,'Pankará'),(289,1,'2025-11-04 22:42:52',357,'Pankararé'),(290,1,'2025-11-04 22:42:52',358,'Pankararú/Pankarú'),(291,1,'2025-11-04 22:42:52',359,'Pankararú - Kalanko'),(292,1,'2025-11-04 22:42:52',360,'Pankararú - Karuazu'),(293,1,'2025-11-04 22:42:52',361,'Pankaru'),(294,1,'2025-11-04 22:42:52',362,'Patxôhã/Patxoha'),(295,1,'2025-11-04 22:42:52',363,'Paumelenho'),(296,1,'2025-11-04 22:42:52',364,'Piri-Piri/Pirí-Pirí'),(297,1,'2025-11-04 22:42:52',365,'Pitaguari/Pitaguarí'),(298,1,'2025-11-04 22:42:52',366,'Potiguara/Potiguára'),(299,1,'2025-11-04 22:42:52',367,'Puri/Purí'),(300,1,'2025-11-04 22:42:52',368,'Sapará/Sapara'),(301,1,'2025-11-04 22:42:52',369,'Tabajara'),(302,1,'2025-11-04 22:42:52',370,'Tapajós'),(303,1,'2025-11-04 22:42:52',371,'Tapeba'),(304,1,'2025-11-04 22:42:52',372,'Tapiuns/Tapiun'),(305,1,'2025-11-04 22:42:52',373,'Tapuía/Tapúya'),(306,1,'2025-11-04 22:42:52',374,'Tingui Botó/Tinguí-Botó'),(307,1,'2025-11-04 22:42:52',375,'Tremembé'),(308,1,'2025-11-04 22:42:52',376,'Truká'),(309,1,'2025-11-04 22:42:52',377,'Tumbalalá'),(310,1,'2025-11-04 22:42:52',378,'Tupinambá'),(311,1,'2025-11-04 22:42:52',379,'Tupinambaraná'),(312,1,'2025-11-04 22:42:52',380,'Tupiniquim'),(313,1,'2025-11-04 22:42:52',381,'Tuxá'),(314,1,'2025-11-04 22:42:52',382,'Waira'),(315,1,'2025-11-04 22:42:52',383,'Waiána-Apalaí'),(316,1,'2025-11-04 22:42:52',384,'Wajuju/Wajujú'),(317,1,'2025-11-04 22:42:52',385,'Wassú (Wasusú)'),(318,1,'2025-11-04 22:42:52',386,'Xocó'),(319,1,'2025-11-04 22:42:52',387,'Xucuru/Xukurú'),(320,1,'2025-11-04 22:42:52',388,'Xucuru - Kariri/Xukurú-Karirí'),(321,1,'2025-11-04 22:42:52',389,'Maya'),(322,1,'2025-11-04 22:42:52',999,'Outras Linguas Indigenas');
 /*!40000 ALTER TABLE `bsc_indigena_lingua` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -729,6 +730,31 @@ LOCK TABLES `bsc_produto` WRITE;
 /*!40000 ALTER TABLE `bsc_produto` DISABLE KEYS */;
 INSERT INTO `bsc_produto` VALUES (1,1,'2025-10-31 03:14:38','Fitas de áudio',NULL),(2,1,'2025-10-31 03:14:38','Meios magnéticos de armazenamento de áudio',NULL),(3,1,'2025-10-31 03:14:38','Discos de vinil',NULL),(4,1,'2025-10-31 03:14:38','Fitas de vídeo',NULL),(5,1,'2025-10-31 03:14:38','Mídias em CD contendo obras literárias, mapas, enciclopédias, acervos de fotos, documentários ou vídeos com obras de ficção (clássicos e informativos)',NULL),(6,1,'2025-10-31 03:14:38','Mídias em DVDs contendo obras literárias, mapas, enciclopédias, acervos de fotos, documentários ou vídeos com obras de ficção (clássicos e informativos)',NULL),(7,1,'2025-10-31 03:35:13','Blocos lógicos',NULL),(8,1,'2025-10-31 03:35:13','Jogos de memória',NULL),(9,1,'2025-10-31 03:35:13','Dominós',NULL),(10,1,'2025-10-31 03:35:13','Blocos de encaixe',NULL),(11,1,'2025-10-31 03:35:13','Quebra-cabeça',NULL),(12,1,'2025-10-31 03:35:13','Blocos de construção',NULL),(13,1,'2025-10-31 03:35:13','Bonecos diversos',NULL),(14,1,'2025-10-31 03:35:13','Pelúcias',NULL),(15,1,'2025-10-31 03:38:27','Microscópio',NULL),(16,1,'2025-10-31 03:38:27','Telescópio',NULL),(17,1,'2025-10-31 03:38:27','Micrômetro',NULL),(18,1,'2025-10-31 03:38:27','Paquímetro',NULL),(19,1,'2025-10-31 03:38:27','Trena',NULL),(20,1,'2025-10-31 03:38:27','Tubos de ensaio',NULL),(21,1,'2025-10-31 03:38:27','Pipetas',NULL),(22,1,'2025-10-31 03:41:37','Caixas de som',NULL),(23,1,'2025-10-31 03:41:37','Caixas amplificadas',NULL),(24,1,'2025-10-31 03:41:37','Microfones',NULL),(25,1,'2025-10-31 03:41:37','Pedestais',NULL),(26,1,'2025-10-31 03:41:37','Equalizadores',NULL),(27,1,'2025-10-31 03:41:37','Mesa de som com separação de canais',NULL),(28,1,'2025-10-31 03:41:37','Processadores de som',NULL),(29,1,'2025-10-31 03:41:37','Cabos de ligação',NULL),(30,1,'2025-10-31 03:45:18','Instrumentos de percussão (tambor, surdo, caixa etc.)',NULL),(31,1,'2025-10-31 03:45:18','Instrumentos de cordas (piano, violão, viola etc.)',NULL),(32,1,'2025-10-31 03:45:18','Instrumentos de sopro (flauta, clarineta, saxofone etc.)',NULL),(33,1,'2025-10-31 03:46:57','Jogos educativos',NULL),(34,1,'2025-10-31 03:48:55','Pincéis',NULL),(35,1,'2025-10-31 03:48:55','Tintas',NULL),(36,1,'2025-10-31 03:48:55','Argila',NULL),(37,1,'2025-10-31 03:48:55','Forno para queima de cerámica',NULL),(38,1,'2025-10-31 03:48:55','Cenários',NULL),(39,1,'2025-10-31 03:48:55','Fantoches',NULL),(40,1,'2025-10-31 03:48:55','Roupas e fantasias',NULL),(41,1,'2025-10-31 03:55:35','Tecido',NULL),(42,1,'2025-10-31 03:55:35','Agulhas',NULL),(43,1,'2025-10-31 03:55:35','Linhas',NULL),(44,1,'2025-10-31 03:55:35','Máquinas de costura',NULL),(45,1,'2025-10-31 03:55:35','Torno mecânico',NULL),(46,1,'2025-10-31 03:55:35','Ferramentas para mecânico,',NULL),(47,1,'2025-10-31 03:55:35','Lubrificantes para mecânico',NULL),(48,1,'2025-10-31 03:55:35','Detergentes para mecânico',NULL),(49,1,'2025-10-31 03:58:31','Bolas esportivas',NULL),(50,1,'2025-10-31 03:58:31','Redes esportivas',NULL),(51,1,'2025-10-31 03:58:31','Uniformes de jogos esportivos',NULL),(52,1,'2025-10-31 03:58:31','Cordas esportivas',NULL),(53,1,'2025-10-31 03:58:31','Bastões esportivos',NULL),(54,1,'2025-10-31 03:58:31','Bambolês',NULL),(55,1,'2025-10-31 03:58:31','Fitas',NULL),(56,1,'2025-10-31 03:58:31','Materiais didáticos para a educação indígena',NULL),(57,1,'2025-10-31 03:58:31','Materiais didáticos para a educação das relações étnico-raciais',NULL),(58,1,'2025-10-31 03:58:31','Materiais didáticos para a educação do campo',NULL);
 /*!40000 ALTER TABLE `bsc_produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bsc_semana_dia`
+--
+
+DROP TABLE IF EXISTS `bsc_semana_dia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bsc_semana_dia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bsc_semana_dia`
+--
+
+LOCK TABLES `bsc_semana_dia` WRITE;
+/*!40000 ALTER TABLE `bsc_semana_dia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `bsc_semana_dia` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1997,10 +2023,10 @@ CREATE TABLE `sme_serv_contrato_alteracao` (
   `funcao_descricao` varchar(254) DEFAULT NULL,
   `dt_vigorar` date DEFAULT NULL,
   `dt_publicacao` date DEFAULT NULL,
-  `hora_entrada` time DEFAULT NULL,
-  `hora_inervalo_entrada` time DEFAULT NULL,
-  `hora_intervalo_saida` time DEFAULT NULL,
-  `hora_saida` time DEFAULT NULL,
+  `hr_entrada` time DEFAULT NULL,
+  `hr_inervalo_entrada` time DEFAULT NULL,
+  `hr_intervalo_saida` time DEFAULT NULL,
+  `hr_saida` time DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_sme_serv_contrato_alteracao_sme_serv_contrato1_idx` (`sme_serv_contrato_id`),
   CONSTRAINT `fk_sme_serv_contrato_alteracao_sme_serv_contrato1` FOREIGN KEY (`sme_serv_contrato_id`) REFERENCES `sme_serv_contrato` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -2551,6 +2577,629 @@ LOCK TABLES `tbbaseconectaidealcom_dbv` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tu_ens_atend_tipo`
+--
+
+DROP TABLE IF EXISTS `tu_ens_atend_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_ens_atend_tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_ens_atend_tipo`
+--
+
+LOCK TABLES `tu_ens_atend_tipo` WRITE;
+/*!40000 ALTER TABLE `tu_ens_atend_tipo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_ens_atend_tipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_ens_modalidade_etapa`
+--
+
+DROP TABLE IF EXISTS `tu_ens_modalidade_etapa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_ens_modalidade_etapa` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  `tu_ens_modalidade_tipo_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_emt_tu_ens_modalidade_tipo1_idx` (`tu_ens_modalidade_tipo_id`),
+  CONSTRAINT `fk_tu_emt_tu_ens_modalidade_tipo1` FOREIGN KEY (`tu_ens_modalidade_tipo_id`) REFERENCES `tu_ens_modalidade_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_ens_modalidade_etapa`
+--
+
+LOCK TABLES `tu_ens_modalidade_etapa` WRITE;
+/*!40000 ALTER TABLE `tu_ens_modalidade_etapa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_ens_modalidade_etapa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_ens_modalidade_fase`
+--
+
+DROP TABLE IF EXISTS `tu_ens_modalidade_fase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_ens_modalidade_fase` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  `c_h_base` int(6) DEFAULT NULL,
+  `tu_ens_modalidade_etapa_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_emf_tu_ens_m_etapa1_idx` (`tu_ens_modalidade_etapa_id`),
+  CONSTRAINT `fk_tu_emf_tu_ens_m_etapa1` FOREIGN KEY (`tu_ens_modalidade_etapa_id`) REFERENCES `tu_ens_modalidade_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_ens_modalidade_fase`
+--
+
+LOCK TABLES `tu_ens_modalidade_fase` WRITE;
+/*!40000 ALTER TABLE `tu_ens_modalidade_fase` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_ens_modalidade_fase` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_ens_modalidade_tipo`
+--
+
+DROP TABLE IF EXISTS `tu_ens_modalidade_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_ens_modalidade_tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  `tu_ens_atend_tipo_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_emt_tu_ens_atend_tipo1_idx` (`tu_ens_atend_tipo_id`),
+  CONSTRAINT `fk_tu_emt_tu_ens_atend_tipo1` FOREIGN KEY (`tu_ens_atend_tipo_id`) REFERENCES `tu_ens_atend_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_ens_modalidade_tipo`
+--
+
+LOCK TABLES `tu_ens_modalidade_tipo` WRITE;
+/*!40000 ALTER TABLE `tu_ens_modalidade_tipo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_ens_modalidade_tipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_ens_profis_forma`
+--
+
+DROP TABLE IF EXISTS `tu_ens_profis_forma`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_ens_profis_forma` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  `tu_ens_modalidade_etapa_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_epf_tu_ens_m_etapa1_idx` (`tu_ens_modalidade_etapa_id`),
+  CONSTRAINT `fk_tu_epf_tu_ens_m_etapa1` FOREIGN KEY (`tu_ens_modalidade_etapa_id`) REFERENCES `tu_ens_modalidade_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_ens_profis_forma`
+--
+
+LOCK TABLES `tu_ens_profis_forma` WRITE;
+/*!40000 ALTER TABLE `tu_ens_profis_forma` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_ens_profis_forma` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_ens_tecnico`
+--
+
+DROP TABLE IF EXISTS `tu_ens_tecnico`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_ens_tecnico` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cod_inep` int(11) DEFAULT NULL,
+  `nome` varchar(100) NOT NULL,
+  `descricao` text,
+  `tu_ens_tecnico_eixo_id` int(11) NOT NULL,
+  `tu_ens_modalidade_etapa_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_et_tu_ens_tecnico_eixo1_idx` (`tu_ens_tecnico_eixo_id`),
+  KEY `fk_tu_et_tu_ens_modalidade_etapa1_idx` (`tu_ens_modalidade_etapa_id`),
+  CONSTRAINT `fk_tu_et_tu_ens_modalidade_etapa1` FOREIGN KEY (`tu_ens_modalidade_etapa_id`) REFERENCES `tu_ens_modalidade_etapa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_et_tu_ens_tecnico_eixo1` FOREIGN KEY (`tu_ens_tecnico_eixo_id`) REFERENCES `tu_ens_tecnico_eixo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_ens_tecnico`
+--
+
+LOCK TABLES `tu_ens_tecnico` WRITE;
+/*!40000 ALTER TABLE `tu_ens_tecnico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_ens_tecnico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_ens_tecnico_eixo`
+--
+
+DROP TABLE IF EXISTS `tu_ens_tecnico_eixo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_ens_tecnico_eixo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cod_inep` int(11) DEFAULT NULL,
+  `nome` varchar(100) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_ens_tecnico_eixo`
+--
+
+LOCK TABLES `tu_ens_tecnico_eixo` WRITE;
+/*!40000 ALTER TABLE `tu_ens_tecnico_eixo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_ens_tecnico_eixo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_estrut_curricular`
+--
+
+DROP TABLE IF EXISTS `tu_estrut_curricular`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_estrut_curricular` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_estrut_curricular`
+--
+
+LOCK TABLES `tu_estrut_curricular` WRITE;
+/*!40000 ALTER TABLE `tu_estrut_curricular` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_estrut_curricular` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_local_funcionamento_diferenciado`
+--
+
+DROP TABLE IF EXISTS `tu_local_funcionamento_diferenciado`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_local_funcionamento_diferenciado` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_local_funcionamento_diferenciado`
+--
+
+LOCK TABLES `tu_local_funcionamento_diferenciado` WRITE;
+/*!40000 ALTER TABLE `tu_local_funcionamento_diferenciado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_local_funcionamento_diferenciado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_mediacao_didat_pedag_tipo`
+--
+
+DROP TABLE IF EXISTS `tu_mediacao_didat_pedag_tipo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_mediacao_didat_pedag_tipo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_mediacao_didat_pedag_tipo`
+--
+
+LOCK TABLES `tu_mediacao_didat_pedag_tipo` WRITE;
+/*!40000 ALTER TABLE `tu_mediacao_didat_pedag_tipo` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_mediacao_didat_pedag_tipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_organiz_forma`
+--
+
+DROP TABLE IF EXISTS `tu_organiz_forma`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_organiz_forma` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_organiz_forma`
+--
+
+LOCK TABLES `tu_organiz_forma` WRITE;
+/*!40000 ALTER TABLE `tu_organiz_forma` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_organiz_forma` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_turma`
+--
+
+DROP TABLE IF EXISTS `tu_turma`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_turma` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(100) NOT NULL,
+  `descricao` text,
+  `tu_mediacao_didat_pedag_tipo_id` int(11) NOT NULL,
+  `tu_local_funcionamento_diferenciado_id` int(11) NOT NULL,
+  `tu_ens_modalidade_fase_id` int(11) NOT NULL,
+  `tu_ens_profis_forma_id` int(11) NOT NULL,
+  `tu_ens_tecnico_id` int(11) NOT NULL,
+  `tu_organiz_forma_id` int(11) NOT NULL,
+  `ue_turno_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_tu_tu_mdp_tipo1_idx` (`tu_mediacao_didat_pedag_tipo_id`),
+  KEY `fk_tu_tu_tu_ld_diferenciado1_idx` (`tu_local_funcionamento_diferenciado_id`),
+  KEY `fk_tu_tu_tu_ens_m_fase1_idx` (`tu_ens_modalidade_fase_id`),
+  KEY `fk_tu_tu_tu_ens_p_forma1_idx` (`tu_ens_profis_forma_id`),
+  KEY `fk_tu_tu_tu_ens_tecnico1_idx` (`tu_ens_tecnico_id`),
+  KEY `fk_tu_tu_tu_o_forma1_idx` (`tu_organiz_forma_id`),
+  KEY `fk_tu_tu_ue_turno1_idx` (`ue_turno_id`),
+  CONSTRAINT `fk_tu_tu_tu_ens_m_fase1` FOREIGN KEY (`tu_ens_modalidade_fase_id`) REFERENCES `tu_ens_modalidade_fase` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_tu_tu_ens_p_forma1` FOREIGN KEY (`tu_ens_profis_forma_id`) REFERENCES `tu_ens_profis_forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_tu_tu_ens_tecnico1` FOREIGN KEY (`tu_ens_tecnico_id`) REFERENCES `tu_ens_tecnico` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_tu_tu_lc_diferenciado1` FOREIGN KEY (`tu_local_funcionamento_diferenciado_id`) REFERENCES `tu_local_funcionamento_diferenciado` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_tu_tu_mdp_tipo1` FOREIGN KEY (`tu_mediacao_didat_pedag_tipo_id`) REFERENCES `tu_mediacao_didat_pedag_tipo` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_tu_tu_o_forma1` FOREIGN KEY (`tu_organiz_forma_id`) REFERENCES `tu_organiz_forma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_tu_ue_turno1` FOREIGN KEY (`ue_turno_id`) REFERENCES `ue_turno` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_turma`
+--
+
+LOCK TABLES `tu_turma` WRITE;
+/*!40000 ALTER TABLE `tu_turma` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_turma` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_turma_ativ_complem`
+--
+
+DROP TABLE IF EXISTS `tu_turma_ativ_complem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_turma_ativ_complem` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tu_turma_id` int(11) NOT NULL,
+  `ue_ativ_complem_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_turma_ac_ue_ativ_complem1_idx` (`ue_ativ_complem_id`),
+  KEY `fk_tu_turma_ac_tu_turma1_idx` (`tu_turma_id`),
+  CONSTRAINT `fk_tu_turma_ativ_complem_tu_turma1` FOREIGN KEY (`tu_turma_id`) REFERENCES `tu_turma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_turma_ativ_complem_ue_ativ_complem1` FOREIGN KEY (`ue_ativ_complem_id`) REFERENCES `ue_ativ_complem` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_turma_ativ_complem`
+--
+
+LOCK TABLES `tu_turma_ativ_complem` WRITE;
+/*!40000 ALTER TABLE `tu_turma_ativ_complem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_turma_ativ_complem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_turma_compon_curricular`
+--
+
+DROP TABLE IF EXISTS `tu_turma_compon_curricular`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_turma_compon_curricular` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `descricao` text,
+  `tu_turma_id` int(11) NOT NULL,
+  `ue_compon_curricular_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_turma_cc_tu_turma1_idx` (`tu_turma_id`),
+  KEY `fk_tu_turma_cc_ue_compon_curricular1_idx` (`ue_compon_curricular_id`),
+  CONSTRAINT `fk_tu_turma_cc_tu_turma1` FOREIGN KEY (`tu_turma_id`) REFERENCES `tu_turma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_turma_cc_ue_compon_curricular1` FOREIGN KEY (`ue_compon_curricular_id`) REFERENCES `ue_compon_curricular` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_turma_compon_curricular`
+--
+
+LOCK TABLES `tu_turma_compon_curricular` WRITE;
+/*!40000 ALTER TABLE `tu_turma_compon_curricular` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_turma_compon_curricular` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_turma_estrut_curricular`
+--
+
+DROP TABLE IF EXISTS `tu_turma_estrut_curricular`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_turma_estrut_curricular` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tu_turma_id` int(11) NOT NULL,
+  `tu_estrut_curricular_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_tec_tu_estrut_curricular1_idx` (`tu_estrut_curricular_id`),
+  KEY `fk_tu_tec_tu_turma1_idx` (`tu_turma_id`),
+  CONSTRAINT `fk_tu_tec_tu_estrut_curricular1` FOREIGN KEY (`tu_estrut_curricular_id`) REFERENCES `tu_estrut_curricular` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_tec_tu_turma1` FOREIGN KEY (`tu_turma_id`) REFERENCES `tu_turma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_turma_estrut_curricular`
+--
+
+LOCK TABLES `tu_turma_estrut_curricular` WRITE;
+/*!40000 ALTER TABLE `tu_turma_estrut_curricular` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_turma_estrut_curricular` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_turma_semana_dia`
+--
+
+DROP TABLE IF EXISTS `tu_turma_semana_dia`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_turma_semana_dia` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `hr_inicio` time DEFAULT NULL,
+  `hr_fim` time DEFAULT NULL,
+  `tu_turma_id` int(11) NOT NULL,
+  `bsc_semana_dia_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_ts_dia_bsc_semana_dia1_idx` (`bsc_semana_dia_id`),
+  KEY `fk_tu_ts_dia_tu_turma1_idx` (`tu_turma_id`),
+  CONSTRAINT `fk_tu_ts_dia_bsc_semana_dia1` FOREIGN KEY (`bsc_semana_dia_id`) REFERENCES `bsc_semana_dia` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_ts_dia_tu_turma1` FOREIGN KEY (`tu_turma_id`) REFERENCES `tu_turma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_turma_semana_dia`
+--
+
+LOCK TABLES `tu_turma_semana_dia` WRITE;
+/*!40000 ALTER TABLE `tu_turma_semana_dia` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_turma_semana_dia` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_turma_unid_curricular`
+--
+
+DROP TABLE IF EXISTS `tu_turma_unid_curricular`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_turma_unid_curricular` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `c_h` int(11) DEFAULT NULL,
+  `tu_turma_id` int(11) NOT NULL,
+  `tu_unid_curricular_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_tu_tuc_tu_unid_curricular1_idx` (`tu_unid_curricular_id`),
+  KEY `fk_tu_tuc_tu_turma1_idx` (`tu_turma_id`),
+  CONSTRAINT `fk_tu_tuc_tu_turma1` FOREIGN KEY (`tu_turma_id`) REFERENCES `tu_turma` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tu_tuc_tu_unid_curricular1` FOREIGN KEY (`tu_unid_curricular_id`) REFERENCES `tu_unid_curricular` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_turma_unid_curricular`
+--
+
+LOCK TABLES `tu_turma_unid_curricular` WRITE;
+/*!40000 ALTER TABLE `tu_turma_unid_curricular` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_turma_unid_curricular` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tu_unid_curricular`
+--
+
+DROP TABLE IF EXISTS `tu_unid_curricular`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tu_unid_curricular` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cod_inep` int(11) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `c_h_base` int(6) DEFAULT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tu_unid_curricular`
+--
+
+LOCK TABLES `tu_unid_curricular` WRITE;
+/*!40000 ALTER TABLE `tu_unid_curricular` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tu_unid_curricular` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_ativ_complem`
+--
+
+DROP TABLE IF EXISTS `ue_ativ_complem`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_ativ_complem` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cod_inep` int(11) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  `ue_ativ_complem_area_sub_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_ac_ue_ativ_complem_area_sub1_idx` (`ue_ativ_complem_area_sub_id`),
+  CONSTRAINT `fk_ue_ac_ue_ativ_complem_area_sub1` FOREIGN KEY (`ue_ativ_complem_area_sub_id`) REFERENCES `ue_ativ_complem_area_sub` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_ativ_complem`
+--
+
+LOCK TABLES `ue_ativ_complem` WRITE;
+/*!40000 ALTER TABLE `ue_ativ_complem` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_ativ_complem` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_ativ_complem_area`
+--
+
+DROP TABLE IF EXISTS `ue_ativ_complem_area`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_ativ_complem_area` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cod_inep` int(11) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_ativ_complem_area`
+--
+
+LOCK TABLES `ue_ativ_complem_area` WRITE;
+/*!40000 ALTER TABLE `ue_ativ_complem_area` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_ativ_complem_area` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_ativ_complem_area_sub`
+--
+
+DROP TABLE IF EXISTS `ue_ativ_complem_area_sub`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_ativ_complem_area_sub` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cod_inep` int(11) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  `ue_ativ_complem_area_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_ac_area_sub_ue_ativ_complem_area1_idx` (`ue_ativ_complem_area_id`),
+  CONSTRAINT `fk_ue_ac_area_sub_ue_ativ_complem_area1` FOREIGN KEY (`ue_ativ_complem_area_id`) REFERENCES `ue_ativ_complem_area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_ativ_complem_area_sub`
+--
+
+LOCK TABLES `ue_ativ_complem_area_sub` WRITE;
+/*!40000 ALTER TABLE `ue_ativ_complem_area_sub` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_ativ_complem_area_sub` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ue_aula_aluno`
 --
 
@@ -2983,6 +3632,62 @@ LOCK TABLES `ue_cat_esc_priv` WRITE;
 /*!40000 ALTER TABLE `ue_cat_esc_priv` DISABLE KEYS */;
 INSERT INTO `ue_cat_esc_priv` VALUES (1,1,'2025-09-03 03:13:51','Particular','Escola instituída e mantida por uma ou mais pessoas físicas ou jurídicas de direito privado, que cobra pelos serviços\neducativos prestados e não se enquadra como comunitária, confessional ou filantrópica.'),(2,1,'2025-09-03 03:13:51','Comunitária','Escola instituída por grupo de pessoas físicas ou por uma ou mais pessoas jurídicas, inclusive cooperativas\neducacionais sem fins lucrativos que incluem em sua entidade mantenedora representantes da comunidade.'),(3,1,'2025-09-03 03:13:51','Confessional','Escola instituída por grupo de pessoas físicas ou por uma ou mais pessoas jurídicas que atendem a orientação\nconfessional e a ideologia específica.'),(4,1,'2025-09-03 03:13:51','Filantrópica','Escola instituída por pessoas jurídicas de direito privado, sem fins lucrativos, reconhecida como entidade\nbeneficente de assistência social, com a finalidade de prestação de serviços na área de educação, e que atende\naos critérios da Lei nº 12.101, de 27 de novembro de 2009.');
 /*!40000 ALTER TABLE `ue_cat_esc_priv` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_compon_curricular`
+--
+
+DROP TABLE IF EXISTS `ue_compon_curricular`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_compon_curricular` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `cod_inep` int(11) DEFAULT NULL,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  `ue_compon_curricular_area_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ue_cc_ue_cc_area1_idx` (`ue_compon_curricular_area_id`),
+  CONSTRAINT `fk_ue_cc_ue_cc_area1` FOREIGN KEY (`ue_compon_curricular_area_id`) REFERENCES `ue_compon_curricular_area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_compon_curricular`
+--
+
+LOCK TABLES `ue_compon_curricular` WRITE;
+/*!40000 ALTER TABLE `ue_compon_curricular` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_compon_curricular` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ue_compon_curricular_area`
+--
+
+DROP TABLE IF EXISTS `ue_compon_curricular_area`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ue_compon_curricular_area` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
+  `dt_cadastro` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome` varchar(255) NOT NULL,
+  `descricao` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='(ue = unidade educativa)';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ue_compon_curricular_area`
+--
+
+LOCK TABLES `ue_compon_curricular_area` WRITE;
+/*!40000 ALTER TABLE `ue_compon_curricular_area` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ue_compon_curricular_area` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -6653,4 +7358,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-04 16:45:32
+-- Dump completed on 2025-11-04 18:43:43
