@@ -84,6 +84,11 @@ $exibeButoes              = true;
                     <i class="ti ti-star pe-1 ps-1"></i>Contatos
                   </button>
                 </li>
+                <li class="nav-item" role="presentation">
+                  <button aria-controls="tab-pane-4" data-bs-target="#tab-pane-4" id="tab-3" aria-selected="false" class="nav-link <?= $tabPane == 4 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                    <i class="ti ti-star pe-1 ps-1"></i>Condição Física/Mental
+                  </button>
+                </li>
                 <?php
               }
               ?>
@@ -103,10 +108,17 @@ $exibeButoes              = true;
                   ?>
                 </form>
               </div>
-              <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
+              <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="3">
                 <form class="app-form" id="form_pessoa_contato" name="form_pessoa_contato" method="post" urltosend="bsc/pessoa_fisica/salvar_contato" action="">
                   <?php 
                   include_once ('view/bsc/pessoa_fisica/content_contato.php'); 
+                  ?>
+                </form>
+              </div>
+              <div aria-labelledby="tab-pane-3" id="tab-pane-4" class="tab-pane fade <?= $tabPane == 4 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
+                <form class="app-form" id="form_pessoa_cond_fis_men" name="form_pessoa_cond_fis_men" method="post" urltosend="bsc/pessoa_fisica/salvar_cond_fis_men" action="">
+                  <?php 
+                  include_once ('view/bsc/pessoa_fisica/content_cond_fis_men.php'); 
                   ?>
                 </form>
               </div>

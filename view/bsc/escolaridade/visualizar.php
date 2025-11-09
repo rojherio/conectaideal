@@ -12,7 +12,8 @@ $stmt = $db->prepare("SELECT
   e.id,
   e.status,
   e.dt_cadastro,
-  e.nome
+  e.nome,
+  e.nivel_controle
   FROM bsc_escolaridade AS e
   WHERE e.id = ? ;");
 $stmt->bindValue(1, $id);
@@ -89,6 +90,10 @@ $tituloImpressao          = "Relatório de informações de escolaridade cadastr
                   <tr>
                     <td>Nome</td>
                     <td><?= $rsRegistro['nome']; ?></td>
+                  </tr>
+                  <tr>
+                    <td>Nível de controle (INEP)</td>
+                    <td><?= $rsRegistro['nivel_controle']; ?></td>
                   </tr>
                 </tbody>
                   <!-- <td><span class="badge text-light-primary">System Architect</span></td>

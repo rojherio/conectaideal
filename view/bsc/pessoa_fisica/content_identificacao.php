@@ -20,6 +20,7 @@ $stmt = $db->prepare("SELECT
   p.natural_estrangeiro_cidade,
   p.natural_estrangeiro_estado,
   p.natural_estrangeiro_condicao_trabalho,
+  p.natural_estrangeiro_naturalizado,
   p.pai_nome,
   p.pai_natural_bsc_pais_id,
   p.pai_profissao,
@@ -28,7 +29,7 @@ $stmt = $db->prepare("SELECT
   p.mae_profissao,
   p.foto,
   p.sangue_tipo,
-  p.raca,
+  p.bsc_cor_raca_id,
   p.enfermidade_portador,
   p.enfermidade_codigo_internacional
   FROM bsc_pessoa AS p
@@ -55,6 +56,7 @@ if (!$rsRegistroPessoaIdent) {
   $rsRegistroPessoaIdent['natural_estrangeiro_cidade'] = '';
   $rsRegistroPessoaIdent['natural_estrangeiro_estado'] = '';
   $rsRegistroPessoaIdent['natural_estrangeiro_condicao_trabalho'] = '';
+  $rsRegistroPessoaIdent['natural_estrangeiro_naturalizado'] = 0;
   $rsRegistroPessoaIdent['pai_nome'] = '';
   $rsRegistroPessoaIdent['pai_natural_bsc_pais_id'] = '';
   $rsRegistroPessoaIdent['pai_profissao'] = '';
@@ -63,7 +65,7 @@ if (!$rsRegistroPessoaIdent) {
   $rsRegistroPessoaIdent['mae_profissao'] = '';
   $rsRegistroPessoaIdent['foto'] = '';
   $rsRegistroPessoaIdent['sangue_tipo'] = '';
-  $rsRegistroPessoaIdent['raca'] = '';
+  $rsRegistroPessoaIdent['bsc_cor_raca_id'] = '';
   $rsRegistroPessoaIdent['enfermidade_portador'] = '';
   $rsRegistroPessoaIdent['enfermidade_codigo_internacional'] = '';
 }
@@ -107,6 +109,14 @@ $stmt = $db->prepare("
   FROM bsc_parentesco_grau AS p ;");
 $stmt->execute();
 $rsGrausParentesco = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("
+  SELECT 
+  id, 
+  nome 
+  FROM bsc_cor_raca 
+  ORDER BY nome;");
+$stmt->execute();
+$rsCorRacas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $tituloFormulario1        = "Dados Pessoais";
@@ -243,20 +253,18 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )); ?>
-          <?= createInput(array(
+          <?= createSelect(array(
             /*int 1-12*/  'col'         => 6,
-            /*string*/    'label'       => 'Raça',
-            /*string*/    'type'        => 'text',
-            /*string*/    'name'        => 'p_raca',
-            /*string*/    'id'          => 'p_raca',
-            /*string*/    'class'       => 'form-control',
-            /*int*/       'minlength'   => 3,
-            /*int*/       'maxlength'   => 50,
-            /*string*/    'placeholder' => 'Digite raça da pessoa',
-            /*string*/    'value'       => $rsRegistroPessoaIdent['raca'],
+            /*string*/    'label'       => 'Cor/Raça',
+            /*string*/    'name'        => 'p_bsc_cor_raca_id',
+            /*string*/    'id'          => 'p_bsc_cor_raca_id',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroPessoaIdent['bsc_cor_raca_id'],
+            /*array()*/   'options'     => $rsCorRacas,
+            /*string*/    'ariaLabel'   => 'Selecione uma cor/raça',
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
-          )) ;?>
+          )); ?>
         </div>
         <!-- div row input - END -->
       </div>
@@ -363,6 +371,17 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
               /*string*/    'placeholder' => 'Digite a condição de trabalho da pessoa',
               /*string*/    'value'       => $rsRegistroPessoaIdent['natural_estrangeiro_condicao_trabalho'],
               /*bool*/      'required'    => false,
+              /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
+            )) ;?>
+          </div>
+          <div class="row"><?= createCheckbox(array(
+              /*int 1-12*/  'col'         => 6,
+              /*string*/    'label'       => 'Naturalizado no Brasil',
+              /*string*/    'name'        => 'p_natural_estrangeiro_naturalizado',
+              /*string*/    'id'          => 'p_natural_estrangeiro_naturalizado',
+              /*string*/    'class'       => 'toggle',
+              /*string*/    'value'       => 1,
+              /*string*/    'checked'     => $rsRegistroPessoaIdent['natural_estrangeiro_naturalizado'],
               /*string*/    'prop'        => 'controlled="naturalidade" control-value="0"'
             )) ;?>
           </div>

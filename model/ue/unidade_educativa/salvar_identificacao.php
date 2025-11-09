@@ -127,14 +127,14 @@ try {
       $stmt->bindValue(25, $alimentacao_pnae_fnde_oferece?: NULL);
       $stmt->bindValue(26, $id);
       $stmt->execute();
-    //DELETE ue_ue_uo_publica_vinc
+      //DELETE ue_ue_uo_publica_vinc
       $stmt = $db->prepare('
         DELETE 
           FROM ue_ue_uo_publica_vinc
           WHERE ue_ue_id = ?;');
       $stmt->bindValue(1, $id);
       $stmt->execute();
-    //INSERT ue_ue_uo_publica_vinc
+      //INSERT ue_ue_uo_publica_vinc
       if($bsc_uo_publica_id){
         foreach ($bsc_uo_publica_id as $k => $v) {
           $stmt = $db->prepare('
@@ -159,14 +159,14 @@ try {
           $stmt->execute();
         }
       }
-    //DELETE ue_ue_ens_atend_tipo
+      //DELETE ue_ue_ens_atend_tipo
       $stmt = $db->prepare('
         DELETE 
           FROM ue_ue_ens_atend_tipo
           WHERE ue_ue_id = ?;');
       $stmt->bindValue(1, $id);
       $stmt->execute();
-    //INSERT ue_ue_ens_atend_tipo
+      //INSERT ue_ue_ens_atend_tipo
       if($ue_ens_atend_tipo_id){
         foreach ($ue_ens_atend_tipo_id as $k => $v) {
           $stmt = $db->prepare('
@@ -191,14 +191,14 @@ try {
           $stmt->execute();
         }
       }
-    //DELETE ue_ue_ens_modalidade_etapa
+      //DELETE ue_ue_ens_modalidade_etapa
       $stmt = $db->prepare('
         DELETE 
           FROM ue_ue_ens_modalidade_etapa
           WHERE ue_ue_id = ?;');
       $stmt->bindValue(1, $id);
       $stmt->execute();
-    //INSERT ue_ue_ens_modalidade_etapa
+      //INSERT ue_ue_ens_modalidade_etapa
       if($ue_ens_modalidade_etapa_id){
         foreach ($ue_ens_modalidade_etapa_id as $k => $v) {
           $stmt = $db->prepare('
@@ -223,14 +223,14 @@ try {
           $stmt->execute();
         }
       }
-    //DELETE ue_ue_ens_profis_forma
+      //DELETE ue_ue_ens_profis_forma
       $stmt = $db->prepare('
         DELETE 
           FROM ue_ue_ens_profis_forma
           WHERE ue_ue_id = ?;');
       $stmt->bindValue(1, $id);
       $stmt->execute();
-    //INSERT ue_ue_ens_profis_forma
+      //INSERT ue_ue_ens_profis_forma
       if($ue_ens_profis_forma_id){
         foreach ($ue_ens_profis_forma_id as $k => $v) {
           $stmt = $db->prepare('
@@ -255,14 +255,14 @@ try {
           $stmt->execute();
         }
       }
-    //DELETE ue_ue_infra_local_funcionam
+      //DELETE ue_ue_infra_local_funcionam
       $stmt = $db->prepare('
         DELETE 
           FROM ue_ue_infra_local_funcionam
           WHERE ue_ue_id = ?;');
       $stmt->bindValue(1, $id);
       $stmt->execute();
-    //INSERT ue_ue_infra_local_funcionam
+      //INSERT ue_ue_infra_local_funcionam
       if($ue_infra_local_funcionam_id){
         foreach ($ue_infra_local_funcionam_id as $k => $v) {
           $stmt = $db->prepare('
@@ -288,7 +288,7 @@ try {
         }
       }
       $db->commit();
-    //MENSAGEM DE SUCESSO
+      //MENSAGEM DE SUCESSO
       $result['id'] = $id;
       $result['status'] = 'success';
       $result['msg'] = 'As novas informações foram registradas com sucesso.';
@@ -402,7 +402,7 @@ try {
           $stmt->execute();
         }
       }
-    //INSERT ue_ue_ens_atend_tipo
+      //INSERT ue_ue_ens_atend_tipo
       if($ue_ens_atend_tipo_id){
         foreach ($ue_ens_atend_tipo_id as $k => $v) {
           $stmt = $db->prepare('
@@ -427,7 +427,7 @@ try {
           $stmt->execute();
         }
       }
-    //INSERT ue_ue_ens_modalidade_etapa
+      //INSERT ue_ue_ens_modalidade_etapa
       if($ue_ens_modalidade_etapa_id){
         foreach ($ue_ens_modalidade_etapa_id as $k => $v) {
           $stmt = $db->prepare('
@@ -452,7 +452,7 @@ try {
           $stmt->execute();
         }
       }
-    //INSERT ue_ue_ens_profis_forma
+      //INSERT ue_ue_ens_profis_forma
       if($ue_ens_profis_forma_id){
         foreach ($ue_ens_profis_forma_id as $k => $v) {
           $stmt = $db->prepare('

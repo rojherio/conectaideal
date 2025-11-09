@@ -26,7 +26,12 @@ $stmt = $db->prepare("
   pc.site,
   pc.emergencia_nome,
   pc.emergencia_end,
-  pc.emergencia_tel
+  pc.emergencia_tel,
+  pc.bsc_pais_id_residencia,
+  pc.bsc_zona_id,
+  pc.ue_localizacao_diferenciada_id,
+  pc.end_latitude,
+  pc.end_longitude
   FROM bsc_pessoa_contato AS pc 
   WHERE pc.bsc_pessoa_id = ?;");
 $stmt->bindValue(1, $idPessoa);
@@ -55,6 +60,11 @@ if (!($rsRegistroPessoaCont)) {
   $rsRegistroPessoaCont['emergencia_nome'] = '';
   $rsRegistroPessoaCont['emergencia_end'] = '';
   $rsRegistroPessoaCont['emergencia_tel'] = '';
+  $rsRegistroPessoaCont['bsc_pais_id_residencia'] = '';
+  $rsRegistroPessoaCont['bsc_zona_id'] = '';
+  $rsRegistroPessoaCont['ue_localizacao_diferenciada_id'] = '';
+  $rsRegistroPessoaCont['end_latitude'] = '';
+  $rsRegistroPessoaCont['end_longitude'] = '';
 }
 //Contato - END
 //Consulta para Edição - END
@@ -77,6 +87,30 @@ $stmt = $db->prepare("
   FROM bsc_parentesco_grau AS p ;");
 $stmt->execute();
 $rsGrausParentesco = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("
+  SELECT 
+  id, 
+  nome 
+  FROM bsc_pais 
+  ORDER BY id;");
+$stmt->execute();
+$rsPaiss = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("
+  SELECT 
+  id, 
+  nome 
+  FROM bsc_zona 
+  ORDER BY nome;");
+$stmt->execute();
+$rsZonas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt = $db->prepare("
+  SELECT 
+  id, 
+  nome 
+  FROM ue_localizacao_diferenciada 
+  ORDER BY nome;");
+$stmt->execute();
+$rsLocalizacaoDiferenciadas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para Select - END
 //Parámetros de títutlos - BEGIN
 $tituloFormulario1        = "Endereço";
@@ -115,6 +149,34 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*int*/       'maxlength'   => 10,
             /*string*/    'placeholder' => 'Digite o cep do endereço',
             /*string*/    'value'       => $rsRegistroPessoaCont['end_cep'],
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )) ;?>
+          <?= createInput(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'Latitude Geográfica',
+            /*string*/    'type'        => 'text',
+            /*string*/    'name'        => 'pc_end_latitude',
+            /*string*/    'id'          => 'pc_end_latitude',
+            /*string*/    'class'       => 'form-control',
+            /*int*/       'minlength'   => 6,
+            /*int*/       'maxlength'   => 12,
+            /*string*/    'placeholder' => 'Digite a latitude geográfica',
+            /*string*/    'value'       => $rsRegistroPessoaCont['end_latitude'],
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )) ;?>
+          <?= createInput(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'Longitude Geográfica',
+            /*string*/    'type'        => 'text',
+            /*string*/    'name'        => 'pc_end_longitude',
+            /*string*/    'id'          => 'pc_end_longitude',
+            /*string*/    'class'       => 'form-control',
+            /*int*/       'minlength'   => 6,
+            /*int*/       'maxlength'   => 12,
+            /*string*/    'placeholder' => 'Digite a longitude geográfica',
+            /*string*/    'value'       => $rsRegistroPessoaCont['end_longitude'],
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
@@ -187,6 +249,44 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'value'       => $rsRegistroPessoaCont['bsc_municipio_id'],
             /*array()*/   'options'     => $rsMunicipios,
             /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )); ?>
+        </div>
+        <div class="row">
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'País de Residência',
+            /*string*/    'name'        => 'pc_bsc_pais_id_residencia',
+            /*string*/    'id'          => 'pc_bsc_pais_id_residencia',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroPessoaCont['bsc_pais_id_residencia'],
+            /*array()*/   'options'     => $rsPaiss,
+            /*string*/    'ariaLabel'   => 'Selecione um país de residência',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )); ?>
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'Zona',
+            /*string*/    'name'        => 'pc_bsc_zona_id',
+            /*string*/    'id'          => 'pc_bsc_zona_id',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroPessoaCont['bsc_zona_id'],
+            /*array()*/   'options'     => $rsZonas,
+            /*string*/    'ariaLabel'   => 'Selecione um grau de parentesco',
+            /*bool*/      'required'    => false,
+            /*string*/    'prop'        => ''
+          )); ?>
+          <?= createSelect(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'Localização diferenciada',
+            /*string*/    'name'        => 'pc_ue_localizacao_diferenciada_id',
+            /*string*/    'id'          => 'pc_ue_localizacao_diferenciada_id',
+            /*string*/    'class'       => 'select2 form-control form-select select-basic',
+            /*string*/    'value'       => $rsRegistroPessoaCont['ue_localizacao_diferenciada_id'],
+            /*array()*/   'options'     => $rsLocalizacaoDiferenciadas,
+            /*string*/    'ariaLabel'   => 'Selecione uma localização diferenciada',
             /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )); ?>

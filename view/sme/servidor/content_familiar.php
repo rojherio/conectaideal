@@ -274,7 +274,7 @@ if (!in_array($rsRegistroPessoaIdent['bsc_estado_civil_id'], [1]) ) {
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createRadio(array(
-            /*int 1-12*/  'col'         => 5,
+            /*int 1-12*/  'col'         => '5 label--0_5',
             /*int 1-12*/  'colOption'   => 6,
             /*string*/    'label'       => 'Modelo da Certidão',
             /*string*/    'type'        => 'radio',

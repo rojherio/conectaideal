@@ -3,20 +3,29 @@ $(document).ready(function() {
     let controller            = $(this).attr('controller');
     let controllerVal         = $(this).val();
     let controllerValuesParts = $(this).attr('controller-values').split('|');
+    // $('[controlled="'+controller+'"][control-value="], [controlled-noshow="'+controller+'"]').each(function(k, elem){
     $('[controlled="'+controller+'"], [controlled-noshow="'+controller+'"]').each(function(k, elem){
       let elemControlValue = $(elem).attr('control-value');
+      let elemControlValuesParts = $(elem).attr('control-values');
+      if (elemControlValuesParts != undefined) {
+        elemControlValuesParts = elemControlValuesParts.split('|');
+        let idx = (Array.isArray(controllerVal) ? elemControlValuesParts.some(el => controllerVal.includes(el)) ? elemControlValuesParts[0] : -1 : elemControlValuesParts.indexOf(controllerVal));
+        elemControlValue = idx >= 0 ? elemControlValuesParts[idx] : -1;
+      }
       if ((elemControlValue == controllerVal || (Array.isArray(controllerVal) && controllerVal.indexOf(elemControlValue) >=0 )) || (controllerVal != '' && elemControlValue == 0 && controllerValuesParts.indexOf(controllerVal) < 0 && controllerValuesParts.indexOf('0') >= 0)) {
         if ($(elem).attr('controlled-noshow') != controller) {
           $(elem).is('select') ? $(elem).val(null).trigger('change').attr('disabled', false) : '';
           $(elem).is('input:not(:checkbox, :radio, [type="hidden"])') ? $(elem).val('').attr('disabled', false) : '';
+          $(elem).is(':checkbox') ? elem.checked = false : '';
           $(elem).is('textarea') ? $(elem).text('').attr('disabled', false) : '';
           $(elem).is('div') ? $(elem).slideDown() : '';
         }
       } else {
         $(elem).is('select') ? $(elem).val(null).trigger('change').attr('disabled', true) : '';
-        $(elem).is('input:not(:radio, [type="hidden"])') ? $(elem).val('').attr('disabled', true) : '';
+        $(elem).is('input:not(:checkbox, :radio, [type="hidden"])') ? $(elem).val('').attr('disabled', true) : '';
         $(elem).is(':radio') ? $(elem).val() == "Sim" ? $(elem).removeAttr('checked') : '' : '';
         $(elem).is(':radio') ? $(elem).val() == "Não" ? $(elem).prop('checked', 'checked') : '' : '';
+        $(elem).is(':checkbox') ? elem.checked = false : '';
         $(elem).is('textarea') ? $(elem).val('').attr('disabled', true) : '';
         $(elem).is('div') ? $(elem).slideUp() : '';
       }
@@ -182,6 +191,10 @@ function reorderClones(elemClones){
       $(elem2).attr('id', idbase+counted);
       $('#'+elem2.id+':not([type="hidden"])').parent().find('label').attr('for', idbase+counted);
     });
+    $(elem).find('[namebasesingle]').each(function(j, elem2){
+      let namebasesingle = $(elem2).attr('namebasesingle');
+      $(elem2).is(':not(:checkbox, :radio, [type="hidden"])') ? $(elem2).attr('name', namebasesingle+counted) : "";
+    });
     $(elem).find('[controller]').each(function(j, elem2){
       let controllerBase = $(elem2).attr('controllerbase') != undefined ? $(elem2).attr('controllerbase') : $(elem2).attr('controller');
       let controllerOld = $(elem2).attr('controller');
@@ -206,6 +219,10 @@ function reorderClonesN1(elemClones){
       $(elem2).attr('id', idbase+counted);
       $('#'+elem2.id+':not([type="hidden"])').parent().find('label').attr('for', idbase+counted);
     });
+    $(elem).find('[namebasesingle]').each(function(j, elem2){
+      let namebasesingle = $(elem2).attr('namebasesingle');
+      $(elem2).is(':not(:checkbox, :radio, [type="hidden"])') ? $(elem2).attr('name', namebasesingle+counted) : "";
+    });
     $(elem).find('[idbase][controller]').each(function(j, elem2){
       let controllerBase = $(elem2).attr('controllerbase') != undefined ? $(elem2).attr('controllerbase') : $(elem2).attr('controller');
       let controllerOld = $(elem2).attr('controller');
@@ -213,9 +230,9 @@ function reorderClonesN1(elemClones){
       $(elem).find($('[controlled="'+controllerOld+'"]')).attr('controlled', controllerBase+counted);
       $(elem).find($('[controlled-noshow="'+controllerOld+'"]')).attr('controlled-noshow', controllerBase+counted);
     });
-     $(elem).find('.div_clones_sub').each(function(j, elemClonesSub){
+    $(elem).find('.div_clones_sub').each(function(j, elemClonesSub){
       reorderClonesN2(elemClonesSub);
-     });
+    });
   });
   maskCleaveApplay(elemClones);
   createSelect2(elemClones);

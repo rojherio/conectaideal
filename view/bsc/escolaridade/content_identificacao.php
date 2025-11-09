@@ -11,7 +11,8 @@ $stmt = $db->prepare("SELECT
   e.id,
   e.status,
   e.dt_cadastro,
-  e.nome
+  e.nome,
+  e.nivel_controle
   FROM bsc_escolaridade AS e
   WHERE e.id = ? ;");
 $stmt->bindValue(1, $id);
@@ -23,6 +24,7 @@ if (!is_array($rsRegistroEscolaridade)) {
   $rsRegistroEscolaridade['status'] = 1;
   $rsRegistroEscolaridade['dt_cadastro'] = '';
   $rsRegistroEscolaridade['nome'] = '';
+  $rsRegistroEscolaridade['nivel_controle'] = '';
 }
 //Consulta para Edição - END
 //Parámetros de títutlos - BEGIN
@@ -56,7 +58,7 @@ $descricaoFormulario5     = "Defina se esse cadastro de escolaridade está ativo
         <!-- div row input - BEGIN -->
         <div class="row">
           <?= createInput(array(
-            /*int 1-12*/  'col'         => 12,
+            /*int 1-12*/  'col'         => 8,
             /*string*/    'label'       => 'Nome do Grau de Escolaridade',
             /*string*/    'type'        => 'text',
             /*string*/    'name'        => 'e_nome',
@@ -67,6 +69,20 @@ $descricaoFormulario5     = "Defina se esse cadastro de escolaridade está ativo
             /*string*/    'placeholder' => 'Digite o nome do grau de escolaridade',
             /*string*/    'value'       => $rsRegistroEscolaridade['nome'],
             /*bool*/      'required'    => true,
+            /*string*/    'prop'        => ''
+          )) ;?>
+          <?= createInput(array(
+            /*int 1-12*/  'col'         => 4,
+            /*string*/    'label'       => 'Nível de Controle (INEP)',
+            /*string*/    'type'        => 'text',
+            /*string*/    'name'        => 'e_nivel_controle',
+            /*string*/    'id'          => 'e_nivel_controle',
+            /*string*/    'class'       => 'form-control',
+            /*int*/       'minlength'   => 1,
+            /*int*/       'maxlength'   => 2,
+            /*string*/    'placeholder' => 'Digite o nível de controle (INEP)',
+            /*string*/    'value'       => $rsRegistroEscolaridade['nivel_controle'],
+            /*bool*/      'required'    => false,
             /*string*/    'prop'        => ''
           )) ;?>
         </div>

@@ -28,6 +28,7 @@ $stmt = $db->prepare("SELECT
   p.natural_estrangeiro_cidade,
   p.natural_estrangeiro_estado,
   p.natural_estrangeiro_condicao_trabalho,
+  p.natural_estrangeiro_naturalizado,
   p.pai_nome,
   p.pai_natural_bsc_pais_id,
   pa1.nome AS pai_natural_pais_nome,
@@ -38,7 +39,8 @@ $stmt = $db->prepare("SELECT
   p.mae_profissao,
   p.foto,
   p.sangue_tipo,
-  p.raca,
+  p.bsc_cor_raca_id,
+  cr.nome AS cor_raca_nome,
   p.enfermidade_portador,
   p.enfermidade_codigo_internacional
   FROM bsc_pessoa AS p
@@ -47,6 +49,7 @@ $stmt = $db->prepare("SELECT
   LEFT JOIN bsc_pais AS pa ON pa.id = p.natural_bsc_pais_id 
   LEFT JOIN bsc_pais AS pa1 ON pa1.id = p.pai_natural_bsc_pais_id 
   LEFT JOIN bsc_pais AS pa2 ON pa2.id = p.mae_natural_bsc_pais_id
+  LEFT JOIN bsc_cor_raca AS cr ON cr.id = p.bsc_cor_raca_id
   WHERE p.tipo = 1 AND p.id = ? ;");
 $stmt->bindValue(1, $id);
 $stmt->execute();
@@ -164,6 +167,10 @@ $tituloImpressao          = "Relatório de informações da pessoa física cadas
                     <td><?= $rsRegistro['natural_estrangeiro_condicao_trabalho']; ?></td>
                   </tr>
                   <tr>
+                    <td>Extrangeiro|Naturalizado</td>
+                    <td><?= $rsRegistro['natural_estrangeiro_naturalizado']? "Sim" : "Não"; ?></td>
+                  </tr>
+                  <tr>
                     <td>Nome do Pai</td>
                     <td><?= $rsRegistro['pai_nome']; ?></td>
                   </tr>
@@ -192,8 +199,8 @@ $tituloImpressao          = "Relatório de informações da pessoa física cadas
                     <td><?= $rsRegistro['sangue_tipo']; ?></td>
                   </tr>
                   <tr>
-                    <td>Raçã</td>
-                    <td><?= $rsRegistro['raca']; ?></td>
+                    <td>Cor/Raça</td>
+                    <td><?= $rsRegistro['cor_raca_nome']; ?></td>
                   </tr>
                   <tr>
                     <td>Enfermidade Portada</td>

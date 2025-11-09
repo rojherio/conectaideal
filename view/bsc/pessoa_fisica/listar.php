@@ -23,6 +23,7 @@ $stmt = $db->prepare("SELECT
   p.natural_estrangeiro_cidade,
   p.natural_estrangeiro_estado,
   p.natural_estrangeiro_condicao_trabalho,
+  p.natural_estrangeiro_naturalizado,
   p.pai_nome,
   p.pai_natural_bsc_pais_id,
   p.pai_profissao,
@@ -31,55 +32,18 @@ $stmt = $db->prepare("SELECT
   p.mae_profissao,
   p.foto,
   p.sangue_tipo,
-  p.raca,
+  p.bsc_cor_raca_id,
+  cr.nome AS raca_nome,
   p.enfermidade_portador,
   p.enfermidade_codigo_internacional
   FROM bsc_pessoa AS p
   LEFT JOIN bsc_municipio AS m ON m.id = p.natural_bsc_municipio_id 
   LEFT JOIN bsc_estado AS e ON e.id = m.bsc_estado_id 
+  LEFT JOIN bsc_cor_raca AS cr ON cr.id = p.bsc_cor_raca_id
   WHERE p.tipo = 1
   ORDER BY p.nome");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
-//Consulta para DataTable - END
-// $stmt = $db->prepare("SELECT 
-//   uot.id AS id, 
-//   uot.nome AS nome, 
-//   uot.status AS status 
-//   FROM bsc_unidade_organizacional_tipo AS uot 
-//   WHERE uot.id = ? ;");
-// $stmt->bindValue(1, $id);
-// $stmt->execute();
-// $rsUOTipo = $stmt->fetch(PDO::FETCH_ASSOC);
-// //Consulta para Edição - END
-// //Consulta para Select - BEGIN
-// $stmt = $db->prepare("
-//   SELECT 
-//   uo.id AS id, 
-//   uo.nome AS nome, 
-//   uo.status AS status 
-//   FROM bsc_unidade_organizacional AS uo 
-//   ORDER BY uo.nome ASC;");
-// $stmt->execute();
-// $rsUOs = $stmt->fetchAll(PDO::FETCH_ASSOC);
-// //Consulta para Select - END
-// //Consulta para DataTable - BEGIN
-// $stmt = $db->prepare("
-//   SELECT 
-//   uo.id AS id, 
-//   uo.numero AS numero, 
-//   uo.nome AS nome, 
-//   uo.status AS status, 
-//   uo.bsc_unidade_organizacional_tipo_id, 
-//   uot.nome AS nome_tipo, 
-//   sc.bsc_unidade_organizacional_id AS sc_id_uo 
-//   FROM bsc_unidade_organizacional AS uo 
-//   LEFT JOIN bsc_unidade_organizacional_tipo AS uot ON uot.id = uo.bsc_unidade_organizacional_tipo_id
-//   LEFT JOIN rh_servidor_contrato AS sc ON uo.id = sc.bsc_unidade_organizacional_id 
-//   GROUP BY uo.id 
-//   ORDER BY uo.nome ASC;");
-// $stmt->execute();
-// $rsUOs2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
 //Parámetros de títutlos - BEGIN
 $tituloPagina             = "Listagem de Pessoas Físicas";

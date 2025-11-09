@@ -272,7 +272,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
             </div>
             <div class="row pb-0">
               <?= createRadio(array(
-                /*int 1-12*/  'col'         => '6 pe-1',
+                /*int 1-12*/  'col'         => '6 pe-1 label--1_2',
                 /*int 1-12*/  'colOption'   => 6,
                 /*string*/    'label'       => 'O Dependente é Beneficiário de Pensão?',
                 /*string*/    'type'        => 'radio',
@@ -543,7 +543,7 @@ $siDescricaoFormulario1    = "Informações dos dependentes do servidor ";
             </div>
             <div class="row pb-0">
               <?= createRadio(array(
-                /*int 1-12*/  'col'         => '6 pe-1',
+                /*int 1-12*/  'col'         => '6 pe-1 label--1_5',
                 /*int 1-12*/  'colOption'   => 6,
                 /*string*/    'label'       => 'O Dependente Beneficiário tem Representante?',
                 /*string*/    'type'        => 'radio',

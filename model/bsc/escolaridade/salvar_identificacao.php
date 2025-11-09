@@ -4,6 +4,7 @@ $id                                       = strip_tags(@$_POST['e_id']?: '');
 $status                                   = strip_tags(@$_POST['e_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $nome                                     = ucwords(strtolower(trim(strip_tags(@$_POST['e_nome']?: ''))));
+$nivel_controle                           = trim(strip_tags(@$_POST['e_nivel_controle']?: ''));
 $tableName      = 'bsc_escolaridade';
 $error          = false;
 $result         = array();
@@ -41,24 +42,27 @@ try {
     echo json_encode($result);
     exit();
   } else {
-    $stmt = $db->prepare('
-      SELECT tb.nome
-      FROM '.$tableName.' AS tb 
-      WHERE tb.nome LIKE ?');
-    $stmt->bindValue(1, $nome);
-    $stmt->execute();
-    $rsExistente = $stmt->fetch(PDO::FETCH_ASSOC);
-    if (is_array($rsExistente)) {
-      $db->rollback();
-      $existentes = '';
-      $virgula = '';
-      foreach ($rsExistente as $kObj => $vObj) {
-        $existentes .= $virgula.'<br/>'.(ucwords($kObj)).': '.$vObj;
-        $virgula = ', ';
-      }
-      $result['status'] = 'error';
-      $result['tipo'] = 'existente';
-      $result['msg'] = "Houve um erro ao tentar registrar as novas informações, pois no sistema já existe um registro com o(s) seguinte(s) dado(s):<br/>".$existentes.".";
+    if (is_numeric($id) && $id != 0) {
+      $stmt = $db->prepare('
+        UPDATE '.$tableName.'
+          SET
+          status = ?,
+          dt_cadastro = ?,
+          nome = ?,
+          nivel_controle = ?
+          WHERE id = ?
+          ');
+      $stmt->bindValue(1, $status);
+      $stmt->bindValue(2, $dt_cadastro);
+      $stmt->bindValue(3, $nome);
+      $stmt->bindValue(4, $nivel_controle?:NULL);
+      $stmt->bindValue(5, $id);
+      $stmt->execute();
+      $db->commit();
+      //MENSAGEM DE SUCESSO
+      $result['id'] = $id;
+      $result['status'] = 'success';
+      $result['msg'] = 'As novas informações foram registradas com sucesso.';
       echo json_encode($result);
       exit();
     } else {
@@ -66,10 +70,13 @@ try {
         (
           status,
           dt_cadastro,
-          nome
+          nome,
+          nivel_controle
           ) 
         VALUES
         (
+          ?, 
+          ?, 
           ?, 
           ?, 
           ?
@@ -77,6 +84,7 @@ try {
       $stmt->bindValue(1, $status);
       $stmt->bindValue(2, $dt_cadastro);
       $stmt->bindValue(3, $nome);
+      $stmt->bindValue(4, $nivel_controle?:NULL);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       $db->commit();

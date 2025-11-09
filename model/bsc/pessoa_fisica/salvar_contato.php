@@ -22,6 +22,11 @@ $site                                     = ucwords(strtolower(trim(strip_tags(@
 $emergencia_nome                          = ucwords(strtolower(trim(strip_tags(@$_POST['pc_emergencia_nome']?: ''))));
 $emergencia_end                           = ucwords(strtolower(trim(strip_tags(@$_POST['pc_emergencia_end']?: ''))));
 $emergencia_tel                           = ucwords(strtolower(trim(strip_tags(@$_POST['pc_emergencia_tel']?: ''))));
+$bsc_pais_id_residencia                   = strip_tags(@$_POST['pc_bsc_pais_id_residencia']?: '');
+$bsc_zona_id                              = strip_tags(@$_POST['pc_bsc_zona_id']?: '');
+$ue_localizacao_diferenciada_id           = strip_tags(@$_POST['pc_ue_localizacao_diferenciada_id']?: '');
+$end_latitude                             = trim(strip_tags(@$_POST['pc_end_latitude']?: ''));
+$end_longitude                            = trim(strip_tags(@$_POST['pc_end_longitude']?: ''));
 $tableName      = 'bsc_pessoa_contato';
 $error          = false;
 $result         = array();
@@ -52,7 +57,12 @@ try {
         site = ?,
         emergencia_nome = ?,
         emergencia_end = ?,
-        emergencia_tel = ?
+        emergencia_tel = ?,
+        bsc_pais_id_residencia = ?,
+        bsc_zona_id = ?,
+        ue_localizacao_diferenciada_id = ?,
+        end_latitude = ?,
+        end_longitude = ?
         WHERE id = ?
         ');
     $stmt->bindValue(1, $status);
@@ -76,7 +86,12 @@ try {
     $stmt->bindValue(19, $emergencia_nome);
     $stmt->bindValue(20, $emergencia_end);
     $stmt->bindValue(21, $emergencia_tel);
-    $stmt->bindValue(22, $id);
+    $stmt->bindValue(22, $bsc_pais_id_residencia?: NULL);
+    $stmt->bindValue(23, $bsc_zona_id?: NULL);
+    $stmt->bindValue(24, $ue_localizacao_diferenciada_id?: NULL);
+    $stmt->bindValue(25, $end_latitude);
+    $stmt->bindValue(26, $end_longitude);
+    $stmt->bindValue(27, $id);
     $stmt->execute();
     $db->commit();
       //MENSAGEM DE SUCESSO
@@ -108,10 +123,20 @@ try {
         site,
         emergencia_nome,
         emergencia_end,
-        emergencia_tel
+        emergencia_tel,
+        bsc_pais_id_residencia,
+        bsc_zona_id,
+        ue_localizacao_diferenciada_id,
+        end_latitude,
+        end_longitude
         ) 
       VALUES
       (
+        ?, 
+        ?, 
+        ?, 
+        ?, 
+        ?, 
         ?, 
         ?, 
         ?, 
@@ -155,6 +180,11 @@ try {
     $stmt->bindValue(19, $emergencia_nome);
     $stmt->bindValue(20, $emergencia_end);
     $stmt->bindValue(21, $emergencia_tel);
+    $stmt->bindValue(22, $bsc_pais_id_residencia?: NULL);
+    $stmt->bindValue(23, $bsc_zona_id?: NULL);
+    $stmt->bindValue(24, $ue_localizacao_diferenciada_id?: NULL);
+    $stmt->bindValue(25, $end_latitude);
+    $stmt->bindValue(26, $end_longitude);
     $stmt->execute();
     $idNew = $db->lastInsertId();
     $db->commit();

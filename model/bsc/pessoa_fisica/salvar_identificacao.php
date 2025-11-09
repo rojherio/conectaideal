@@ -16,6 +16,7 @@ $natural_estrangeiro_dt_ingresso          = strip_tags(@$_POST['p_natural_estran
 $natural_estrangeiro_cidade               = ucwords(strtolower(trim(strip_tags(@$_POST['p_natural_estrangeiro_cidade']?: ''))));
 $natural_estrangeiro_estado               = ucwords(strtolower(trim(strip_tags(@$_POST['p_natural_estrangeiro_estado']?: ''))));
 $natural_estrangeiro_condicao_trabalho    = ucwords(strtolower(trim(strip_tags(@$_POST['p_natural_estrangeiro_condicao_trabalho']?: ''))));
+$natural_estrangeiro_naturalizado         = strip_tags(@$_POST['p_natural_estrangeiro_naturalizado']?: 0);
 $pai_nome                                 = ucwords(strtolower(trim(strip_tags(@$_POST['p_pai_nome']?: ''))));
 $pai_natural_bsc_pais_id                  = strip_tags(@$_POST['p_pai_natural_bsc_pais_id']?: '');
 $pai_profissao                            = ucwords(strtolower(trim(strip_tags(@$_POST['p_pai_profissao']?: ''))));
@@ -24,7 +25,7 @@ $mae_natural_bsc_pais_id                  = strip_tags(@$_POST['p_mae_natural_bs
 $mae_profissao                            = ucwords(strtolower(trim(strip_tags(@$_POST['p_mae_profissao']?: ''))));
 $foto                                     = "";
 $sangue_tipo                              = strip_tags(@$_POST['p_sangue_tipo']?: '');
-$raca                                     = ucwords(strtolower(trim(strip_tags(@$_POST['p_raca']?: ''))));
+$bsc_cor_raca_id                          = strip_tags(@$_POST['p_bsc_cor_raca_id']?: '');
 $enfermidade_portador                     = ucwords(strtolower(trim(strip_tags(@$_POST['p_enfermidade_portador']?: ''))));
 $enfermidade_codigo_internacional         = trim(strip_tags(@$_POST['p_enfermidade_codigo_internacional']?: ''));
 $tableName      = 'bsc_pessoa';
@@ -74,6 +75,7 @@ try {
           natural_estrangeiro_cidade = ?,
           natural_estrangeiro_estado = ?,
           natural_estrangeiro_condicao_trabalho = ?,
+          natural_estrangeiro_naturalizado = ?,
           pai_nome = ?,
           pai_natural_bsc_pais_id = ?,
           pai_profissao = ?,
@@ -82,7 +84,7 @@ try {
           mae_profissao = ?,
           foto = ?,
           sangue_tipo = ?,
-          raca = ?,
+          bsc_cor_raca_id = ?,
           enfermidade_portador = ?,
           enfermidade_codigo_internacional = ?
           WHERE id = ?
@@ -102,18 +104,19 @@ try {
       $stmt->bindValue(13, $natural_estrangeiro_cidade);
       $stmt->bindValue(14, $natural_estrangeiro_estado);
       $stmt->bindValue(15, $natural_estrangeiro_condicao_trabalho);
-      $stmt->bindValue(16, $pai_nome);
-      $stmt->bindValue(17, $pai_natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(18, $pai_profissao);
-      $stmt->bindValue(19, $mae_nome);
-      $stmt->bindValue(20, $mae_natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(21, $mae_profissao);
-      $stmt->bindValue(22, $foto);
-      $stmt->bindValue(23, $sangue_tipo);
-      $stmt->bindValue(24, $raca);
-      $stmt->bindValue(25, $enfermidade_portador);
-      $stmt->bindValue(26, $enfermidade_codigo_internacional);
-      $stmt->bindValue(27, $id);
+      $stmt->bindValue(16, $natural_estrangeiro_naturalizado);
+      $stmt->bindValue(17, $pai_nome);
+      $stmt->bindValue(18, $pai_natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(19, $pai_profissao);
+      $stmt->bindValue(20, $mae_nome);
+      $stmt->bindValue(21, $mae_natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(22, $mae_profissao);
+      $stmt->bindValue(23, $foto);
+      $stmt->bindValue(24, $sangue_tipo);
+      $stmt->bindValue(25, $bsc_cor_raca_id?: NULL);
+      $stmt->bindValue(26, $enfermidade_portador);
+      $stmt->bindValue(27, $enfermidade_codigo_internacional);
+      $stmt->bindValue(28, $id);
       $stmt->execute();
       $db->commit();
       //MENSAGEM DE SUCESSO
@@ -140,6 +143,7 @@ try {
           natural_estrangeiro_cidade,
           natural_estrangeiro_estado,
           natural_estrangeiro_condicao_trabalho,
+          natural_estrangeiro_naturalizado,
           pai_nome,
           pai_natural_bsc_pais_id,
           pai_profissao,
@@ -148,12 +152,13 @@ try {
           mae_profissao,
           foto,
           sangue_tipo,
-          raca,
+          bsc_cor_raca_id,
           enfermidade_portador,
           enfermidade_codigo_internacional
           ) 
         VALUES
         (
+          ?, 
           ?, 
           ?, 
           ?, 
@@ -196,17 +201,18 @@ try {
       $stmt->bindValue(13, $natural_estrangeiro_cidade);
       $stmt->bindValue(14, $natural_estrangeiro_estado);
       $stmt->bindValue(15, $natural_estrangeiro_condicao_trabalho);
-      $stmt->bindValue(16, $pai_nome);
-      $stmt->bindValue(17, $pai_natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(18, $pai_profissao);
-      $stmt->bindValue(19, $mae_nome);
-      $stmt->bindValue(20, $mae_natural_bsc_pais_id?: NULL);
-      $stmt->bindValue(21, $mae_profissao);
-      $stmt->bindValue(22, $foto);
-      $stmt->bindValue(23, $sangue_tipo);
-      $stmt->bindValue(24, $raca);
-      $stmt->bindValue(25, $enfermidade_portador);
-      $stmt->bindValue(26, $enfermidade_codigo_internacional);
+      $stmt->bindValue(16, $natural_estrangeiro_naturalizado);
+      $stmt->bindValue(17, $pai_nome);
+      $stmt->bindValue(18, $pai_natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(19, $pai_profissao);
+      $stmt->bindValue(20, $mae_nome);
+      $stmt->bindValue(21, $mae_natural_bsc_pais_id?: NULL);
+      $stmt->bindValue(22, $mae_profissao);
+      $stmt->bindValue(23, $foto);
+      $stmt->bindValue(24, $sangue_tipo);
+      $stmt->bindValue(25, $bsc_cor_raca_id?: NULL);
+      $stmt->bindValue(26, $enfermidade_portador);
+      $stmt->bindValue(27, $enfermidade_codigo_internacional);
       $stmt->execute();
       $idNew = $db->lastInsertId();
       $db->commit();

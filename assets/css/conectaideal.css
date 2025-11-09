@@ -24,10 +24,18 @@ div.conectaideal-radio {
 label.conectaideal-radio {
   margin-top: .3rem !important;
   margin-bottom: 0 !important;
-  margin-left: -1.3rem !important;
   padding-bottom: 0 !important;
   scale: .85 !important;
-  opacity: .65 !important;
+  opacity: .8 !important;
+}
+div.label--0_5  label.conectaideal-radio {
+  margin-left: -0.5rem !important;
+}
+div.label--1_2  label.conectaideal-radio {
+  margin-left: -1.2rem !important;
+}
+div.label--1_5  label.conectaideal-radio {
+  margin-left: -1.5rem !important;
 }
 span.error_validator {
   padding-left: .75rem;

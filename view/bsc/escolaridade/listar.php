@@ -8,9 +8,10 @@ $stmt = $db->prepare("SELECT
   e.id,
   e.status,
   e.dt_cadastro,
-  e.nome
+  e.nome,
+  e.nivel_controle
   FROM bsc_escolaridade AS e
-  ORDER BY e.nome");
+  ORDER BY e.id");
 $stmt->execute();
 $rsRegistros = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Consulta para DataTable - END
@@ -78,6 +79,7 @@ $tituloImpressao          = "Relatório de escolaridades cadastradas no sistema 
                     <tr>
                       <th>#</th>
                       <th>Nome</th>
+                      <th>Nível de Controle (INEP)</th>
                       <th>Status</th>
                       <th class="no-print" width="120px !important">Ações</th>
                     </tr>
@@ -92,6 +94,7 @@ $tituloImpressao          = "Relatório de escolaridades cadastradas no sistema 
                         <input type="hidden" id="td_id" value="<?= $vObj['id']; ?>">
                         <td id="td_count"><?= $kObj+1; ?></td>
                         <td id="td_nome"><?= $vObj['nome']; ?></td>
+                        <td id="td_nivel_controle"><?= $vObj['nivel_controle']; ?></td>
                         <td id="td_status" value="<?= $vObj['status'];?>"><span class="badge <?= $vObj['status'] == 1 ? 'text-light-primary' : 'text-light-warning'; ?> "><?= $vObj['status'] == 1 ? 'Ativo' : 'Inativo'; ?></span></td>
                         <td class="text-center">
                           <button type="button" id="btn_visualizar" class="btn_visualizar_registro btn btn-light-info icon-btn-conectaideal b-r-4" data-bs-custom-class="custom-light-info" data-bs-toggle="tooltip" title="Visualizar este registro" onclick="btnVisualizar(this);">
