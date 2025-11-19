@@ -20,12 +20,11 @@ $(document).ready(function () {
     };
     $(this).parents('form').find('[urltosendsub]').each(function(k, elem){
       params.urlsToSendSub[k] = {
-        urlToSendSub:         $(elem).attr('urltosendsub'),
-        elemId:               $(elem).attr('id'),
-        elemVal:              $(elem).val(),
-        elemText:             $('#'+$(elem).attr('gettextinputid')).val()
+        urlToSendSub:           'model/'+$(elem).attr('urltosendsub'),
+        elemIdSet:              $(elem).attr('id'),
+        elemIdTextGet:          $(elem).attr('loadidtextget')
       }
-      params.formSerialized +=  '&'+($(elem).attr('setstatusinputid'))+'=1';
+      params.formSerialized +=  '&'+($(elem).attr('loadidstatusset'))+'=1';
     });
     if (params.urlsToSendSub.length > 0) {
       ajaxSendCadastrarSub(params);

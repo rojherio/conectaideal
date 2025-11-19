@@ -76,7 +76,7 @@ $rsSMEs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //Pessoas Física - BEGIN
 $stmt = $db->prepare("SELECT 
   p.id,
-  p.nome
+  CONCAT (p.nome, ' (CPF.: ', p.cpf, ')') AS nome
   FROM bsc_pessoa AS p
   WHERE p.tipo = 1;");
 $stmt->execute();
@@ -175,33 +175,41 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
             /*string*/    'prop'        => ''
           )); ?>
         </div>
+        <?php
+        $selectReadonly = isset($sme_servidor_id) ? 'readonly="readonly"' : '';
+        ?>
         <div class="row pb-0">
           <label>Selecione uma pessoa física. Caso não a encontre na lista, digite o nome da pessoa para efetuar o cadastro.</label>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => '12 controller="pj"',
-            /*string*/    'label'       => 'Pessoa Jurídica',
+            /*int 1-12*/  'col'         => '12',
+            /*string*/    'label'       => 'Pessoa Física',
             /*string*/    'name'        => 's_bsc_pessoa_id',
             /*string*/    'id'          => 's_bsc_pessoa_id',
-            /*string*/    'class'       => 'select2-tags form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-tags-searchable form-control form-select select-basic ',
             /*string*/    'value'       => $rsRegistroSIdent['bsc_pessoa_id'],
             /*array()*/   'options'     => $rsPFs,
-            /*string*/    'ariaLabel'   => 'Selecione uma pessoa jurídica',
+            /*string*/    'ariaLabel'   => 'Selecione uma pessoa física',
             /*bool*/      'required'    => true,
             /*string*/    'prop'        => '
-            urltosendsub="model/bsc/pessoa_fisica/salvar_identificacao" 
             controller="pf" 
             controller-values="0" 
+            searchurl="bsc/pessoa_fisica/get_pf" 
+            idtosetid="s_bsc_pessoa_id" 
+            idtosethidden="p_id" 
+            idtosetname="p_nome" 
             load="true" 
-            loadurl="view/bsc/pessoa_fisica/content_identificacao/" 
-            gettextinputid="p_nome" 
-            setstatusinputid="p_status" '
+            loadurl="bsc/pessoa_fisica/content_identificacao/" 
+            loadidtextget="p_nome" 
+            loadidstatusset="p_status" 
+            urltosendsub="bsc/pessoa_fisica/salvar_identificacao" 
+            '.$selectReadonly.' '
           )); ?>
         </div>
         <?php
         $displayPF = $rsRegistroSIdent['bsc_pessoa_id'] == '' ? 'style="display: none;"' : '';
         $bsc_pessoa_id = $rsRegistroSIdent['bsc_pessoa_id'];
         ?>
-        <div id="div_pf" controlled="pf" control-value="0" <?= $displayPF ;?> class="border border-outline-info rounded  mb-1 ms-0 me-0">
+        <div id="div_pf" controlled="pf" control-value="0" <?= $displayPF ;?> class="border border-outline-info rounded mb-1 ms-0 me-0">
           <?php 
           include_once ('view/bsc/pessoa_fisica/content_identificacao.php'); 
           ?>
@@ -493,51 +501,61 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro deste(a) servidor(a) est
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-header">
-        <!-- Título da div de cadastro - BEGIN -->
-        <h5><?= $ueiTituloFormulario5;?></h5>
-        <small><?= $ueiDescricaoFormulario5;?></small>
-        <!-- Título da div de cadastro - END -->
-      </div>
-      <div class="card-body">
-        <!-- div row input - BEGIN -->
-        <div class="row">
-          <?= createCheckbox(array(
-            /*int 1-12*/  'col'         => 12,
-            /*string*/    'label'       => 'Ativo',
-            /*string*/    'name'        => 's_status',
-            /*string*/    'id'          => 's_status',
-            /*string*/    'class'       => 'toggle',
-            /*string*/    'value'       => 1,
-            /*string*/    'checked'     => $rsRegistroSIdent['status'],
-            /*string*/    'prop'        => ''
-          )) ;?>
+<?php
+if (isset($exibeSituacaoN1)) {
+  ?>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <!-- Título da div de cadastro - BEGIN -->
+          <h5><?= $ueiTituloFormulario5;?></h5>
+          <small><?= $ueiDescricaoFormulario5;?></small>
+          <!-- Título da div de cadastro - END -->
         </div>
-        <!-- div row input - END -->
-      </div>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <div class="card">
-      <div class="card-body">
-        <!-- div row buttons - BEGIN -->
-        <div class="row">
-          <div class="box-footer text-center">
-            <button type="reset" class="btn_reset btn btn-outline-danger b-r-22" id="btn_cancelar">
-              <i class="ti ti-eraser"></i> Cancelar
-            </button>
-            <button type="button" id="submit" class="btn_submit btn btn-outline-success waves-light b-r-22">
-              <i class="ti ti-writing"></i> Cadastrar
-            </button>
+        <div class="card-body">
+          <!-- div row input - BEGIN -->
+          <div class="row">
+            <?= createCheckbox(array(
+              /*int 1-12*/  'col'         => 12,
+              /*string*/    'label'       => 'Ativo',
+              /*string*/    'name'        => 's_status',
+              /*string*/    'id'          => 's_status',
+              /*string*/    'class'       => 'toggle',
+              /*string*/    'value'       => 1,
+              /*string*/    'checked'     => $rsRegistroSIdent['status'],
+              /*string*/    'prop'        => ''
+            )) ;?>
           </div>
+          <!-- div row input - END -->
         </div>
-        <!-- div row buttons - END -->
       </div>
     </div>
   </div>
-</div>
+  <?php
+}
+if (isset($exibeButoesN1)) {
+  ?>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <!-- div row buttons - BEGIN -->
+          <div class="row">
+            <div class="box-footer text-center">
+              <button type="reset" class="btn_reset btn btn-outline-danger b-r-22" id="btn_cancelar">
+                <i class="ti ti-eraser"></i> Cancelar
+              </button>
+              <button type="button" id="submit" class="btn_submit btn btn-outline-success waves-light b-r-22">
+                <i class="ti ti-writing"></i> Cadastrar
+              </button>
+            </div>
+          </div>
+          <!-- div row buttons - END -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <?php
+}
+?>

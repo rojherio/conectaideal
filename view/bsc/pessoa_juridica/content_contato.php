@@ -228,12 +228,12 @@ $descricaoFormulario4     = "Dados do contato de emergência da pessoa";
             /*string*/    'label'       => 'Cidade',
             /*string*/    'name'        => 'pc_bsc_municipio_id',
             /*string*/    'id'          => 'pc_bsc_municipio_id',
-            /*string*/    'class'       => 'select2-municipio form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-searchable form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroPessoaCont['bsc_municipio_id'],
             /*array()*/   'options'     => $rsMunicipios,
             /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
+            /*string*/    'prop'        => 'searchurl="bsc/municipio/get_municipios_estados" '
           )); ?>
         </div>
         <div class="row">

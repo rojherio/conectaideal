@@ -318,12 +318,12 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                   /*string*/    'label'       => 'Naturalidade',
                   /*string*/    'name'        => 'p_natural_bsc_municipio_id',
                   /*string*/    'id'          => 'p_natural_bsc_municipio_id',
-                  /*string*/    'class'       => 'select2-municipio form-control form-select select-basic',
+                  /*string*/    'class'       => 'select2-searchable form-control form-select select-basic',
                   /*string*/    'value'       => $rsPessoa['natural_bsc_municipio_id'],
                   /*array()*/   'options'     => ($rsPessoa['natural_bsc_municipio_id'] > 0 ? array(array('id' => $rsPessoa['natural_bsc_municipio_id'], 'nome' => ($rsPessoa['natural_municipio_nome'].' - '.$rsPessoa['natural_estado_sigla']))) : NULL),
                   /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
                   /*bool*/      'required'    => true,
-                  /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"',
+                  /*string*/    'prop'        => 'controlled="naturalidade" control-value="1" searchurl="bsc/municipio/get_municipios_estados" ',
                   /*string*/    'display'     => !$displayNaturalidadeNacional ? true : false
                 )); ?>
               </div>

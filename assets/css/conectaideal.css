@@ -2,6 +2,9 @@
 .pe-3_5 {
   padding-right: 2rem !important;
 }
+.mt-07 {
+  margin-top: 0.7rem !important;
+}
 .ml-n1 { 
   margin-left: -0.25rem !important; 
 }
@@ -118,12 +121,26 @@ textarea.select2-search__field {
   font-family: inherit !important;
 }
 /*Select2 multiple - END*/
+/*Select2 readonly - BEGIN*/
+select[readonly].select2-hidden-accessible + .select2-container {
+  pointer-events: none;
+  touch-action: none;
+}
+select[readonly].select2-hidden-accessible + .select2-container .select2-selection {
+  background: #eee;
+  box-shadow: none;
+}
+select[readonly].select2-hidden-accessible + .select2-container .select2-selection__arrow,
+select[readonly].select2-hidden-accessible + .select2-container .select2-selection__clear {
+  display: none;
+}
+/*Select2 readonly - END*/
 /*Border BEGIN*/
 .border-outline-info {
-  border: 1px solid rgba(var(--info), 1) !important;
+  border: 3px solid rgba(var(--info), 1) !important;
 }
 .border-outline-primary {
-  border: 1px solid rgba(var(--primary), 1) !important;
+  border: 3px solid rgba(var(--primary), 1) !important;
 }
 /*Border END*/
 

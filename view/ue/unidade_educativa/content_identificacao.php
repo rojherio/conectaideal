@@ -280,7 +280,7 @@ $ueiDescricaoFormulario5     = "Defina se esse cadastro da unidade educativa est
         <div class="row">
           <label>Selecione uma pessoa jurídica. Caso não a encontre na lista, digite o nome/razão social da pessoa jurídica para efetuar o cadastro.</label>
           <?= createSelect(array(
-            /*int 1-12*/  'col'         => '12 controller="pj"',
+            /*int 1-12*/  'col'         => '12',
             /*string*/    'label'       => 'Pessoa Jurídica',
             /*string*/    'name'        => 'ue_bsc_pessoa_id',
             /*string*/    'id'          => 'ue_bsc_pessoa_id',

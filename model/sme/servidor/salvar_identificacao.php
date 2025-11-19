@@ -1,7 +1,7 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['p_id']);
-$status                                   = strip_tags(@$_POST['p_status']?: 0);
+$id                                       = strip_tags(@$_POST['s_id']);
+$status                                   = strip_tags(@$_POST['s_status']?: 0);
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $bsc_pessoa_id                            = strip_tags(@$_POST['s_bsc_pessoa_id']?: '');
 $matricula                                = ucwords(strtolower(trim(strip_tags(@$_POST['s_matricula']?: ''))));

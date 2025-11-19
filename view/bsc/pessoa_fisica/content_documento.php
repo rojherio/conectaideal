@@ -368,12 +368,12 @@ $descricaoFormulario9     = "Dados do FGTS da pessoa";
             /*string*/    'label'       => 'Cidade',
             /*string*/    'name'        => 'pd_eleitor_bsc_municipio_id',
             /*string*/    'id'          => 'pd_eleitor_bsc_municipio_id',
-            /*string*/    'class'       => 'select2-municipio form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-searchable form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroPessoaDoc['eleitor_bsc_municipio_id'],
             /*array()*/   'options'     => $rsMunicipios,
             /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
             /*bool*/      'required'    => false,
-            /*string*/    'prop'        => ''
+            /*string*/    'prop'        => 'searchurl="bsc/municipio/get_municipios_estados" '
           )); ?>
         </div>
         <!-- div row input - END -->

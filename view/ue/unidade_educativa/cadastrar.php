@@ -22,6 +22,10 @@ if (!$rsRegistroUE) {
 $tituloPagina             = "Cadastro de Unidade Educativa";
 $descricaoPagina          = "Informações da unidade educativa";
 //Parámetros de títutlos - END
+//Parámetros de Exibição de campos - BEGIN
+$exibeSituacao            = true;
+$exibeButoes              = true;
+//Parámetros de Exibição de campos - END
 ?>
 <!-- Main Section - BEGIN-->
 <main>
@@ -49,87 +53,84 @@ $descricaoPagina          = "Informações da unidade educativa";
     <!-- TABS - BEGIN -->
     <div class="row app-tabs-section">
       <div class="col-md-12">
-        <!-- <div class="card"> -->
-          <div class="">
-            <div class="card-body equal-card">
-              <ul class="nav nav-tabs tab-primary bg-primary p-2" id="bg" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <button aria-controls="tab-pane-1" data-bs-target="#tab-pane-1" id="tab-1" aria-selected="true" class="nav-link <?= $tabPane <=1 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
-                    <i class="ti ti-disc pe-1 ps-1"></i>Identificação
-                  </button>
-                </li>
-                <?php
-                if ($rsRegistroUE['id']) {
-                  ?>
-                  <li class="nav-item" role="presentation">
-                    <button aria-controls="tab-pane-2" data-bs-target="#tab-pane-2" id="tab-2" aria-selected="false" class="nav-link <?= $tabPane == 2 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
-                      <i class="ti ti-star pe-1 ps-1"></i>Contatos
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button aria-controls="tab-pane-3" data-bs-target="#tab-pane-3" id="tab-3" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
-                      <i class="ti ti-history pe-1 ps-1"></i>Vínculos
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button aria-controls="tab-pane-4" data-bs-target="#tab-pane-4" id="tab-4" aria-selected="false" class="nav-link <?= $tabPane == 4 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
-                      <i class="ti ti-history pe-1 ps-1"></i>Alimentação Escolar/Infraestrutura
-                    </button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button aria-controls="tab-pane-5" data-bs-target="#tab-pane-5" id="tab-4" aria-selected="false" class="nav-link <?= $tabPane == 5 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
-                      <i class="ti ti-history pe-1 ps-1"></i>Equipamentos
-                    </button>
-                  </li>
-                  <?php
-                }
+        <div class="card-body equal-card">
+          <ul class="nav nav-tabs tab-primary bg-primary p-2" id="bg" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button aria-controls="tab-pane-1" data-bs-target="#tab-pane-1" id="tab-1" aria-selected="true" class="nav-link <?= $tabPane <=1 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                <i class="ti ti-disc pe-1 ps-1"></i>Identificação
+              </button>
+            </li>
+            <?php
+            if ($rsRegistroUE['id']) {
+              ?>
+              <li class="nav-item" role="presentation">
+                <button aria-controls="tab-pane-2" data-bs-target="#tab-pane-2" id="tab-2" aria-selected="false" class="nav-link <?= $tabPane == 2 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                  <i class="ti ti-star pe-1 ps-1"></i>Contatos
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button aria-controls="tab-pane-3" data-bs-target="#tab-pane-3" id="tab-3" aria-selected="false" class="nav-link <?= $tabPane == 3 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                  <i class="ti ti-history pe-1 ps-1"></i>Vínculos
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button aria-controls="tab-pane-4" data-bs-target="#tab-pane-4" id="tab-4" aria-selected="false" class="nav-link <?= $tabPane == 4 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                  <i class="ti ti-history pe-1 ps-1"></i>Alimentação Escolar/Infraestrutura
+                </button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button aria-controls="tab-pane-5" data-bs-target="#tab-pane-5" id="tab-4" aria-selected="false" class="nav-link <?= $tabPane == 5 ? 'active' : '' ;?>" data-bs-toggle="tab" role="tab" type="button">
+                  <i class="ti ti-history pe-1 ps-1"></i>Equipamentos
+                </button>
+              </li>
+              <?php
+            }
+            ?>
+          </ul>
+          <div class="tab-content" id="v-bgContent">
+            <div aria-labelledby="tab-pane-1" id="tab-pane-1" class="tab-pane fade <?= $tabPane <= 1 ? 'show active' : '' ;?>" role="tabpanel" tabindex="1">
+              <form class="app-form" id="form_ue_identificacao" name="form_ue_identificacao" method="post" urlToSend="ue/unidade_educativa/salvar_identificacao" action="">
+                <?php 
+                include_once ('view/ue/unidade_educativa/content_identificacao.php'); 
                 ?>
-              </ul>
-              <div class="tab-content" id="v-bgContent">
-                <div aria-labelledby="tab-pane-1" id="tab-pane-1" class="tab-pane fade <?= $tabPane <= 1 ? 'show active' : '' ;?>" role="tabpanel" tabindex="1">
-                  <form class="app-form" id="form_ue_identificacao" name="form_ue_identificacao" method="post" urlToSend="ue/unidade_educativa/salvar_identificacao" action="">
-                    <?php 
-                    include_once ('view/ue/unidade_educativa/content_identificacao.php'); 
-                    ?>
-                  </form>
-                </div>
-                <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
-                  <form class="app-form" id="form_ue_contato" name="form_ue_contato" method="post" urlToSend="bsc/pessoa_juridica/salvar_contato" action="">
-                    <?php 
-                    include_once ('view/ue/unidade_educativa/content_contato.php'); 
-                    ?>
-                  </form>.
-                </div>
-                <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="3">
-                  <form class="app-form" id="form_ue_privada" name="form_ue_privada" method="post" urlToSend="ue/unidade_educativa/salvar_vinculo" action="">
-                    <?php 
-                    include_once ('view/ue/unidade_educativa/content_vinculo.php'); 
-                    ?>
-                  </form>
-                </div>
-                <div aria-labelledby="tab-pane-4" id="tab-pane-4" class="tab-pane fade <?= $tabPane == 4 ? 'show active' : '' ;?>" role="tabpanel" tabindex="4">
-                  <form class="app-form" id="form_ue_infraestrutura" name="form_ue_infraestrutura" method="post" urlToSend="ue/unidade_educativa/salvar_infraestrutura" action="">
-                    <?php 
-                    include_once ('view/ue/unidade_educativa/content_infraestrutura.php'); 
-                    ?>
-                  </form>
-                </div>
-                <div aria-labelledby="tab-pane-5" id="tab-pane-5" class="tab-pane fade <?= $tabPane == 5 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
-                  <form class="app-form" id="form_ue_equipamento" name="form_ue_equipamento" method="post" urlToSend="ue/unidade_educativa/salvar_equipamento" action="">
-                    <?php 
-                    include_once ('view/ue/unidade_educativa/content_equipamento.php'); 
-                    ?>
-                  </form>
-                </div>
-              </div>
+              </form>
+            </div>
+            <div aria-labelledby="tab-pane-2" id="tab-pane-2" class="tab-pane fade <?= $tabPane == 2 ? 'show active' : '' ;?>" role="tabpanel" tabindex="2">
+              <form class="app-form" id="form_ue_contato" name="form_ue_contato" method="post" urlToSend="bsc/pessoa_juridica/salvar_contato" action="">
+                <?php 
+                include_once ('view/ue/unidade_educativa/content_contato.php'); 
+                ?>
+              </form>.
+            </div>
+            <div aria-labelledby="tab-pane-3" id="tab-pane-3" class="tab-pane fade <?= $tabPane == 3 ? 'show active' : '' ;?>" role="tabpanel" tabindex="3">
+              <form class="app-form" id="form_ue_privada" name="form_ue_privada" method="post" urlToSend="ue/unidade_educativa/salvar_vinculo" action="">
+                <?php 
+                include_once ('view/ue/unidade_educativa/content_vinculo.php'); 
+                ?>
+              </form>
+            </div>
+            <div aria-labelledby="tab-pane-4" id="tab-pane-4" class="tab-pane fade <?= $tabPane == 4 ? 'show active' : '' ;?>" role="tabpanel" tabindex="4">
+              <form class="app-form" id="form_ue_infraestrutura" name="form_ue_infraestrutura" method="post" urlToSend="ue/unidade_educativa/salvar_infraestrutura" action="">
+                <?php 
+                include_once ('view/ue/unidade_educativa/content_infraestrutura.php'); 
+                ?>
+              </form>
+            </div>
+            <div aria-labelledby="tab-pane-5" id="tab-pane-5" class="tab-pane fade <?= $tabPane == 5 ? 'show active' : '' ;?>" role="tabpanel" tabindex="end">
+              <form class="app-form" id="form_ue_equipamento" name="form_ue_equipamento" method="post" urlToSend="ue/unidade_educativa/salvar_equipamento" action="">
+                <?php 
+                include_once ('view/ue/unidade_educativa/content_equipamento.php'); 
+                ?>
+              </form>
             </div>
           </div>
         </div>
       </div>
-      <!-- TABS - END -->
-      <!-- div de cadastro - END -->
     </div>
-  </main>
+    <!-- TABS - END -->
+    <!-- div de cadastro - END -->
+  </div>
+</main>
 <!-- Main Section - END-->
 <?php
 include_once ('template/footer.php');

@@ -1,6 +1,6 @@
 <?php
 $db                                       = Conexao::getInstance();
-$id                                       = strip_tags(@$_POST['pf_id']);
+$id                                       = strip_tags(@$_POST['sf_id']);
 $status                                   = 1;
 $dt_cadastro                              = date("Y-m-d H:i:s");
 $sme_servidor_id                          = strip_tags(@$_POST['sf_sme_servidor_id']?: '');

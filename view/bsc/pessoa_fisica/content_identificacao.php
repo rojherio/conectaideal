@@ -288,12 +288,12 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'label'       => 'Nacionalidade',
             /*string*/    'name'        => 'p_natural_bsc_pais_id',
             /*string*/    'id'          => 'p_natural_bsc_pais_id',
-            /*string*/    'class'       => 'select2-nacionalidade form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-searchable form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroPessoaIdent['natural_bsc_pais_id'],
             /*array()*/   'options'     => $rsPaises,
             /*string*/    'ariaLabel'   => 'Digite o nome do país',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => 'controller="naturalidade" controller-values="0|1"'
+            /*string*/    'prop'        => 'controller="naturalidade" controller-values="0|1" searchurl="bsc/pais/get_nacionalidades" '
           )); ?>
           <?php
           //Parámetros de exibir/ocultar div - BEGIN
@@ -306,12 +306,12 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
             /*string*/    'label'       => 'Naturalidade',
             /*string*/    'name'        => 'p_natural_bsc_municipio_id',
             /*string*/    'id'          => 'p_natural_bsc_municipio_id',
-            /*string*/    'class'       => 'select2-municipio form-control form-select select-basic',
+            /*string*/    'class'       => 'select2-searchable form-control form-select select-basic',
             /*string*/    'value'       => $rsRegistroPessoaIdent['natural_bsc_municipio_id'],
             /*array()*/   'options'     => $rsMunicipios,
             /*string*/    'ariaLabel'   => 'Digite o nome da cidade',
             /*bool*/      'required'    => true,
-            /*string*/    'prop'        => 'controlled="naturalidade" control-value="1"'
+            /*string*/    'prop'        => 'controlled="naturalidade" control-value="1" searchurl="bsc/municipio/get_municipios_estados" '
           )); ?>
         </div>
         <div controlled="naturalidade" control-value="0" <?= $displayExtranjeiro ;?>>
@@ -425,12 +425,12 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                 /*string*/    'label'       => 'Nacionalidade do Pai',
                 /*string*/    'name'        => 'p_pai_natural_bsc_pais_id',
                 /*string*/    'id'          => 'p_pai_natural_bsc_pais_id',
-                /*string*/    'class'       => 'select2-nacionalidade form-control form-select select-basic',
+                /*string*/    'class'       => 'select2-searchable form-control form-select select-basic',
                 /*string*/    'value'       => $rsRegistroPessoaIdent['pai_natural_bsc_pais_id'],
                 /*array()*/   'options'     => $rsPaises,
                 /*string*/    'ariaLabel'   => 'Digite o nome do país',
                 /*bool*/      'required'    => false,
-                /*string*/    'prop'        => ''
+                /*string*/    'prop'        => 'searchurl="bsc/pais/get_nacionalidades" '
               )); ?>
               <?= createInput(array(
                 /*int 1-12*/  'col'         => 12,
@@ -471,12 +471,12 @@ $descricaoFormulario5     = "Defina se esse cadastro de pessoa está ativo ou in
                 /*string*/    'label'       => 'Nacionalidade da Mãe',
                 /*string*/    'name'        => 'p_mae_natural_bsc_pais_id',
                 /*string*/    'id'          => 'p_mae_natural_bsc_pais_id',
-                /*string*/    'class'       => 'select2-nacionalidade form-control form-select select-basic',
+                /*string*/    'class'       => 'select2-searchable form-control form-select select-basic',
                 /*string*/    'value'       => $rsRegistroPessoaIdent['mae_natural_bsc_pais_id'],
                 /*array()*/   'options'     => $rsPaises,
                 /*string*/    'ariaLabel'   => 'Digite o nome do país',
                 /*bool*/      'required'    => true,
-                /*string*/    'prop'        => ''
+                /*string*/    'prop'        => 'searchurl="bsc/pais/get_nacionalidades" '
               )); ?>
               <?= createInput(array(
                 /*int 1-12*/  'col'         => 12,

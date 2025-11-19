@@ -1,8 +1,8 @@
 $(document).ready(function () {
-  // $('#modalLoading').modal({
-  //   backdrop: 'static',
-  //   keyboard: false
-  // })
+
+});
+$(function () {
+  // $('#welcomeCard').modal('show');
 });
 $('button[type="reset"]').on('click', function(){
   $('button.btn_submit').attr('disabled', false);
@@ -28,17 +28,24 @@ function divLoaded(){
   $.unblockUI();
   $('button.btn_submit').attr('disabled', false);
 }
-function setOptionSelect(elemId, elemInput){
-  let inputVal = $(elemInput).val();
-  var newOption = new Option(inputVal, inputVal, true, true);
+function setNewOptionSelect(elemId, elem){
+  let optVal = $(elem).val();
+  let optText = $(elem).val();
+  if ($(elem).is('select')) {
+    optText = $(elem).find('option[selected]').text();
+  }
+  var newOption = new Option(optText, optVal, true, true);
   $('#'+elemId).append(newOption).trigger('change');
 }
-function setOptionSelectFK(elemId, optionId, text){
-  var newOption = new Option(text, optionId, true, true);
-  $('#'+elemId).append(newOption).trigger('change');
-}
-function setInputFK(elemId, value){
-  $('#'+elemId).val(value);
+function setFK(elemIdSet, dataId, elemIdTextGet){
+  if ($('#'+elemIdSet).is('select')) {
+    var newOption = new Option($('#'+elemIdTextGet).find(':selected').text(), dataId, true, true);
+    $('#'+elemIdSet).append(newOption).trigger('change');
+  } else if ($('#'+elemIdSet).is('input:not([type="hidden"])')) {
+    $('#'+elemIdSet).val($('#'+elemIdTextGet).val());
+  }  else {
+    $('#'+elemIdSet).val(dataId);
+  }
 }
 function postToURL(path, params, method, target) {
   method = method || "post"; // Set method to post by default, if not specified.
@@ -261,8 +268,6 @@ function ajaxCompleteSendTabPane(data, status, urlCurrent, urlToGo, tabPane) {
     }
   }, 1000);
 }
-
-
 var urlsToSendSub = [];
 function ajaxSendCadastrarSub(params){
   let formToSend = $('#'+params.formId);
@@ -278,17 +283,20 @@ function ajaxSendCadastrarSub(params){
     }).then((result) => {
       if (result.isConfirmed) {
         divLoading();
+        params.urlsToSendSub = params.urlsToSendSub.toReversed();
         urlsToSendSub = params.urlsToSendSub;
-        Object.keys(params.urlsToSendSub).forEach((elemSubKey, k) => {
+        let formSerialized = '';
+        Object.keys(params.urlsToSendSub).forEach((elemSubKey, vObj) => {
+          formSerialized = $('form#'+params.formId).serialize()+'&'+params.urlsToSendSub[elemSubKey].elemIdStatusSet+'=1';
           $.ajax({
             url:          PORTAL_URL + params.urlsToSendSub[elemSubKey].urlToSendSub,
-            async:        true,
+            async:        false,
             method:       "post",
             beforeSend:   divLoading,
             cache:        true,
             dataType:     "json",
             contentType:  "application/x-www-form-urlencoded; charset=UTF-8",
-            data:         params.formSerialized,
+            data:         formSerialized,
             statusCode:   {
               404: function() {
                 alert( "Página não encontrada" );
@@ -302,8 +310,8 @@ function ajaxSendCadastrarSub(params){
             ajaxError(data, status, errorThrown);
           })
           .always(function (data, status){
-            $('#'+params.urlsToSendSub[elemSubKey].elemId).is('input') ? setInputFK(params.urlsToSendSub[elemSubKey].elemId, params.urlsToSendSub[elemSubKey].elemText) : '';
-            $('#'+params.urlsToSendSub[elemSubKey].elemId).is('select') ? setOptionSelectFK(params.urlsToSendSub[elemSubKey].elemId, data.id, params.urlsToSendSub[elemSubKey].elemText) : '';
+            setFK(params.urlsToSendSub[elemSubKey].elemIdSet, data.id, params.urlsToSendSub[elemSubKey].elemIdTextGet);
+            setFK(params.urlsToSendSub[elemSubKey].elemIdSetId, data.id, params.urlsToSendSub[elemSubKey].elemIdTextGet);
             ajaxCompleteSendSub(data, status, params, elemSubKey);
           })
         });
@@ -339,7 +347,7 @@ function ajaxCompleteSendSub(data, status, params, elemSubKey) {
       countElem++;
     });
     if (countElem == 0) {
-    //Envio Formulario Principal - BEGIN
+      //Envio Formulario Principal - BEGIN
       let formToSend = $('#'+params.formId);
       $.ajax({
         url: PORTAL_URL + params.urlToSend,
@@ -365,7 +373,7 @@ function ajaxCompleteSendSub(data, status, params, elemSubKey) {
       .always(function (data, status){
         ajaxCompleteSendTabPane(data, status, params.urlCurrent, params.urlToGo, params.tabPane);
       })
-    //Envio Formulario Principal - END
+      //Envio Formulario Principal - END
     }
   } else if (data.status == 'error') {
     if (data.tipo == 'existente') {
@@ -374,15 +382,10 @@ function ajaxCompleteSendSub(data, status, params, elemSubKey) {
       Swal.fire('Erro inesperado', "Houve um erro inesperado ao tentar registrar as novas informações! Por favor, tente novamente ou informe ao suporte o erro a seguir: " + data.msg, 'error');
     }
     divLoaded();
-      // console.log('Error: ' + data.msg);
+    // console.log('Error: ' + data.msg);
   }
   return false;
 }
-
-
-
-
-
 function ajaxSendExcluir(params){
   Swal.fire({
     title: 'Você confirma a exclusão deste registro?',
